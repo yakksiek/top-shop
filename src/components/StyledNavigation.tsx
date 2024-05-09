@@ -14,7 +14,7 @@ const StyledNavigation = styled.ul`
             font-size: 18px;
         }
 
-        span {
+        & > span {
             padding-left: 0.75rem;
         }
     }
