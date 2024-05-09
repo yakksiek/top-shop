@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-  /* Indigo */
 
 
   &, &.light-mode {
@@ -20,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
   --color-grey-700: #374151;
   --color-grey-800: #1f2937; */
   --color-grey-900: #111827;
+  --color-black: #000000;
 
   /* --color-blue-100: #e0f2fe;
   --color-blue-700: #0369a1;
@@ -47,7 +47,7 @@ const GlobalStyles = createGlobalStyle`
   --image-opacity: 100%;
 }
 
-  &.dark-mode {
+  /* &.dark-mode { */
     /* --color-grey-0: #18212f;
     --color-grey-50: #111827;
     --color-grey-100: #1f2937;
@@ -120,7 +120,7 @@ html {
 body {
   font-family: 'FuturaLight', sans-serif;
   font-weight: 200;
-  color: var(--color-grey-900);
+  /* color: var(--color-grey-900); */
   transition: color 0.3s, background-color 0.3s;
   /* min-height: 100vh; */
   line-height: 1.5;
@@ -194,7 +194,7 @@ h6 {
 
 h1 {
   font-size: 2.25rem;
-  letter-spacing: 0.4px;
+  letter-spacing: 2.5px;
 }
 
 h2 {

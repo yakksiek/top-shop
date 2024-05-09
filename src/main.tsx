@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import AppLayout from './components/AppLayout.tsx';
 import GlobalStyles from './styles/GlobalStyles.ts';
-import App from './App.tsx';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: <AppLayout />,
     },
 ]);
 
