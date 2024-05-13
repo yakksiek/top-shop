@@ -44,7 +44,7 @@ function NavLinks() {
     return (
         <StyledNavigation>
             <li className='contact'>
-                <span>Contact Us</span>
+                <span className="label">Contact Us</span>
             </li>
             <StyledListItem>
                 <IoMdHeartEmpty />

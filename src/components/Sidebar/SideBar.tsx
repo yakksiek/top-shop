@@ -3,11 +3,11 @@ import { useSidebarContext } from '../../contexts/SidebarContext';
 import NavList from './SidebarNavList';
 
 interface StyledSidebarProps {
-    isOpen: boolean;
+    $isOpen: boolean;
 }
 
 interface StyledOverlayProps {
-    isOpen: boolean;
+    $isOpen: boolean;
 }
 
 const StyledSidebar = styled.aside<StyledSidebarProps>`
@@ -25,8 +25,8 @@ const StyledSidebar = styled.aside<StyledSidebarProps>`
     top: 0;
     left: 0;
 
-    ${({ isOpen }) =>
-        isOpen &&
+    ${({ $isOpen }) =>
+        $isOpen &&
         css`
             translate: 0;
         `}
@@ -45,8 +45,8 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
     transition: opacity var(--hamburger-animation-timing);
     visibility: hidden;
 
-    ${({ isOpen }) =>
-        isOpen &&
+    ${({ $isOpen }) =>
+        $isOpen &&
         css`
             opacity: 1;
             visibility: visible;
@@ -58,8 +58,8 @@ function Sidebar() {
 
     return (
         <>
-            <StyledOverlay onClick={handleOpenMenu} isOpen={isOpen} />
-            <StyledSidebar isOpen={isOpen}>
+            <StyledOverlay onClick={handleOpenMenu} $isOpen={isOpen} />
+            <StyledSidebar $isOpen={isOpen}>
                 <NavList />
             </StyledSidebar>
         </>

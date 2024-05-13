@@ -49,7 +49,7 @@ const IconContainer = styled.div`
 `;
 
 interface StyledHamburgerProps {
-    isOpen: boolean;
+    $isOpen: boolean;
 }
 
 const StyledHamburger = styled.span<StyledHamburgerProps>`
@@ -74,16 +74,16 @@ const StyledHamburger = styled.span<StyledHamburgerProps>`
     }
 
     & span {
-        ${({ isOpen }) =>
-            isOpen &&
+        ${({ $isOpen }) =>
+            $isOpen &&
             css`
                 opacity: 0;
                 width: 0;
             `}
     }
 
-    ${({ isOpen }) =>
-        isOpen &&
+    ${({ $isOpen }) =>
+        $isOpen &&
         css`
             &::before {
                 rotate: 45deg;
@@ -107,7 +107,7 @@ function Menu() {
             <li>
                 <StyledButton onClick={handleOpenMenu}>
                     <IconContainer>
-                        <StyledHamburger isOpen={isOpen}>
+                        <StyledHamburger $isOpen={isOpen}>
                             <span></span>
                         </StyledHamburger>
                     </IconContainer>

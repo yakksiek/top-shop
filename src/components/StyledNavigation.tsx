@@ -17,6 +17,11 @@ const StyledNavigation = styled.ul`
 
         .label {
             padding-left: 0.75rem;
+            display: inline;
+
+            @media ${device.mobile} {
+                display: none;
+            }
         }
 
         &.contact {

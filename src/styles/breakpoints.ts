@@ -5,9 +5,9 @@ interface Size {
 }
 
 const size: Size = {
-    mobile: '600px',
-    tablet: '900px',
-    desktop: '1040px',
+    mobile: '767px',
+    tablet: '1023px',
+    desktop: '1024px',
 };
 
 export const device = {
