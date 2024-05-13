@@ -9,17 +9,19 @@ const GlobalStyles = createGlobalStyle`
   
   /* Grey */
   --color-grey-0: #fff;
+  --color-grey-400: #9ca3af;
+  --color-grey-500: #6b7280;
   /* --color-grey-50: #f9fafb;
   --color-grey-100: #f3f4f6;
   --color-grey-200: #e5e7eb;
   --color-grey-300: #d1d5db;
-  --color-grey-400: #9ca3af;
-  --color-grey-500: #6b7280;
   --color-grey-600: #4b5563;
   --color-grey-700: #374151;
   --color-grey-800: #1f2937; */
   --color-grey-900: #111827;
   --color-black: #000000;
+
+  --color-orange-400: #fb923c;
 
   /* --color-blue-100: #e0f2fe;
   --color-blue-700: #0369a1;
@@ -43,7 +45,8 @@ const GlobalStyles = createGlobalStyle`
   --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
 
 
-    --image-grayscale: 0;
+    
+  --image-grayscale: 0;
   --image-opacity: 100%;
 }
 
@@ -100,6 +103,12 @@ const GlobalStyles = createGlobalStyle`
   --border-radius-lg: 9px;
 
 
+  // hamburger
+  --bar-width: 16px;
+  --bar-height: 1px;
+  --hamburger-gap: 5px;
+  --hamburger-animation-timing: 300ms ease-in-out;
+  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2)
 }
 
 *,

@@ -31,19 +31,19 @@ const StyledCartIndicator = styled.div`
 const StyledFavouritesIndicator = styled.div`
     position: absolute;
     top: 5px;
-    right: 5px; // Adjust positioning as needed
+    right: 5px;
     height: 0.375rem;
     width: 0.375rem;
-    background-color: orange; // Set the color to orange
+    background-color: var(--color-orange-400);
     border-radius: 50%;
     display: block;
-    border: 1px solid white; // Optional: Adds a border to make the dot stand out
+    border: 1px solid var(--color-grey-0);
 `;
 
 function NavLinks() {
     return (
         <StyledNavigation>
-            <li>
+            <li className='contact'>
                 <span>Contact Us</span>
             </li>
             <StyledListItem>

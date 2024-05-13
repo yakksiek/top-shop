@@ -1,46 +1,30 @@
-import { CiMenuBurger } from 'react-icons/ci';
 import { IoSearchOutline } from 'react-icons/io5';
-import { VscClose } from 'react-icons/vsc';
+import styled, { css } from 'styled-components';
+import { useSidebarContext } from '../contexts/SidebarContext';
 import StyledNavigation from './StyledNavigation';
-import styled from 'styled-components';
-import { useState } from 'react';
 
-const MenuButton = styled.button`
+const StyledButton = styled.button`
     border: none;
     background: transparent;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
-    overflow: hidden;
     position: relative;
-
-    width: 60px;
-    height: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
-    .burger {
-        display: block;
-        height: 3px;
-        width: 100%;
-        background: black;
-        transition: all 0.3s ease;
-    }
+    cursor: pointer;
+    z-index: 5;
+    height: 100%;
+    overflow: hidden;
+    min-width: 2rem;
 `;
 
 const StyledLabel = styled.span`
     color: transparent;
-    padding-right: 0.5rem;
+    position: relative;
 
     .text {
         position: absolute;
-        color: red;
+        color: var(--color-black);
         top: 50%;
-        left: 70%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
+        transform: translate(0, -50%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -49,142 +33,97 @@ const StyledLabel = styled.span`
     }
 
     .text-enter {
-        transform: translate(-50%, 150%);
+        transform: translate(0%, 150%);
     }
 
     .text-exit {
-        transform: translate(-50%, -150%);
+        transform: translate(0%, -150%);
     }
 `;
 
-const StyledButton = styled.button`
-    border: none;
-    background: transparent;
+const IconContainer = styled.div`
+    min-width: 1.3rem;
+    height: 100%;
     display: flex;
-    /* align-items: center; */
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
+    align-items: center;
+`;
+
+interface StyledHamburgerProps {
+    isOpen: boolean;
+}
+
+const StyledHamburger = styled.span<StyledHamburgerProps>`
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: max-content;
+
+    &::before,
+    &::after,
+    & span {
+        content: '';
+        width: var(--bar-width);
+        height: var(--bar-height);
+        background-color: #333;
+        border-radius: 100vh;
+        transform-origin: left center;
+        transition: opacity var(--hamburger-animation-timing), width var(--hamburger-animation-timing),
+            rotate var(--hamburger-animation-timing), translate var(--hamburger-animation-timing);
+    }
+
+    & span {
+        ${({ isOpen }) =>
+            isOpen &&
+            css`
+                opacity: 0;
+                width: 0;
+            `}
+    }
+
+    ${({ isOpen }) =>
+        isOpen &&
+        css`
+            &::before {
+                rotate: 45deg;
+                width: var(--x-width);
+                translate: 0 calc(var(--bar-height) / -2);
+            }
+
+            &::after {
+                rotate: -45deg;
+                width: var(--x-width);
+                translate: 0 calc(var(--bar-height) / 2);
+            }
+        `}
 `;
 
 function Menu() {
-    const [isMenuOpen, setIsOpenMenu] = useState(false);
-
-    function handleOpenMenu() {
-        setIsOpenMenu(prevState => !prevState);
-    }
-
-    console.log(isMenuOpen);
+    const { isOpen, handleOpenMenu } = useSidebarContext();
 
     return (
         <StyledNavigation>
             <li>
                 <StyledButton onClick={handleOpenMenu}>
-                    <span></span>
-                    <span>
-                        <span>Menu</span>
-                        {/* <span>Close</span> */}
-                    </span>
+                    <IconContainer>
+                        <StyledHamburger isOpen={isOpen}>
+                            <span></span>
+                        </StyledHamburger>
+                    </IconContainer>
+                    <StyledLabel className='label'>
+                        Close
+                        <span className={`text ${isOpen ? 'text-exit' : ''}`}>Menu</span>
+                        <span className={`text ${isOpen ? '' : 'text-enter'}`}>Close</span>
+                    </StyledLabel>
                 </StyledButton>
             </li>
             <li>
                 <IoSearchOutline />
-                <span>Search</span>
+                <span className='label'>Search</span>
             </li>
         </StyledNavigation>
     );
 }
 
 export default Menu;
-
-// import React, { useState } from 'react';
-// import styled from 'styled-components';
-
-// const MenuButton = styled.button`
-//     width: 30px;
-//     height: 30px;
-//     background: transparent;
-//     border: none;
-//     cursor: pointer;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-around;
-//     padding: 0;
-
-//     div {
-//         display: block;
-//         height: 1px;
-//         width: 100%;
-//         background: black;
-//         transition: all 0.3s ease;
-//     }
-// `;
-
-// const StyledNavigation = styled.nav`
-//     /* Additional styling can be placed here */
-// `;
-
-// function Menu() {
-//     const [isOpen, setIsOpen] = useState(false);
-
-//     const handleToggle = () => {
-//         setIsOpen(!isOpen);
-//     };
-
-//     return (
-//         <StyledNavigation>
-//             <MenuButton onClick={handleToggle}>
-//                 <div
-//                     style={{
-//                         transform: isOpen ? 'rotate(45deg) translate(5px, 9px)' : 'none',
-//                     }}
-//                 />
-//                 <div
-//                     style={{
-//                         opacity: isOpen ? '0' : '1',
-//                         transform: isOpen ? 'translateX(20px)' : 'none',
-//                     }}
-//                 />
-//                 <div
-//                     style={{
-//                         transform: isOpen ? 'rotate(-45deg) translate(5px, -9px)' : 'none',
-//                     }}
-//                 />
-//             </MenuButton>
-//         </StyledNavigation>
-//     );
-// }
-
-// export default Menu;
-
-/// btn
-{
-    /* <li>
-                <MenuButton onClick={handleOpenMenu}>
-                    <div
-                        className='burger'
-                        style={{
-                            transform: isMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
-                        }}
-                    />
-                    <div
-                        className='burger'
-                        style={{
-                            opacity: isMenuOpen ? '0' : '1',
-                            transform: isMenuOpen ? 'translateX(20px)' : 'none',
-                        }}
-                    />
-                    <div
-                        className='burger'
-                        style={{
-                            transform: isMenuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
-                        }}
-                    />
-                    <StyledLabel>
-                        Menu
-                        <div className={`text ${isMenuOpen ? 'text-exit' : ''}`}>{isMenuOpen ? 'Close' : 'Menu'}</div>
-                        <div className={`text ${isMenuOpen ? '' : 'text-enter'}`}>{isMenuOpen ? 'Close' : 'Menu'}</div>
-                    </StyledLabel>
-                </MenuButton>
-            </li> */
-}

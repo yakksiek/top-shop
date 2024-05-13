@@ -14,8 +14,16 @@ const StyledNavigation = styled.ul`
             font-size: 18px;
         }
 
-        & > span {
+        .label {
             padding-left: 0.75rem;
+        }
+
+        &.contact {
+            display: none;
+
+            @media (min-width: 1025px) {
+                display: flex;
+            }
         }
     }
 `;

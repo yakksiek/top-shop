@@ -9,6 +9,8 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     width: 95vw;
     padding: 1.2rem 0;
+    position: relative;
+    height: 5.5rem;
 `;
 
 function Header() {
