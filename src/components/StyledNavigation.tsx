@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../styles/breakpoints';
 
 const StyledNavigation = styled.ul`
     display: flex;
@@ -21,7 +22,7 @@ const StyledNavigation = styled.ul`
         &.contact {
             display: none;
 
-            @media (min-width: 1025px) {
+            @media ${device.desktop} {
                 display: flex;
             }
         }

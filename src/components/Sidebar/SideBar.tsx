@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { useSidebarContext } from '../../contexts/SidebarContext';
-import NavList from './NavList';
+import NavList from './SidebarNavList';
 
 interface StyledSidebarProps {
     isOpen: boolean;

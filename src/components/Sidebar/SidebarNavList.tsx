@@ -59,7 +59,7 @@ const StyledLabel = styled.span`
     }
 `;
 
-function NavList() {
+function SidebarNavList() {
     return (
         <StyledNavList>
             {menuData.map(item => (
@@ -76,4 +76,4 @@ function NavList() {
     );
 }
 
-export default NavList;
+export default SidebarNavList;

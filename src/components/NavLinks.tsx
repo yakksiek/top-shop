@@ -23,7 +23,7 @@ const StyledCartIndicator = styled.div`
     height: 0.75rem;
     letter-spacing: 0;
     width: 0.75rem;
-    background-color: black;
+    background-color: var(--color-black);
     border-radius: 50%;
     text-align: center;
 `;
