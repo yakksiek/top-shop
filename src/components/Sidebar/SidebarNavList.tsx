@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { device } from '../../styles/breakpoints';
 
 const menuData = ['Men', 'Women', 'Children', 'Pets'];
 
@@ -10,8 +11,11 @@ const StyledNavList = styled.ul`
 `;
 
 const IconWrapper = styled.span`
-    opacity: 0;
     transition: opacity var(--hamburger-animation-timing);
+
+    @media ${device.tablet} {
+        opacity: 0;
+    }
 `;
 
 const StyledNavItem = styled.li`

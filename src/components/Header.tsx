@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Logo from './Logo';
 import Menu from './Menu';
 import NavLinks from './NavLinks';
+import { device } from '../styles/breakpoints';
 
 const StyledHeader = styled.header`
     display: flex;
@@ -10,7 +11,15 @@ const StyledHeader = styled.header`
     width: 95vw;
     padding: 1.2rem 0;
     position: relative;
-    height: 5.5rem;
+    height: var(--header-height);
+
+    @media ${device.mobile} {
+        border-bottom: 1px solid var(--color-grey-300);
+        width: 100vw;
+        padding: 1.2rem 1rem;
+        z-index: 10;
+        background-color: var(--color-grey-0);
+    }
 `;
 
 function Header() {

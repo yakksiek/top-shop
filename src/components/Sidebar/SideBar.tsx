@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { useSidebarContext } from '../../contexts/SidebarContext';
 import NavList from './SidebarNavList';
+import { device } from '../../styles/breakpoints';
 
 interface StyledSidebarProps {
     $isOpen: boolean;
@@ -12,24 +13,39 @@ interface StyledOverlayProps {
 
 const StyledSidebar = styled.aside<StyledSidebarProps>`
     background-color: var(--color-grey-0);
-    z-index: 3;
-    translate: -100%;
     transition: translate var(--hamburger-animation-timing);
-    width: 11rem;
-    width: 29vw;
-    max-width: 14rem;
-    max-width: 30vw;
-    min-height: 100dvh;
-    padding: 5rem 0.5rem 1rem 3.5vw;
-    position: absolute;
-    top: 0;
+    width: 100vw;
+    padding: 1rem 4.5vw;
+    position: fixed;
+    top: -100%;
     left: 0;
+    transition: top var(--hamburger-animation-timing);
 
     ${({ $isOpen }) =>
         $isOpen &&
         css`
-            translate: 0;
+            top: var(--header-height);
         `}
+
+    @media ${device.tablet} {
+        z-index: 3;
+        translate: -100%;
+        width: 11rem;
+        width: 29vw;
+        max-width: 14rem;
+        max-width: 30vw;
+        min-height: 100dvh;
+        padding: 5rem 0.5rem 1rem 3.5vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        ${({ $isOpen }) =>
+            $isOpen &&
+            css`
+                translate: 0;
+            `}
+    }
 `;
 
 const StyledOverlay = styled.div<StyledOverlayProps>`
@@ -51,6 +67,11 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
             opacity: 1;
             visibility: visible;
         `}
+
+    @media ${device.mobile} {
+        width: 0;
+        height: 0;
+    }
 `;
 
 function Sidebar() {
