@@ -1,15 +1,6 @@
-import { IoSearchOutline } from 'react-icons/io5';
-import StyledNavigation from './StyledNavigation';
+import { InputSearchButton } from './SearchInput';
 import { SidebarMenuButton } from './Sidebar';
-import styled from 'styled-components';
-
-const StyledInputButton = styled.button`
-    border: none;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+import StyledNavigation from './StyledNavigation';
 
 function Menu() {
     return (
@@ -18,10 +9,7 @@ function Menu() {
                 <SidebarMenuButton />
             </li>
             <li>
-                <StyledInputButton>
-                    <IoSearchOutline />
-                    <span className='label'>Search</span>
-                </StyledInputButton>
+                <InputSearchButton />
             </li>
         </StyledNavigation>
     );

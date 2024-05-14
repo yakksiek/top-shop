@@ -13,27 +13,27 @@ interface StyledOverlayProps {
 
 const StyledSidebar = styled.aside<StyledSidebarProps>`
     background-color: var(--color-grey-0);
-    transition: translate var(--hamburger-animation-timing);
     width: 100vw;
     padding: 1rem 4.5vw;
     position: fixed;
-    top: -100%;
     left: 0;
-    transition: top var(--hamburger-animation-timing);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(-100%);
 
     ${({ $isOpen }) =>
         $isOpen &&
         css`
             top: var(--header-height);
+            opacity: 1;
+            transform: translateY(0);
         `}
 
     @media ${device.tablet} {
         z-index: 3;
-        translate: -100%;
-        width: 11rem;
+        transform: translateX(-100%);
         width: 29vw;
-        max-width: 14rem;
-        max-width: 30vw;
+        max-width: 24rem;
         min-height: 100dvh;
         padding: 5rem 0.5rem 1rem 3.5vw;
         position: absolute;
@@ -43,7 +43,7 @@ const StyledSidebar = styled.aside<StyledSidebarProps>`
         ${({ $isOpen }) =>
             $isOpen &&
             css`
-                translate: 0;
+                transform: translateX(0);
             `}
     }
 `;

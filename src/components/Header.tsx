@@ -1,10 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { device } from '../styles/breakpoints';
 import Logo from './Logo';
 import Menu from './Menu';
 import NavLinks from './NavLinks';
-import { device } from '../styles/breakpoints';
+import { useSidebarContext } from '../contexts/SidebarContext';
 
-const StyledHeader = styled.header`
+interface StyledHeaderProps {
+    $isOpen: boolean;
+}
+
+const StyledHeader = styled.header<StyledHeaderProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,17 +19,24 @@ const StyledHeader = styled.header`
     height: var(--header-height);
 
     @media ${device.mobile} {
-        border-bottom: 1px solid var(--color-grey-300);
         width: 100vw;
         padding: 1.2rem 1rem;
         z-index: 10;
         background-color: var(--color-grey-0);
+
+        ${({ $isOpen }) =>
+            $isOpen &&
+            css`
+                border-bottom: 1px solid var(--color-grey-200);
+            `}
     }
 `;
 
 function Header() {
+    const { isOpen } = useSidebarContext();
+
     return (
-        <StyledHeader>
+        <StyledHeader $isOpen={isOpen}>
             <Menu />
             <Logo />
             <NavLinks />

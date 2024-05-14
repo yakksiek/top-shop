@@ -5,8 +5,8 @@ interface Size {
 }
 
 const size: Size = {
-    mobile: '767px',
-    tablet: '768px',
+    mobile: '768px',
+    tablet: '769px',
     desktop: '1024px',
 };
 
