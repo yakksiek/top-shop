@@ -1,0 +1,20 @@
+{
+    "categories": [
+        {
+            "headline": "Help",
+            "items": ["Contact Us", "FAQs", "Delivery", "Returns", "Payment Methods"]
+        },
+        {
+            "headline": "Services",
+            "items": ["Store Locator", "Care Services", "Personalization", "Gift Wrapping", "Book an Appointment"]
+        },
+        {
+            "headline": "About Louis Vuitton",
+            "items": ["Our Story", "Careers", "Press", "Sustainability", "Legal Information"]
+        },
+        {
+            "headline": "Connect",
+            "items": ["Instagram", "Facebook", "Twitter", "Pinterest", "YouTube"]
+        }
+    ]
+}

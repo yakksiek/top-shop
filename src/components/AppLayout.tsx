@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import { SearchInput } from './SearchInput';
 import { Sidebar } from './Sidebar';
+import Footer from './Footer';
 
 const StyledAppLayout = styled.div`
     /* min-height: 100dvh; */
@@ -14,6 +15,7 @@ function AppLayout() {
             <Header />
             <SearchInput />
             <Sidebar />
+            <Footer />
         </StyledAppLayout>
     );
 }

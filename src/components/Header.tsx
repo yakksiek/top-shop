@@ -25,13 +25,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
         padding: 1.2rem 1rem;
         z-index: 3;
         background-color: var(--color-grey-0);
-        border-bottom: 1px solid var(--color-grey-200);
-
-        ${({ $isOpen }) =>
-            $isOpen &&
-            css`
-                border-bottom: 1px solid var(--color-grey-200);
-            `}
+        border-bottom: var(--border-standard);
     }
 `;
 
@@ -104,7 +98,7 @@ function Header() {
         <>
             <StyledHeader $isOpen={isSidebarOpen}>
                 <Menu />
-                <Logo />
+                <Logo as='h1' />
                 <NavLinks />
             </StyledHeader>
             <StyledSearchbarContainer $isOpen={isSearchBarOpen}>

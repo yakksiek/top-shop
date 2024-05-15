@@ -45,6 +45,8 @@ const GlobalStyles = createGlobalStyle`
   --image-grayscale: 0;
   --image-opacity: 100%;
   --header-height: 5.5rem;
+
+  --border-standard: 1px solid var(--color-grey-200)
 }
 
 *,
