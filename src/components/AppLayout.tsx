@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Header from './Header';
-import { Sidebar } from './Sidebar';
 import { SearchInput } from './SearchInput';
+import { Sidebar } from './Sidebar';
 
 const StyledAppLayout = styled.div`
     /* min-height: 100dvh; */

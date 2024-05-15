@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { useSidebarContext } from '../../contexts/SidebarContext';
+import { useSearchInputContext } from '../../contexts/SearchInputContext';
 
 const StyledButton = styled.button`
     border: none;
@@ -8,7 +9,7 @@ const StyledButton = styled.button`
     justify-content: center;
     position: relative;
     cursor: pointer;
-    z-index: 5;
+    z-index: 2;
     height: 100%;
     overflow: hidden;
     min-width: 2rem;
@@ -44,6 +45,7 @@ const IconContainer = styled.div`
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
 `;
 
 interface StyledHamburgerProps {
@@ -52,7 +54,6 @@ interface StyledHamburgerProps {
 
 const StyledHamburger = styled.span<StyledHamburgerProps>`
     --x-width: calc(var(--hamburger-height) * 1.41421356237);
-
     display: flex;
     flex-direction: column;
     gap: var(--hamburger-gap);
@@ -60,23 +61,22 @@ const StyledHamburger = styled.span<StyledHamburgerProps>`
 
     &::before,
     &::after,
-    & span {
+    .span {
         content: '';
         width: var(--bar-width);
         height: var(--bar-height);
         background-color: #333;
         border-radius: 100vh;
         transform-origin: left center;
-        transition: opacity var(--hamburger-animation-timing), width var(--hamburger-animation-timing),
-            rotate var(--hamburger-animation-timing), translate var(--hamburger-animation-timing);
+        transition: opacity var(--animation-and-timing), width var(--animation-and-timing),
+            rotate var(--animation-and-timing), translate var(--animation-and-timing);
     }
-
-    & span {
+    .span {
         ${({ $isOpen }) =>
             $isOpen &&
             css`
                 opacity: 0;
-                width: 0;
+                /* width: 0; */
             `}
     }
 
@@ -99,12 +99,18 @@ const StyledHamburger = styled.span<StyledHamburgerProps>`
 
 function SidebarMenuButton() {
     const { isOpen, handleOpenMenu } = useSidebarContext();
+    const { isOpen: isSearchbarOpen, handleSearchInputOpen } = useSearchInputContext();
+
+    function openMenuHandler() {
+        handleOpenMenu();
+        if (isSearchbarOpen) handleSearchInputOpen();
+    }
 
     return (
-        <StyledButton onClick={handleOpenMenu}>
+        <StyledButton onClick={openMenuHandler}>
             <IconContainer>
                 <StyledHamburger $isOpen={isOpen}>
-                    <span></span>
+                    <span className='span'></span>
                 </StyledHamburger>
             </IconContainer>
             <StyledLabel className='label'>

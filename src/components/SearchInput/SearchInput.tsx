@@ -1,14 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { IoSearchOutline } from 'react-icons/io5';
 import { device } from '../../styles/breakpoints';
+import { LiaTimesSolid } from 'react-icons/lia';
+import { useSearchInputContext } from '../../contexts/SearchInputContext';
 
-const StyledInputWrapper = styled.div`
+interface StyledInputWrapperProps {
+    type?: 'header';
+}
+
+const StyledInputWrapper = styled.div<StyledInputWrapperProps>`
     width: 95vw;
     margin: 0 auto;
-    display: none;
+    display: block;
+    padding: 1rem 0;
+    max-width: 40rem;
 
-    @media ${device.mobile} {
-        display: block;
+    @media ${device.tablet} {
+        ${props =>
+            props.type !== 'header' &&
+            css`
+                display: none;
+            `}
     }
 `;
 
@@ -25,6 +37,11 @@ const StyledInput = styled.input`
     transition: border 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
     font-size: 0.9rem;
     font-style: italic;
+    transition: border-color var(--animation-and-timing);
+
+    &:focus {
+        border-color: var(--color-black);
+    }
 `;
 
 const StyledIconWrapper = styled.span`
@@ -36,9 +53,25 @@ const StyledIconWrapper = styled.span`
     transform: translate(0, -25%);
 `;
 
-function SearchInput() {
+const StyledButton = styled.button`
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: -4rem;
+`;
+
+interface SeachInputProps {
+    type?: 'header';
+}
+
+function SearchInput({ type }: SeachInputProps) {
+    const { handleSearchInputOpen } = useSearchInputContext();
+
     return (
-        <StyledInputWrapper>
+        <StyledInputWrapper type={type}>
             <form>
                 <StyledInputContainer>
                     <StyledIconWrapper>
@@ -52,6 +85,11 @@ function SearchInput() {
                         autoCapitalize='off'
                         spellCheck='false'
                     />
+                    {type === 'header' && (
+                        <StyledButton type='button' onClick={handleSearchInputOpen}>
+                            <LiaTimesSolid />
+                        </StyledButton>
+                    )}
                 </StyledInputContainer>
             </form>
         </StyledInputWrapper>

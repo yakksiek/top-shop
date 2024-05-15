@@ -15,21 +15,26 @@ const StyledInputSearchButton = styled.button<StyledInputSearchButtonProps>`
     justify-content: center;
     align-items: center;
 
-    @media ${device.mobile} {
+    /* @media ${device.mobile} {
         ${({ $isOpen }) =>
-            !$isOpen &&
-            css`
-                visibility: hidden;
-            `}
-    }
+        !$isOpen &&
+        css`
+            visibility: hidden;
+        `}
+    } */
 `;
 
 function InputSearchButton() {
     const { handleSearchInputOpen } = useSearchInputContext();
-    const { isOpen } = useSidebarContext();
+    const { isOpen, handleOpenMenu } = useSidebarContext();
+
+    function handleSearchbarOpen() {
+        handleSearchInputOpen();
+        if (isOpen) handleOpenMenu();
+    }
 
     return (
-        <StyledInputSearchButton onClick={handleSearchInputOpen} $isOpen={isOpen}>
+        <StyledInputSearchButton onClick={handleSearchbarOpen} $isOpen={isOpen}>
             <IoSearchOutline />
             <span className='label'>Search</span>
         </StyledInputSearchButton>

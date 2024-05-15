@@ -17,7 +17,8 @@ const StyledSidebar = styled.aside<StyledSidebarProps>`
     padding: 1rem 4.5vw;
     position: fixed;
     left: 0;
-    transition: all 0.3s ease;
+    top: 0;
+    transition: transform var(--animation-and-timing), opacity var(--animation-and-timing);
     opacity: 0;
     transform: translateY(-100%);
 
@@ -30,7 +31,6 @@ const StyledSidebar = styled.aside<StyledSidebarProps>`
         `}
 
     @media ${device.tablet} {
-        z-index: 3;
         transform: translateX(-100%);
         width: 29vw;
         max-width: 24rem;
@@ -58,7 +58,7 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
     position: fixed;
     background: rgba(0, 0, 0, 0.8);
     opacity: 0;
-    transition: opacity var(--hamburger-animation-timing);
+    transition: opacity var(--animation-and-timing);
     visibility: hidden;
 
     ${({ $isOpen }) =>

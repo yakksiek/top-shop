@@ -11,7 +11,7 @@ const StyledNavList = styled.ul`
 `;
 
 const IconWrapper = styled.span`
-    transition: opacity var(--hamburger-animation-timing);
+    transition: opacity var(--animation-and-timing);
 
     @media ${device.tablet} {
         opacity: 0;
