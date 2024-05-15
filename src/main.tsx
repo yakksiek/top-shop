@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { SidebarContextProvider } from './contexts/SidebarContext.tsx';
-import AppLayout from './components/AppLayout.tsx';
-import GlobalStyles from './styles/GlobalStyles.ts';
+import App from './App.tsx';
 import { SearchInputContextProvider } from './contexts/SearchInputContext.tsx';
+import { SidebarContextProvider } from './contexts/SidebarContext.tsx';
+import GlobalStyles from './styles/GlobalStyles.ts';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <AppLayout />,
+        element: <App />,
     },
 ]);
 
