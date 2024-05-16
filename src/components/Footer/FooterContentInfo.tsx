@@ -4,13 +4,16 @@ import FooterContentInfoItem from './FooterContentInfoItem';
 import { device } from '../../styles/breakpoints';
 
 const StyledContainer = styled.div`
-    padding: 2.5rem 0;
+    padding: 2.5vw 0;
     display: none;
 
     @media ${device.desktop} {
         display: flex;
         justify-content: space-between;
         gap: 2rem;
+        width: 80vw;
+        max-width: 2400px;
+        margin: 0 auto;
     }
 `;
 

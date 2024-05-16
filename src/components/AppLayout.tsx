@@ -7,6 +7,7 @@ import Footer from './Footer';
 const StyledAppLayout = styled.div`
     /* min-height: 100dvh; */
     /* padding: 0 3rem */
+    margin: 0 auto;
 `;
 
 function AppLayout() {

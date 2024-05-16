@@ -15,7 +15,8 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 95vw;
+    width: var(--screen-width-large);
+    margin: 0 auto;
     padding: 1.2rem 0;
     position: relative;
     height: var(--header-height);
@@ -25,7 +26,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
         padding: 1.2rem 1rem;
         z-index: 3;
         background-color: var(--color-grey-0);
-        border-bottom: var(--border-standard);
+        /* border-bottom: var(--border-standard); */
     }
 `;
 

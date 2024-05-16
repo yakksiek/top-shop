@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+const StyledItem = styled.div`
+    flex: 1;
+`;
+
 const StyledHeading = styled.p`
     padding-bottom: 1.5rem;
     text-transform: uppercase;
@@ -21,14 +25,14 @@ interface FooterContentInfoItemProps {
 
 function FooterContentInfoItem({ data }: FooterContentInfoItemProps) {
     return (
-        <div>
+        <StyledItem>
             <StyledHeading>{data.headline}</StyledHeading>
             <ul>
                 {data.items.map(link => (
                     <StyledCategoryDetailsItem>{link}</StyledCategoryDetailsItem>
                 ))}
             </ul>
-        </div>
+        </StyledItem>
     );
 }
 

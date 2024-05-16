@@ -3,6 +3,11 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
   :root {
 
+    --max-width: 2400px;
+    --screen-width-small: 80vw;
+    --screen-width-medium: 90vw;
+    --screen-width-large: 95vw;
+
 
   &, &.light-mode {
 

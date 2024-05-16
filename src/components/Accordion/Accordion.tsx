@@ -5,6 +5,9 @@ import AccordionItem from './AccordionItem';
 import { device } from '../../styles/breakpoints';
 
 export const AccordionContainer = styled.div`
+    width: var(--screen-width-medium);
+    margin: 0 auto;
+
     @media ${device.desktop} {
         display: none;
     }
