@@ -16,5 +16,7 @@
             "headline": "Connect",
             "items": ["Instagram", "Facebook", "Twitter", "Pinterest", "YouTube"]
         }
-    ]
+    ],
+    "legal": ["Sitemap", "Legal & privacy", "Cookies"],
+    "copyright": "All rights reserved by Top Shop"
 }

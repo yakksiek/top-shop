@@ -1,6 +1,19 @@
+import styled from 'styled-components';
 import { FiMinus } from 'react-icons/fi';
 import { GoPlus } from 'react-icons/go';
-import { Header, Title } from './Accordion.styled';
+
+const Header = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+`;
+
+const Title = styled.h5`
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+`;
 
 interface AccordionHeaderProps {
     headline: string;

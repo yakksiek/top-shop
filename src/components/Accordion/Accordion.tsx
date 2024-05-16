@@ -1,10 +1,25 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 
-import footerData from '../../db/footer.json';
-import { AccordionContainer } from './Accordion.styled';
 import AccordionItem from './AccordionItem';
+import { device } from '../../styles/breakpoints';
 
-function Accordion() {
+export const AccordionContainer = styled.div`
+    @media ${device.desktop} {
+        display: none;
+    }
+`;
+
+interface FooterCategory {
+    headline: string;
+    items: string[];
+}
+
+interface AccordionProps {
+    data: FooterCategory[];
+}
+
+function Accordion({ data }: AccordionProps) {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const handleToggle = (index: number) => {
@@ -16,7 +31,7 @@ function Accordion() {
     };
     return (
         <AccordionContainer>
-            {footerData.categories.map((section, index) => (
+            {data.map((section, index) => (
                 <AccordionItem
                     key={index}
                     section={section}
