@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 import footerData from '../../db/footer.json';
 import { device } from '../../styles/breakpoints';
+import Wrapper from '../Wrapper';
 
 const StyledWrapper = styled.div`
-    width: 100%;
     border-top: var(--border-standard);
 `;
 
 const StyledContainer = styled.div`
     padding: 2.5rem 0;
-    max-width: var(--max-width);
-    width: var(--screen-width-small);
-    margin: 0 auto;
 
     display: flex;
     justify-content: center;
@@ -46,16 +43,18 @@ const StyledLegalInfo = styled.div`
 function FooterLegalList() {
     return (
         <StyledWrapper>
-            <StyledContainer>
-                <StyledLegalList>
-                    {footerData.legal.map(item => (
-                        <li key={item}>{item}</li>
-                    ))}
-                </StyledLegalList>
-                <StyledLegalInfo>
-                    <p>© 2024 John Doe. All rights reserved.</p>
-                </StyledLegalInfo>
-            </StyledContainer>
+            <Wrapper type='narrow'>
+                <StyledContainer>
+                    <StyledLegalList>
+                        {footerData.legal.map(item => (
+                            <li key={item}>{item}</li>
+                        ))}
+                    </StyledLegalList>
+                    <StyledLegalInfo>
+                        <p>© 2024 John Doe. All rights reserved.</p>
+                    </StyledLegalInfo>
+                </StyledContainer>
+            </Wrapper>
         </StyledWrapper>
     );
 }

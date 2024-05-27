@@ -6,6 +6,7 @@ import NavLinks from './NavLinks';
 import { useSidebarContext } from '../contexts/SidebarContext';
 import { useSearchInputContext } from '../contexts/SearchInputContext';
 import { SearchInput } from './SearchInput';
+import Wrapper from './Wrapper';
 
 interface StyledHeaderProps {
     $isOpen: boolean;
@@ -16,15 +17,13 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     align-items: center;
     justify-content: space-between;
 
-    /* width: 100vw; */
-    /* width: var(--screen-width-large); */
     margin: 0 auto;
-    padding: 1.2rem 2rem;
+    padding: 1.2rem 0;
     position: relative;
     height: var(--header-height);
 
     @media ${device.mobile} {
-        padding: 1.2rem 1rem;
+        padding: 1.2rem 0;
         z-index: 3;
         background-color: var(--color-grey-0);
         /* border-bottom: var(--border-standard); */
@@ -97,7 +96,7 @@ function Header() {
     const { isOpen: isSearchBarOpen, handleSearchInputOpen } = useSearchInputContext();
 
     return (
-        <>
+        <Wrapper type='wide'>
             <StyledHeader $isOpen={isSidebarOpen}>
                 <Menu />
                 <Logo as='h1' />
@@ -107,7 +106,7 @@ function Header() {
                     <StyledOverlay $isOpen={isSearchBarOpen} onClick={handleSearchInputOpen} />
                 </StyledSearchbarContainer>
             </StyledHeader>
-        </>
+        </Wrapper>
     );
 }
 
