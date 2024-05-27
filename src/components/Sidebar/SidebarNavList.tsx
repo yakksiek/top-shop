@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { device } from '../../styles/breakpoints';
-import { NavLink } from 'react-router-dom';
 import mainMenu from '../../db/mainMenu.json';
 
 const StyledNavList = styled.ul`
@@ -24,6 +23,14 @@ const StyledNavItem = styled.li`
     padding: 12px 16px 12px 0;
     cursor: pointer;
 
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
     &:hover {
         color: var(--color-black);
         ${IconWrapper} {
@@ -34,16 +41,6 @@ const StyledNavItem = styled.li`
             transform: scale(1, 1);
         }
     }
-`;
-
-const StyledNavLink = styled(NavLink)`
-    border: none;
-    background-color: transparent;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
 `;
 
 const StyledLabel = styled.span`
@@ -68,12 +65,10 @@ function SidebarNavList() {
         <StyledNavList>
             {mainMenu.categories.map(item => (
                 <StyledNavItem key={item.categoryName}>
-                    <StyledNavLink to={item.path}>
-                        <StyledLabel>{item.categoryName}</StyledLabel>
-                        <IconWrapper>
-                            <MdKeyboardArrowRight />
-                        </IconWrapper>
-                    </StyledNavLink>
+                    <StyledLabel>{item.categoryName}</StyledLabel>
+                    <IconWrapper>
+                        <MdKeyboardArrowRight />
+                    </IconWrapper>
                 </StyledNavItem>
             ))}
         </StyledNavList>
