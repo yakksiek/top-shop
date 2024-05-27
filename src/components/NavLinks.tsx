@@ -2,8 +2,9 @@ import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
 import StyledNavigation from './StyledNavigation';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const StyledListItem = styled.li`
+const StyledListItem = styled(Link)`
     position: relative;
     display: flex;
     align-items: center;
@@ -14,8 +15,9 @@ const StyledCartIndicator = styled.div`
     color: var(--color-grey-0);
     position: absolute;
     font-size: 9px;
-    top: 0;
-    right: 0;
+    top: -1px;
+    right: -1px;
+    transform: translate(50%, -50%);
     display: block;
     padding-left: 0;
     font-size: 0.5rem;
@@ -30,10 +32,11 @@ const StyledCartIndicator = styled.div`
 
 const StyledFavouritesIndicator = styled.div`
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: -1px;
+    right: -1px;
     height: 0.375rem;
     width: 0.375rem;
+    transform: translate(50%, -50%);
     background-color: var(--color-orange-400);
     border-radius: 50%;
     display: block;
@@ -44,19 +47,23 @@ function NavLinks() {
     return (
         <StyledNavigation>
             <li className='contact'>
-                <span className="label">Contact Us</span>
+                <span className='label'>Contact Us</span>
             </li>
-            <StyledListItem>
-                <IoMdHeartEmpty />
-                <StyledFavouritesIndicator />
-            </StyledListItem>
+            <li>
+                <StyledListItem to='/favourites'>
+                    <IoMdHeartEmpty />
+                    <StyledFavouritesIndicator />
+                </StyledListItem>
+            </li>
             <li>
                 <IoPersonOutline />
             </li>
-            <StyledListItem>
-                <IoBagHandleOutline />
-                <StyledCartIndicator>0</StyledCartIndicator>
-            </StyledListItem>
+            <li>
+                <StyledListItem to='/cart'>
+                    <IoBagHandleOutline />
+                    <StyledCartIndicator>0</StyledCartIndicator>
+                </StyledListItem>
+            </li>
         </StyledNavigation>
     );
 }

@@ -29,7 +29,7 @@ function FooterContentInfoItem({ data }: FooterContentInfoItemProps) {
             <StyledHeading>{data.headline}</StyledHeading>
             <ul>
                 {data.items.map(link => (
-                    <StyledCategoryDetailsItem>{link}</StyledCategoryDetailsItem>
+                    <StyledCategoryDetailsItem key={link}>{link}</StyledCategoryDetailsItem>
                 ))}
             </ul>
         </StyledItem>

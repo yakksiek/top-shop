@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { device } from '../../styles/breakpoints';
-
-const menuData = ['Men', 'Women', 'Children', 'Pets'];
+import { NavLink } from 'react-router-dom';
+import mainMenu from '../../db/mainMenu.json';
 
 const StyledNavList = styled.ul`
     &:hover {
@@ -36,7 +36,7 @@ const StyledNavItem = styled.li`
     }
 `;
 
-const StyledNavButton = styled.button`
+const StyledNavLink = styled(NavLink)`
     border: none;
     background-color: transparent;
     width: 100%;
@@ -66,14 +66,14 @@ const StyledLabel = styled.span`
 function SidebarNavList() {
     return (
         <StyledNavList>
-            {menuData.map(item => (
-                <StyledNavItem key={item}>
-                    <StyledNavButton>
-                        <StyledLabel>{item}</StyledLabel>
+            {mainMenu.categories.map(item => (
+                <StyledNavItem key={item.categoryName}>
+                    <StyledNavLink to={item.path}>
+                        <StyledLabel>{item.categoryName}</StyledLabel>
                         <IconWrapper>
                             <MdKeyboardArrowRight />
                         </IconWrapper>
-                    </StyledNavButton>
+                    </StyledNavLink>
                 </StyledNavItem>
             ))}
         </StyledNavList>

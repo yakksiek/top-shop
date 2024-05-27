@@ -49,7 +49,7 @@ function FooterLegalList() {
             <StyledContainer>
                 <StyledLegalList>
                     {footerData.legal.map(item => (
-                        <li>{item}</li>
+                        <li key={item}>{item}</li>
                     ))}
                 </StyledLegalList>
                 <StyledLegalInfo>

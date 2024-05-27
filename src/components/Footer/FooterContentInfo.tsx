@@ -20,8 +20,8 @@ const StyledContainer = styled.div`
 function FooterContentInfo() {
     return (
         <StyledContainer>
-            {footerData.categories.map(item => (
-                <FooterContentInfoItem data={item} />
+            {footerData.categories.map((item, index) => (
+                <FooterContentInfoItem key={index} data={item} />
             ))}
         </StyledContainer>
     );
