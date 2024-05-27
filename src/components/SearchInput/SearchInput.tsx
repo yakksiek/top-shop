@@ -12,7 +12,8 @@ const StyledInputWrapper = styled.div<StyledInputWrapperProps>`
     width: 95vw;
     margin: 0 auto;
     display: block;
-    padding: 1rem 0;
+    padding: ${props => (props.type !== 'header' ? '0 0 1rem 0' : '1rem 0')};
+
     max-width: 40rem;
 
     @media ${device.tablet} {

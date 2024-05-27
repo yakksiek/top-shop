@@ -7,6 +7,7 @@ interface HeadingProps {
 const Heading = styled.h1<HeadingProps>`
     font-size: 20px;
     font-weight: 600;
+    text-align: center;
 
     ${props =>
         props.as === 'h1' &&

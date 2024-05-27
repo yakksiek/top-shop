@@ -15,14 +15,15 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: var(--screen-width-large);
+
+    /* width: 100vw; */
+    /* width: var(--screen-width-large); */
     margin: 0 auto;
-    padding: 1.2rem 0;
+    padding: 1.2rem 2rem;
     position: relative;
     height: var(--header-height);
 
     @media ${device.mobile} {
-        width: 100vw;
         padding: 1.2rem 1rem;
         z-index: 3;
         background-color: var(--color-grey-0);
@@ -101,11 +102,11 @@ function Header() {
                 <Menu />
                 <Logo as='h1' />
                 <NavLinks />
+                <StyledSearchbarContainer $isOpen={isSearchBarOpen}>
+                    <SearchInput type='header' />
+                    <StyledOverlay $isOpen={isSearchBarOpen} onClick={handleSearchInputOpen} />
+                </StyledSearchbarContainer>
             </StyledHeader>
-            <StyledSearchbarContainer $isOpen={isSearchBarOpen}>
-                <SearchInput type='header' />
-                <StyledOverlay $isOpen={isSearchBarOpen} onClick={handleSearchInputOpen} />
-            </StyledSearchbarContainer>
         </>
     );
 }
