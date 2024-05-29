@@ -12,5 +12,11 @@
             "categoryName": "Kids",
             "path": "kids"
         }
+    ],
+    "subcategories": [
+        { "categoryName": "Clothes", "path": "clothes" },
+        { "categoryName": "Shoes", "path": "shoes" },
+        { "categoryName": "Accessories", "path": "accessories" },
+        { "categoryName": "Sport", "path": "sport" }
     ]
 }

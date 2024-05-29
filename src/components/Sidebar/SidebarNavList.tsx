@@ -1,9 +1,12 @@
-import styled from 'styled-components';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import styled, { css } from 'styled-components';
+import { useSidebarContext } from '../../contexts/SidebarContext';
 import { device } from '../../styles/breakpoints';
-import mainMenu from '../../db/mainMenu.json';
+
+type NavListTypes = 'menu' | 'submenu';
 
 const StyledNavList = styled.ul`
+    position: relative;
     &:hover {
         color: var(--color-grey-500);
     }
@@ -17,11 +20,17 @@ const IconWrapper = styled.span`
     }
 `;
 
-const StyledNavItem = styled.li`
+interface StyledNavItem {
+    isActive: boolean;
+    type: NavListTypes;
+}
+
+const StyledNavItem = styled.li<StyledNavItem>`
     font-size: 1.5rem;
     line-height: 1.75rem;
     padding: 12px 16px 12px 0;
     cursor: pointer;
+    color: ${({ isActive }) => (isActive ? 'var(--color-black)' : 'var(--color-grey-500)')};
 
     border: none;
     background-color: transparent;
@@ -31,7 +40,8 @@ const StyledNavItem = styled.li`
     justify-content: space-between;
     position: relative;
 
-    &:hover {
+    &:hover,
+    &.active {
         color: var(--color-black);
         ${IconWrapper} {
             opacity: 1;
@@ -41,10 +51,18 @@ const StyledNavItem = styled.li`
             transform: scale(1, 1);
         }
     }
+
+    ${({ type }) =>
+        type === 'submenu' &&
+        css`
+            font-size: 1rem;
+            line-height: 1rem;
+        `}
 `;
 
 const StyledLabel = styled.span`
     position: relative;
+
     &::after {
         content: '';
         position: absolute;
@@ -53,18 +71,35 @@ const StyledLabel = styled.span`
         height: 0.075rem;
         background-color: var(--color-black);
         bottom: -1rem;
-
         transform: scale(0, 1);
         transform-origin: 0% 100%;
         transition: transform 0.3s ease;
     }
 `;
 
-function SidebarNavList() {
+interface NavListItemType {
+    categoryName: string;
+    path: string;
+}
+
+interface SidebarNavListProps {
+    data: NavListItemType[];
+    type: NavListTypes;
+}
+
+function SidebarNavList({ data, type }: SidebarNavListProps) {
+    const { handleOpenSubmenu, category } = useSidebarContext();
+
     return (
         <StyledNavList>
-            {mainMenu.categories.map(item => (
-                <StyledNavItem key={item.categoryName}>
+            {data.map(item => (
+                <StyledNavItem
+                    key={item.categoryName}
+                    onClick={() => handleOpenSubmenu(item.categoryName)}
+                    className={category === item.categoryName ? 'active' : ''}
+                    isActive={category === item.categoryName}
+                    type={type}
+                >
                     <StyledLabel>{item.categoryName}</StyledLabel>
                     <IconWrapper>
                         <MdKeyboardArrowRight />
