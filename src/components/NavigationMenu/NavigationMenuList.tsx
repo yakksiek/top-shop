@@ -4,9 +4,13 @@ import { device } from '../../styles/breakpoints';
 
 type NavListTypes = 'menu' | 'submenu';
 
-const StyledNavList = styled.ul`
+const StyledNavList = styled.ul<{ active: string }>`
     position: relative;
-    /* color: var(--color-black); */
+    ${({ active }) =>
+        active &&
+        css`
+            color: var(--color-grey-500);
+        `}
     &:hover {
         color: var(--color-grey-500);
     }
@@ -30,9 +34,6 @@ const StyledNavItem = styled.li<StyledNavItem>`
     line-height: 1.75rem;
     padding: 12px 16px 12px 0;
     cursor: pointer;
-
-    /* color: ${({ $isActive }) => ($isActive ? 'var(--color-black)' : 'var(--color-grey-500)')}; */
-
     border: none;
     background-color: transparent;
     width: 100%;
@@ -90,9 +91,9 @@ interface SidebarNavListProps {
     activeCategory: string;
 }
 
-function SidebarNavList({ data, type, clickHandler, activeCategory }: SidebarNavListProps) {
+function NavigationMenuList({ data, type, clickHandler, activeCategory }: SidebarNavListProps) {
     return (
-        <StyledNavList>
+        <StyledNavList active={activeCategory}>
             {data.map(item => {
                 const activeItem = activeCategory === item.categoryName;
                 return (
@@ -120,4 +121,4 @@ function SidebarNavList({ data, type, clickHandler, activeCategory }: SidebarNav
     );
 }
 
-export default SidebarNavList;
+export default NavigationMenuList;

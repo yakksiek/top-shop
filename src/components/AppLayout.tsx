@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Header from './Header';
 import { SearchInput } from './SearchInput';
-import { Sidebar } from './Sidebar';
+import { NavigationMenu } from './NavigationMenu';
 import Footer from './Footer';
 
 const StyledAppLayout = styled.div`
@@ -16,7 +16,7 @@ function AppLayout() {
         <StyledAppLayout>
             <Header />
             <SearchInput />
-            <Sidebar />
+            <NavigationMenu />
             <Footer />
         </StyledAppLayout>
     );

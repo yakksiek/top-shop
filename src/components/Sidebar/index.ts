@@ -1,5 +1,4 @@
 import Sidebar from './Sidebar';
-import SidebarNavList from './SidebarNavList';
-import SidebarMenuButton from './SidebarMenuButton';
+import Submenu from './Submenu';
 
-export { Sidebar, SidebarNavList, SidebarMenuButton };
+export { Sidebar, Submenu };

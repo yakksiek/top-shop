@@ -1,5 +1,5 @@
 import { InputSearchButton } from './SearchInput';
-import { SidebarMenuButton } from './Sidebar';
+import { SidebarMenuButton } from './NavigationMenu';
 import StyledNavigation from './StyledNavigation';
 
 function Menu() {
