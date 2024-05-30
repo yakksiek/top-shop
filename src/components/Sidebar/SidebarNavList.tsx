@@ -1,12 +1,12 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import styled, { css } from 'styled-components';
-import { useSidebarContext } from '../../contexts/SidebarContext';
 import { device } from '../../styles/breakpoints';
 
 type NavListTypes = 'menu' | 'submenu';
 
 const StyledNavList = styled.ul`
     position: relative;
+    /* color: var(--color-black); */
     &:hover {
         color: var(--color-grey-500);
     }
@@ -21,7 +21,7 @@ const IconWrapper = styled.span`
 `;
 
 interface StyledNavItem {
-    isActive: boolean;
+    $isActive: boolean;
     type: NavListTypes;
 }
 
@@ -30,7 +30,8 @@ const StyledNavItem = styled.li<StyledNavItem>`
     line-height: 1.75rem;
     padding: 12px 16px 12px 0;
     cursor: pointer;
-    color: ${({ isActive }) => (isActive ? 'var(--color-black)' : 'var(--color-grey-500)')};
+
+    /* color: ${({ $isActive }) => ($isActive ? 'var(--color-black)' : 'var(--color-grey-500)')}; */
 
     border: none;
     background-color: transparent;
@@ -85,27 +86,36 @@ interface NavListItemType {
 interface SidebarNavListProps {
     data: NavListItemType[];
     type: NavListTypes;
+    clickHandler: (name: string) => void;
+    activeCategory: string;
 }
 
-function SidebarNavList({ data, type }: SidebarNavListProps) {
-    const { handleOpenSubmenu, category } = useSidebarContext();
-
+function SidebarNavList({ data, type, clickHandler, activeCategory }: SidebarNavListProps) {
     return (
         <StyledNavList>
-            {data.map(item => (
-                <StyledNavItem
-                    key={item.categoryName}
-                    onClick={() => handleOpenSubmenu(item.categoryName)}
-                    className={category === item.categoryName ? 'active' : ''}
-                    isActive={category === item.categoryName}
-                    type={type}
-                >
-                    <StyledLabel>{item.categoryName}</StyledLabel>
-                    <IconWrapper>
-                        <MdKeyboardArrowRight />
-                    </IconWrapper>
-                </StyledNavItem>
-            ))}
+            {data.map(item => {
+                const activeItem = activeCategory === item.categoryName;
+                return (
+                    <StyledNavItem
+                        key={item.categoryName}
+                        onClick={() => {
+                            if (activeItem) {
+                                return clickHandler('');
+                            }
+
+                            clickHandler(item.categoryName);
+                        }}
+                        className={activeItem ? 'active' : ''}
+                        $isActive={activeItem}
+                        type={type}
+                    >
+                        <StyledLabel>{item.categoryName}</StyledLabel>
+                        <IconWrapper>
+                            <MdKeyboardArrowRight />
+                        </IconWrapper>
+                    </StyledNavItem>
+                );
+            })}
         </StyledNavList>
     );
 }

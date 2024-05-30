@@ -7,7 +7,7 @@ import Footer from './Footer';
 const StyledAppLayout = styled.div`
     /* min-height: 100dvh; */
     /* padding: 0 3rem */
-    width: 100vw;
+    width: 100%;
     margin: 0 auto;
 `;
 

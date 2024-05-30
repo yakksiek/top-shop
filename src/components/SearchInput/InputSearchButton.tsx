@@ -26,11 +26,11 @@ const StyledInputSearchButton = styled.button<StyledInputSearchButtonProps>`
 
 function InputSearchButton() {
     const { handleSearchInputOpen } = useSearchInputContext();
-    const { isOpen, handleOpenMenu } = useSidebarContext();
+    const { isOpen, toggleSidebar } = useSidebarContext();
 
     function handleSearchbarOpen() {
         handleSearchInputOpen();
-        if (isOpen) handleOpenMenu();
+        if (isOpen) toggleSidebar();
     }
 
     return (

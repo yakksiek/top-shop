@@ -2,36 +2,37 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 
 interface SidebarContextType {
     isOpen: boolean;
-    handleOpenMenu: () => void;
-    category: string;
-    handleOpenSubmenu: (categoryName?: string) => void;
-    isSubmenuOpen: boolean;
+    toggleSidebar: () => void;
+    activeMainCategory: string;
+    setActiveMainCategory: (categoryName: string) => void;
+    activeSubCategory: string;
+    setActiveSubCategory: (subcategoryName: string) => void;
 }
 
 const SidebarContext = createContext<SidebarContextType | null>(null);
 
 function SidebarContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-    const [category, setCategory] = useState('');
+    const [activeMainCategory, setActiveMainCategory] = useState('');
     const [activeSubCategory, setActiveSubCategory] = useState('');
 
-    function handleOpenMenu() {
+    function toggleSidebar() {
         setIsOpen(prevState => !prevState);
-        setCategory('');
-    }
-
-    function handleOpenSubmenu(categoryName: string = '') {
-        setIsSubmenuOpen(prevState => !prevState);
-        if (categoryName === category) {
-            setCategory('');
-        } else {
-            setCategory(categoryName);
-        }
+        setActiveMainCategory('');
+        setActiveSubCategory('');
     }
 
     return (
-        <SidebarContext.Provider value={{ isOpen, handleOpenMenu, category, handleOpenSubmenu, isSubmenuOpen }}>
+        <SidebarContext.Provider
+            value={{
+                isOpen,
+                toggleSidebar,
+                activeMainCategory,
+                setActiveMainCategory,
+                activeSubCategory,
+                setActiveSubCategory,
+            }}
+        >
             {children}
         </SidebarContext.Provider>
     );
