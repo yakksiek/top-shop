@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { StyledOverlay, StyledSidebar } from './Sidebar.styled';
 
 interface SidebarProps {
