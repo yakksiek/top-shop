@@ -3,6 +3,7 @@ import Header from './Header';
 import { SearchInput } from './SearchInput';
 import { NavigationMenu } from './NavigationMenu';
 import Footer from './Footer';
+import LoginModal from '../features/authentication/LoginModal';
 
 const StyledAppLayout = styled.div`
     /* min-height: 100dvh; */
@@ -17,6 +18,7 @@ function AppLayout() {
             <Header />
             <SearchInput />
             <NavigationMenu />
+            <LoginModal />
             <Footer />
         </StyledAppLayout>
     );

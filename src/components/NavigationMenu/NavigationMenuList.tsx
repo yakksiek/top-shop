@@ -6,6 +6,8 @@ type NavListTypes = 'menu' | 'submenu';
 
 const StyledNavList = styled.ul<{ active: string }>`
     position: relative;
+    margin-top: 1rem;
+
     ${({ active }) =>
         active &&
         css`
@@ -13,6 +15,10 @@ const StyledNavList = styled.ul<{ active: string }>`
         `}
     &:hover {
         color: var(--color-grey-500);
+    }
+
+    @media ${device.tablet} {
+        /* padding: var(--padding-sidebar-desk); */
     }
 `;
 
@@ -32,7 +38,7 @@ interface StyledNavItem {
 const StyledNavItem = styled.li<StyledNavItem>`
     font-size: 1.5rem;
     line-height: 1.75rem;
-    padding: 12px 16px 12px 0;
+    padding: 12px 0;
     cursor: pointer;
     border: none;
     background-color: transparent;

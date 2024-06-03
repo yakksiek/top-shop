@@ -34,6 +34,10 @@ const GlobalStyles = createGlobalStyle`
  
 }
 
+  --padding-sidebar-mobile: 1rem 2.5vw; 
+  --padding-sidebar-desk: 5rem 1.25vw 1rem 1.25vw; 
+
+
   --border-radius-tiny: 3px;
   --border-radius-sm: 5px;
   --border-radius-md: 7px;

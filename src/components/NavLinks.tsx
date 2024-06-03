@@ -3,6 +3,7 @@ import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
 import StyledNavigation from './StyledNavigation';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useAuthenticationContext } from '../contexts/AuthenticationContext';
 
 const StyledListItem = styled(Link)`
     position: relative;
@@ -44,6 +45,7 @@ const StyledFavouritesIndicator = styled.div`
 `;
 
 function NavLinks() {
+    const { toggleLoginModal } = useAuthenticationContext();
     return (
         <StyledNavigation>
             <li className='contact'>
@@ -55,7 +57,7 @@ function NavLinks() {
                     <StyledFavouritesIndicator />
                 </StyledListItem>
             </li>
-            <li>
+            <li onClick={toggleLoginModal}>
                 <IoPersonOutline />
             </li>
             <li>

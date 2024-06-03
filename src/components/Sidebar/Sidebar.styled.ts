@@ -12,14 +12,11 @@ interface StyledOverlayProps {
 
 export const StyledSidebar = styled.aside<SidebarProps>`
     background-color: var(--color-grey-0);
+    padding: var(--padding-sidebar-mobile);
     position: absolute;
     top: 0;
-    /* left: 0; */
-    // if from right
-    // right: 0
     width: 100%;
     min-height: 100dvh;
-    padding: 1rem 4.5vw;
     transition: transform var(--animation-and-timing), opacity var(--animation-and-timing);
     opacity: 0;
     transform: translateY(-100%);
@@ -42,16 +39,12 @@ export const StyledSidebar = styled.aside<SidebarProps>`
         `}
 
     @media ${device.tablet} {
-        min-width: 20vw;
-        max-width: 16rem;
-        padding: 5rem 0.5rem 1rem 3.5vw;
+        max-width: ${({ slideFrom }) => (slideFrom === 'right' ? '42rem' : '22rem')};
+        padding: var(--padding-sidebar-desk);
         position: absolute;
         top: 0;
         transform: translateX(-100%);
         opacity: 0;
-
-        // FROM RIGHT
-        /* right: 0; /* Position it from the right */
 
         ${({ slideFrom }) =>
             slideFrom === 'left'
