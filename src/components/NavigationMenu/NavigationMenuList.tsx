@@ -7,6 +7,7 @@ type NavListTypes = 'menu' | 'submenu';
 const StyledNavList = styled.ul<{ active: string }>`
     position: relative;
     margin-top: 1rem;
+    padding: var(--padding-sidebar-mobile);
 
     ${({ active }) =>
         active &&
@@ -15,10 +16,6 @@ const StyledNavList = styled.ul<{ active: string }>`
         `}
     &:hover {
         color: var(--color-grey-500);
-    }
-
-    @media ${device.tablet} {
-        /* padding: var(--padding-sidebar-desk); */
     }
 `;
 
