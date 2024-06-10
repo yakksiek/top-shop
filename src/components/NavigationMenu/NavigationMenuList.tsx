@@ -4,13 +4,13 @@ import { device } from '../../styles/breakpoints';
 
 type NavListTypes = 'menu' | 'submenu';
 
-const StyledNavList = styled.ul<{ active: string }>`
+const StyledNavList = styled.ul<{ $active: string }>`
     position: relative;
     margin-top: 1rem;
     padding: var(--padding-sidebar-mobile);
 
-    ${({ active }) =>
-        active &&
+    ${({ $active }) =>
+        $active &&
         css`
             color: var(--color-grey-500);
         `}
@@ -96,7 +96,7 @@ interface SidebarNavListProps {
 
 function NavigationMenuList({ data, type, clickHandler, activeCategory }: SidebarNavListProps) {
     return (
-        <StyledNavList active={activeCategory}>
+        <StyledNavList $active={activeCategory}>
             {data.map(item => {
                 const activeItem = activeCategory === item.categoryName;
                 return (

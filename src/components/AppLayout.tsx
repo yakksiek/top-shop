@@ -5,6 +5,7 @@ import { NavigationMenu } from './NavigationMenu';
 import Footer from './Footer';
 import LoginModal from '../features/authentication/LoginModal';
 import MainContent from './MainContent';
+import { Outlet } from 'react-router-dom';
 
 const StyledAppLayout = styled.div`
     /* min-height: 100dvh; */
@@ -13,11 +14,7 @@ const StyledAppLayout = styled.div`
     margin: 0 auto;
 `;
 
-interface AppLayoutProps {
-    children: React.ReactNode;
-}
-
-function AppLayout({ children }: AppLayoutProps) {
+function AppLayout() {
     return (
         <StyledAppLayout>
             <MainContent>
@@ -25,7 +22,7 @@ function AppLayout({ children }: AppLayoutProps) {
                 <SearchInput />
                 <NavigationMenu />
                 <LoginModal />
-                {children}
+                <Outlet />
             </MainContent>
             <Footer />
         </StyledAppLayout>

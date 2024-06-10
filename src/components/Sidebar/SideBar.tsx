@@ -12,7 +12,7 @@ function Sidebar({ toggleSidebar, isOpen, children, slideFrom }: SidebarProps) {
     return (
         <>
             <StyledOverlay onClick={toggleSidebar} $isOpen={isOpen} />
-            <StyledSidebar $isOpen={isOpen} slideFrom={slideFrom}>
+            <StyledSidebar $isOpen={isOpen} $slideFrom={slideFrom}>
                 {children}
             </StyledSidebar>
         </>

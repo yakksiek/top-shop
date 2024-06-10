@@ -34,6 +34,8 @@ const GlobalStyles = createGlobalStyle`
  
 }
 
+  --font-size-small: 0.875rem;
+
   --padding-sidebar-mobile: 1rem 2.5vw; 
   --padding-sidebar-desk: 5rem 1.25vw 1rem 1.25vw; 
 
@@ -79,7 +81,7 @@ body {
   transition: color 0.3s, background-color 0.3s;
   min-height: 100dvh;
   line-height: 1.5;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #root {

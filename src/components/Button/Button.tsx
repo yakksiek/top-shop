@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 type ButtonTypes = 'submit' | 'button';
 
 interface StyledButtonProps {
-    fill: boolean;
+    $fill: boolean;
     type: ButtonTypes;
 }
 
@@ -35,8 +35,8 @@ const StyledButton = styled.button<StyledButtonProps>`
         box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--color-black);
     }
 
-    ${({ fill }) =>
-        fill &&
+    ${({ $fill }) =>
+        $fill &&
         css`
             background-color: var(--color-black);
             color: var(--color-grey-0);
@@ -63,7 +63,7 @@ interface ButtonProps {
 
 function Button({ fill, children, type = 'button' }: ButtonProps) {
     return (
-        <StyledButton fill={fill} type={type}>
+        <StyledButton $fill={fill} type={type}>
             {children}
         </StyledButton>
     );

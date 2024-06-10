@@ -3,7 +3,7 @@ import { device } from '../../styles/breakpoints';
 
 interface SidebarProps {
     $isOpen: boolean;
-    slideFrom: 'left' | 'right';
+    $slideFrom: 'left' | 'right';
 }
 
 interface StyledOverlayProps {
@@ -20,8 +20,8 @@ export const StyledSidebar = styled.aside<SidebarProps>`
     transform: translateY(-100%);
     border-left: var(--border-standard);
 
-    ${({ slideFrom }) =>
-        slideFrom === 'left'
+    ${({ $slideFrom }) =>
+        $slideFrom === 'left'
             ? css`
                   left: 0;
                   top: var(--header-height);
@@ -42,14 +42,14 @@ export const StyledSidebar = styled.aside<SidebarProps>`
         
 
     @media ${device.tablet} {
-        max-width: ${({ slideFrom }) => (slideFrom === 'right' ? '42rem' : '22rem')};
+        max-width: ${({ $slideFrom }) => ($slideFrom === 'right' ? '42rem' : '22rem')};
         position: absolute;
         top: 0;
         transform: translateX(-100%);
         opacity: 0;
 
-        ${({ slideFrom }) =>
-            slideFrom === 'left'
+        ${({ $slideFrom }) =>
+            $slideFrom === 'left'
                 ? css`
                       left: 0;
                       transform: translateX(-100%);

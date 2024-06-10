@@ -36,7 +36,7 @@ interface SubmenuProps {
 
 function Submenu({ isOpen, children, slideFrom }: SubmenuProps) {
     return (
-        <StyledSubmenu $isOpen={isOpen ? true : false} slideFrom={slideFrom}>
+        <StyledSubmenu $isOpen={isOpen ? true : false} $slideFrom={slideFrom}>
             {children}
         </StyledSubmenu>
     );

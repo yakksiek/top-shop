@@ -2,18 +2,35 @@ import styled, { css } from 'styled-components';
 
 interface HeadingProps {
     as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+    variant?: 'category';
 }
 
 const Heading = styled.h1<HeadingProps>`
     font-size: 20px;
-    font-weight: 600;
     text-align: center;
+    margin-bottom: 1rem;
 
     ${props =>
         props.as === 'h1' &&
         css`
             font-size: 2rem;
             letter-spacing: 2.5px;
+        `}
+
+    ${props =>
+        props.as === 'h2' &&
+        css`
+            font-size: 2rem;
+            letter-spacing: 2.5px;
+        `}
+
+    ${props =>
+        props.as === 'h2' &&
+        props.variant === 'category' &&
+        css`
+            font-size: 2rem;
+            letter-spacing: 2.5px;
+            /* text-align: left; */
         `}
 
     ${props =>
@@ -34,9 +51,10 @@ const Heading = styled.h1<HeadingProps>`
     ${props =>
         props.as === 'h5' &&
         css`
-            font-size: 1.25rem;
-            font-weight: 500;
-            /* text-align: center; */
+            font-size: 0.85rem;
+            font-weight: 400;
+            text-align: left;
+            margin-bottom: 0;
         `}
 `;
 

@@ -7,7 +7,7 @@ const StyledNavigation = styled.ul`
     li {
         display: flex;
         align-items: center;
-        font-size: 0.875rem;
+        font-size: var(--font-size-small);
         font-weight: 500;
         padding: 0.5rem;
 
