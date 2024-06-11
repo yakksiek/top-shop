@@ -103,7 +103,7 @@ function Product({ product, variant }: ProductProps) {
             <StyledInfoContainer>
                 <div>
                     <Heading as='h5'>{product.productName}</Heading>
-                    <StyledPrice>{product.pricePLN} PLN</StyledPrice>
+                    <StyledPrice>PLN {product.pricePLN}</StyledPrice>
                 </div>
                 {wishlistView && (
                     <StyledIconCartWrapper className='cart-wrapper'>
