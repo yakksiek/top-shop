@@ -9,7 +9,7 @@ const StyledButton = styled.button`
     justify-content: center;
     position: relative;
     cursor: pointer;
-    z-index: 2;
+    z-index: 15;
     height: 100%;
     overflow: hidden;
     min-width: 2rem;

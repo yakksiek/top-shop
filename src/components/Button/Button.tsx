@@ -56,12 +56,12 @@ const StyledButton = styled.button<StyledButtonProps>`
 `;
 
 interface ButtonProps {
-    fill: boolean;
+    fill?: boolean;
     children: React.ReactNode;
     type?: ButtonTypes;
 }
 
-function Button({ fill, children, type = 'button' }: ButtonProps) {
+function Button({ fill = false, children, type = 'button' }: ButtonProps) {
     return (
         <StyledButton $fill={fill} type={type}>
             {children}

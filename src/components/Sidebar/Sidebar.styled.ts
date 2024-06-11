@@ -19,6 +19,7 @@ export const StyledSidebar = styled.aside<SidebarProps>`
     opacity: 0;
     transform: translateY(-100%);
     border-left: var(--border-standard);
+    z-index: 10;
 
     ${({ $slideFrom }) =>
         $slideFrom === 'left'
@@ -29,7 +30,7 @@ export const StyledSidebar = styled.aside<SidebarProps>`
             : css`
                   right: 0;
                   top: 0;
-                  z-index: 999;
+
                   padding-top: 2rem;
               `}
 
@@ -82,6 +83,7 @@ export const StyledOverlay = styled.div<StyledOverlayProps>`
     opacity: 0;
     transition: opacity var(--animation-and-timing);
     visibility: hidden;
+    z-index: 1;
 
     ${({ $isOpen }) =>
         $isOpen &&

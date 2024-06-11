@@ -8,6 +8,7 @@ import GlobalStyles from './styles/GlobalStyles.ts';
 import { AuthenticationContextProvider } from './contexts/AuthenticationContext.tsx';
 import MainPage from './views/MainPage.tsx';
 import AppLayout from './components/AppLayout.tsx';
+import Favourites from './views/Favourites.tsx';
 
 // const router = createBrowserRouter([
 //     {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
         children: [
             { index: true, element: <MainPage /> },
             // { path: 'products/:id', element: <ProductPage /> },
+            { path: 'favourites', element: <Favourites /> },
         ],
     },
 ]);

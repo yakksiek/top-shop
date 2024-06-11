@@ -44,7 +44,7 @@ const Heading = styled.h1<HeadingProps>`
         props.as === 'h4' &&
         css`
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 400;
             text-align: center;
         `}
 
