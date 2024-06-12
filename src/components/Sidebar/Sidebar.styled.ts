@@ -43,7 +43,9 @@ export const StyledSidebar = styled.aside<SidebarProps>`
         
 
     @media ${device.tablet} {
-        max-width: ${({ $slideFrom }) => ($slideFrom === 'right' ? '42rem' : '22rem')};
+        width: ${({ $slideFrom }) => ($slideFrom === 'right' ? '42rem' : '22rem')};
+        max-width: 33.333333vw;
+
         position: absolute;
         top: 0;
         transform: translateX(-100%);
