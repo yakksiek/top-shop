@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import footerData from '../../db/footer.json';
-import Logo from '../Logo';
 import Accordion from '../Accordion';
 import FooterLegalList from './FooterLegalList';
 import FooterContentInfo from './FooterContentInfo';
 import { device } from '../../styles/breakpoints';
+import Heading from '../Heading';
 
 export const StyledFooter = styled.footer`
     border-top: var(--border-standard);
@@ -30,7 +30,7 @@ function Footer() {
     return (
         <StyledFooter>
             <StyledLogoContainer>
-                <Logo as='h4' />
+                <Heading as='h4'>TOP SHOP</Heading>
             </StyledLogoContainer>
             <Accordion data={footerData.categories} />
             <FooterContentInfo />

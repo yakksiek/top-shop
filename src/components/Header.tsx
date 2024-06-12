@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 import { device } from '../styles/breakpoints';
-import Logo from './Logo';
 import Menu from './Menu';
 import NavLinks from './NavLinks';
 import { useSidebarContext } from '../contexts/SidebarContext';
 import { useSearchInputContext } from '../contexts/SearchInputContext';
 import { SearchInput } from './SearchInput';
 import Wrapper from './Wrapper';
+import Heading from './Heading';
 
 interface StyledHeaderProps {
     $isOpen: boolean;
@@ -26,7 +26,6 @@ const StyledHeader = styled.header<StyledHeaderProps>`
         padding: 1.2rem 0;
         z-index: 3;
         background-color: var(--color-grey-0);
-        /* border-bottom: var(--border-standard); */
     }
 `;
 
@@ -99,7 +98,7 @@ function Header() {
         <Wrapper type='wide'>
             <StyledHeader $isOpen={isSidebarOpen}>
                 <Menu />
-                <Logo as='h1' />
+                <Heading as='h1'>TOP SHOP</Heading>
                 <NavLinks />
                 <StyledSearchbarContainer $isOpen={isSearchBarOpen}>
                     <SearchInput type='header' />
