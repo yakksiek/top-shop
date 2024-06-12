@@ -9,6 +9,7 @@ import { AuthenticationContextProvider } from './contexts/AuthenticationContext.
 import MainPage from './views/MainPage.tsx';
 import AppLayout from './components/AppLayout.tsx';
 import Favourites from './views/Favourites.tsx';
+import Cart from './views/Cart.tsx';
 
 // const router = createBrowserRouter([
 //     {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
             { index: true, element: <MainPage /> },
             // { path: 'products/:id', element: <ProductPage /> },
             { path: 'favourites', element: <Favourites /> },
+            { path: 'cart', element: <Cart /> },
         ],
     },
 ]);

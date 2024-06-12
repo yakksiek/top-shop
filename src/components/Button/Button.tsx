@@ -17,11 +17,11 @@ const StyledButton = styled.button<StyledButtonProps>`
     text-align: center;
     min-height: 3rem;
     width: 100%;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 300;
     letter-spacing: 0.025rem;
     line-height: 1.25rem;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
 
     outline: 1px solid var(--color-black);
     transition: 0.1s outline linear;

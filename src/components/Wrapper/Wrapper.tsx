@@ -28,8 +28,15 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
     ${props =>
         props.type === 'narrow' &&
         css`
-            padding: 0 10vw;
-            width: 100%;
+            @media ${device.tablet} {
+                padding: 0 5vw;
+                width: 100%;
+            }
+
+            @media ${device.desktop} {
+                padding: 0 10vw;
+                width: 100%;
+            }
         `}
 `;
 

@@ -3,12 +3,14 @@ import styled, { css } from 'styled-components';
 interface HeadingProps {
     as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
     variant?: 'category';
+    $marginBottom?: boolean;
 }
 
 const Heading = styled.h1<HeadingProps>`
     font-size: 20px;
-    text-align: center;
-    margin-bottom: 1rem;
+    /* text-align: center; */
+    margin-bottom: ${({ $marginBottom }) => (!$marginBottom ? '0' : '1rem')};
+    letter-spacing: 0.0625rem;
 
     ${props =>
         props.as === 'h1' &&
@@ -43,15 +45,15 @@ const Heading = styled.h1<HeadingProps>`
     ${props =>
         props.as === 'h4' &&
         css`
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 400;
-            text-align: center;
+            text-align: left;
         `}
 
     ${props =>
         props.as === 'h5' &&
         css`
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             font-weight: 400;
             text-align: left;
             margin-bottom: 0;

@@ -144,9 +144,8 @@ h5,
 h6 {
   overflow-wrap: break-word;
   hyphens: auto;
-  letter-spacing: .0625rem;
   
-  
+  letter-spacing: 0.0625rem;
 }
 
 h1 {
@@ -161,7 +160,6 @@ h2 {
 
 p {
   font-size: 1rem;
-  letter-spacing: .0850rem;
 
 }
 
