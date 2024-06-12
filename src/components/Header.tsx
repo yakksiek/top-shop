@@ -7,6 +7,7 @@ import { useSearchInputContext } from '../contexts/SearchInputContext';
 import { SearchInput } from './SearchInput';
 import Wrapper from './Wrapper';
 import Heading from './Heading';
+import { Link } from 'react-router-dom';
 
 interface StyledHeaderProps {
     $isOpen: boolean;
@@ -98,7 +99,9 @@ function Header() {
         <Wrapper type='wide'>
             <StyledHeader $isOpen={isSidebarOpen}>
                 <Menu />
-                <Heading as='h1'>TOP SHOP</Heading>
+                <Link to='/'>
+                    <Heading as='h1'>TOP SHOP</Heading>
+                </Link>
                 <NavLinks />
                 <StyledSearchbarContainer $isOpen={isSearchBarOpen}>
                     <SearchInput type='header' />
