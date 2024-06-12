@@ -1,14 +1,17 @@
 import styled, { css } from 'styled-components';
 
+type TextAlignType = 'center' | 'left' | 'right';
+
 interface HeadingProps {
     as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
     variant?: 'category';
     $marginBottom?: boolean;
+    $textAlign?: TextAlignType;
 }
 
 const Heading = styled.h1<HeadingProps>`
     font-size: 20px;
-    /* text-align: center; */
+    text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : 'center')};
     margin-bottom: ${({ $marginBottom }) => (!$marginBottom ? '0' : '1rem')};
     letter-spacing: 0.0625rem;
 
@@ -38,7 +41,7 @@ const Heading = styled.h1<HeadingProps>`
     ${props =>
         props.as === 'h3' &&
         css`
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 500;
         `}
 
@@ -47,7 +50,6 @@ const Heading = styled.h1<HeadingProps>`
         css`
             font-size: 1rem;
             font-weight: 400;
-            text-align: left;
         `}
 
     ${props =>

@@ -134,7 +134,7 @@ function Cart() {
     return (
         <Section>
             <Wrapper type='narrow'>
-                <Heading as='h4'>Your cart</Heading>
+                <Heading as='h3'>Your cart</Heading>
                 <StyledGridContainer>
                     <CartProductList products={cartProducts} />
                     <CartSummary products={cartProducts} />
