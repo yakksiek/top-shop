@@ -35,6 +35,10 @@ function NavigationMenu() {
         setActiveMainCategory,
     } = useSidebarContext();
 
+    const subCategoryGroup = mainMenu.subcategories.find(subcategory => {
+        return subcategory.path === activeSubCategory.toLowerCase();
+    });
+
     return (
         <Sidebar toggleSidebar={toggleSidebar} isOpen={isOpen} slideFrom='left'>
             <NavigationMenuList
@@ -59,6 +63,16 @@ function NavigationMenu() {
                         <GoArrowLeft />
                         <h2>{activeSubCategory}</h2>
                     </StyledHeader>
+                    {subCategoryGroup && (
+                        <NavigationMenuList
+                            data={subCategoryGroup.subgroup}
+                            type='submenu'
+                            clickHandler={() => {}}
+                            activeCategory='x'
+                            useLink={true}
+                            currentPath={activeMainCategory.toLowerCase() + '/' + activeSubCategory.toLowerCase()}
+                        />
+                    )}
                 </Submenu>
             </Submenu>
         </Sidebar>

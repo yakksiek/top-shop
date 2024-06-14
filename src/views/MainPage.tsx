@@ -1,7 +1,7 @@
 import Hero from '../components/Hero';
 
 import COVER_PHOTO from '../assets/cover.jpg';
-import Bestsellers from '../components/Bestsellers';
+import Products from '../components/Products';
 
 const products = [
     {
@@ -84,7 +84,7 @@ function MainPage() {
     return (
         <>
             <Hero heroImage={COVER_PHOTO} />
-            <Bestsellers products={products} />
+            <Products products={products} heading='Check Out Our Products' />
         </>
     );
 }

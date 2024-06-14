@@ -4,17 +4,20 @@ import Heading from '../Heading';
 import Product from '../Product';
 import Section from '../Section';
 import Wrapper from '../Wrapper';
-import { StyledProductsWrapper } from './Bestsellers.styled';
+import { StyledProductsWrapper } from './Products.styled';
 
-interface BestsellersProps {
+interface ProductsProps {
     products: t.Product[];
+    heading: string;
 }
 
-function Bestsellers({ products }: BestsellersProps) {
+function Products({ products, heading }: ProductsProps) {
     return (
         <Section>
             <Wrapper type='narrow'>
-                <Heading as='h2'>Check Out Our Bestsellers</Heading>
+                <Heading as='h2' $marginBottom={true}>
+                    {heading}
+                </Heading>
                 <StyledProductsWrapper>
                     {products.map(product => {
                         return <Product key={product.id} product={product} />;
@@ -25,4 +28,4 @@ function Bestsellers({ products }: BestsellersProps) {
     );
 }
 
-export default Bestsellers;
+export default Products;

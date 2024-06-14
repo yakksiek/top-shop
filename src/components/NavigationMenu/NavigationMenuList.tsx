@@ -1,6 +1,8 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { device } from '../../styles/breakpoints';
+import { useSidebarContext } from '../../contexts/SidebarContext';
 
 type NavListTypes = 'menu' | 'submenu';
 
@@ -27,12 +29,12 @@ const IconWrapper = styled.span`
     }
 `;
 
-interface StyledNavItem {
+interface StyledNavItemProps {
     $isActive: boolean;
     type: NavListTypes;
 }
 
-const StyledNavItem = styled.li<StyledNavItem>`
+const StyledNavItem = styled.li<StyledNavItemProps>`
     font-size: 1.5rem;
     line-height: 1.75rem;
     padding: 12px 0;
@@ -92,14 +94,18 @@ interface SidebarNavListProps {
     type: NavListTypes;
     clickHandler: (name: string) => void;
     activeCategory: string;
+    useLink?: boolean;
+    currentPath?: string;
 }
 
-function NavigationMenuList({ data, type, clickHandler, activeCategory }: SidebarNavListProps) {
+function NavigationMenuList({ data, type, clickHandler, activeCategory, useLink, currentPath }: SidebarNavListProps) {
+    const { toggleSidebar } = useSidebarContext();
+
     return (
         <StyledNavList $active={activeCategory}>
             {data.map(item => {
                 const activeItem = activeCategory === item.categoryName;
-                return (
+                const content = (
                     <StyledNavItem
                         key={item.categoryName}
                         onClick={() => {
@@ -118,6 +124,18 @@ function NavigationMenuList({ data, type, clickHandler, activeCategory }: Sideba
                             <MdKeyboardArrowRight />
                         </IconWrapper>
                     </StyledNavItem>
+                );
+
+                return useLink ? (
+                    <Link
+                        to={'products' + '/' + currentPath + '/' + item.path}
+                        key={item.categoryName}
+                        onClick={toggleSidebar}
+                    >
+                        {content}
+                    </Link>
+                ) : (
+                    content
                 );
             })}
         </StyledNavList>

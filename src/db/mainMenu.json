@@ -14,9 +14,69 @@
         }
     ],
     "subcategories": [
-        { "categoryName": "Clothes", "path": "clothes" },
-        { "categoryName": "Shoes", "path": "shoes" },
-        { "categoryName": "Accessories", "path": "accessories" },
-        { "categoryName": "Sport", "path": "sport" }
+        {
+            "categoryName": "Clothes",
+            "path": "clothes",
+            "subgroup": [
+                {
+                    "categoryName": "T-shirts",
+                    "path": "t-shirts"
+                },
+                {
+                    "categoryName": "Sweaters",
+                    "path": "sweaters"
+                },
+                {
+                    "categoryName": "Trousers",
+                    "path": "trousers"
+                }
+            ]
+        },
+        {
+            "categoryName": "Shoes",
+            "path": "shoes",
+            "subgroup": [
+                {
+                    "categoryName": "Elegant",
+                    "path": "elegant"
+                },
+                {
+                    "categoryName": "Sneakers",
+                    "path": "sneakers"
+                }
+            ]
+        },
+        {
+            "categoryName": "Accessories",
+            "path": "accessories",
+            "subgroup": [
+                {
+                    "categoryName": "bags",
+                    "path": "bags"
+                },
+                {
+                    "categoryName": "watches",
+                    "path": "watches"
+                }
+            ]
+        },
+        {
+            "categoryName": "Sport",
+            "path": "sport",
+            "subgroup": [
+                {
+                    "categoryName": "Football",
+                    "path": "football"
+                },
+                {
+                    "categoryName": "Skiing",
+                    "path": "skiing"
+                },
+                {
+                    "categoryName": "Swimming",
+                    "path": "swimming"
+                }
+            ]
+        }
     ]
 }
