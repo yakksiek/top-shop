@@ -18,7 +18,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     min-height: 3rem;
     width: 100%;
     font-size: 0.95rem;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.025rem;
     line-height: 1.25rem;
     margin: 1rem 0;

@@ -6,11 +6,12 @@ import { SearchInputContextProvider } from './contexts/SearchInputContext.tsx';
 import { SidebarContextProvider } from './contexts/SidebarContext.tsx';
 import GlobalStyles from './styles/GlobalStyles.ts';
 import { AuthenticationContextProvider } from './contexts/AuthenticationContext.tsx';
-import MainPage from './views/MainPage.tsx';
+// import MainPage from './views/MainPage.tsx';
 import AppLayout from './components/AppLayout.tsx';
 import Favourites from './views/Favourites.tsx';
 import Cart from './views/Cart.tsx';
 import ProductsList from './views/ProductsList.tsx';
+import ProductDetails from './views/ProductDetails.tsx';
 
 // const router = createBrowserRouter([
 //     {
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
         element: <AppLayout />,
         // errorElement: <ErrorPage />,
         children: [
-            { index: true, element: <MainPage /> },
+            // { index: true, element: <MainPage /> },
+            { index: true, element: <ProductDetails /> },
             // { path: 'products/:id', element: <ProductPage /> },
             { path: 'favourites', element: <Favourites /> },
             { path: 'cart', element: <Cart /> },

@@ -81,7 +81,6 @@ body {
   transition: color 0.3s, background-color 0.3s;
   min-height: 100dvh;
   line-height: 1.5;
-  overflow-x: hidden;
 }
 
 #root {
@@ -154,7 +153,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  /* font-size: 2rem; */
   font-weight: 400; 
 }
 

@@ -17,14 +17,11 @@ const StyledSubmenu = styled(StyledSidebar)<SidebarProps>`
         `}
 
     @media ${device.tablet} {
-        left: 100%;
-        display: none;
-
         ${({ $isOpen }) =>
             $isOpen &&
             css`
-                display: block;
-            `};
+                left: 100%;
+            `}
     }
 `;
 

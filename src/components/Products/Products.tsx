@@ -1,7 +1,7 @@
 import * as t from '../../types';
 
 import Heading from '../Heading';
-import Product from '../Product';
+import Product from '../ProductListItem';
 import Section from '../Section';
 import Wrapper from '../Wrapper';
 import { StyledProductsWrapper } from './Products.styled';

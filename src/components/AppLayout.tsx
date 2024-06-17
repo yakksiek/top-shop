@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Header from './Header';
-import { SearchInput } from './SearchInput';
+// import { SearchInput } from './SearchInput';
 import { NavigationMenu } from './NavigationMenu';
 import Footer from './Footer';
 import LoginModal from '../features/authentication/LoginModal';
@@ -12,6 +12,7 @@ const StyledAppLayout = styled.div`
     /* padding: 0 3rem */
     width: 100%;
     margin: 0 auto;
+    /* overflow: hidden; */
 `;
 
 function AppLayout() {
@@ -19,7 +20,7 @@ function AppLayout() {
         <StyledAppLayout>
             <MainContent>
                 <Header />
-                <SearchInput />
+                {/* <SearchInput /> */}
                 <NavigationMenu />
                 <LoginModal />
                 <Outlet />

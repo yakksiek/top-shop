@@ -25,7 +25,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
 
     @media ${device.mobile} {
         padding: 1.2rem 0;
-        z-index: 3;
+        z-index: 11;
         background-color: var(--color-grey-0);
     }
 `;

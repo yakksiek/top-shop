@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
 import Button from '../components/Button';
-import Product from '../components/Product';
+import Product from '../components/ProductListItem';
 import { device } from '../styles/breakpoints';
 
 const favouriteProducts = [
