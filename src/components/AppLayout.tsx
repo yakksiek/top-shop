@@ -8,11 +8,8 @@ import MainContent from './MainContent';
 import { Outlet } from 'react-router-dom';
 
 const StyledAppLayout = styled.div`
-    /* min-height: 100dvh; */
-    /* padding: 0 3rem */
     width: 100%;
     margin: 0 auto;
-    /* overflow: hidden; */
 `;
 
 function AppLayout() {

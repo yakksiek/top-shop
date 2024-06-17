@@ -1,17 +1,15 @@
-import { LiaTimesSolid } from 'react-icons/lia';
 import Button from '../../components/Button';
 import { Sidebar } from '../../components/Sidebar';
 import { useAuthenticationContext } from '../../contexts/AuthenticationContext';
 
+import { ModalHeader, StyledModalWrapper } from '../../components/Modal';
 import {
     StyledForgotPassButton,
     StyledForm,
     StyledFormRow,
-    StyledHeader,
     StyledInput,
     StyledLabel,
     StyledSeparator,
-    StyledWrapper,
 } from './LoginModal.styled';
 
 function LoginModal() {
@@ -19,12 +17,8 @@ function LoginModal() {
 
     return (
         <Sidebar toggleSidebar={toggleLoginModal} isOpen={isOpen} slideFrom='right'>
-            <StyledWrapper>
-                <StyledHeader>
-                    <h4>Identification</h4>
-
-                    <LiaTimesSolid onClick={toggleLoginModal} />
-                </StyledHeader>
+            <StyledModalWrapper>
+                <ModalHeader toggleModal={toggleLoginModal} headerText='Identification' />
                 <div>
                     <h4>I already have an account</h4>
                     <StyledForm>
@@ -44,13 +38,13 @@ function LoginModal() {
                         </Button>
                     </StyledForm>
                 </div>
-            </StyledWrapper>
+            </StyledModalWrapper>
             <StyledSeparator />
-            <StyledWrapper>
+            <StyledModalWrapper>
                 <h4>I don't have an account yet</h4>
                 <p>Enjoy add benefits and a reacher experience by creating a personal account</p>
                 <Button fill={false}>Create My TS account</Button>
-            </StyledWrapper>
+            </StyledModalWrapper>
         </Sidebar>
     );
 }

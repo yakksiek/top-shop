@@ -17,7 +17,6 @@ export const StyledSidebar = styled.aside<SidebarProps>`
     height: 100%;
     transition: transform var(--animation-and-timing), opacity var(--animation-and-timing);
     border-left: var(--border-standard);
-    background-color: aliceblue;
     opacity: 0;
 
     ${({ $slideFrom }) =>

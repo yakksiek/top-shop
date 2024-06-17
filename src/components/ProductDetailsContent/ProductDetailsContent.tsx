@@ -7,6 +7,7 @@ import * as h from '../../utils/helpers';
 import Button from '../Button';
 import { useState } from 'react';
 import { Sidebar } from '../Sidebar';
+import { ModalHeader, StyledModalWrapper } from '../Modal';
 
 const StyledProductDetails = styled.div`
     padding: 1rem 6.4vw;
@@ -28,6 +29,10 @@ const StyledProductHeader = styled.header`
             font-size: 1.125rem;
             margin-bottom: 0.25rem;
             font-weight: 400;
+        }
+
+        svg {
+            cursor: pointer;
         }
     }
 `;
@@ -53,6 +58,7 @@ const StyledProductFooter = styled.div`
         justify-content: space-between;
         margin-bottom: 1rem;
         font-size: 0.85rem;
+        cursor: pointer;
     }
 
     svg {
@@ -64,10 +70,21 @@ interface ProductDetailsContentProps {
     product: t.Product;
 }
 
+type SidebarContentType = 'description' | 'maintenanceInfo';
+
+const SidebarContentLabel = {
+    description: 'Description',
+    maintenanceInfo: 'Maintenance Information',
+};
+
 function ProductDetailsContent({ product }: ProductDetailsContentProps) {
     const [sideInfo, setSideInfo] = useState(false);
+    const [sidebarContent, setSidebarContent] = useState<SidebarContentType>('description');
 
-    const handleToggleSidebar = () => {
+    const handleToggleSidebar = (contentType?: SidebarContentType) => {
+        if (contentType) {
+            setSidebarContent(contentType);
+        }
         setSideInfo(prevState => !prevState);
     };
 
@@ -92,17 +109,20 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
                 <Button fill={true}>Add to Cart</Button>
             </StyledProductMainContent>
             <StyledProductFooter>
-                <div className='row' onClick={handleToggleSidebar}>
+                <div className='row' onClick={() => handleToggleSidebar('description')}>
                     <span>Description</span>
                     <SlArrowRight />
                 </div>
-                <div className='row'>
+                <div className='row' onClick={() => handleToggleSidebar('maintenanceInfo')}>
                     <span>Maintenance Information</span>
                     <SlArrowRight />
                 </div>
             </StyledProductFooter>
             <Sidebar toggleSidebar={handleToggleSidebar} isOpen={sideInfo} slideFrom={'right'}>
-                <p onClick={handleToggleSidebar}>zamknij</p>
+                <StyledModalWrapper>
+                    <ModalHeader toggleModal={handleToggleSidebar} headerText={SidebarContentLabel[sidebarContent]} />
+                    <p>{product[sidebarContent]}</p>
+                </StyledModalWrapper>
             </Sidebar>
         </StyledProductDetails>
     );
