@@ -9,11 +9,22 @@ import { useState } from 'react';
 import { Sidebar } from '../Sidebar';
 import { ModalHeader, StyledModalWrapper } from '../Modal';
 import useNoScroll from '../../hooks/useNoScroll';
+import { device } from '../../styles/breakpoints';
 
 const StyledProductDetails = styled.div`
     padding: 1rem 6.4vw;
     font-weight: 400;
     overflow: hidden;
+
+    @media ${device.tablet} {
+        padding: 0 8vw;
+        position: sticky;
+        top: var(--header-height);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 `;
 
 const StyledProductHeader = styled.header`

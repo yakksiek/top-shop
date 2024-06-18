@@ -46,7 +46,8 @@ const StyledMediaWrapper = styled.div`
 
     @media ${device.tablet} {
         display: block;
-        height: 70vh;
+
+        /* height: 100vh; */
     }
 `;
 
@@ -59,7 +60,7 @@ function ProductDetails() {
                     <MiniSlider photos={product.photos} productName={product.productName} />
                 </StyledSliderContainer>
                 <StyledMediaWrapper>
-                    <ProductDetailsMedia />
+                    <ProductDetailsMedia photos={product.photos} />
                 </StyledMediaWrapper>
                 <ProductDetailsContent product={product} />
             </StyledGridContainer>
