@@ -8,6 +8,7 @@ import Button from '../Button';
 import { useState } from 'react';
 import { Sidebar } from '../Sidebar';
 import { ModalHeader, StyledModalWrapper } from '../Modal';
+import useNoScroll from '../../hooks/useNoScroll';
 
 const StyledProductDetails = styled.div`
     padding: 1rem 6.4vw;
@@ -80,6 +81,7 @@ const SidebarContentLabel = {
 function ProductDetailsContent({ product }: ProductDetailsContentProps) {
     const [sideInfo, setSideInfo] = useState(false);
     const [sidebarContent, setSidebarContent] = useState<SidebarContentType>('description');
+    useNoScroll(sideInfo);
 
     const handleToggleSidebar = (contentType?: SidebarContentType) => {
         if (contentType) {

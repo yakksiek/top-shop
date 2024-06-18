@@ -5,6 +5,7 @@ import MiniSlider from '../components/MiniSlider';
 import ProductDetailsContent from '../components/ProductDetailsContent';
 import Section from '../components/Section';
 import { device } from '../styles/breakpoints';
+import ProductDetailsMedia from '../components/ProductsDetailsMedia';
 
 const product = {
     id: 54,
@@ -40,6 +41,15 @@ const StyledSliderContainer = styled.div`
     }
 `;
 
+const StyledMediaWrapper = styled.div`
+    display: none;
+
+    @media ${device.tablet} {
+        display: block;
+        height: 70vh;
+    }
+`;
+
 function ProductDetails() {
     return (
         <Section>
@@ -48,6 +58,9 @@ function ProductDetails() {
                 <StyledSliderContainer>
                     <MiniSlider photos={product.photos} productName={product.productName} />
                 </StyledSliderContainer>
+                <StyledMediaWrapper>
+                    <ProductDetailsMedia />
+                </StyledMediaWrapper>
                 <ProductDetailsContent product={product} />
             </StyledGridContainer>
         </Section>

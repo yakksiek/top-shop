@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
+import useNoScroll from '../hooks/useNoScroll';
 
 interface AuthenticationContextType {
     isOpen: boolean;
@@ -9,6 +10,8 @@ const AuthenticationContext = createContext<AuthenticationContextType | null>(nu
 
 function AuthenticationContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
+
+    useNoScroll(isOpen);
 
     function toggleLoginModal() {
         setIsOpen(prevState => !prevState);

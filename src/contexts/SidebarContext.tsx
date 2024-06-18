@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
+import useNoScroll from '../hooks/useNoScroll';
 
 interface SidebarContextType {
     isOpen: boolean;
@@ -15,6 +16,7 @@ function SidebarContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
     const [activeMainCategory, setActiveMainCategory] = useState('');
     const [activeSubCategory, setActiveSubCategory] = useState('');
+    useNoScroll(isOpen);
 
     function toggleSidebar() {
         setIsOpen(prevState => !prevState);
