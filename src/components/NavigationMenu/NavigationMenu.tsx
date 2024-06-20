@@ -6,6 +6,7 @@ import mainMenu from '../../db/mainMenu.json';
 import { device } from '../../styles/breakpoints';
 import NavigationMenuList from './NavigationMenuList';
 
+import { NavLink } from 'react-router-dom';
 import { Sidebar, Submenu } from '../Sidebar';
 
 const StyledHeader = styled.header`
@@ -48,9 +49,17 @@ function NavigationMenu() {
                 activeCategory={activeMainCategory}
             />
             <Submenu isOpen={activeMainCategory ? true : false} slideFrom='left'>
-                <StyledHeader onClick={() => setActiveMainCategory('')}>
+                <StyledHeader>
                     <GoArrowLeft />
-                    <h2>{activeMainCategory}</h2>
+                    <NavLink
+                        to={activeMainCategory.toLocaleLowerCase()}
+                        onClick={() => {
+                            toggleSidebar();
+                            setActiveMainCategory('');
+                        }}
+                    >
+                        <h2>{activeMainCategory}</h2>
+                    </NavLink>
                 </StyledHeader>
                 <NavigationMenuList
                     data={mainMenu.subcategories}
@@ -58,10 +67,20 @@ function NavigationMenu() {
                     clickHandler={setActiveSubCategory}
                     activeCategory={activeSubCategory}
                 />
+
                 <Submenu isOpen={activeSubCategory ? true : false} slideFrom='left'>
                     <StyledHeader onClick={() => setActiveSubCategory('')}>
                         <GoArrowLeft />
-                        <h2>{activeSubCategory}</h2>
+                        <NavLink
+                            to={`${activeMainCategory.toLocaleLowerCase()}/${activeSubCategory.toLowerCase()}`}
+                            onClick={() => {
+                                toggleSidebar();
+                                setActiveMainCategory('');
+                                setActiveSubCategory('');
+                            }}
+                        >
+                            <h2>{activeSubCategory}</h2>
+                        </NavLink>
                     </StyledHeader>
                     {subCategoryGroup && (
                         <NavigationMenuList

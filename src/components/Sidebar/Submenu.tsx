@@ -7,7 +7,7 @@ interface SidebarProps {
 }
 
 const StyledSubmenu = styled(StyledSidebar)<SidebarProps>`
-    transform: translateX(-100%);
+    transform: translateX(-200%);
     top: 0;
 
     ${({ $isOpen }) =>

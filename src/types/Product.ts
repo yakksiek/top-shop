@@ -1,4 +1,4 @@
-interface Product {
+export interface Product {
     id: number;
     gender: string;
     category: string;
@@ -12,4 +12,9 @@ interface Product {
     maintenanceInfo: string;
 }
 
-export default Product;
+export interface LoaderProductData {
+    bestsellers: Product[];
+    description: string;
+    maintenanceInfo: string;
+    heroImageUrl: string;
+}

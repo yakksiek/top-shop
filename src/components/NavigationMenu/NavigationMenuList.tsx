@@ -1,8 +1,8 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { device } from '../../styles/breakpoints';
 import { useSidebarContext } from '../../contexts/SidebarContext';
+import { device } from '../../styles/breakpoints';
 
 type NavListTypes = 'menu' | 'submenu';
 
@@ -100,6 +100,7 @@ interface SidebarNavListProps {
 
 function NavigationMenuList({ data, type, clickHandler, activeCategory, useLink, currentPath }: SidebarNavListProps) {
     const { toggleSidebar } = useSidebarContext();
+    console.log(currentPath);
 
     return (
         <StyledNavList $active={activeCategory}>
@@ -127,13 +128,9 @@ function NavigationMenuList({ data, type, clickHandler, activeCategory, useLink,
                 );
 
                 return useLink ? (
-                    <Link
-                        to={'products' + '/' + currentPath + '/' + item.path}
-                        key={item.categoryName}
-                        onClick={toggleSidebar}
-                    >
+                    <NavLink to={currentPath + '/' + item.path} key={item.categoryName} onClick={toggleSidebar}>
                         {content}
-                    </Link>
+                    </NavLink>
                 ) : (
                     content
                 );

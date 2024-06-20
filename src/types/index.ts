@@ -1,3 +1,6 @@
-import Product from './Product';
+import { Product, LoaderProductData } from './Product';
+import { GenderTypes, validGenders } from './GenderTypes';
 
-export type { Product };
+export type { Product, GenderTypes, LoaderProductData };
+
+export { validGenders };

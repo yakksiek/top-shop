@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import CenteredContent from '../CenteredContent';
 import Section from '../Section';
+import { BASE_URL } from '../../contants/api';
 
 interface StyledHeroProps {
     $heroImage: string;
@@ -43,7 +44,7 @@ interface HeroProps {
 function Hero({ heroImage }: HeroProps) {
     return (
         <Section>
-            <StyledHero $heroImage={heroImage}>
+            <StyledHero $heroImage={`${BASE_URL}${heroImage}`}>
                 <CenteredContent>
                     <StyledContentWrapper>
                         <h2>Summer Promotion up to 75% off</h2>

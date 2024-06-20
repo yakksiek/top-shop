@@ -1,38 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import mainPageLoader from './api/mainPageLoader.ts';
+import AppLayout from './components/AppLayout.tsx';
+import { AuthenticationContextProvider } from './contexts/AuthenticationContext.tsx';
 import { SearchInputContextProvider } from './contexts/SearchInputContext.tsx';
 import { SidebarContextProvider } from './contexts/SidebarContext.tsx';
 import GlobalStyles from './styles/GlobalStyles.ts';
-import { AuthenticationContextProvider } from './contexts/AuthenticationContext.tsx';
-// import MainPage from './views/MainPage.tsx';
-import AppLayout from './components/AppLayout.tsx';
-import Favourites from './views/Favourites.tsx';
 import Cart from './views/Cart.tsx';
+import Favourites from './views/Favourites.tsx';
+import MainPage from './views/MainPage.tsx';
 import ProductsList from './views/ProductsList.tsx';
-import ProductDetails from './views/ProductDetails.tsx';
-
-// const router = createBrowserRouter([
-//     {
-//         path: '/',
-//         // element: <App />,
-//         element: <MainPage />,
-//     },
-// ]);
+// import ProductDetails from './views/ProductDetails.tsx';
+// import { validGenders, GenderTypes } from './types/GenderTypes.ts';
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: '',
         element: <AppLayout />,
         // errorElement: <ErrorPage />,
         children: [
-            // { index: true, element: <MainPage /> },
-            { index: true, element: <ProductDetails /> },
+            { path: '/:gender?', element: <MainPage />, loader: mainPageLoader },
+            // { index: true, element: <ProductDetails /> },
             // { path: 'products/:id', element: <ProductPage /> },
             { path: 'favourites', element: <Favourites /> },
             { path: 'cart', element: <Cart /> },
-            { path: 'products/:category/:subcategory/:subgroup', element: <ProductsList /> },
+            { path: '/:gender/:category', element: <ProductsList /> },
         ],
     },
 ]);
