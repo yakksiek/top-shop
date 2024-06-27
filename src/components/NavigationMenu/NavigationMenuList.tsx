@@ -100,7 +100,6 @@ interface SidebarNavListProps {
 
 function NavigationMenuList({ data, type, clickHandler, activeCategory, useLink, currentPath }: SidebarNavListProps) {
     const { toggleSidebar } = useSidebarContext();
-    console.log(currentPath);
 
     return (
         <StyledNavList $active={activeCategory}>

@@ -5,7 +5,8 @@ import { BASE_URL } from '../contants/api';
 const mainPageLoader = async ({ params }: LoaderFunctionArgs<{ gender: string }>) => {
     const { gender } = params;
 
-    if (!gender || !t.validGenders.includes(gender as t.GenderTypes)) {
+    const isGenderValid = t.validGenders.includes(gender as t.GenderTypes);
+    if (!gender || !isGenderValid) {
         return redirect('/women');
     }
 
