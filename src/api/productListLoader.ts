@@ -2,8 +2,12 @@ import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 import { BASE_URL } from '../contants/api';
 import * as t from '../types';
 
-function productListLoader({ params }: LoaderFunctionArgs<{ gender: string; category: string }>) {
+function productListLoader({ params, request }: LoaderFunctionArgs<{ gender: string; category: string }>) {
     const { gender, category, subcategory } = params;
+    const pageURL = new URL(request.url);
+    const currentPage = pageURL.searchParams.get('page') || 1;
+
+    const pagination = `&_limit=8&_page=${currentPage}`;
 
     const isGenderValid = t.validGenders.includes(gender as t.GenderTypes);
     const isCategoryValid = t.validCategories.includes(category as t.CategoryTypes);
@@ -12,20 +16,28 @@ function productListLoader({ params }: LoaderFunctionArgs<{ gender: string; cate
         return redirect('/women');
     }
 
-    const url = `${BASE_URL}/products/?gender=${gender}&category=${category}`;
-
-    const isSubcategoryValid = t.validSubcategories.includes(subcategory as t.SubcategoryTypes);
-
-    // if (!isSubcategoryValid) {
-    //     return redirect(`/${gender}`);
-    // }
+    let url = `${BASE_URL}/products/?gender=${gender}&category=${category}`;
 
     if (subcategory) {
-        console.log(params);
-        return fetch(`${url}&subcategory=${subcategory}`);
+        const isSubcategoryValid = t.validSubcategories.includes(subcategory as t.SubcategoryTypes);
+
+        if (!isSubcategoryValid) {
+            return redirect(`/${gender}`);
+        }
+
+        url = url + `&subcategory=${subcategory}`;
     }
 
-    return fetch(url);
+    return fetch(url + pagination).then(res => {
+        const numberOfPages = Math.ceil(Number(res.headers.get('X-Total-Count')) / 8);
+
+        return res.json().then(products => {
+            return {
+                products,
+                numberOfPages,
+            };
+        });
+    });
 }
 
 export default productListLoader;

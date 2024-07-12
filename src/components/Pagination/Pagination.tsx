@@ -21,7 +21,7 @@ function Pagination({ numOfPages }: PaginationProps) {
             {pages.map((_, index) => {
                 return (
                     <li key={index}>
-                        <NavLink>{index + 1}</NavLink>
+                        <NavLink to={`?page=${index + 1}`}>{index + 1}</NavLink>
                     </li>
                 );
             })}

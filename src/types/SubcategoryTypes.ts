@@ -1,3 +1,7 @@
-export const validSubcategories = ['t-shirts', 'sweaters', 'trousers'] as const;
+import mainMenuDB from '../db/mainMenu.json';
+
+export const validSubcategories = mainMenuDB.subcategories.flatMap(subcategory =>
+    subcategory.subgroup.map(sub => sub.path),
+);
 
 export type SubcategoryTypes = (typeof validSubcategories)[number];
