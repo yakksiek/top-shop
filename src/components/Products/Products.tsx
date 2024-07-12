@@ -12,6 +12,10 @@ interface ProductsProps {
 }
 
 function Products({ products, heading }: ProductsProps) {
+    if (products.length === 0) {
+        return <h1>no products in this category</h1>;
+    }
+
     return (
         <Section>
             <Wrapper type='narrow'>

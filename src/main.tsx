@@ -12,6 +12,7 @@ import Cart from './views/Cart.tsx';
 import Favourites from './views/Favourites.tsx';
 import MainPage from './views/MainPage.tsx';
 import ProductsList from './views/ProductsList.tsx';
+import productListLoader from './api/productListLoader.ts';
 // import ProductDetails from './views/ProductDetails.tsx';
 // import { validGenders, GenderTypes } from './types/GenderTypes.ts';
 
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
             // { path: 'products/:id', element: <ProductPage /> },
             { path: 'favourites', element: <Favourites /> },
             { path: 'cart', element: <Cart /> },
-            { path: '/:gender/:category', element: <ProductsList /> },
+            { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },
         ],
     },
 ]);
@@ -43,5 +44,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </AuthenticationContextProvider>
     </React.StrictMode>,
 );
-
-// https://top-shop-backend.onrender.com/products

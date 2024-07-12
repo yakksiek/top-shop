@@ -15,8 +15,8 @@
     ],
     "subcategories": [
         {
-            "categoryName": "Clothes",
-            "path": "clothes",
+            "categoryName": "Clothing",
+            "path": "clothing",
             "subgroup": [
                 {
                     "categoryName": "T-shirts",
@@ -33,8 +33,8 @@
             ]
         },
         {
-            "categoryName": "Shoes",
-            "path": "shoes",
+            "categoryName": "Footwear",
+            "path": "footwear",
             "subgroup": [
                 {
                     "categoryName": "Elegant",
