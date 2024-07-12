@@ -1,20 +1,7 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-const breadcrumbs = [
-    {
-        categoryName: 'Women',
-        path: 'women',
-    },
-    {
-        categoryName: 'Clothes',
-        path: 'clothes',
-    },
-    {
-        categoryName: 'Sweaters',
-        path: 'sweaters',
-    },
-];
+import * as h from '../../utils/helpers';
 
 const StyledBreadCrumbsList = styled.ul`
     display: flex;
@@ -27,22 +14,42 @@ const StyledBreadCrumbsList = styled.ul`
         margin: 0 0.3rem;
     }
 
-    li:last-child span.selector {
-        display: none;
+    .active {
+        font-weight: 700;
     }
 `;
 
 function Breadcrumbs() {
+    const { gender, category, subcategory } = useParams();
+    console.log(gender, category, subcategory);
+
+    const breadcrumbs = [
+        {
+            categoryName: h.capitalise(gender || ''),
+            path: `/${gender}`,
+        },
+        {
+            categoryName: h.capitalise(category || ''),
+            path: `/${gender}/${category}`,
+        },
+        {
+            categoryName: h.capitalise(subcategory || ''),
+            path: `/${gender}/${category}/${subcategory}`,
+        },
+    ].filter(breadcrumb => breadcrumb.categoryName);
+
     return (
         <StyledBreadCrumbsList>
-            {breadcrumbs.map(breadcrumbItem => (
-                <li key={breadcrumbItem.path}>
-                    <NavLink to={breadcrumbItem.path}>
-                        {breadcrumbItem.categoryName}
-                        <span className='selector'>/</span>
-                    </NavLink>
-                </li>
-            ))}
+            {breadcrumbs.map((breadcrumbItem, index) => {
+                return (
+                    <li key={breadcrumbItem.path}>
+                        <NavLink end to={breadcrumbItem.path} className={({ isActive }) => (isActive ? 'active' : '')}>
+                            {breadcrumbItem.categoryName}
+                            {index < breadcrumbs.length - 1 && <span className='selector'>/</span>}
+                        </NavLink>
+                    </li>
+                );
+            })}
         </StyledBreadCrumbsList>
     );
 }
