@@ -6,25 +6,9 @@ import ProductDetailsContent from '../components/ProductDetailsContent';
 import Section from '../components/Section';
 import { device } from '../styles/breakpoints';
 import ProductDetailsMedia from '../components/ProductsDetailsMedia';
-
-const product = {
-    id: 54,
-    gender: 'children',
-    category: 'clothing',
-    subcategory: 'trousers',
-    productName: 'Pink Trousers',
-    brand: 'Sun Zi',
-    pricePLN: 599,
-    priceUSD: 119,
-    photos: [
-        '/product-photos/children-trousers-2.jpg',
-        '/product-photos/children-trousers-3.jpg',
-        '/product-photos/children-trousers-1.jpg',
-    ],
-    description:
-        "Our pink trousers are not only stylish but also practical, made with a soft, comfortable fabric that is perfect for children's sensitive skin.",
-    maintenanceInfo: 'For best results, wash inside out in cool water, avoid bleach, and line dry.',
-};
+import { useLoaderData } from 'react-router-dom';
+import * as t from '../types/index';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 const StyledGridContainer = styled.div`
     @media ${device.tablet} {
@@ -46,15 +30,15 @@ const StyledMediaWrapper = styled.div`
 
     @media ${device.tablet} {
         display: block;
-
-        /* height: 100vh; */
     }
 `;
 
 function ProductDetails() {
+    const product = useLoaderData() as t.Product;
+
     return (
         <Section>
-            {/* <Breadcrumbs /> */}
+            <Breadcrumbs />
             <StyledGridContainer>
                 <StyledSliderContainer>
                     <MiniSlider photos={product.photos} productName={product.productName} />
@@ -69,5 +53,3 @@ function ProductDetails() {
 }
 
 export default ProductDetails;
-
-// src={`${BASE_URL}${product.photos[0]}`}

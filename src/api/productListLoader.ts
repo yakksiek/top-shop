@@ -2,7 +2,7 @@ import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 import { BASE_URL } from '../contants/api';
 import * as t from '../types';
 
-function productListLoader({ params, request }: LoaderFunctionArgs<{ gender: string; category: string }>) {
+function productListLoader({ params, request }: LoaderFunctionArgs) {
     const { gender, category, subcategory } = params;
     const pageURL = new URL(request.url);
     const currentPage = pageURL.searchParams.get('page') || 1;

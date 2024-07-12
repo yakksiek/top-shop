@@ -13,8 +13,8 @@ import Favourites from './views/Favourites.tsx';
 import MainPage from './views/MainPage.tsx';
 import ProductsList from './views/ProductsList.tsx';
 import productListLoader from './api/productListLoader.ts';
-// import ProductDetails from './views/ProductDetails.tsx';
-// import { validGenders, GenderTypes } from './types/GenderTypes.ts';
+import ProductDetails from './views/ProductDetails.tsx';
+import productLoader from './api/productLoader.ts';
 
 const router = createBrowserRouter([
     {
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
             { path: 'favourites', element: <Favourites /> },
             { path: 'cart', element: <Cart /> },
             { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },
+            { path: '/:gender/:category/:subcategory/:productId', element: <ProductDetails />, loader: productLoader },
         ],
     },
 ]);
