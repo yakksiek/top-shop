@@ -159,7 +159,9 @@ interface FavouritesList {
 
 function Favourites() {
     const favouriteProductsData = useLoaderData() as FavouritesList[];
+    console.log(favouriteProductsData);
     const productList = favouriteProductsData.map(({ product }) => product);
+    console.log(productList);
 
     return (
         <Section>
@@ -171,9 +173,22 @@ function Favourites() {
                 </StyledActionButtonWrapper>
             </StyledHeader>
             <StyledWishList>
-                {productList.map(item => (
-                    <Product key={item.id} product={item} variant='wishlist' />
-                ))}
+                {productList.map((item, index) => {
+                    const favouriteListObj = favouriteProductsData.find(
+                        favDataItem => favDataItem.productId === item.id,
+                    );
+
+                    if (!favouriteListObj) return;
+
+                    return (
+                        <Product
+                            key={item.id + index}
+                            product={item}
+                            variant='wishlist'
+                            favouritesId={favouriteListObj.id}
+                        />
+                    );
+                })}
             </StyledWishList>
         </Section>
     );

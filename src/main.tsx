@@ -17,11 +17,16 @@ import ProductDetails from './views/ProductDetails.tsx';
 import productLoader from './api/productLoader.ts';
 import addProductToFavourites from './api/addProductToFavouritesAction.ts';
 import favouritesLoader from './api/favouritesLoader.ts';
+import deleteFavouriteAction from './api/deleteFavouriteAction.ts';
 
 const router = createBrowserRouter([
     {
         path: '/add-to-favourites/:productId',
         action: addProductToFavourites,
+    },
+    {
+        path: '/delete-from-favourites/:favouritesId',
+        action: deleteFavouriteAction,
     },
     {
         path: '',

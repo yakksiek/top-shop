@@ -18,29 +18,49 @@ import {
 interface ProductProps {
     product: t.Product;
     variant?: 'wishlist';
+    favouritesId?: number;
 }
 
-function Product({ product, variant }: ProductProps) {
+function Product({ product, variant, favouritesId }: ProductProps) {
     const { Form } = useFetcher();
     const { pricePLN, productName, gender, category, subcategory, id } = product;
     const wishlistView = variant === 'wishlist';
+
+    console.log(favouritesId);
 
     return (
         <Link to={`/${gender}/${category}/${subcategory}/${id}`}>
             <StyledItem>
                 <StyledImgContainer>
                     <img src={`${BASE_URL}${product.photos[0]}`} alt={productName} />
-                    <Form
-                        method='POST'
-                        action={`/add-to-favourites/${id}`}
-                        onClick={e => {
-                            e.stopPropagation();
-                        }}
-                    >
-                        <StyledIconHeartWrapper>
-                            <button className='form'>{wishlistView ? <LiaTimesSolid /> : <IoMdHeartEmpty />}</button>
-                        </StyledIconHeartWrapper>
-                    </Form>
+
+                    <StyledIconHeartWrapper>
+                        {wishlistView ? (
+                            <Form
+                                action={`/delete-from-favourites/${favouritesId}`}
+                                method='DELETE'
+                                onClick={e => {
+                                    e.stopPropagation();
+                                }}
+                            >
+                                <button className='form'>
+                                    <LiaTimesSolid />
+                                </button>
+                            </Form>
+                        ) : (
+                            <Form
+                                method='POST'
+                                action={`/add-to-favourites/${id}`}
+                                onClick={e => {
+                                    e.stopPropagation();
+                                }}
+                            >
+                                <button className='form'>
+                                    <IoMdHeartEmpty />
+                                </button>
+                            </Form>
+                        )}
+                    </StyledIconHeartWrapper>
                 </StyledImgContainer>
                 <StyledInfoContainer>
                     <div>

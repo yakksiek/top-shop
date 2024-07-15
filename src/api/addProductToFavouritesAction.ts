@@ -1,7 +1,7 @@
-import { LoaderFunctionArgs } from 'react-router-dom';
+import { ActionFunctionArgs } from 'react-router-dom';
 import { BASE_URL } from '../contants/api';
 
-function addProductToFavourites({ params }: LoaderFunctionArgs) {
+function addProductToFavourites({ params }: ActionFunctionArgs) {
     const { productId } = params;
 
     return fetch(`${BASE_URL}/favourites`, {
