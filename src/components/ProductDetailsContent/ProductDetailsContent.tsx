@@ -1,3 +1,4 @@
+import { useFetcher } from 'react-router-dom';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { SlArrowRight } from 'react-icons/sl';
 import styled from 'styled-components';
@@ -47,6 +48,11 @@ const StyledProductHeader = styled.header`
             cursor: pointer;
         }
     }
+
+    button.submit {
+        border: none;
+        background-color: transparent;
+    }
 `;
 
 const StyledProductMainContent = styled.div`
@@ -90,6 +96,7 @@ const SidebarContentLabel = {
 };
 
 function ProductDetailsContent({ product }: ProductDetailsContentProps) {
+    const { Form } = useFetcher();
     const [sideInfo, setSideInfo] = useState(false);
     const [sidebarContent, setSidebarContent] = useState<SidebarContentType>('description');
     useNoScroll(sideInfo);
@@ -106,7 +113,11 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
             <StyledProductHeader>
                 <div className='product-id'>
                     <span>ID: {product.id}</span>
-                    <IoMdHeartEmpty />
+                    <Form method='POST' action={`/add-to-favourites/${product.id}`}>
+                        <button className='submit'>
+                            <IoMdHeartEmpty />
+                        </button>
+                    </Form>
                 </div>
                 <h2>{product.productName}</h2>
             </StyledProductHeader>

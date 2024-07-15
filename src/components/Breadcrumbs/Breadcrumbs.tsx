@@ -21,7 +21,6 @@ const StyledBreadCrumbsList = styled.ul`
 
 function Breadcrumbs() {
     const { gender, category, subcategory } = useParams();
-    console.log(gender, category, subcategory);
 
     const breadcrumbs = [
         {

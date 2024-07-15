@@ -26,8 +26,6 @@ function Product({ product, variant, favouritesId }: ProductProps) {
     const { pricePLN, productName, gender, category, subcategory, id } = product;
     const wishlistView = variant === 'wishlist';
 
-    console.log(favouritesId);
-
     return (
         <Link to={`/${gender}/${category}/${subcategory}/${id}`}>
             <StyledItem>
