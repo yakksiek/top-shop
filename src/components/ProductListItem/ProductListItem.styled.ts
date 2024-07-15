@@ -29,6 +29,11 @@ export const StyledImgContainer = styled.div`
         aspect-ratio: 1;
         z-index: 1;
     }
+
+    button.form {
+        border: none;
+        background-color: transparent;
+    }
 `;
 
 export const StyledIconHeartWrapper = styled.div`

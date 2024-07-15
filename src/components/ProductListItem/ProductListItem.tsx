@@ -1,8 +1,8 @@
+import { Link, useFetcher } from 'react-router-dom';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoBagHandleOutline } from 'react-icons/io5';
 import { LiaTimesSolid } from 'react-icons/lia';
 
-import { Link } from 'react-router-dom';
 import { BASE_URL } from '../../contants/api';
 import * as t from '../../types';
 import Heading from '../Heading';
@@ -21,6 +21,7 @@ interface ProductProps {
 }
 
 function Product({ product, variant }: ProductProps) {
+    const { Form } = useFetcher();
     const { pricePLN, productName, gender, category, subcategory, id } = product;
     const wishlistView = variant === 'wishlist';
 
@@ -29,9 +30,17 @@ function Product({ product, variant }: ProductProps) {
             <StyledItem>
                 <StyledImgContainer>
                     <img src={`${BASE_URL}${product.photos[0]}`} alt={productName} />
-                    <StyledIconHeartWrapper>
-                        {wishlistView ? <LiaTimesSolid /> : <IoMdHeartEmpty />}
-                    </StyledIconHeartWrapper>
+                    <Form
+                        method='POST'
+                        action={`/add-to-favourites/${id}`}
+                        onClick={e => {
+                            e.stopPropagation();
+                        }}
+                    >
+                        <StyledIconHeartWrapper>
+                            <button className='form'>{wishlistView ? <LiaTimesSolid /> : <IoMdHeartEmpty />}</button>
+                        </StyledIconHeartWrapper>
+                    </Form>
                 </StyledImgContainer>
                 <StyledInfoContainer>
                     <div>

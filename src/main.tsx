@@ -15,8 +15,14 @@ import ProductsList from './views/ProductsList.tsx';
 import productListLoader from './api/productListLoader.ts';
 import ProductDetails from './views/ProductDetails.tsx';
 import productLoader from './api/productLoader.ts';
+import addProductToFavourites from './api/addProductToFavouritesAction.ts';
+import favouritesLoader from './api/favouritesLoader.ts';
 
 const router = createBrowserRouter([
+    {
+        path: '/add-to-favourites/:productId',
+        action: addProductToFavourites,
+    },
     {
         path: '',
         element: <AppLayout />,
@@ -25,7 +31,7 @@ const router = createBrowserRouter([
             { path: '/:gender?', element: <MainPage />, loader: mainPageLoader },
             // { index: true, element: <ProductDetails /> },
             // { path: 'products/:id', element: <ProductPage /> },
-            { path: 'favourites', element: <Favourites /> },
+            { path: 'favourites', element: <Favourites />, loader: favouritesLoader },
             { path: 'cart', element: <Cart /> },
             { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },
             { path: '/:gender/:category/:subcategory/:productId', element: <ProductDetails />, loader: productLoader },
