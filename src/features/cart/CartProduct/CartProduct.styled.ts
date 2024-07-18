@@ -31,7 +31,7 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledCartItemDetailsList = styled.ul`
-    margin-top: 1rem;
+    margin: 1rem 0rem;
     display: flex;
     flex-wrap: wrap;
 `;
