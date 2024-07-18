@@ -26,7 +26,7 @@ export const StyledImgContainer = styled.div`
     position: relative;
 
     img {
-        aspect-ratio: 1;
+        /* aspect-ratio: 1; */
         z-index: 1;
     }
 
