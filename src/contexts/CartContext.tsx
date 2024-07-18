@@ -6,6 +6,7 @@ import * as t from '../types';
 interface CartContextType {
     cartItems: t.Product[];
     addItemToCart: (cartItem: t.Product) => void;
+    removeItemFromCart: (id: number) => void;
 }
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -19,7 +20,15 @@ function CartContextProvider({ children }: { children: ReactNode }) {
         setCartItems(newState);
     }
 
-    return <CartContext.Provider value={{ cartItems, addItemToCart }}>{children}</CartContext.Provider>;
+    function removeItemFromCart(id: number) {
+        const newState = cartItems.filter(cartItem => cartItem.id !== id);
+
+        setCartItems(newState);
+    }
+
+    return (
+        <CartContext.Provider value={{ cartItems, addItemToCart, removeItemFromCart }}>{children}</CartContext.Provider>
+    );
 }
 
 function useCartContext() {
