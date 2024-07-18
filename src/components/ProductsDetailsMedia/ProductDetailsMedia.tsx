@@ -31,6 +31,8 @@ const StyledImgItemList = styled.li`
 `;
 
 function ProductDetailsMedia({ photos }: ProductDetailsMedia) {
+    console.log(photos);
+
     return (
         <StyledPhotosList>
             {photos.map(photoUrl => (

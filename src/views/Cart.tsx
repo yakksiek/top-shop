@@ -5,13 +5,17 @@ import CartProductList from '../features/cart/CartProductList';
 import CartSummary from '../features/cart/CartSummary';
 import Wrapper from '../components/Wrapper';
 import { useCartContext } from '../contexts/CartContext';
+import { device } from '../styles/breakpoints';
 
 const StyledGridContainer = styled.div`
-    display: grid;
-    grid-template-columns: 2fr 1.5fr;
-    grid-gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
+
+    @media ${device.tablet} {
+        display: grid;
+        grid-template-columns: 2fr 1.5fr;
+        grid-gap: 2rem;
+    }
 `;
 
 function Cart() {
