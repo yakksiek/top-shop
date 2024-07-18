@@ -7,8 +7,6 @@ import * as t from '../types';
 function MainPage() {
     const data = useLoaderData() as t.LoaderProductData;
 
-    // console.log(data);
-
     return (
         <>
             <Hero heroImage={data.heroImageUrl} />

@@ -54,13 +54,14 @@ export const StyledInfoContainer = styled.div`
     align-items: center;
 `;
 
-export const StyledIconCartWrapper = styled.div`
+export const StyledButtonCart = styled.button`
     padding: 0.5rem;
     border-radius: 100vw;
     width: 2rem;
     height: 2rem;
     border: 1px solid var(--color-black);
     transition: width 0.4s ease;
+    background-color: transparent;
 
     display: flex;
     align-items: center;
@@ -77,5 +78,9 @@ export const StyledIconCartWrapper = styled.div`
 
     svg {
         font-size: 0.85rem;
+    }
+
+    &:hover {
+        background-color: red;
     }
 `;

@@ -4,6 +4,7 @@ import StyledNavigation from './StyledNavigation';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useAuthenticationContext } from '../contexts/AuthenticationContext';
+import { useCartContext } from '../contexts/CartContext';
 
 const StyledListItem = styled(Link)`
     position: relative;
@@ -46,6 +47,8 @@ const StyledFavouritesIndicator = styled.div`
 
 function NavLinks() {
     const { toggleLoginModal } = useAuthenticationContext();
+    const { cartItems } = useCartContext();
+
     return (
         <StyledNavigation>
             <li className='contact'>
@@ -63,7 +66,7 @@ function NavLinks() {
             <li>
                 <StyledListItem to='/cart'>
                     <IoBagHandleOutline />
-                    <StyledCartIndicator>0</StyledCartIndicator>
+                    <StyledCartIndicator>{cartItems.length}</StyledCartIndicator>
                 </StyledListItem>
             </li>
         </StyledNavigation>

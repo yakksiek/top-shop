@@ -7,13 +7,14 @@ import { BASE_URL } from '../../contants/api';
 import * as t from '../../types';
 import Heading from '../Heading';
 import {
-    StyledIconCartWrapper,
+    StyledButtonCart,
     StyledIconHeartWrapper,
     StyledImgContainer,
     StyledInfoContainer,
     StyledItem,
     StyledPrice,
 } from './ProductListItem.styled';
+import { useCartContext } from '../../contexts/CartContext';
 
 interface ProductProps {
     product: t.Product;
@@ -23,6 +24,7 @@ interface ProductProps {
 
 function Product({ product, variant, favouritesId }: ProductProps) {
     const { Form } = useFetcher();
+    const { addItemToCart } = useCartContext();
     const { pricePLN, productName, gender, category, subcategory, id } = product;
     const wishlistView = variant === 'wishlist';
 
@@ -66,12 +68,16 @@ function Product({ product, variant, favouritesId }: ProductProps) {
                         <StyledPrice>PLN {pricePLN}</StyledPrice>
                     </div>
                     {wishlistView && (
-                        <StyledIconCartWrapper className='cart-wrapper'>
-                            <>
-                                <IoBagHandleOutline />
-                                <span className='cart-label'>Shop</span>
-                            </>
-                        </StyledIconCartWrapper>
+                        <StyledButtonCart
+                            className='cart-wrapper'
+                            onClick={e => {
+                                addItemToCart(product);
+                                e.preventDefault();
+                            }}
+                        >
+                            <IoBagHandleOutline />
+                            <span className='cart-label'>Shop</span>
+                        </StyledButtonCart>
                     )}
                 </StyledInfoContainer>
             </StyledItem>

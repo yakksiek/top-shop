@@ -18,6 +18,7 @@ import productLoader from './api/productLoader.ts';
 import addProductToFavourites from './api/addProductToFavouritesAction.ts';
 import favouritesLoader from './api/favouritesLoader.ts';
 import deleteFavouriteAction from './api/deleteFavouriteAction.ts';
+import { CartContextProvider } from './contexts/CartContext.tsx';
 
 const router = createBrowserRouter([
     {
@@ -47,12 +48,14 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <GlobalStyles />
-        <AuthenticationContextProvider>
-            <SidebarContextProvider>
-                <SearchInputContextProvider>
-                    <RouterProvider router={router} />
-                </SearchInputContextProvider>
-            </SidebarContextProvider>
-        </AuthenticationContextProvider>
+        <CartContextProvider>
+            <AuthenticationContextProvider>
+                <SidebarContextProvider>
+                    <SearchInputContextProvider>
+                        <RouterProvider router={router} />
+                    </SearchInputContextProvider>
+                </SidebarContextProvider>
+            </AuthenticationContextProvider>
+        </CartContextProvider>
     </React.StrictMode>,
 );
