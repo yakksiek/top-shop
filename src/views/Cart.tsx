@@ -12,19 +12,18 @@ const StyledGridContainer = styled.div`
     grid-gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
-
-    & > * {
-        /* background-color: #faf9f8; */
-    }
 `;
 
 function Cart() {
     const { cartItems } = useCartContext();
+    const cartItemHeaderText = cartItems.length === 0 ? 'Your cart is empty' : 'Your cart';
 
     return (
         <Section>
             <Wrapper type='narrow'>
-                <Heading as='h3'>Your cart</Heading>
+                <Heading as='h3' $marginBottom={true}>
+                    {cartItemHeaderText}
+                </Heading>
                 <StyledGridContainer>
                     <CartProductList products={cartItems} />
                     <CartSummary products={cartItems} />
