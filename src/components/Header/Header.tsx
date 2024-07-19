@@ -7,6 +7,7 @@ import Menu from '../Menu';
 import NavLinks from '../NavLinks';
 import { SearchInput } from '../SearchInput';
 import Wrapper from '../Wrapper';
+
 import { StyledHeader, StyledOverlay, StyledSearchbarContainer } from './Header.styled';
 
 function Header() {
@@ -17,7 +18,7 @@ function Header() {
         <Wrapper type='wide'>
             <StyledHeader $isOpen={isSidebarOpen}>
                 <Menu />
-                <Link to='/'>
+                <Link to='/' className='logo-wrapper'>
                     <Heading as='h1'>TOP SHOP</Heading>
                 </Link>
                 <NavLinks />

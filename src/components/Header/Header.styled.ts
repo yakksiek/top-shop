@@ -20,6 +20,12 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
         z-index: 11;
         background-color: var(--color-grey-0);
     }
+
+    .logo-wrapper {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 `;
 
 interface StyledSearchbarContainerProps {
