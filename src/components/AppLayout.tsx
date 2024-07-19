@@ -1,11 +1,11 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import styled from 'styled-components';
 // import { SearchInput } from './SearchInput';
-import Header from './Header';
-import { NavigationMenu } from './NavigationMenu';
-import Footer from './Footer';
 import LoginModal from '../features/authentication/LoginModal';
+import Footer from './Footer';
+import Header from './Header';
 import MainContent from './MainContent';
+import { NavigationMenu } from './NavigationMenu';
 
 const StyledAppLayout = styled.div`
     width: 100%;

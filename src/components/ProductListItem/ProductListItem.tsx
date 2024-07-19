@@ -1,9 +1,12 @@
-import { Link, useFetcher } from 'react-router-dom';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoBagHandleOutline } from 'react-icons/io5';
 import { LiaTimesSolid } from 'react-icons/lia';
+import { VscHeartFilled } from 'react-icons/vsc';
+import { Link } from 'react-router-dom';
 
 import { BASE_URL } from '../../contants/api';
+import { useCartContext } from '../../contexts/CartContext';
+import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import * as t from '../../types';
 import Heading from '../Heading';
 import {
@@ -14,19 +17,18 @@ import {
     StyledItem,
     StyledPrice,
 } from './ProductListItem.styled';
-import { useCartContext } from '../../contexts/CartContext';
 
 interface ProductProps {
     product: t.Product;
     variant?: 'wishlist';
-    favouritesId?: number;
 }
 
-function Product({ product, variant, favouritesId }: ProductProps) {
-    const { Form } = useFetcher();
+function Product({ product, variant }: ProductProps) {
     const { addItemToCart } = useCartContext();
+    const { addItemToFavourites, removeItemFromFavourites, favouriteItems } = useFavouritesContext();
     const { pricePLN, productName, gender, category, subcategory, id } = product;
     const wishlistView = variant === 'wishlist';
+    const favouriteItem = favouriteItems.find(item => item.productId === id);
 
     return (
         <Link to={`/${gender}/${category}/${subcategory}/${id}`}>
@@ -36,29 +38,26 @@ function Product({ product, variant, favouritesId }: ProductProps) {
 
                     <StyledIconHeartWrapper>
                         {wishlistView ? (
-                            <Form
-                                action={`/delete-from-favourites/${favouritesId}`}
-                                method='DELETE'
+                            <LiaTimesSolid
                                 onClick={e => {
-                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    if (favouriteItem) removeItemFromFavourites(favouriteItem.id);
                                 }}
-                            >
-                                <button className='form'>
-                                    <LiaTimesSolid />
-                                </button>
-                            </Form>
+                            />
+                        ) : !favouriteItem ? (
+                            <IoMdHeartEmpty
+                                onClick={e => {
+                                    e.preventDefault();
+                                    addItemToFavourites(product);
+                                }}
+                            />
                         ) : (
-                            <Form
-                                method='POST'
-                                action={`/add-to-favourites/${id}`}
+                            <VscHeartFilled
                                 onClick={e => {
-                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    removeItemFromFavourites(favouriteItem.id);
                                 }}
-                            >
-                                <button className='form'>
-                                    <IoMdHeartEmpty />
-                                </button>
-                            </Form>
+                            />
                         )}
                     </StyledIconHeartWrapper>
                 </StyledImgContainer>

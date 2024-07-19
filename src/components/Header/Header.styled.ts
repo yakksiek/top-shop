@@ -1,19 +1,11 @@
 import styled, { css } from 'styled-components';
-import { device } from '../styles/breakpoints';
-import Menu from './Menu';
-import NavLinks from './NavLinks';
-import { useSidebarContext } from '../contexts/SidebarContext';
-import { useSearchInputContext } from '../contexts/SearchInputContext';
-import { SearchInput } from './SearchInput';
-import Wrapper from './Wrapper';
-import Heading from './Heading';
-import { Link } from 'react-router-dom';
+import { device } from '../../styles/breakpoints';
 
 interface StyledHeaderProps {
     $isOpen: boolean;
 }
 
-const StyledHeader = styled.header<StyledHeaderProps>`
+export const StyledHeader = styled.header<StyledHeaderProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,7 +26,7 @@ interface StyledSearchbarContainerProps {
     $isOpen: boolean;
 }
 
-const StyledSearchbarContainer = styled.div<StyledSearchbarContainerProps>`
+export const StyledSearchbarContainer = styled.div<StyledSearchbarContainerProps>`
     position: fixed;
     background-color: var(--color-grey-0);
     z-index: 2;
@@ -71,7 +63,7 @@ interface StyledOverlayProps {
     $isOpen: boolean;
 }
 
-const StyledOverlay = styled.div<StyledOverlayProps>`
+export const StyledOverlay = styled.div<StyledOverlayProps>`
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -90,26 +82,3 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
             visibility: visible;
         `}
 `;
-
-function Header() {
-    const { isOpen: isSidebarOpen } = useSidebarContext();
-    const { isOpen: isSearchBarOpen, handleSearchInputOpen } = useSearchInputContext();
-
-    return (
-        <Wrapper type='wide'>
-            <StyledHeader $isOpen={isSidebarOpen}>
-                <Menu />
-                <Link to='/'>
-                    <Heading as='h1'>TOP SHOP</Heading>
-                </Link>
-                <NavLinks />
-                <StyledSearchbarContainer $isOpen={isSearchBarOpen}>
-                    <SearchInput type='header' />
-                    <StyledOverlay $isOpen={isSearchBarOpen} onClick={handleSearchInputOpen} />
-                </StyledSearchbarContainer>
-            </StyledHeader>
-        </Wrapper>
-    );
-}
-
-export default Header;

@@ -1,22 +1,23 @@
-import { useFetcher } from 'react-router-dom';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { SlArrowRight } from 'react-icons/sl';
+import { VscHeartFilled } from 'react-icons/vsc';
 
+import { useState } from 'react';
+import useNoScroll from '../../hooks/useNoScroll';
 import * as t from '../../types';
 import * as h from '../../utils/helpers';
 import Button from '../Button';
-import { useState } from 'react';
-import { Sidebar } from '../Sidebar';
 import { ModalHeader, StyledModalWrapper } from '../Modal';
-import useNoScroll from '../../hooks/useNoScroll';
+import { Sidebar } from '../Sidebar';
 
+import { useCartContext } from '../../contexts/CartContext';
+import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import {
     StyledProductDetails,
+    StyledProductFooter,
     StyledProductHeader,
     StyledProductMainContent,
-    StyledProductFooter,
 } from './ProductDetailsContent.styled';
-import { useCartContext } from '../../contexts/CartContext';
 
 interface ProductDetailsContentProps {
     product: t.Product;
@@ -30,11 +31,12 @@ const SidebarContentLabel = {
 };
 
 function ProductDetailsContent({ product }: ProductDetailsContentProps) {
-    const { Form } = useFetcher();
     const { addItemToCart } = useCartContext();
+    const { favouriteItems, removeItemFromFavourites, addItemToFavourites } = useFavouritesContext();
     const [sideInfo, setSideInfo] = useState(false);
     const [sidebarContent, setSidebarContent] = useState<SidebarContentType>('description');
     useNoScroll(sideInfo);
+    const productInFavourites = favouriteItems.find(favItem => favItem.productId === product.id);
 
     const handleToggleSidebar = (contentType?: SidebarContentType) => {
         if (contentType) {
@@ -48,11 +50,11 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
             <StyledProductHeader>
                 <div className='product-id'>
                     <span>ID: {product.id}</span>
-                    <Form method='POST' action={`/add-to-favourites/${product.id}`}>
-                        <button className='submit'>
-                            <IoMdHeartEmpty />
-                        </button>
-                    </Form>
+                    {productInFavourites ? (
+                        <VscHeartFilled onClick={() => removeItemFromFavourites(productInFavourites.id)} />
+                    ) : (
+                        <IoMdHeartEmpty onClick={() => addItemToFavourites(product)} />
+                    )}
                 </div>
                 <h2>{product.productName}</h2>
             </StyledProductHeader>

@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-import * as t from '../types';
-import Section from '../components/Section';
-import Heading from '../components/Heading';
 import Button from '../components/Button';
+import Heading from '../components/Heading';
 import Product from '../components/ProductListItem';
+import Section from '../components/Section';
+import { useFavouritesContext } from '../contexts/FavouritesContext';
 import { device } from '../styles/breakpoints';
-import { useLoaderData } from 'react-router-dom';
 
 const StyledHeader = styled.header`
     text-align: center;
@@ -38,15 +37,8 @@ export const StyledWishList = styled.ul`
     }
 `;
 
-interface FavouritesList {
-    id: number;
-    productId: number;
-    product: t.Product;
-}
-
 function Favourites() {
-    const favouriteProductsData = useLoaderData() as FavouritesList[];
-    const productList = favouriteProductsData.map(({ product }) => product);
+    const { favouriteItems } = useFavouritesContext();
 
     return (
         <Section>
@@ -58,21 +50,8 @@ function Favourites() {
                 </StyledActionButtonWrapper>
             </StyledHeader>
             <StyledWishList>
-                {productList.map((item, index) => {
-                    const favouriteListObj = favouriteProductsData.find(
-                        favDataItem => favDataItem.productId === item.id,
-                    );
-
-                    if (!favouriteListObj) return;
-
-                    return (
-                        <Product
-                            key={item.id + index}
-                            product={item}
-                            variant='wishlist'
-                            favouritesId={favouriteListObj.id}
-                        />
-                    );
+                {favouriteItems.map(item => {
+                    return <Product key={item.id} product={item.product} variant='wishlist' />;
                 })}
             </StyledWishList>
         </Section>

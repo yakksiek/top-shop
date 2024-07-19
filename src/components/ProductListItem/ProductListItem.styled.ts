@@ -38,8 +38,8 @@ export const StyledImgContainer = styled.div`
 
 export const StyledIconHeartWrapper = styled.div`
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 5px;
+    top: 5px;
     font-size: 1.1rem;
 `;
 
@@ -78,9 +78,5 @@ export const StyledButtonCart = styled.button`
 
     svg {
         font-size: 0.85rem;
-    }
-
-    &:hover {
-        background-color: red;
     }
 `;
