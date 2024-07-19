@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledSection = styled.section`
     margin: 0 auto;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
 `;
 
 interface SectionProps {
