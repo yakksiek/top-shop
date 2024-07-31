@@ -9,6 +9,8 @@ interface CreateAccountFormProps {
 }
 
 interface FormData {
+    name: string;
+    surname: string;
     email: string;
     password: string;
     passwordConfirm: string;
@@ -27,6 +29,28 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
             <StyledModalWrapper>
                 <ModalHeader toggleModal={toggleModal} headerText='Create an account' />
                 <StyledForm onSubmit={handleSubmit(onSubmit)} noValidate>
+                    <FormRow label='Name' error={errors.name && errors.name.message}>
+                        <Input
+                            id='name'
+                            type='text'
+                            {...register('name', {
+                                required: 'This field is required',
+                                minLength: { value: 2, message: 'Name needs a minimum of 2 characters' },
+                            })}
+                        />
+                    </FormRow>
+
+                    <FormRow label='Surname' error={errors.surname && errors.surname.message}>
+                        <Input
+                            id='surname'
+                            type='text'
+                            {...register('surname', {
+                                required: 'This field is required',
+                                minLength: { value: 2, message: 'Surname needs a minimum of 2 characters' },
+                            })}
+                        />
+                    </FormRow>
+
                     <FormRow label='Email' error={errors.email && errors.email.message}>
                         <Input
                             id='email'
@@ -34,6 +58,17 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
                             {...register('email', {
                                 required: 'This field is required',
                                 pattern: { value: /\S+@\S+\.\S+/, message: 'Please provide a valid email' },
+                            })}
+                        />
+                    </FormRow>
+
+                    <FormRow label='Password (min 5 characters)' error={errors.password && errors.password.message}>
+                        <Input
+                            id='password'
+                            type='password'
+                            {...register('password', {
+                                required: 'This field is required',
+                                minLength: { value: 5, message: 'Password needs a minimum of 5 characters' },
                             })}
                         />
                     </FormRow>
