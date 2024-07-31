@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
   --color-black: #000000;
 
   --color-orange-400: #fb923c;
+  --color-red-700: #D32F2F;
 
   --backdrop-color: rgba(255, 255, 255, 0.1);
 

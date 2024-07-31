@@ -10,6 +10,7 @@ const StyledNavigation = styled.ul`
         font-size: var(--font-size-small);
         font-weight: 500;
         padding: 0.5rem;
+        cursor: pointer;
 
         svg {
             font-size: 18px;
