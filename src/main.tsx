@@ -20,6 +20,8 @@ import MainPage from './views/MainPage.tsx';
 import ProductDetails from './views/ProductDetails.tsx';
 import ProductsList from './views/ProductsList.tsx';
 import Dashboard from './views/Dashboard.tsx';
+import ProtectedRoute from './components/ProtectedRoute.tsx';
+import { AuthContextProvider } from './contexts/AuthenticationContext.tsx';
 
 const router = createBrowserRouter([
     {
@@ -40,7 +42,14 @@ const router = createBrowserRouter([
             { path: 'cart', element: <Cart /> },
             { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },
             { path: '/:gender/:category/:subcategory/:productId', element: <ProductDetails />, loader: productLoader },
-            { path: '/dashboard', element: <Dashboard /> },
+            {
+                path: '/dashboard',
+                element: (
+                    <ProtectedRoute>
+                        <Dashboard />
+                    </ProtectedRoute>
+                ),
+            },
         ],
     },
 ]);
@@ -48,16 +57,18 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <GlobalStyles />
-        <FavouritesContextProvider>
-            <CartContextProvider>
-                <LoginModalContextProvider>
-                    <SidebarContextProvider>
-                        <SearchInputContextProvider>
-                            <RouterProvider router={router} />
-                        </SearchInputContextProvider>
-                    </SidebarContextProvider>
-                </LoginModalContextProvider>
-            </CartContextProvider>
-        </FavouritesContextProvider>
+        <AuthContextProvider isSignedIn={false}>
+            <LoginModalContextProvider>
+                <FavouritesContextProvider>
+                    <CartContextProvider>
+                        <SidebarContextProvider>
+                            <SearchInputContextProvider>
+                                <RouterProvider router={router} />
+                            </SearchInputContextProvider>
+                        </SidebarContextProvider>
+                    </CartContextProvider>
+                </FavouritesContextProvider>
+            </LoginModalContextProvider>
+        </AuthContextProvider>
     </React.StrictMode>,
 );

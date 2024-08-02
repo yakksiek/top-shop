@@ -23,7 +23,7 @@ function LoginModalContextProvider({ children }: { children: ReactNode }) {
 function useLoginModalContext() {
     const context = useContext(LoginModalContext);
 
-    if (!context) throw new Error('Auth context was used outside of Authentication provider');
+    if (!context) throw new Error('LoginModalContext context was used outside of LoginModal provider');
 
     return context;
 }
