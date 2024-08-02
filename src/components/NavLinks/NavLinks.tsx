@@ -1,13 +1,13 @@
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
-import { useAuthenticationContext } from '../../contexts/AuthenticationContext';
+import { useLoginModalContext } from '../../contexts/LoginModalContext';
 import { useCartContext } from '../../contexts/CartContext';
 import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import StyledNavigation from '../StyledNavigation';
 import { StyledCartIndicator, StyledFavouritesIndicator, StyledLinkItem } from './NavLinks.styled';
 
 function NavLinks() {
-    const { toggleLoginModal } = useAuthenticationContext();
+    const { toggleLoginModal } = useLoginModalContext();
     const { cartItems } = useCartContext();
     const { favouriteItems } = useFavouritesContext();
 

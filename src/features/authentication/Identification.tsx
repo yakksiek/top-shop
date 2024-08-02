@@ -1,12 +1,12 @@
 import { Sidebar } from '../../components/Sidebar';
-import { useAuthenticationContext } from '../../contexts/AuthenticationContext';
+import { useLoginModalContext } from '../../contexts/LoginModalContext';
 
 import { useState } from 'react';
 import CreateAccountForm from './CreateAccountForm';
 import LoginForm from './LoginForm';
 
 function LoginModal() {
-    const { toggleLoginModal, isOpen } = useAuthenticationContext();
+    const { toggleLoginModal, isOpen } = useLoginModalContext();
     const [isCreateAccountView, setIsCreateAccountView] = useState(false);
 
     const toggleCreateAccountView = () => {

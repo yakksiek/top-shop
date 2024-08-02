@@ -1,14 +1,14 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 import useNoScroll from '../hooks/useNoScroll';
 
-interface AuthenticationContextType {
+interface LoginModalContextType {
     isOpen: boolean;
     toggleLoginModal: () => void;
 }
 
-const AuthenticationContext = createContext<AuthenticationContextType | null>(null);
+const LoginModalContext = createContext<LoginModalContextType | null>(null);
 
-function AuthenticationContextProvider({ children }: { children: ReactNode }) {
+function LoginModalContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
 
     useNoScroll(isOpen);
@@ -17,13 +17,11 @@ function AuthenticationContextProvider({ children }: { children: ReactNode }) {
         setIsOpen(prevState => !prevState);
     }
 
-    return (
-        <AuthenticationContext.Provider value={{ toggleLoginModal, isOpen }}>{children}</AuthenticationContext.Provider>
-    );
+    return <LoginModalContext.Provider value={{ toggleLoginModal, isOpen }}>{children}</LoginModalContext.Provider>;
 }
 
-function useAuthenticationContext() {
-    const context = useContext(AuthenticationContext);
+function useLoginModalContext() {
+    const context = useContext(LoginModalContext);
 
     if (!context) throw new Error('Auth context was used outside of Authentication provider');
 
@@ -31,4 +29,4 @@ function useAuthenticationContext() {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export { AuthenticationContextProvider, useAuthenticationContext };
+export { LoginModalContextProvider, useLoginModalContext };

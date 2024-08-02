@@ -8,7 +8,7 @@ import mainPageLoader from './api/mainPageLoader.ts';
 import productListLoader from './api/productListLoader.ts';
 import productLoader from './api/productLoader.ts';
 import AppLayout from './components/AppLayout.tsx';
-import { AuthenticationContextProvider } from './contexts/AuthenticationContext.tsx';
+import { LoginModalContextProvider } from './contexts/LoginModalContext.tsx';
 import { CartContextProvider } from './contexts/CartContext.tsx';
 import { FavouritesContextProvider } from './contexts/FavouritesContext.tsx';
 import { SearchInputContextProvider } from './contexts/SearchInputContext.tsx';
@@ -36,8 +36,6 @@ const router = createBrowserRouter([
         // errorElement: <ErrorPage />,
         children: [
             { path: '/:gender?', element: <MainPage />, loader: mainPageLoader },
-            // { index: true, element: <ProductDetails /> },
-            // { path: 'products/:id', element: <ProductPage /> },
             { path: 'favourites', element: <Favourites /> },
             { path: 'cart', element: <Cart /> },
             { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },
@@ -52,13 +50,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <GlobalStyles />
         <FavouritesContextProvider>
             <CartContextProvider>
-                <AuthenticationContextProvider>
+                <LoginModalContextProvider>
                     <SidebarContextProvider>
                         <SearchInputContextProvider>
                             <RouterProvider router={router} />
                         </SearchInputContextProvider>
                     </SidebarContextProvider>
-                </AuthenticationContextProvider>
+                </LoginModalContextProvider>
             </CartContextProvider>
         </FavouritesContextProvider>
     </React.StrictMode>,
