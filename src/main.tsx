@@ -19,6 +19,7 @@ import Favourites from './views/Favourites.tsx';
 import MainPage from './views/MainPage.tsx';
 import ProductDetails from './views/ProductDetails.tsx';
 import ProductsList from './views/ProductsList.tsx';
+import Dashboard from './views/Dashboard.tsx';
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
             { path: 'cart', element: <Cart /> },
             { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },
             { path: '/:gender/:category/:subcategory/:productId', element: <ProductDetails />, loader: productLoader },
+            { path: '/dashboard', element: <Dashboard /> },
         ],
     },
 ]);
