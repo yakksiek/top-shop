@@ -22,6 +22,9 @@ import ProductsList from './views/ProductsList.tsx';
 import Dashboard from './views/Dashboard.tsx';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
 import { AuthContextProvider } from './contexts/AuthenticationContext.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
@@ -45,9 +48,9 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: (
-                    <ProtectedRoute>
-                        <Dashboard />
-                    </ProtectedRoute>
+                    // <ProtectedRoute>
+                    <Dashboard />
+                    // </ProtectedRoute>
                 ),
             },
         ],
@@ -57,18 +60,20 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <GlobalStyles />
-        <AuthContextProvider isSignedIn={false}>
-            <LoginModalContextProvider>
-                <FavouritesContextProvider>
-                    <CartContextProvider>
-                        <SidebarContextProvider>
-                            <SearchInputContextProvider>
-                                <RouterProvider router={router} />
-                            </SearchInputContextProvider>
-                        </SidebarContextProvider>
-                    </CartContextProvider>
-                </FavouritesContextProvider>
-            </LoginModalContextProvider>
-        </AuthContextProvider>
+        <QueryClientProvider client={queryClient}>
+            <AuthContextProvider isSignedIn={false}>
+                <LoginModalContextProvider>
+                    <FavouritesContextProvider>
+                        <CartContextProvider>
+                            <SidebarContextProvider>
+                                <SearchInputContextProvider>
+                                    <RouterProvider router={router} />
+                                </SearchInputContextProvider>
+                            </SidebarContextProvider>
+                        </CartContextProvider>
+                    </FavouritesContextProvider>
+                </LoginModalContextProvider>
+            </AuthContextProvider>
+        </QueryClientProvider>
     </React.StrictMode>,
 );

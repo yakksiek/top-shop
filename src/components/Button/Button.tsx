@@ -60,11 +60,12 @@ interface ButtonProps {
     children: React.ReactNode;
     type?: ButtonTypes;
     onClick?: () => void;
+    isDisabled?: boolean;
 }
 
-function Button({ fill = false, children, type = 'button', onClick }: ButtonProps) {
+function Button({ fill = false, children, type = 'button', onClick, isDisabled }: ButtonProps) {
     return (
-        <StyledButton $fill={fill} type={type} onClick={onClick}>
+        <StyledButton $fill={fill} type={type} onClick={onClick} disabled={isDisabled ? isDisabled : false}>
             {children}
         </StyledButton>
     );

@@ -3,6 +3,7 @@ import Button from '../../components/Button';
 import { FormRow, Input, StyledForm, StyledSeparator } from '../../components/Form';
 import { ModalHeader, StyledModalWrapper } from '../../components/Modal';
 import { StyledForgotPassButton } from './LoginForm.styled';
+import { useLogin } from './useLogin';
 
 interface LoginFormProps {
     toggleModal: () => void;
@@ -15,11 +16,18 @@ interface FormData {
 }
 
 function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
-    const { register, formState, handleSubmit } = useForm<FormData>();
+    const { register, formState, handleSubmit, reset } = useForm<FormData>();
     const { errors } = formState;
+    const { isPending, login, loginError } = useLogin();
 
     function onSubmit(data: FormData) {
-        console.log(data);
+        console.log('logging in');
+        if (!data.email || !data.password) return;
+
+        login({ email: data.email, password: data.password });
+
+        toggleModal();
+        reset();
     }
 
     return (
@@ -46,15 +54,16 @@ function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
                                 type='password'
                                 {...register('password', {
                                     required: 'This field is required',
-                                    minLength: { value: 5, message: 'Password needs a minimum of 5 characters' },
+                                    minLength: { value: 6, message: 'Password needs a minimum of 6 characters' },
                                 })}
                             />
                         </FormRow>
                         <StyledForgotPassButton type='button'>Forgot your password?</StyledForgotPassButton>
 
-                        <Button type='submit' fill={true}>
-                            Sign in
+                        <Button type='submit' fill={true} isDisabled={isPending}>
+                            {isPending ? 'Signing in...' : 'Sign in'}
                         </Button>
+                        {loginError && <p style={{ color: 'red' }}>{loginError}</p>}
                     </StyledForm>
                 </div>
             </StyledModalWrapper>
