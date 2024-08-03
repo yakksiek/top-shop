@@ -18,14 +18,14 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
     const { isPending, isAuthenticated, user } = useUser();
     const navigate = useNavigate();
 
-    console.log('isAuthenticated', isAuthenticated);
-    console.log('isPending', isPending);
+    console.log('authenticated');
+    console.log(user?.role === 'authenticated');
 
     useEffect(() => {
-        if (!user) {
+        if (!isAuthenticated && !isPending) {
             navigate('/');
         }
-    }, [user, navigate]);
+    }, [navigate, isAuthenticated, isPending]);
 
     if (isPending) {
         return (

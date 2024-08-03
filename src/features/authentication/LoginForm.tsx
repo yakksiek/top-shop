@@ -17,7 +17,12 @@ interface FormData {
 }
 
 function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
-    const { register, formState, handleSubmit, reset } = useForm<FormData>();
+    const { register, formState, handleSubmit, reset } = useForm<FormData>({
+        defaultValues: {
+            email: 'test@test.com',
+            password: '123456',
+        },
+    });
     const { errors } = formState;
     const { isPending, login, loginError, setLoginError } = useLogin();
 
