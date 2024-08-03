@@ -15,28 +15,31 @@ const FullPage = styled.div`
 type ProtectedRouteProps = PropsWithChildren;
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
-    const { isPending, isAuthenticated } = useUser();
+    const { isPending, isAuthenticated, user } = useUser();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log('isPending');
-        console.log(isPending);
-        console.log('isAuthenticated');
-        console.log(isAuthenticated);
-        if (!isPending && !isAuthenticated) navigate('/');
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isAuthenticated, isPending]);
+    console.log('isAuthenticated', isAuthenticated);
+    console.log('isPending', isPending);
 
-    if (isPending)
+    useEffect(() => {
+        if (!user) {
+            navigate('/');
+        }
+    }, [user, navigate]);
+
+    if (isPending) {
         return (
             <FullPage>
                 <Spinner />
             </FullPage>
         );
+    }
 
-    if (isAuthenticated) return children;
+    if (!isAuthenticated) {
+        return null;
+    }
 
-    return null;
+    return children;
 }
 
 export default ProtectedRoute;

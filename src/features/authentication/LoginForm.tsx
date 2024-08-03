@@ -4,6 +4,7 @@ import { FormRow, Input, StyledForm, StyledSeparator } from '../../components/Fo
 import { ModalHeader, StyledModalWrapper } from '../../components/Modal';
 import { StyledForgotPassButton } from './LoginForm.styled';
 import { useLogin } from './useLogin';
+import SpinnerMini from '../../components/SpinnerMini';
 
 interface LoginFormProps {
     toggleModal: () => void;
@@ -18,16 +19,22 @@ interface FormData {
 function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
     const { register, formState, handleSubmit, reset } = useForm<FormData>();
     const { errors } = formState;
-    const { isPending, login, loginError } = useLogin();
+    const { isPending, login, loginError, setLoginError } = useLogin();
 
     function onSubmit(data: FormData) {
         console.log('logging in');
+        setLoginError(null);
         if (!data.email || !data.password) return;
 
-        login({ email: data.email, password: data.password });
-
-        toggleModal();
-        reset();
+        login(
+            { email: data.email, password: data.password },
+            {
+                onSuccess: () => {
+                    toggleModal();
+                    reset();
+                },
+            },
+        );
     }
 
     return (
@@ -61,6 +68,7 @@ function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
                         <StyledForgotPassButton type='button'>Forgot your password?</StyledForgotPassButton>
 
                         <Button type='submit' fill={true} isDisabled={isPending}>
+                            {isPending && <SpinnerMini />}
                             {isPending ? 'Signing in...' : 'Sign in'}
                         </Button>
                         {loginError && <p style={{ color: 'red' }}>{loginError}</p>}

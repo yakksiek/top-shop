@@ -9,6 +9,11 @@ interface StyledButtonProps {
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
     border: none;
     background-color: transparent;
     padding: 0.8125rem 2rem;
