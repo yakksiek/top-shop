@@ -5,18 +5,18 @@ import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import StyledNavigation from '../StyledNavigation';
 import { StyledCartIndicator, StyledFavouritesIndicator, StyledLinkItem } from './NavLinks.styled';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthenticationContext';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
+import { useUser } from '../../features/authentication/useUser';
 
 function NavLinks() {
     const { cartItems } = useCartContext();
     const { favouriteItems } = useFavouritesContext();
-    const user = useAuth();
+    const { isAuthenticated } = useUser();
     const { toggleLoginModal } = useLoginModalContext();
     const navigate = useNavigate();
 
     const handleProtectedLinkClick = (path: string) => {
-        if (user) {
+        if (isAuthenticated) {
             navigate(path);
         } else {
             toggleLoginModal();

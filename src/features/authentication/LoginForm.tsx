@@ -48,7 +48,7 @@ function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
                             />
                         </FormRow>
 
-                        <FormRow label='Password (min 5 characters)' error={errors.password && errors.password.message}>
+                        <FormRow label='Password (min 6 characters)' error={errors.password && errors.password.message}>
                             <Input
                                 id='password'
                                 type='password'
