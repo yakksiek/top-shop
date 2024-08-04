@@ -15,11 +15,8 @@ const FullPage = styled.div`
 type ProtectedRouteProps = PropsWithChildren;
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
-    const { isPending, isAuthenticated, user } = useUser();
+    const { isPending, isAuthenticated } = useUser();
     const navigate = useNavigate();
-
-    console.log('authenticated');
-    console.log(user?.role === 'authenticated');
 
     useEffect(() => {
         if (!isAuthenticated && !isPending) {

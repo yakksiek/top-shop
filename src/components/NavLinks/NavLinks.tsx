@@ -3,7 +3,12 @@ import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
 import { useCartContext } from '../../contexts/CartContext';
 import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import StyledNavigation from '../StyledNavigation';
-import { StyledCartIndicator, StyledFavouritesIndicator, StyledLinkItem } from './NavLinks.styled';
+import {
+    StyledCartIndicator,
+    StyledContentWrapper,
+    StyledFavouritesIndicator,
+    StyledLinkItem,
+} from './NavLinks.styled';
 import { useNavigate } from 'react-router-dom';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
 import { useUser } from '../../features/authentication/useUser';
@@ -36,7 +41,10 @@ function NavLinks() {
             </li>
 
             <li onClick={() => handleProtectedLinkClick('/dashboard')}>
-                <IoPersonOutline />
+                <StyledContentWrapper>
+                    <IoPersonOutline />
+                    {isAuthenticated && <StyledFavouritesIndicator color='black' />}
+                </StyledContentWrapper>
             </li>
 
             <li>

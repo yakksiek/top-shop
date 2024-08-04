@@ -1,7 +1,10 @@
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button';
-import { FormRow, Input, StyledForm, StyledSeparator } from '../../components/Form';
+import { FormRow, Input, PasswordIndicator, StyledForm, StyledSeparator } from '../../components/Form';
 import { StyledModalWrapper, ModalHeader } from '../../components/Modal';
+import { useSignup } from './useSignup';
+import SpinnerMini from '../../components/SpinnerMini';
+import { useState } from 'react';
 
 interface CreateAccountFormProps {
     toggleCreateAccountView: () => void;
@@ -17,11 +20,32 @@ interface FormData {
 }
 
 function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccountFormProps) {
-    const { register, formState, getValues, handleSubmit } = useForm<FormData>();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const { isPending, signup, signupError } = useSignup();
+    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>({
+        defaultValues: {
+            name: 'Zenon',
+            surname: 'Zenonowicz',
+            email: 'zenon@test.com',
+            password: '654321',
+            passwordConfirm: '654321',
+        },
+    });
     const { errors } = formState;
 
-    function onSubmit(data: FormData) {
-        console.log(data);
+    function onSubmit({ name, surname, email, password }: FormData) {
+        if (!name || !password || !surname || !email) return;
+
+        signup(
+            { name, surname, password, email },
+            {
+                onSuccess: () => {
+                    toggleModal();
+                    reset();
+                },
+            },
+        );
     }
 
     return (
@@ -62,30 +86,34 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
                         />
                     </FormRow>
 
-                    <FormRow label='Password (min 5 characters)' error={errors.password && errors.password.message}>
+                    <FormRow label='Password (min 6 characters)' error={errors.password && errors.password.message}>
                         <Input
                             id='password'
-                            type='password'
+                            type={showPassword ? 'text' : 'password'}
                             {...register('password', {
                                 required: 'This field is required',
-                                minLength: { value: 5, message: 'Password needs a minimum of 5 characters' },
+                                minLength: { value: 6, message: 'Password needs a minimum of 6 characters' },
                             })}
                         />
+                        <PasswordIndicator showPassword={showPassword} revealHandler={setShowPassword} />
                     </FormRow>
 
                     <FormRow label='Confirm password' error={errors.passwordConfirm && errors.passwordConfirm.message}>
                         <Input
                             id='passwordConfirm'
-                            type='password'
+                            type={showConfirmPassword ? 'text' : 'password'}
                             {...register('passwordConfirm', {
                                 required: 'This field is required',
                                 validate: value => value === getValues().password || 'Passwords needs to match',
                             })}
                         />
+                        <PasswordIndicator showPassword={showConfirmPassword} revealHandler={setShowConfirmPassword} />
                     </FormRow>
-                    <Button type='submit' fill={true}>
-                        Create an account
+                    <Button type='submit' fill={true} isDisabled={isPending}>
+                        {isPending && <SpinnerMini />}
+                        {isPending ? 'Creating an account...' : 'Create an account'}
                     </Button>
+                    {signupError && <p style={{ color: 'red' }}>{signupError}</p>}
                 </StyledForm>
             </StyledModalWrapper>
             <StyledSeparator />

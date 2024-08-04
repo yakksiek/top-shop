@@ -1,10 +1,12 @@
 import { useForm } from 'react-hook-form';
+
 import Button from '../../components/Button';
-import { FormRow, Input, StyledForm, StyledSeparator } from '../../components/Form';
+import { FormRow, PasswordIndicator, Input, StyledForm, StyledSeparator } from '../../components/Form';
 import { ModalHeader, StyledModalWrapper } from '../../components/Modal';
 import { StyledForgotPassButton } from './LoginForm.styled';
 import { useLogin } from './useLogin';
 import SpinnerMini from '../../components/SpinnerMini';
+import { useState } from 'react';
 
 interface LoginFormProps {
     toggleModal: () => void;
@@ -17,6 +19,7 @@ interface FormData {
 }
 
 function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
+    const [showPassword, setShowPassword] = useState(false);
     const { register, formState, handleSubmit, reset } = useForm<FormData>({
         defaultValues: {
             email: 'test@test.com',
@@ -27,7 +30,6 @@ function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
     const { isPending, login, loginError, setLoginError } = useLogin();
 
     function onSubmit(data: FormData) {
-        console.log('logging in');
         setLoginError(null);
         if (!data.email || !data.password) return;
 
@@ -63,12 +65,13 @@ function LoginForm({ toggleModal, toggleCreateAccountView }: LoginFormProps) {
                         <FormRow label='Password (min 6 characters)' error={errors.password && errors.password.message}>
                             <Input
                                 id='password'
-                                type='password'
+                                type={showPassword ? 'text' : 'password'}
                                 {...register('password', {
                                     required: 'This field is required',
                                     minLength: { value: 6, message: 'Password needs a minimum of 6 characters' },
                                 })}
                             />
+                            <PasswordIndicator showPassword={showPassword} revealHandler={setShowPassword} />
                         </FormRow>
                         <StyledForgotPassButton type='button'>Forgot your password?</StyledForgotPassButton>
 
