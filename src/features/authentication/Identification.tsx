@@ -3,7 +3,7 @@ import { useLoginModalContext } from '../../contexts/LoginModalContext';
 
 import { useState } from 'react';
 import CreateAccountForm from './CreateAccountForm';
-import LoginForm from './LoginForm';
+import LoginForm from './LoginModal';
 
 function LoginModal() {
     const { toggleLoginModal, isOpen } = useLoginModalContext();
