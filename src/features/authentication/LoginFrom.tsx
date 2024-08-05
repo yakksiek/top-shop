@@ -19,7 +19,12 @@ interface FormData {
 
 function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const [showPassword, setShowPassword] = useState(false);
-    const { register, formState, handleSubmit, reset } = useForm<FormData>();
+    const { register, formState, handleSubmit, reset } = useForm<FormData>({
+        defaultValues: {
+            email: 'test@test.com',
+            password: '123456',
+        },
+    });
     const { errors } = formState;
     const { isPending, login, loginError, setLoginError } = useLogin();
 
@@ -73,6 +78,9 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                     {isPending && <SpinnerMini />}
                     {isPending ? 'Signing in...' : 'Sign in'}
                 </Button>
+                <p>Test data:</p>
+                <p>email: test@test.com</p>
+                <p>password: 123456</p>
                 {loginError && <SubmitMessage message={loginError} type='error' />}
             </StyledForm>
         </div>

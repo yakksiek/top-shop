@@ -21,8 +21,9 @@ interface FormData {
 }
 
 function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormProps) {
-    const { register, handleSubmit, reset } = useForm<FormData>();
+    const { register, handleSubmit, reset, formState } = useForm<FormData>();
     const { isPending, recoverPassword, recoveryPassError, recoveryPassSuccessMsg } = usePasswordRecovery();
+    const { errors } = formState;
 
     useEffect(() => {
         toggleRecoverPassView();
@@ -43,7 +44,7 @@ function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormPro
             <h4>Forgot Your Password</h4>
             <p>Please enter your email address to reset your password. You will receive an email shortly.</p>
             <StyledForm onSubmit={handleSubmit(onSubmit)} noValidate>
-                <FormRow label='Email' error={''}>
+                <FormRow label='Email' error={errors.email && errors.email.message}>
                     <Input
                         id='email'
                         type='email'
@@ -52,18 +53,18 @@ function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormPro
                             pattern: { value: /\S+@\S+\.\S+/, message: 'Please provide a valid email' },
                         })}
                     />
-                    <StyledActionButtonsContainer>
-                        <Button type='button' fill={false} onClick={toggleRecoverPassView} isDisabled={isPending}>
-                            Cancel
-                        </Button>
-                        <Button type='submit' fill={true} isDisabled={isPending}>
-                            {isPending && <SpinnerMini />}
-                            {isPending ? 'Sending...' : 'Send'}
-                        </Button>
-                    </StyledActionButtonsContainer>
-                    {recoveryPassError && <SubmitMessage message={recoveryPassError} type='error' />}
-                    {recoveryPassSuccessMsg && <SubmitMessage message={recoveryPassSuccessMsg} type='success' />}
                 </FormRow>
+                <StyledActionButtonsContainer>
+                    <Button type='button' fill={false} onClick={toggleRecoverPassView} isDisabled={isPending}>
+                        Cancel
+                    </Button>
+                    <Button type='submit' fill={true} isDisabled={isPending}>
+                        {isPending && <SpinnerMini />}
+                        {isPending ? 'Sending...' : 'Send'}
+                    </Button>
+                </StyledActionButtonsContainer>
+                {recoveryPassError && <SubmitMessage message={recoveryPassError} type='error' />}
+                {recoveryPassSuccessMsg && <SubmitMessage message={recoveryPassSuccessMsg} type='success' />}
             </StyledForm>
         </div>
     );
