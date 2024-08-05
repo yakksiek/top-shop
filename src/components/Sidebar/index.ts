@@ -1,4 +1,4 @@
-import Sidebar from './Sidebar_temp';
+import Sidebar from './Sidebar';
 import Submenu from './Submenu';
 
 export { Sidebar, Submenu };
