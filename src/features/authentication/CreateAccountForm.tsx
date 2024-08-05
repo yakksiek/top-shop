@@ -4,7 +4,8 @@ import { FormRow, Input, PasswordIndicator, StyledForm, StyledSeparator } from '
 import { StyledModalWrapper, ModalHeader } from '../../components/Modal';
 import { useSignup } from './useSignup';
 import SpinnerMini from '../../components/SpinnerMini';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import SubmitMessage from '../../components/Form/SubmitMessage';
 
 interface CreateAccountFormProps {
     toggleCreateAccountView: () => void;
@@ -33,6 +34,10 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
         },
     });
     const { errors } = formState;
+
+    useEffect(() => {
+        toggleCreateAccountView();
+    }, [toggleCreateAccountView]);
 
     function onSubmit({ name, surname, email, password }: FormData) {
         if (!name || !password || !surname || !email) return;
@@ -113,7 +118,7 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
                         {isPending && <SpinnerMini />}
                         {isPending ? 'Creating an account...' : 'Create an account'}
                     </Button>
-                    {signupError && <p style={{ color: 'red' }}>{signupError}</p>}
+                    {signupError && <SubmitMessage message={signupError} type='error' />}
                 </StyledForm>
             </StyledModalWrapper>
             <StyledSeparator />

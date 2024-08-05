@@ -42,6 +42,25 @@ export async function getCurrentUser() {
     return data?.user;
 }
 
+export async function recoverPasswordWithEmail(email: string) {
+    const baseUrl = `${window.location.origin}/password-reset`;
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: baseUrl,
+    });
+    if (error) throw new Error(error.message);
+
+    return data;
+}
+
+export async function updateUserPassword(newPassword: string) {
+    const { data: updatedUser, error } = await supabase.auth.updateUser({
+        password: newPassword,
+    });
+    if (error) throw new Error(error.message);
+
+    return updatedUser;
+}
+
 export async function logout() {
     const { error } = await supabase.auth.signOut();
     if (error) throw new Error(error.message);

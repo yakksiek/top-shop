@@ -5,6 +5,7 @@ import { StyledForm, FormRow, Input, PasswordIndicator } from '../../components/
 import SpinnerMini from '../../components/SpinnerMini';
 import { StyledForgotPassButton } from './LoginForm.styled';
 import { useLogin } from './useLogin';
+import SubmitMessage from '../../components/Form/SubmitMessage';
 
 interface LoginFormProps {
     toggleModal: () => void;
@@ -28,8 +29,9 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const { isPending, login, loginError, setLoginError } = useLogin();
 
     function onSubmit(data: FormData) {
-        setLoginError(null);
         if (!data.email || !data.password) return;
+
+        setLoginError(null);
 
         login(
             { email: data.email, password: data.password },
@@ -76,7 +78,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                     {isPending && <SpinnerMini />}
                     {isPending ? 'Signing in...' : 'Sign in'}
                 </Button>
-                {loginError && <p style={{ color: 'red' }}>{loginError}</p>}
+                {loginError && <SubmitMessage message={loginError} type='error' />}
             </StyledForm>
         </div>
     );

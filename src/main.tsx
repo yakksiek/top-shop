@@ -22,6 +22,7 @@ import Favourites from './views/Favourites.tsx';
 import MainPage from './views/MainPage.tsx';
 import ProductDetails from './views/ProductDetails.tsx';
 import ProductsList from './views/ProductsList.tsx';
+import PasswordReset from './views/PasswordReset.tsx';
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,14 @@ const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <Dashboard />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: '/password-reset',
+                element: (
+                    <ProtectedRoute>
+                        <PasswordReset />
                     </ProtectedRoute>
                 ),
             },
