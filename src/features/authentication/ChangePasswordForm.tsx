@@ -27,12 +27,7 @@ interface FormData {
 function ChangePasswordForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>({
-        defaultValues: {
-            password: '123456',
-            passwordConfirm: '123456',
-        },
-    });
+    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>();
     const { errors } = formState;
     const { user } = useUser();
     const userEmail = user?.email || '';

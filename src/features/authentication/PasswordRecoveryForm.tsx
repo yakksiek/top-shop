@@ -21,11 +21,7 @@ interface FormData {
 }
 
 function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormProps) {
-    const { register, handleSubmit, reset } = useForm<FormData>({
-        defaultValues: {
-            email: 'marcin.kulbicki@gmail.com',
-        },
-    });
+    const { register, handleSubmit, reset } = useForm<FormData>();
     const { isPending, recoverPassword, recoveryPassError, recoveryPassSuccessMsg } = usePasswordRecovery();
 
     useEffect(() => {

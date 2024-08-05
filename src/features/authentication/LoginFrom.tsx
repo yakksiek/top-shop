@@ -19,12 +19,7 @@ interface FormData {
 
 function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const [showPassword, setShowPassword] = useState(false);
-    const { register, formState, handleSubmit, reset } = useForm<FormData>({
-        defaultValues: {
-            email: 'test@test.com',
-            password: '123456',
-        },
-    });
+    const { register, formState, handleSubmit, reset } = useForm<FormData>();
     const { errors } = formState;
     const { isPending, login, loginError, setLoginError } = useLogin();
 

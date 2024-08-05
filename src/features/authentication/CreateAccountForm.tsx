@@ -24,15 +24,7 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { isPending, signup, signupError } = useSignup();
-    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>({
-        defaultValues: {
-            name: 'Zenon',
-            surname: 'Zenonowicz',
-            email: 'zenon@test.com',
-            password: '654321',
-            passwordConfirm: '654321',
-        },
-    });
+    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>();
     const { errors } = formState;
 
     useEffect(() => {
