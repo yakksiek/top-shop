@@ -16,8 +16,8 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
     height: var(--header-height);
 
     @media ${device.mobile} {
-        padding: 1.2rem 0;
         z-index: 11;
+        padding: 1.2rem 0;
         background-color: var(--color-grey-0);
     }
 
@@ -35,7 +35,7 @@ interface StyledSearchbarContainerProps {
 export const StyledSearchbarContainer = styled.div<StyledSearchbarContainerProps>`
     position: fixed;
     background-color: var(--color-grey-0);
-    z-index: 2;
+    z-index: 16;
     width: 100%;
     left: 0;
     opacity: 0;

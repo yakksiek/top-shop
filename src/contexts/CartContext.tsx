@@ -15,9 +15,6 @@ function CartContextProvider({ children }: { children: ReactNode }) {
     const [cartItems, setCartItems] = useLocalStorage<t.Product[] | []>('cart_products', []);
 
     function addItemToCart(newCartItem: t.Product) {
-        const isItemInCart = cartItems.find(item => item.id === newCartItem.id);
-        if (isItemInCart) return;
-
         const newState = [...cartItems, newCartItem] as t.Product[];
 
         setCartItems(newState);

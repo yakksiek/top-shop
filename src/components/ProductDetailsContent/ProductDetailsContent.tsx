@@ -30,12 +30,17 @@ const SidebarContentLabel = {
     maintenanceInfo: 'Maintenance Information',
 };
 
+const CART_BUTTON_TEXT = 'Add to Cart';
+const ITEM_ADDED_TEXT = 'Item added to cart';
+const ITEM_IN_CART_TEXT = 'Item already in cart';
+
 function ProductDetailsContent({ product }: ProductDetailsContentProps) {
-    const { addItemToCart } = useCartContext();
+    const { addItemToCart, cartItems } = useCartContext();
     const { favouriteItems, removeItemFromFavourites, addItemToFavourites } = useFavouritesContext();
     const [sideInfo, setSideInfo] = useState(false);
     const [sidebarContent, setSidebarContent] = useState<SidebarContentType>('description');
     useNoScroll(sideInfo);
+    const [buttonText, setButtonText] = useState(CART_BUTTON_TEXT);
     const productInFavourites = favouriteItems.find(favItem => favItem.productId === product.id);
 
     const handleToggleSidebar = (contentType?: SidebarContentType) => {
@@ -43,6 +48,20 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
             setSidebarContent(contentType);
         }
         setSideInfo(prevState => !prevState);
+    };
+
+    const handleAddToCart = (product: t.Product) => {
+        const isItemInCart = cartItems.find(item => item.id === product.id);
+        if (isItemInCart) {
+            setButtonText(ITEM_IN_CART_TEXT);
+        } else {
+            addItemToCart(product);
+            setButtonText(ITEM_ADDED_TEXT);
+        }
+
+        setTimeout(() => {
+            setButtonText(CART_BUTTON_TEXT);
+        }, 1000);
     };
 
     return (
@@ -67,8 +86,12 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
                     <span>Brand:</span>
                     <span>{product.brand}</span>
                 </div>
-                <Button fill={true} onClick={() => addItemToCart(product)}>
-                    Add to Cart
+                <Button
+                    fill={true}
+                    onClick={() => handleAddToCart(product)}
+                    isDisabled={buttonText !== CART_BUTTON_TEXT}
+                >
+                    {buttonText}
                 </Button>
             </StyledProductMainContent>
             <StyledProductFooter>
