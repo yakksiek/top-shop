@@ -60,7 +60,7 @@ const StyledButton = styled.button`
     font-size: 1.5rem;
     top: 50%;
     transform: translate(0, -50%);
-    right: -4rem;
+    right: -3rem;
 `;
 
 interface SeachInputProps {
