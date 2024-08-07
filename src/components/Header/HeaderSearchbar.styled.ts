@@ -70,10 +70,15 @@ export const StyledOverlay = styled.div<StyledOverlayProps>`
 export const StyledFlexContainer = styled.div`
     overflow-y: auto;
     max-height: 100dvh;
+    margin: 0 auto;
 
     @media ${device.tablet} {
         display: grid;
         grid-template-columns: 1fr 2fr;
+    }
+
+    @media ${device.desktop} {
+        max-width: var(--screen-width-small);
     }
 `;
 
