@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledItem = styled.li`
-    padding: 0.5rem;
     cursor: pointer;
 
     .cart-label {
@@ -36,7 +35,7 @@ export const StyledImgContainer = styled.div`
     }
 `;
 
-export const StyledIconHeartWrapper = styled.div`
+export const StyledIconWrapper = styled.div`
     position: absolute;
     right: 5px;
     top: 5px;

@@ -5,14 +5,14 @@ import { useSidebarContext } from '../../contexts/SidebarContext';
 import Heading from '../Heading';
 import Menu from '../Menu';
 import NavLinks from '../NavLinks';
-import { SearchInput } from '../SearchInput';
 import Wrapper from '../Wrapper';
 
-import { StyledHeader, StyledOverlay, StyledSearchbarContainer } from './Header.styled';
+import { StyledHeader } from './Header.styled';
+import HeaderSearchbar from './HeaderSearchbar';
 
 function Header() {
     const { isOpen: isSidebarOpen } = useSidebarContext();
-    const { isOpen: isSearchBarOpen, handleSearchInputOpen } = useSearchInputContext();
+    const { isOpen: isSearchbarOpen, handleSearchInputOpen } = useSearchInputContext();
 
     return (
         <Wrapper type='wide'>
@@ -22,10 +22,7 @@ function Header() {
                     <Heading as='h1'>TOP SHOP</Heading>
                 </Link>
                 <NavLinks />
-                <StyledSearchbarContainer $isOpen={isSearchBarOpen}>
-                    <SearchInput type='header' />
-                    <StyledOverlay $isOpen={isSearchBarOpen} onClick={handleSearchInputOpen} />
-                </StyledSearchbarContainer>
+                <HeaderSearchbar isSearchbarOpen={isSearchbarOpen} handleSearchInputOpen={handleSearchInputOpen} />
             </StyledHeader>
         </Wrapper>
     );
