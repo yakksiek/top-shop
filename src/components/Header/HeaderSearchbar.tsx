@@ -11,11 +11,11 @@ import Heading from '../Heading';
 import { SearchInput } from '../SearchInput';
 
 import {
-    StyledFlexContainer,
+    StyledContainer,
+    StyledGridContainer,
     StyledNavigationList,
     StyledOverlay,
     StyledProductList,
-    StyledSearchbarContainer,
     StyledSearchbarWrapper,
     StyledWrapper,
 } from './HeaderSearchbar.styled';
@@ -52,48 +52,50 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
     }
 
     return (
-        <StyledSearchbarContainer $isOpen={isSearchbarOpen}>
-            <StyledSearchbarWrapper>
+        <>
+            <StyledSearchbarWrapper $isOpen={isSearchbarOpen}>
                 <SearchInput type='header' value={filterQuery} onChangeHandler={setQueryHandler} />
             </StyledSearchbarWrapper>
-            <StyledFlexContainer>
-                <StyledWrapper>
-                    <Heading as='h2'>{gender}</Heading>
-                    <nav>
-                        <StyledNavigationList>
-                            {menuItems.subcategories.map(subcategoryItem => {
-                                return (
-                                    <Link
-                                        to={`${gender}/${subcategoryItem.path}`}
-                                        key={subcategoryItem.path}
-                                        onClick={handleSearchInputOpen}
-                                    >
-                                        {subcategoryItem.categoryName}
-                                    </Link>
-                                );
-                            })}
-                        </StyledNavigationList>
-                    </nav>
-                </StyledWrapper>
-                <StyledWrapper>
-                    <Heading as='h2'>Top Products</Heading>
-                    {productsToRender.length > 0 ? (
-                        <StyledProductList>
-                            {productsToRender.map((productItem: t.Product) => (
-                                <span onClick={handleSearchInputOpen} key={productItem.id}>
-                                    <ProductPreview product={productItem} />
-                                </span>
-                            ))}
-                        </StyledProductList>
-                    ) : (
-                        <p>
-                            No products with "<strong>{filterQuery}</strong>" parameters
-                        </p>
-                    )}
-                </StyledWrapper>
-            </StyledFlexContainer>
+            <StyledContainer $isOpen={isSearchbarOpen}>
+                <StyledGridContainer>
+                    <StyledWrapper>
+                        <Heading as='h2'>{gender}</Heading>
+                        <nav>
+                            <StyledNavigationList>
+                                {menuItems.subcategories.map(subcategoryItem => {
+                                    return (
+                                        <Link
+                                            to={`${gender}/${subcategoryItem.path}`}
+                                            key={subcategoryItem.path}
+                                            onClick={handleSearchInputOpen}
+                                        >
+                                            {subcategoryItem.categoryName}
+                                        </Link>
+                                    );
+                                })}
+                            </StyledNavigationList>
+                        </nav>
+                    </StyledWrapper>
+                    <StyledWrapper>
+                        <Heading as='h2'>Top Products</Heading>
+                        {productsToRender.length > 0 ? (
+                            <StyledProductList>
+                                {productsToRender.map((productItem: t.Product) => (
+                                    <span onClick={handleSearchInputOpen} key={productItem.id}>
+                                        <ProductPreview product={productItem} />
+                                    </span>
+                                ))}
+                            </StyledProductList>
+                        ) : (
+                            <p>
+                                No products with "<strong>{filterQuery}</strong>" parameters
+                            </p>
+                        )}
+                    </StyledWrapper>
+                </StyledGridContainer>
+            </StyledContainer>
             <StyledOverlay $isOpen={isSearchbarOpen} onClick={handleSearchInputOpen} />
-        </StyledSearchbarContainer>
+        </>
     );
 }
 

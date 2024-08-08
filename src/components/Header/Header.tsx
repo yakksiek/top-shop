@@ -19,11 +19,11 @@ function Header() {
             <StyledHeader $isOpen={isSidebarOpen}>
                 <Menu />
                 <Link to='/' className='logo-wrapper'>
-                    <Heading as='h1'>TOP SHOP</Heading>
+                    <Heading as='h1'>T.SHOP</Heading>
                 </Link>
                 <NavLinks />
-                <HeaderSearchbar isSearchbarOpen={isSearchbarOpen} handleSearchInputOpen={handleSearchInputOpen} />
             </StyledHeader>
+            <HeaderSearchbar isSearchbarOpen={isSearchbarOpen} handleSearchInputOpen={handleSearchInputOpen} />
         </Wrapper>
     );
 }

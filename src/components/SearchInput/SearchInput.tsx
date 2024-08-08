@@ -76,6 +76,10 @@ function SearchInput({ type, onChangeHandler, value }: SeachInputProps) {
         e.preventDefault();
     };
 
+    const handleBlur = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     return (
         <StyledInputWrapper type={type}>
             <form onSubmit={submitHandler}>
@@ -92,6 +96,7 @@ function SearchInput({ type, onChangeHandler, value }: SeachInputProps) {
                         spellCheck='false'
                         onChange={onChangeHandler}
                         value={value}
+                        onBlur={handleBlur}
                     />
                     {type === 'header' && (
                         <StyledButton type='button' onClick={handleSearchInputOpen}>

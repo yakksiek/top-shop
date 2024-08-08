@@ -16,8 +16,11 @@ export const StyledSidebar = styled.aside<SidebarProps>`
     width: 100%;
     height: 100%;
     transition: transform var(--animation-and-timing), opacity var(--animation-and-timing);
+    /* transition: transform 1s, opacity 1s; */
     border-left: var(--border-standard);
     opacity: 0;
+    max-height: 100vh;
+    overflow-y: auto;
 
     ${({ $slideFrom }) =>
         $slideFrom === 'left'
