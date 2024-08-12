@@ -51,7 +51,6 @@ function NavigationMenu() {
 
             <Submenu isOpen={activeMainCategory ? true : false} slideFrom='left'>
                 <StyledHeader>
-                    <GoArrowLeft />
                     <NavLink
                         to={activeMainCategory.toLocaleLowerCase()}
                         onClick={() => {
