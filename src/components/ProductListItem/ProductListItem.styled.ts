@@ -25,7 +25,6 @@ export const StyledImgContainer = styled.div`
     position: relative;
 
     img {
-        /* aspect-ratio: 1; */
         z-index: 1;
     }
 
@@ -51,6 +50,7 @@ export const StyledInfoContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 0.5rem;
 `;
 
 export const StyledButtonCart = styled.button`
