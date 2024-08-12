@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const StyledItem = styled.li`
     cursor: pointer;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
     .cart-label {
         opacity: 0;
         transition: opacity 0.6s ease, right 0.3s ease;
@@ -23,9 +28,13 @@ export const StyledItem = styled.li`
 
 export const StyledImgContainer = styled.div`
     position: relative;
+    flex-grow: 1;
 
     img {
         z-index: 1;
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
     }
 
     button.form {
