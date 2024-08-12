@@ -14,7 +14,7 @@ interface WrapperProps {
 
 const StyledWrapper = styled.div<StyledWrapperProps>`
     margin: 0 auto;
-    padding: 0 5px;
+    /* padding: 0 5px; */
     max-width: 2400px;
 
     ${props =>
@@ -24,7 +24,6 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
                 padding: 0 1vw;
             }
         `}
-
     ${props =>
         props.type === 'narrow' &&
         css`
@@ -37,7 +36,7 @@ const StyledWrapper = styled.div<StyledWrapperProps>`
                 padding: 0 10vw;
                 width: 100%;
             }
-        `}
+        `};
 `;
 
 function Wrapper({ children, type }: WrapperProps) {

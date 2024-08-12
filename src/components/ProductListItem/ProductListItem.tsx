@@ -11,7 +11,7 @@ import * as t from '../../types';
 import Heading from '../Heading';
 import {
     StyledButtonCart,
-    StyledIconHeartWrapper,
+    StyledIconWrapper,
     StyledImgContainer,
     StyledInfoContainer,
     StyledItem,
@@ -23,12 +23,18 @@ interface ProductProps {
     variant?: 'wishlist';
 }
 
-function Product({ product, variant }: ProductProps) {
+function ProductListItem({ product, variant }: ProductProps) {
     const { addItemToCart } = useCartContext();
     const { addItemToFavourites, removeItemFromFavourites, favouriteItems } = useFavouritesContext();
     const { pricePLN, productName, gender, category, subcategory, id } = product;
     const wishlistView = variant === 'wishlist';
     const favouriteItem = favouriteItems.find(item => item.productId === id);
+
+    const handleFavouriteClick = (e: React.MouseEvent, action: () => void) => {
+        e.preventDefault();
+        e.stopPropagation();
+        action();
+    };
 
     return (
         <Link to={`/${gender}/${category}/${subcategory}/${id}`}>
@@ -36,30 +42,26 @@ function Product({ product, variant }: ProductProps) {
                 <StyledImgContainer>
                     <img src={`${BASE_URL}${product.photos[0]}`} alt={productName} />
 
-                    <StyledIconHeartWrapper>
+                    <StyledIconWrapper>
                         {wishlistView ? (
                             <LiaTimesSolid
-                                onClick={e => {
-                                    e.preventDefault();
-                                    if (favouriteItem) removeItemFromFavourites(favouriteItem.id);
-                                }}
+                                onClick={e =>
+                                    handleFavouriteClick(
+                                        e,
+                                        () => favouriteItem && removeItemFromFavourites(favouriteItem.id),
+                                    )
+                                }
                             />
                         ) : !favouriteItem ? (
                             <IoMdHeartEmpty
-                                onClick={e => {
-                                    e.preventDefault();
-                                    addItemToFavourites(product);
-                                }}
+                                onClick={e => handleFavouriteClick(e, () => addItemToFavourites(product))}
                             />
                         ) : (
                             <VscHeartFilled
-                                onClick={e => {
-                                    e.preventDefault();
-                                    removeItemFromFavourites(favouriteItem.id);
-                                }}
+                                onClick={e => handleFavouriteClick(e, () => removeItemFromFavourites(favouriteItem.id))}
                             />
                         )}
-                    </StyledIconHeartWrapper>
+                    </StyledIconWrapper>
                 </StyledImgContainer>
                 <StyledInfoContainer>
                     <div>
@@ -84,4 +86,4 @@ function Product({ product, variant }: ProductProps) {
     );
 }
 
-export default Product;
+export default ProductListItem;

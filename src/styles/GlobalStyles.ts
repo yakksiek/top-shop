@@ -51,7 +51,7 @@ const GlobalStyles = createGlobalStyle`
   --bar-width: 18px;
   --bar-height: 1px;
   --hamburger-gap: 5px;
-  --animation-and-timing: 300ms ease;
+  --animation-and-timing: 400ms ease;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2)
 
   --image-grayscale: 0;
@@ -68,8 +68,7 @@ const GlobalStyles = createGlobalStyle`
   padding: 0;
   margin: 0;
 
-  /* Creating animations for dark mode */
-  transition: background-color 0.3s, border 0.3s;
+ 
 }
 
 html {
@@ -80,16 +79,22 @@ body {
   font-family: 'FuturaLight', sans-serif;
   font-weight: 200;
   transition: color 0.3s, background-color 0.3s;
-  min-height: 100dvh;
+  /* min-height: 100vh; */
   line-height: 1.5;
 
-  &.no-scroll {
+  /* &.no-scroll {
     overflow: hidden;
-  }
-
+    height: 100%;
+  } */
+  
 }
 
-
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden;
+  height: 100%;
+  -webkit-overflow-scrolling: none; 
+}
 
 
 
@@ -97,7 +102,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 input,
@@ -168,15 +173,12 @@ h2 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: .875rem;
 
 }
 
 img {
   max-width: 100%;
-
-  /* For dark mode */
-  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 `;
 

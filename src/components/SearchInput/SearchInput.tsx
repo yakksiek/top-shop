@@ -13,7 +13,6 @@ const StyledInputWrapper = styled.div<StyledInputWrapperProps>`
     margin: 0 auto;
     display: block;
     padding: ${props => (props.type !== 'header' ? '0 0 1rem 0' : '1rem 0')};
-
     max-width: 40rem;
 
     @media ${device.tablet} {
@@ -61,19 +60,29 @@ const StyledButton = styled.button`
     font-size: 1.5rem;
     top: 50%;
     transform: translate(0, -50%);
-    right: -4rem;
+    right: -3rem;
 `;
 
 interface SeachInputProps {
     type?: 'header';
+    value: string;
+    onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function SearchInput({ type }: SeachInputProps) {
+function SearchInput({ type, onChangeHandler, value }: SeachInputProps) {
     const { handleSearchInputOpen } = useSearchInputContext();
+
+    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+    };
+
+    const handleBlur = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <StyledInputWrapper type={type}>
-            <form>
+            <form onSubmit={submitHandler}>
                 <StyledInputContainer>
                     <StyledIconWrapper>
                         <IoSearchOutline />
@@ -85,6 +94,9 @@ function SearchInput({ type }: SeachInputProps) {
                         autoCorrect='off'
                         autoCapitalize='off'
                         spellCheck='false'
+                        onChange={onChangeHandler}
+                        value={value}
+                        onBlur={handleBlur}
                     />
                     {type === 'header' && (
                         <StyledButton type='button' onClick={handleSearchInputOpen}>

@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import * as t from '../types';
 
 export const formatCurrency = (value: number, currency: string = 'PLN') =>
     new Intl.NumberFormat('en', { style: 'currency', currency: currency }).format(value);
@@ -27,3 +28,7 @@ export const removeItemFromArrById = <T extends ItemWithId>(itemId: number | str
 
     return arr.filter(item => item.id !== itemId);
 };
+
+export function filterProductsByQuery(products: t.Product[], keys: t.FilterKey[], query: string): t.Product[] {
+    return products.filter(product => keys.some(key => product[key].toLowerCase().includes(query.toLowerCase())));
+}
