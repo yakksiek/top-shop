@@ -69,6 +69,7 @@ export const StyledContainer = styled.div<StyledFlexContainerProps>`
             @media ${device.tablet} {
                 z-index: ${HEADER_SEARCHBAR_TABLET_Z_INDEX};
                 transition-delay: 0.3s;
+                height: auto;
             }
         `}
 `;
