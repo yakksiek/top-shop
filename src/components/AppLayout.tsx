@@ -1,6 +1,5 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import styled from 'styled-components';
-// import { SearchInput } from './SearchInput';
 import LoginModal from '../features/authentication/Identification';
 import Footer from './Footer';
 import Header from './Header';
@@ -17,7 +16,6 @@ function AppLayout() {
         <StyledAppLayout>
             <MainContent>
                 <Header />
-                {/* <SearchInput /> */}
                 <NavigationMenu />
                 <LoginModal />
                 <Outlet />

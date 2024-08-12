@@ -79,13 +79,7 @@ body {
   font-family: 'FuturaLight', sans-serif;
   font-weight: 200;
   transition: color 0.3s, background-color 0.3s;
-  /* min-height: 100vh; */
   line-height: 1.5;
-
-  /* &.no-scroll {
-    overflow: hidden;
-    height: 100%;
-  } */
   
 }
 

@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
     border-bottom: var(--border-standard);
     display: flex;
     align-items: center;
-    padding: 0 1vw;
+    padding: 0 1rem;
     gap: 1rem;
     cursor: pointer;
 
@@ -48,6 +48,7 @@ function NavigationMenu() {
                 clickHandler={setActiveMainCategory}
                 activeCategory={activeMainCategory}
             />
+
             <Submenu isOpen={activeMainCategory ? true : false} slideFrom='left'>
                 <StyledHeader>
                     <GoArrowLeft />

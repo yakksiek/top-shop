@@ -12,19 +12,21 @@ interface StyledOverlayProps {
 
 export const StyledSidebar = styled.aside<SidebarProps>`
     background-color: var(--color-grey-0);
+
     position: fixed;
     width: 100%;
     height: 100%;
     transition: transform var(--animation-and-timing), opacity var(--animation-and-timing);
-    /* transition: transform 1s, opacity 1s; */
     border-left: var(--border-standard);
     opacity: 0;
+
     max-height: 100vh;
     overflow-y: auto;
 
     ${({ $slideFrom }) =>
         $slideFrom === 'left'
             ? css`
+                  overflow-y: visible;
                   left: 0;
                   transform: translateY(-100%);
               `
@@ -65,7 +67,7 @@ export const StyledSidebar = styled.aside<SidebarProps>`
                 ? css`
                       padding-top: 2rem;
                       transform: translateX(-100%);
-                      width: 22rem;
+                      width: 24rem;
                       max-width: 33.333333vw;
                   `
                 : css`
@@ -73,12 +75,11 @@ export const StyledSidebar = styled.aside<SidebarProps>`
                       transform: translateX(100%);
                       max-width: 45vw;
                   `}
-
         ${({ $isOpen }) =>
             $isOpen &&
             css`
                 transform: translateX(0);
-            `}
+            `};
     }
 `;
 

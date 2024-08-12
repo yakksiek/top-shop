@@ -6,10 +6,10 @@ import { device } from '../../styles/breakpoints';
 
 type NavListTypes = 'menu' | 'submenu';
 
-const StyledNavList = styled.ul<{ $active: string }>`
+const StyledNavList = styled.ul<{ $active: string; type: NavListTypes }>`
     position: relative;
     margin-top: 1rem;
-    padding: var(--padding-sidebar-mobile);
+    padding: 0 1rem;
 
     ${({ $active }) =>
         $active &&
@@ -18,6 +18,14 @@ const StyledNavList = styled.ul<{ $active: string }>`
         `}
     &:hover {
         color: var(--color-grey-500);
+    }
+
+    @media ${device.tablet} {
+        ${({ type }) =>
+            type === 'menu' &&
+            css`
+                margin-top: 3rem;
+            `}
     }
 `;
 
@@ -41,7 +49,6 @@ const StyledNavItem = styled.li<StyledNavItemProps>`
     cursor: pointer;
     border: none;
     background-color: transparent;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -102,7 +109,7 @@ function NavigationMenuList({ data, type, clickHandler, activeCategory, useLink,
     const { toggleSidebar } = useSidebarContext();
 
     return (
-        <StyledNavList $active={activeCategory}>
+        <StyledNavList $active={activeCategory} type={type}>
             {data.map(item => {
                 const activeItem = activeCategory === item.categoryName;
                 const content = (
