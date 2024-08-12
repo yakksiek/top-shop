@@ -30,7 +30,7 @@ const StyledActionButtonWrapper = styled.div`
 export const StyledWishList = styled.ul`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
+    grid-row-gap: 1rem;
 
     @media ${device.tablet} {
         grid-template-columns: repeat(4, 1fr);
