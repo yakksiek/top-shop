@@ -9,6 +9,10 @@ const StyledItem = styled.div`
     align-items: center;
     gap: 1rem;
     flex-flow: row nowrap;
+
+    p {
+        flex: 1;
+    }
 `;
 
 const StyledImgContainer = styled.div`
@@ -16,6 +20,8 @@ const StyledImgContainer = styled.div`
 
     img {
         height: 100px;
+        width: 100px;
+        object-fit: contain;
     }
 `;
 
