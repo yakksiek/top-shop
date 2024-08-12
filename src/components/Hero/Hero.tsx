@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CenteredContent from '../CenteredContent';
 import Section from '../Section';
 import { BASE_URL } from '../../contants/api';
+import { device } from '../../styles/breakpoints';
 
 interface StyledHeroProps {
     $heroImage: string;
@@ -11,6 +12,7 @@ interface StyledHeroProps {
 const StyledHero = styled.div<StyledHeroProps>`
     width: 100%;
     height: 500px;
+    height: 60vh;
     background-size: cover;
     background-position: right;
     background-image: ${({ $heroImage }) => `url(${$heroImage})`};
@@ -19,7 +21,9 @@ const StyledHero = styled.div<StyledHeroProps>`
     align-items: flex-end;
     justify-content: center;
 
-    margin-bottom: 4.5rem;
+    @media ${device.desktop} {
+        height: 70vh;
+    }
 `;
 
 const StyledContentWrapper = styled.div`
