@@ -18,7 +18,7 @@ function FavouritesContextProvider({ children }: { children: ReactNode }) {
     function addItemToFavourites(product: t.Product) {
         const { id: productId } = product;
 
-        const isItemInFavourites = favouriteItems.find(item => item.productId === Number(productId));
+        const isItemInFavourites = h.findItemInArrById(productId, favouriteItems);
         if (isItemInFavourites) return;
 
         const id = h.generateRandomId();

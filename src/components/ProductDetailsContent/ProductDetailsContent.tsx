@@ -51,7 +51,7 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
     };
 
     const handleAddToCart = (product: t.Product) => {
-        const isItemInCart = cartItems.find(item => item.id === product.id);
+        const isItemInCart = h.findItemInArrById(product.id, cartItems);
         if (isItemInCart) {
             setButtonText(ITEM_IN_CART_TEXT);
         } else {

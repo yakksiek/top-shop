@@ -20,7 +20,7 @@ export const StyledItem = styled.li`
         }
 
         .cart-wrapper {
-            width: 4rem;
+            width: 4.25rem;
             transition: width 0.4s ease;
         }
     }
@@ -50,16 +50,15 @@ export const StyledIconWrapper = styled.div`
     font-size: 1.1rem;
 `;
 
-export const StyledPrice = styled.p`
-    font-size: 0.85rem;
-    font-weight: 400;
-`;
-
 export const StyledInfoContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 0.5rem;
+`;
+
+export const StyledLabel = styled.div`
+    line-height: 1.2;
 `;
 
 export const StyledButtonCart = styled.button`

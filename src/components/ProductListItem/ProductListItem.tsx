@@ -4,19 +4,25 @@ import { LiaTimesSolid } from 'react-icons/lia';
 import { VscHeartFilled } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 
+import { useState } from 'react';
 import { BASE_URL } from '../../contants/api';
 import { useCartContext } from '../../contexts/CartContext';
 import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import * as t from '../../types';
-import Heading from '../Heading';
+import * as h from '../../utils/helpers';
+
 import {
     StyledButtonCart,
     StyledIconWrapper,
     StyledImgContainer,
     StyledInfoContainer,
     StyledItem,
-    StyledPrice,
+    StyledLabel,
 } from './ProductListItem.styled';
+
+const CART_BUTTON_TEXT = 'Shop';
+const ITEM_ADDED_TEXT = 'Added';
+const ITEM_IN_CART_TEXT = 'In Cart';
 
 interface ProductProps {
     product: t.Product;
@@ -24,7 +30,8 @@ interface ProductProps {
 }
 
 function ProductListItem({ product, variant }: ProductProps) {
-    const { addItemToCart } = useCartContext();
+    const [buttonText, setButtonText] = useState(CART_BUTTON_TEXT);
+    const { addItemToCart, cartItems } = useCartContext();
     const { addItemToFavourites, removeItemFromFavourites, favouriteItems } = useFavouritesContext();
     const { pricePLN, productName, gender, category, subcategory, id } = product;
     const wishlistView = variant === 'wishlist';
@@ -34,6 +41,21 @@ function ProductListItem({ product, variant }: ProductProps) {
         e.preventDefault();
         e.stopPropagation();
         action();
+    };
+
+    const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        const isItemInCart = h.findItemInArrById(product.id, cartItems);
+        if (isItemInCart) {
+            setButtonText(ITEM_IN_CART_TEXT);
+        } else {
+            addItemToCart(product);
+            setButtonText(ITEM_ADDED_TEXT);
+        }
+
+        setTimeout(() => {
+            setButtonText(CART_BUTTON_TEXT);
+        }, 1000);
     };
 
     return (
@@ -64,20 +86,14 @@ function ProductListItem({ product, variant }: ProductProps) {
                     </StyledIconWrapper>
                 </StyledImgContainer>
                 <StyledInfoContainer>
-                    <div>
-                        <Heading as='h5'>{productName}</Heading>
-                        <StyledPrice>PLN {pricePLN}</StyledPrice>
-                    </div>
+                    <StyledLabel>
+                        <p>{productName}</p>
+                        <p>{pricePLN}PLN</p>
+                    </StyledLabel>
                     {wishlistView && (
-                        <StyledButtonCart
-                            className='cart-wrapper'
-                            onClick={e => {
-                                addItemToCart(product);
-                                e.preventDefault();
-                            }}
-                        >
+                        <StyledButtonCart className='cart-wrapper' onClick={handleAddToCart}>
                             <IoBagHandleOutline />
-                            <span className='cart-label'>Shop</span>
+                            <span className='cart-label'>{buttonText}</span>
                         </StyledButtonCart>
                     )}
                 </StyledInfoContainer>
