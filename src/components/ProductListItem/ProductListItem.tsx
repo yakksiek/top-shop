@@ -88,7 +88,7 @@ function ProductListItem({ product, variant }: ProductProps) {
                 <StyledInfoContainer>
                     <StyledLabel>
                         <p>{productName}</p>
-                        <p>{pricePLN}PLN</p>
+                        <p>PLN {pricePLN}</p>
                     </StyledLabel>
                     {wishlistView && (
                         <StyledButtonCart className='cart-wrapper' onClick={handleAddToCart}>

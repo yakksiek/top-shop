@@ -6,6 +6,8 @@ import * as h from '../../../utils/helpers';
 
 import Button from '../../../components/Button';
 import Heading from '../../../components/Heading';
+import { useLoginModalContext } from '../../../contexts/LoginModalContext';
+import { useUser } from '../../authentication/useUser';
 
 const StyledWrapper = styled.div`
     background-color: #faf9f8;
@@ -71,6 +73,8 @@ interface CartProductListProps {
 }
 
 function CartSummary({ products }: CartProductListProps) {
+    const { toggleLoginModal } = useLoginModalContext();
+    const { isAuthenticated } = useUser();
     const DELIVERY = 16;
     const totalSum = products.reduce((acc, curr) => acc + curr.pricePLN, 0);
 
@@ -81,10 +85,14 @@ function CartSummary({ products }: CartProductListProps) {
                     <p className='discount-label'>Discounts</p>
                     <button className='discount-button'>Apply discount</button>
                 </StyledRow>
-                <Heading as='h5' $marginBottom={false}>
-                    Login to use your personal offers!
-                </Heading>
-                <Button>Sign in</Button>
+                {!isAuthenticated && (
+                    <>
+                        <Heading as='h5' $marginBottom={false}>
+                            Login to use your personal offers!
+                        </Heading>
+                        <Button onClick={toggleLoginModal}>Sign in</Button>
+                    </>
+                )}
             </StyledHeader>
             <StyledSummary>
                 <StyledRow>

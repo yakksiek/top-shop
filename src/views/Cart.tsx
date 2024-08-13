@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Heading from '../components/Heading';
 import Section from '../components/Section';
-import CartProductList from '../features/cart/CartProductList';
-import CartSummary from '../features/cart/CartSummary';
 import Wrapper from '../components/Wrapper';
 import { useCartContext } from '../contexts/CartContext';
+import CartProductList from '../features/cart/CartProductList';
+import CartSummary from '../features/cart/CartSummary';
 import { device } from '../styles/breakpoints';
 
 const StyledGridContainer = styled.div`
@@ -20,6 +20,7 @@ const StyledGridContainer = styled.div`
 
 function Cart() {
     const { cartItems } = useCartContext();
+
     const cartItemHeaderText = cartItems.length === 0 ? 'Your cart is empty' : 'Your cart';
 
     return (
