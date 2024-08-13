@@ -13,15 +13,12 @@ export const StyledItem = styled.li`
         transition: opacity 0.6s ease, right 0.3s ease;
     }
 
-    &:hover {
+    .cart-wrapper:hover {
+        width: 4.25rem;
+        transition: width 0.4s ease;
         .cart-label {
             opacity: 1;
             right: 5px;
-        }
-
-        .cart-wrapper {
-            width: 4.25rem;
-            transition: width 0.4s ease;
         }
     }
 `;
