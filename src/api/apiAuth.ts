@@ -9,6 +9,7 @@ export async function signup({ name, surname, email, password }: t.User) {
             data: {
                 name,
                 surname,
+                favourites: [],
             },
         },
     });
@@ -56,6 +57,18 @@ export async function updateUserPassword(newPassword: string) {
     const { data: updatedUser, error } = await supabase.auth.updateUser({
         password: newPassword,
     });
+    if (error) throw new Error(error.message);
+
+    return updatedUser;
+}
+
+export async function updateUserFavourites(favouritesData: t.FavouritesList[]) {
+    const { data: updatedUser, error } = await supabase.auth.updateUser({
+        data: {
+            favourites: favouritesData,
+        },
+    });
+
     if (error) throw new Error(error.message);
 
     return updatedUser;

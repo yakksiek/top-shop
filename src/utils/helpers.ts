@@ -39,3 +39,25 @@ export const removeItemFromArrById = <T extends ItemWithId>(itemId: number | str
 export function filterProductsByQuery(products: t.Product[], keys: t.FilterKey[], query: string): t.Product[] {
     return products.filter(product => keys.some(key => product[key].toLowerCase().includes(query.toLowerCase())));
 }
+
+export function uniqueObjectsByProductId<T extends { productId: number | string }>(arr1: T[], arr2: T[]): T[] {
+    const combinedArray = [...arr1, ...arr2];
+    const uniqueArray = combinedArray.filter(
+        (item, index, self) => index === self.findIndex(t => t.productId === item.productId),
+    );
+    return uniqueArray;
+}
+
+export function arraysAreEqual<T>(arr1: T[], arr2: T[]): boolean {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}

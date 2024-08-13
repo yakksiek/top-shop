@@ -5,9 +5,9 @@ import Heading from '../components/Heading';
 import Product from '../components/ProductListItem';
 import Section from '../components/Section';
 import { useFavouritesContext } from '../contexts/FavouritesContext';
-import { device } from '../styles/breakpoints';
-import { useUser } from '../features/authentication/useUser';
 import { useLoginModalContext } from '../contexts/LoginModalContext';
+import { useUser } from '../features/authentication/useUser';
+import { device } from '../styles/breakpoints';
 
 const StyledHeader = styled.header`
     text-align: center;
@@ -42,12 +42,12 @@ export const StyledWishList = styled.ul`
 function Favourites() {
     const { favouriteItems } = useFavouritesContext();
     const { toggleLoginModal } = useLoginModalContext();
-    const { isAuthenticated } = useUser();
+    const { isAuthenticated, isPending } = useUser();
 
     return (
         <Section>
             <StyledHeader>
-                {!isAuthenticated ? (
+                {!isAuthenticated && !isPending ? (
                     <>
                         <Heading as='h4'>Don't lose your favourites anymore</Heading>
                         <p>Sing In or Create an account to save your selection</p>

@@ -1,8 +1,10 @@
-import { ReactNode, createContext, useContext } from 'react';
+import { ReactNode, createContext, useContext, useEffect } from 'react';
 
+import { useUser } from '../features/authentication/useUser';
+import useUpdateUsersFavourites from '../features/product/useUpdateUsersFavourites';
+import useLocalStorage from '../hooks/useLocalStorage';
 import * as t from '../types';
 import * as h from '../utils/helpers';
-import useLocalStorage from '../hooks/useLocalStorage';
 
 interface FavouritesContextType {
     favouriteItems: t.FavouritesList[];
@@ -14,6 +16,14 @@ const FavouritesContext = createContext<FavouritesContextType | null>(null);
 
 function FavouritesContextProvider({ children }: { children: ReactNode }) {
     const [favouriteItems, setFavouriteItems] = useLocalStorage<t.FavouritesList[] | []>('favourites_list', []);
+    const { isAuthenticated } = useUser();
+    const { updateUserFavourites } = useUpdateUsersFavourites();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            updateUserFavourites(favouriteItems);
+        }
+    }, [favouriteItems, isAuthenticated, updateUserFavourites]);
 
     function addItemToFavourites(product: t.Product) {
         const { id: productId } = product;
