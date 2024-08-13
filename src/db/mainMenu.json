@@ -51,11 +51,11 @@
             "path": "accessories",
             "subgroup": [
                 {
-                    "categoryName": "bags",
+                    "categoryName": "Bags",
                     "path": "bags"
                 },
                 {
-                    "categoryName": "watches",
+                    "categoryName": "Watches",
                     "path": "watches"
                 }
             ]

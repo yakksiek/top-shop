@@ -15,6 +15,7 @@ const StyledHero = styled.div<StyledHeroProps>`
     height: 60vh;
     background-size: cover;
     background-position: right;
+    background-position: top left;
     background-image: ${({ $heroImage }) => `url(${$heroImage})`};
 
     display: flex;
