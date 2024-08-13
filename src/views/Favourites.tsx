@@ -6,6 +6,8 @@ import Product from '../components/ProductListItem';
 import Section from '../components/Section';
 import { useFavouritesContext } from '../contexts/FavouritesContext';
 import { device } from '../styles/breakpoints';
+import { useUser } from '../features/authentication/useUser';
+import { useLoginModalContext } from '../contexts/LoginModalContext';
 
 const StyledHeader = styled.header`
     text-align: center;
@@ -39,15 +41,27 @@ export const StyledWishList = styled.ul`
 
 function Favourites() {
     const { favouriteItems } = useFavouritesContext();
+    const { toggleLoginModal } = useLoginModalContext();
+    const { isAuthenticated } = useUser();
 
     return (
         <Section>
             <StyledHeader>
-                <Heading as='h4'>Don't lose your favourites anymore</Heading>
-                <p>Sing In or Create an account to save your selection</p>
-                <StyledActionButtonWrapper>
-                    <Button fill={true}>Sign In</Button>
-                </StyledActionButtonWrapper>
+                {!isAuthenticated ? (
+                    <>
+                        <Heading as='h4'>Don't lose your favourites anymore</Heading>
+                        <p>Sing In or Create an account to save your selection</p>
+                        <StyledActionButtonWrapper>
+                            <Button fill={true} onClick={toggleLoginModal}>
+                                Sign In
+                            </Button>
+                        </StyledActionButtonWrapper>
+                    </>
+                ) : (
+                    <Heading as='h3' $marginBottom={true}>
+                        Your favourites list
+                    </Heading>
+                )}
             </StyledHeader>
             <StyledWishList>
                 {favouriteItems.map(item => {
