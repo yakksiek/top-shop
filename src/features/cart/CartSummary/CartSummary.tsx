@@ -9,6 +9,8 @@ import Heading from '../../../components/Heading';
 import { useLoginModalContext } from '../../../contexts/LoginModalContext';
 import { useUser } from '../../authentication/useUser';
 
+const DELIVERY = 16;
+
 const StyledWrapper = styled.div`
     background-color: #faf9f8;
     padding: 1.5rem;
@@ -75,8 +77,11 @@ interface CartProductListProps {
 function CartSummary({ products }: CartProductListProps) {
     const { toggleLoginModal } = useLoginModalContext();
     const { isAuthenticated } = useUser();
-    const DELIVERY = 16;
-    const totalSum = products.reduce((acc, curr) => acc + curr.pricePLN, 0);
+
+    const productsTotal = products.reduce((acc, curr) => acc + curr.pricePLN, 0);
+    const clubCartReduction = isAuthenticated ? productsTotal * 0.1 : productsTotal;
+
+    const totalPriceAfterReductions = productsTotal - clubCartReduction + DELIVERY;
 
     return (
         <StyledWrapper>
@@ -97,15 +102,21 @@ function CartSummary({ products }: CartProductListProps) {
             <StyledSummary>
                 <StyledRow>
                     <span>Order value</span>
-                    <span>{h.formatCurrency(totalSum)}</span>
+                    <span>{h.formatCurrency(productsTotal)}</span>
                 </StyledRow>
                 <StyledRow>
                     <span>Delivery</span>
                     <span>{h.formatCurrency(DELIVERY)}</span>
                 </StyledRow>
+                {isAuthenticated && (
+                    <StyledRow>
+                        <span>Club member</span>
+                        <span style={{ color: 'red' }}>{h.formatCurrency(-Math.abs(productsTotal * 0.1))}</span>
+                    </StyledRow>
+                )}
                 <StyledRow className='total'>
                     <span>Total</span>
-                    <span>{h.formatCurrency(totalSum + DELIVERY)}</span>
+                    <span>{h.formatCurrency(totalPriceAfterReductions)}</span>
                 </StyledRow>
             </StyledSummary>
             <Button fill={true}>Continue to checkout</Button>

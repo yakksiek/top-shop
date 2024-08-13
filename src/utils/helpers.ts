@@ -1,8 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
 import * as t from '../types';
 
-export const formatCurrency = (value: number, currency: string = 'PLN') =>
-    new Intl.NumberFormat('en', { style: 'currency', currency: currency }).format(value);
+export const formatCurrency = (value: number, currency: string = 'PLN') => {
+    const formattedValue = new Intl.NumberFormat('en', {
+        style: 'decimal',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(Math.abs(value));
+
+    return `${value < 0 ? '-' : ''}${formattedValue} ${currency} `;
+};
 
 export const capitalise = (name: string) => {
     return name.toUpperCase().charAt(0) + name.toLowerCase().slice(1);
