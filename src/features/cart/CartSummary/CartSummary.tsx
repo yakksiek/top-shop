@@ -1,74 +1,15 @@
-import styled from 'styled-components';
-import { FaCcMastercard, FaCcVisa, FaCcPaypal, FaApplePay } from 'react-icons/fa';
-
-import * as t from '../../../types';
-import * as h from '../../../utils/helpers';
+import { FaApplePay, FaCcMastercard, FaCcPaypal, FaCcVisa } from 'react-icons/fa';
 
 import Button from '../../../components/Button';
 import Heading from '../../../components/Heading';
 import { useLoginModalContext } from '../../../contexts/LoginModalContext';
+import * as t from '../../../types';
+import * as h from '../../../utils/helpers';
 import { useUser } from '../../authentication/useUser';
 
+import { StyledHeader, StyledPaymentInfoWrapper, StyledRow, StyledSummary, StyledWrapper } from './CartSummary.styled';
+
 const DELIVERY = 16;
-
-const StyledWrapper = styled.div`
-    background-color: #faf9f8;
-    padding: 1.5rem;
-`;
-
-const StyledRow = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-
-    span {
-        font-size: 1rem;
-    }
-
-    .discount-label {
-        font-size: 0.75rem;
-    }
-
-    .discount-button {
-        background-color: transparent;
-        border: none;
-        text-decoration: underline;
-        font-size: 0.75rem;
-    }
-
-    &.total {
-        border-top: 1px solid var(--color-black);
-        padding: 1rem 0;
-
-        span {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-    }
-`;
-
-const StyledHeader = styled.div`
-    margin-bottom: 1rem;
-    border-bottom: var(--border-standard);
-`;
-
-const StyledSummary = styled.div`
-    margin-bottom: 1rem;
-`;
-
-const StyledPaymentInfoWrapper = styled.div`
-    p {
-        font-size: 0.75rem;
-        color: var(--color-grey-500);
-        margin-bottom: 0.25rem;
-    }
-
-    ul {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-`;
 
 interface CartProductListProps {
     products: t.Product[];
@@ -86,10 +27,10 @@ function CartSummary({ products }: CartProductListProps) {
     return (
         <StyledWrapper>
             <StyledHeader>
-                <StyledRow>
+                {/* <StyledRow>
                     <p className='discount-label'>Discounts</p>
                     <button className='discount-button'>Apply discount</button>
-                </StyledRow>
+                </StyledRow> */}
                 {!isAuthenticated && (
                     <>
                         <Heading as='h5' $marginBottom={false}>
