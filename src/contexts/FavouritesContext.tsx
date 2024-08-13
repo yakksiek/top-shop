@@ -10,6 +10,7 @@ interface FavouritesContextType {
     favouriteItems: t.FavouritesList[];
     addItemToFavourites: (product: t.Product) => void;
     removeItemFromFavourites: (itemToRemoveId: string | number) => void;
+    handleSetFavourites: (newFavourites: t.FavouritesList[]) => void;
 }
 
 const FavouritesContext = createContext<FavouritesContextType | null>(null);
@@ -48,8 +49,19 @@ function FavouritesContextProvider({ children }: { children: ReactNode }) {
         setFavouriteItems(newState);
     }
 
+    function handleSetFavourites(newFavArr: t.FavouritesList[]) {
+        const areFavouriteArraysTheSame = h.arraysAreEqual(newFavArr, favouriteItems);
+        if (areFavouriteArraysTheSame) return;
+
+        const combinedFavouritesArr = h.uniqueObjectsByProductId(newFavArr, favouriteItems);
+
+        setFavouriteItems(combinedFavouritesArr);
+    }
+
     return (
-        <FavouritesContext.Provider value={{ addItemToFavourites, favouriteItems, removeItemFromFavourites }}>
+        <FavouritesContext.Provider
+            value={{ addItemToFavourites, favouriteItems, removeItemFromFavourites, handleSetFavourites }}
+        >
             {children}
         </FavouritesContext.Provider>
     );

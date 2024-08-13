@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import * as h from '../../utils/helpers';
 import Button from '../../components/Button';
-import { StyledForm, FormRow, Input, PasswordIndicator } from '../../components/Form';
+import { FormRow, Input, PasswordIndicator, StyledForm } from '../../components/Form';
+import SubmitMessage from '../../components/Form/SubmitMessage';
 import SpinnerMini from '../../components/SpinnerMini';
+import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import { StyledForgotPassButton } from './LoginForm.styled';
 import { useLogin } from './useLogin';
-import SubmitMessage from '../../components/Form/SubmitMessage';
-import { useFavouritesContext } from '../../contexts/FavouritesContext';
-import useUpdateUsersFavourites from '../product/useUpdateUsersFavourites';
 
 interface LoginFormProps {
     toggleModal: () => void;
@@ -31,8 +29,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     });
     const { errors } = formState;
     const { isPending, login, loginError, setLoginError } = useLogin();
-    const { updateUserFavourites } = useUpdateUsersFavourites();
-    const { favouriteItems } = useFavouritesContext();
+    const { handleSetFavourites } = useFavouritesContext();
 
     function onSubmit(data: FormData) {
         if (!data.email || !data.password) return;
@@ -47,13 +44,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                     reset();
 
                     const userDataFavourites = data.user.user_metadata.favourites;
-
-                    const areFavouriteArraysTheSame = h.arraysAreEqual(userDataFavourites, favouriteItems);
-                    if (areFavouriteArraysTheSame) return;
-
-                    const combinedFavouritesArr = h.uniqueObjectsByProductId(userDataFavourites, favouriteItems);
-
-                    updateUserFavourites(combinedFavouritesArr);
+                    handleSetFavourites(userDataFavourites);
                 },
             },
         );
