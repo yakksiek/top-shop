@@ -68,6 +68,7 @@ export const StyledLabel = styled.div`
 
 export const StyledButtonCart = styled.button`
     padding: 0.5rem;
+    right: 0.25rem;
     border-radius: 100vw;
     width: 2rem;
     height: 2rem;
