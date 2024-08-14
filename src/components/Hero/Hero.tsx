@@ -54,7 +54,7 @@ function Hero({ heroImage }: HeroProps) {
                     <StyledContentWrapper>
                         <h2>Summer Promotion up to 75% off</h2>
                         <p>Only the Best Deals</p>
-                        <button className='hero-btn'>Check our products</button>
+                        {/* <button className='hero-btn'>Check our products</button> */}
                     </StyledContentWrapper>
                 </CenteredContent>
             </StyledHero>

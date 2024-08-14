@@ -8,7 +8,7 @@ type NavListTypes = 'menu' | 'submenu';
 
 const StyledNavList = styled.ul<{ $active: string; type: NavListTypes }>`
     position: relative;
-    margin-top: 1rem;
+    margin: 1rem 0;
     padding: 0 1rem;
 
     ${({ $active }) =>

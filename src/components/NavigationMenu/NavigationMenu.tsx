@@ -1,30 +1,16 @@
 import { GoArrowLeft } from 'react-icons/go';
-import styled from 'styled-components';
+import { NavLink, useFetcher } from 'react-router-dom';
 
+import { useEffect } from 'react';
 import { useSidebarContext } from '../../contexts/SidebarContext';
 import mainMenu from '../../db/mainMenu.json';
-import { device } from '../../styles/breakpoints';
-import NavigationMenuList from './NavigationMenuList';
-
-import { NavLink } from 'react-router-dom';
+import ProductPreview from '../../features/product/ProductPreview';
+import * as t from '../../types';
+import { StyledSeparator } from '../Form';
+import Heading from '../Heading';
 import { Sidebar, Submenu } from '../Sidebar';
-
-const StyledHeader = styled.header`
-    border-bottom: var(--border-standard);
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-    gap: 1rem;
-    cursor: pointer;
-
-    & > svg {
-        font-size: 1.5rem;
-
-        @media ${device.tablet} {
-            display: none;
-        }
-    }
-`;
+import { StyledBestsellersSection, StyledHeader } from './NavigationMenu.styled';
+import NavigationMenuList from './NavigationMenuList';
 
 function NavigationMenu() {
     const {
@@ -35,10 +21,18 @@ function NavigationMenu() {
         setActiveSubCategory,
         setActiveMainCategory,
     } = useSidebarContext();
+    const fetcher = useFetcher();
+
+    useEffect(() => {
+        if (activeMainCategory && fetcher.state === 'idle') fetcher.load(`/${activeMainCategory.toLocaleLowerCase()}`);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeMainCategory]);
 
     const subCategoryGroup = mainMenu.subcategories.find(subcategory => {
         return subcategory.path === activeSubCategory.toLowerCase();
     });
+
+    console.log(fetcher.data);
 
     return (
         <Sidebar toggleSidebar={toggleSidebar} isOpen={isOpen} slideFrom='left'>
@@ -67,7 +61,19 @@ function NavigationMenu() {
                     clickHandler={setActiveSubCategory}
                     activeCategory={activeSubCategory}
                 />
-
+                {fetcher.data && (
+                    <>
+                        <StyledSeparator />
+                        <StyledBestsellersSection>
+                            <Heading as='h5'>{fetcher.data.description}</Heading>
+                            <ul>
+                                {fetcher.data.bestsellers.map((item: t.Product) => (
+                                    <ProductPreview product={item} />
+                                ))}
+                            </ul>
+                        </StyledBestsellersSection>
+                    </>
+                )}
                 <Submenu isOpen={activeSubCategory ? true : false} slideFrom='left'>
                     <StyledHeader onClick={() => setActiveSubCategory('')}>
                         <GoArrowLeft />
