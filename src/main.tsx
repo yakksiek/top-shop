@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import addProductToFavourites from './api/addProductToFavouritesAction.ts';
-import deleteFavouriteAction from './api/deleteFavouriteAction.ts';
 import mainPageLoader from './api/mainPageLoader.ts';
 import productListLoader from './api/productListLoader.ts';
 import productLoader from './api/productLoader.ts';
@@ -18,31 +16,24 @@ import { SidebarContextProvider } from './contexts/SidebarContext.tsx';
 import GlobalStyles from './styles/GlobalStyles.ts';
 import Cart from './views/Cart.tsx';
 import Dashboard from './views/Dashboard.tsx';
+import ErrorPage from './views/ErrorPage.tsx';
 import Favourites from './views/Favourites.tsx';
 import MainPage from './views/MainPage.tsx';
+import PasswordReset from './views/PasswordReset.tsx';
 import ProductDetails from './views/ProductDetails.tsx';
 import ProductsList from './views/ProductsList.tsx';
-import PasswordReset from './views/PasswordReset.tsx';
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
-        path: '/add-to-favourites/:productId',
-        action: addProductToFavourites,
-    },
-    {
-        path: '/delete-from-favourites/:favouritesId',
-        action: deleteFavouriteAction,
-    },
-    {
         path: '',
+        errorElement: <ErrorPage />,
         element: <AppLayout />,
-        // errorElement: <ErrorPage />,
         children: [
             { path: '/:gender?', element: <MainPage />, loader: mainPageLoader },
-            { path: 'favourites', element: <Favourites /> },
-            { path: 'cart', element: <Cart /> },
+            { path: '/favourites', element: <Favourites /> },
+            { path: '/cart', element: <Cart /> },
             { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },
             { path: '/:gender/:category/:subcategory/:productId', element: <ProductDetails />, loader: productLoader },
             {

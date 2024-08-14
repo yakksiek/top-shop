@@ -1,10 +1,16 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
 import { BASE_URL } from '../contants/api';
 
-function productLoader({ params }: LoaderFunctionArgs) {
+async function productLoader({ params }: LoaderFunctionArgs) {
     const { productId } = params;
 
-    return fetch(`${BASE_URL}/products/${productId}`);
+    const response = await fetch(`${BASE_URL}/products/${productId}`);
+
+    if (!response.ok) {
+        throw new Response('Product not found', { status: 404 });
+    }
+
+    return response.json();
 }
 
 export default productLoader;
