@@ -87,7 +87,7 @@ function ProductListItem({ product, variant }: ProductProps) {
                 </StyledImgContainer>
                 <StyledInfoContainer>
                     <StyledLabel>
-                        <p>{productName}</p>
+                        <h4>{productName}</h4>
                         <p>PLN {pricePLN}</p>
                     </StyledLabel>
                     {wishlistView && (

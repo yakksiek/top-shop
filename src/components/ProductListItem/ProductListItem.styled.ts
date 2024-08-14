@@ -51,11 +51,19 @@ export const StyledInfoContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0.5rem;
 `;
 
 export const StyledLabel = styled.div`
-    line-height: 1.2;
+    line-height: 1.25;
+
+    h4 {
+        font-size: 0.85rem;
+        font-weight: 400;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
 `;
 
 export const StyledButtonCart = styled.button`
