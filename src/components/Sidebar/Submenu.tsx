@@ -27,7 +27,8 @@ function Submenu({
     return (
         <StyledSubmenu $isOpen={isOpen ? true : false} $slideFrom={slideFrom} $depth={depth}>
             <StyledHeader>
-                {depth > 1 && goUpOneLevelHandler && <GoArrowLeft onClick={goUpOneLevelHandler} />}
+                {/* {depth > 1 && goUpOneLevelHandler && <GoArrowLeft onClick={goUpOneLevelHandler} />} */}
+                <GoArrowLeft onClick={goUpOneLevelHandler} />
                 <NavLink to={navLink} onClick={navLinkClickHandler}>
                     <h2>{title}</h2>
                 </NavLink>

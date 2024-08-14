@@ -50,6 +50,7 @@ function NavigationMenu() {
                     setActiveMainCategory('');
                 }}
                 title={activeMainCategory}
+                goUpOneLevelHandler={() => setActiveMainCategory('')}
             >
                 <NavigationMenuList
                     data={mainMenu.subcategories}
