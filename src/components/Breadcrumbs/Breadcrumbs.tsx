@@ -1,7 +1,8 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useLoaderData, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import * as h from '../../utils/helpers';
+import * as t from '../../types';
 
 const StyledBreadCrumbsList = styled.ul`
     display: flex;
@@ -16,11 +17,13 @@ const StyledBreadCrumbsList = styled.ul`
 
     .active {
         font-weight: 700;
+        pointer-events: none;
     }
 `;
 
 function Breadcrumbs() {
-    const { gender, category, subcategory } = useParams();
+    const { gender, category, subcategory, productId } = useParams();
+    const product = useLoaderData() as t.Product;
 
     const breadcrumbs = [
         {
@@ -34,6 +37,10 @@ function Breadcrumbs() {
         {
             categoryName: h.capitalise(subcategory || ''),
             path: `/${gender}/${category}/${subcategory}`,
+        },
+        {
+            categoryName: h.capitalise(product?.productName || ''),
+            path: `/${gender}/${category}/${subcategory}/${productId}`,
         },
     ].filter(breadcrumb => breadcrumb.categoryName);
 

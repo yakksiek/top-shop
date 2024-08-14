@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// import Breadcrumbs from '../components/Breadcrumbs';
 import MiniSlider from '../components/MiniSlider';
 import ProductDetailsContent from '../components/ProductDetailsContent';
 import Section from '../components/Section';
