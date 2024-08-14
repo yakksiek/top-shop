@@ -67,11 +67,10 @@ interface SeachInputProps {
     type?: 'header';
     value: string;
     onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    closeInputHandler: () => void;
 }
 
-function SearchInput({ type, onChangeHandler, value }: SeachInputProps) {
-    const { handleSearchInputOpen } = useSearchInputContext();
-
+function SearchInput({ type, onChangeHandler, value, closeInputHandler }: SeachInputProps) {
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     };
@@ -88,7 +87,7 @@ function SearchInput({ type, onChangeHandler, value }: SeachInputProps) {
                         <IoSearchOutline />
                     </StyledIconWrapper>
                     <StyledInput
-                        placeholder="Search for 'Tote Bags'"
+                        placeholder="Search for 'heels'"
                         type='search'
                         autoComplete='off'
                         autoCorrect='off'
@@ -99,7 +98,7 @@ function SearchInput({ type, onChangeHandler, value }: SeachInputProps) {
                         onBlur={handleBlur}
                     />
                     {type === 'header' && (
-                        <StyledButton type='button' onClick={handleSearchInputOpen}>
+                        <StyledButton type='button' onClick={closeInputHandler}>
                             <LiaTimesSolid />
                         </StyledButton>
                     )}

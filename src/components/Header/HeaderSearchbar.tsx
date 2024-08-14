@@ -54,7 +54,15 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
     return (
         <>
             <StyledSearchbarWrapper $isOpen={isSearchbarOpen}>
-                <SearchInput type='header' value={filterQuery} onChangeHandler={setQueryHandler} />
+                <SearchInput
+                    type='header'
+                    value={filterQuery}
+                    onChangeHandler={setQueryHandler}
+                    closeInputHandler={() => {
+                        handleSearchInputOpen();
+                        setFilterQuery('');
+                    }}
+                />
             </StyledSearchbarWrapper>
             <StyledContainer $isOpen={isSearchbarOpen}>
                 <StyledGridContainer>
@@ -94,7 +102,13 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
                     </StyledWrapper>
                 </StyledGridContainer>
             </StyledContainer>
-            <StyledOverlay $isOpen={isSearchbarOpen} onClick={handleSearchInputOpen} />
+            <StyledOverlay
+                $isOpen={isSearchbarOpen}
+                onClick={() => {
+                    handleSearchInputOpen();
+                    setFilterQuery('');
+                }}
+            />
         </>
     );
 }
