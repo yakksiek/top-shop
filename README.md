@@ -13,7 +13,7 @@ This project is a minimalistic online shop built using React, TypeScript, React 
 -   **React Query and React Router**: Both used for data fetching.
 -   **User's favourites**: Using both local storage and supabase for user's favourites.
 -   **Forms**: Uses React Hook Form for form validation.
--   **Backend**: Backend build in JSON and published on Vercel.
+-   **Backend**: Backend built in JSON and published on Vercel.
 
 &nbsp;
 
