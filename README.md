@@ -40,10 +40,10 @@ The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/
 
 ## 🤔 Solutions provided in the project
 
-**Handling User's Favourites:** When not logged in, favourites are stored in local storage. After logging in, they are synced with the user's account.
-**Sidebar Navigation Menu:** The navigation menu is multilayered and offers fetching and rendering of bestsellers according to the category type.
-**Header Searchbar:** The header searchbar is connected to rendering bestsellers and features a smooth animation with a delay.
-**Product Page:** The product page implements two galleries for mobile and desktop, offering a minimalistic experience that emphasizes product photos.
+-   **Handling User's Favourites:** When not logged in, favourites are stored in local storage. After logging in, they are synced with the user's account.
+-   **Sidebar Navigation Menu:** The navigation menu is multilayered and offers fetching and rendering of bestsellers according to the category type.
+-   **Header Searchbar:** The header searchbar is connected to rendering bestsellers and features a smooth animation with a delay.
+-   **Product Page:** The product page implements two galleries for mobile and desktop, offering a minimalistic experience that emphasizes product photos.
 
 &nbsp;
 
