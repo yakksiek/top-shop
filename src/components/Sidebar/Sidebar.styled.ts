@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { device } from '../../styles/breakpoints';
+import { SIDEBAR_OVERLAY_Z_INDEX } from '../../contants/z-indexes';
 
 interface SidebarProps {
     $isOpen: boolean;
@@ -95,7 +96,7 @@ export const StyledOverlay = styled.div<StyledOverlayProps>`
     opacity: 0;
     transition: opacity var(--animation-and-timing);
     visibility: hidden;
-    z-index: 1;
+    z-index: ${SIDEBAR_OVERLAY_Z_INDEX};
 
     ${({ $isOpen }) =>
         $isOpen &&

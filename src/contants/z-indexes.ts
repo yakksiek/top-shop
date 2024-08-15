@@ -1,3 +1,4 @@
 export const HEADER_SEARCHBAR_MOBILE_Z_INDEX = 5;
 export const HEADER_SEARCHBAR_TABLET_Z_INDEX = 16;
 export const HEADER_Z_INDEX = 10;
+export const SIDEBAR_OVERLAY_Z_INDEX = 10;

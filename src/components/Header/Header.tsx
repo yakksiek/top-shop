@@ -7,10 +7,11 @@ import Menu from '../Menu';
 import NavLinks from '../NavLinks';
 import Wrapper from '../Wrapper';
 
+import { useEffect, useState } from 'react';
+import { NavigationMenu } from '../NavigationMenu';
 import { StyledHeader } from './Header.styled';
 import HeaderSearchbar from './HeaderSearchbar';
-import { NavigationMenu } from '../NavigationMenu';
-import { useState, useEffect } from 'react';
+import LoginModal from '../../features/authentication/Identification';
 
 function Header() {
     const { isOpen: isSidebarOpen } = useSidebarContext();
@@ -31,6 +32,7 @@ function Header() {
         <Wrapper type='wide'>
             <StyledHeader $isOpen={isSidebarOpen} className={!isAtTop ? 'border' : ''}>
                 <NavigationMenu />
+
                 <Menu />
                 <Link to='/' className='logo-wrapper'>
                     <Heading as='h1'>T.SHOP</Heading>
@@ -38,6 +40,7 @@ function Header() {
                 <NavLinks />
             </StyledHeader>
             <HeaderSearchbar isSearchbarOpen={isSearchbarOpen} handleSearchInputOpen={handleSearchInputOpen} />
+            <LoginModal />
         </Wrapper>
     );
 }
