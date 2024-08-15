@@ -22,18 +22,19 @@ export const StyledSearchbarWrapper = styled.div<StyledSearchbarWrapperProps>`
     ${({ $isOpen }) =>
         $isOpen &&
         css`
-            top: calc(5.5rem - 1px);
+            top: var(--header-height);
             transform: translateY(0);
         `}
 
     @media ${device.tablet} {
         z-index: ${HEADER_SEARCHBAR_TABLET_Z_INDEX};
         transform: translateY(-200%);
+
         ${({ $isOpen }) =>
             $isOpen &&
             css`
                 transform: translateY(-100%);
-            `}
+            `};
     }
 `;
 
@@ -45,6 +46,7 @@ export const StyledContainer = styled.div<StyledFlexContainerProps>`
     width: 100%;
     display: grid;
     transition: var(--animation-and-timing) grid-template-rows;
+
     position: fixed;
     background-color: var(--color-grey-0);
     top: 0;
@@ -55,15 +57,14 @@ export const StyledContainer = styled.div<StyledFlexContainerProps>`
     ${({ $isOpen }) =>
         $isOpen &&
         css`
-            top: calc(5.5rem - 1px);
-            grid-template-rows: 1fr;
-            transform: translateY(0);
+            top: var(--header-height);
             transition-delay: 0.3s;
+            grid-template-rows: 1fr;
             overflow-y: auto;
-            height: calc(100vh - 11rem);
 
             @media ${device.mobile} {
-                top: calc(11rem - 1px);
+                top: calc(var(--header-height) * 2);
+                height: fit-content;
             }
 
             @media ${device.tablet} {

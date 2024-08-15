@@ -4,7 +4,6 @@ import LoginModal from '../features/authentication/Identification';
 import Footer from './Footer';
 import Header from './Header';
 import MainContent from './MainContent';
-import { NavigationMenu } from './NavigationMenu';
 
 const StyledAppLayout = styled.div`
     width: 100%;
@@ -16,7 +15,6 @@ function AppLayout() {
         <StyledAppLayout>
             <MainContent>
                 <Header />
-                <NavigationMenu />
                 <LoginModal />
                 <Outlet />
             </MainContent>

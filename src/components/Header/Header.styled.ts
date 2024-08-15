@@ -20,6 +20,21 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
         padding: 0 5px;
     }
 
+    @media ${device.tablet} {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-color: var(--color-grey-0);
+        z-index: ${HEADER_Z_INDEX};
+        transition: border-bottom var(--animation-and-timing);
+        border-bottom: 1px solid transparent;
+
+        &.border {
+            border-bottom: var(--border-standard);
+        }
+    }
+
     .logo-wrapper {
         position: absolute;
         left: 50%;

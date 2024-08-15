@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { device } from './breakpoints';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -80,6 +81,10 @@ body {
   font-weight: 200;
   transition: color 0.3s, background-color 0.3s;
   line-height: 1.5;
+
+  @media ${device.tablet} {
+    padding-top: var(--header-height);
+  }
   
 }
 

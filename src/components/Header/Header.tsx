@@ -9,14 +9,28 @@ import Wrapper from '../Wrapper';
 
 import { StyledHeader } from './Header.styled';
 import HeaderSearchbar from './HeaderSearchbar';
+import { NavigationMenu } from '../NavigationMenu';
+import { useState, useEffect } from 'react';
 
 function Header() {
     const { isOpen: isSidebarOpen } = useSidebarContext();
     const { isOpen: isSearchbarOpen, handleSearchInputOpen } = useSearchInputContext();
+    const [isAtTop, setIsAtTop] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollPos = window.pageYOffset;
+            setIsAtTop(currentScrollPos === 0);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <Wrapper type='wide'>
-            <StyledHeader $isOpen={isSidebarOpen}>
+            <StyledHeader $isOpen={isSidebarOpen} className={!isAtTop ? 'border' : ''}>
+                <NavigationMenu />
                 <Menu />
                 <Link to='/' className='logo-wrapper'>
                     <Heading as='h1'>T.SHOP</Heading>
