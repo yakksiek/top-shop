@@ -2,7 +2,7 @@
 
 # TopShop - online shop with login function
 
-See the live version of [TopShop](https://top-shop-sooty.vercel.app/women).
+See the live version of <a href="https://top-shop-sooty.vercel.app" target="_blank">TopShop</a>.
 
 This project is a minimalistic online shop built using React, TypeScript, React Router v6, React Query and Styled-Components. It leverages Supabase for login authorisation and account creation.
 
@@ -13,6 +13,7 @@ This project is a minimalistic online shop built using React, TypeScript, React 
 -   **React Query and React Router**: Both used for data fetching.
 -   **User's favourites**: Using both local storage and supabase for user's favourites.
 -   **Forms**: Uses React Hook Form for form validation.
+-   **Backend**: Backend build in JSON and published on Vercel.
 
 &nbsp;
 
