@@ -56,6 +56,10 @@ The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/
 
 ![product page desktop](src/images/cart-view.png)
 
+-   **Login view**:
+
+![Login view](src/images/login-view.png)
+
 &nbsp;
 
 ## 💭 Possible future features
