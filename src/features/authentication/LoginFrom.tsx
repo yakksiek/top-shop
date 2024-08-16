@@ -79,6 +79,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                 <StyledForgotPassButton
                     onClick={e => {
                         e.preventDefault();
+                        e.stopPropagation();
                         toggleRecoverPassView;
                     }}
                     type='button'
