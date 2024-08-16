@@ -19,7 +19,7 @@ function LoginModal() {
     };
 
     return (
-        <Sidebar toggleSidebar={toggleLoginModal} isOpen={isOpen} slideFrom='right'>
+        <Sidebar toggleSidebarNavigation={toggleLoginModal} isOpen={isOpen} slideFrom='right'>
             <StyledWrapper>
                 {!isCreateAccountView ? (
                     <LoginForm toggleModal={toggleLoginModal} toggleCreateAccountView={toggleCreateAccountView} />

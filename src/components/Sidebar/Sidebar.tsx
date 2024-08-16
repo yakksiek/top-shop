@@ -2,16 +2,16 @@ import React from 'react';
 import { StyledOverlay, StyledSidebar } from './Sidebar.styled';
 
 interface SidebarProps {
-    toggleSidebar: () => void;
+    toggleSidebarNavigation: () => void;
     isOpen: boolean;
     children: React.ReactNode;
     slideFrom: 'left' | 'right';
 }
 
-function Sidebar({ toggleSidebar, isOpen, children, slideFrom }: SidebarProps) {
+function Sidebar({ toggleSidebarNavigation, isOpen, children, slideFrom }: SidebarProps) {
     return (
         <>
-            <StyledOverlay onClick={toggleSidebar} $isOpen={isOpen}></StyledOverlay>
+            <StyledOverlay onClick={toggleSidebarNavigation} $isOpen={isOpen}></StyledOverlay>
             <StyledSidebar $isOpen={isOpen} $slideFrom={slideFrom}>
                 {children}
             </StyledSidebar>

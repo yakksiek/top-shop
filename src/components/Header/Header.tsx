@@ -14,7 +14,7 @@ import HeaderSearchbar from './HeaderSearchbar';
 import LoginModal from '../../features/authentication/Identification';
 
 function Header() {
-    const { isOpen: isSidebarOpen } = useSidebarNavigationContext();
+    const { isOpen: isSidebarNavigationOpen } = useSidebarNavigationContext();
     const { isOpen: isSearchbarOpen, handleSearchInputOpen } = useSearchInputContext();
     const [isAtTop, setIsAtTop] = useState(true);
 
@@ -30,9 +30,9 @@ function Header() {
 
     return (
         <Wrapper type='wide'>
-            <StyledHeader $isOpen={isSidebarOpen} className={!isAtTop ? 'border' : ''}>
-                <NavigationMenu />
+            <StyledHeader $isOpen={isSidebarNavigationOpen} className={!isAtTop ? 'border' : ''}>
                 <Menu />
+                <NavigationMenu />
                 <Link to='/' className='logo-wrapper'>
                     <Heading as='h1'>T.SHOP</Heading>
                 </Link>

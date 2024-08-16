@@ -43,7 +43,7 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
     const [buttonText, setButtonText] = useState(CART_BUTTON_TEXT);
     const productInFavourites = favouriteItems.find(favItem => favItem.productId === product.id);
 
-    const handleToggleSidebar = (contentType?: SidebarContentType) => {
+    const handletoggleSidebarNavigation = (contentType?: SidebarContentType) => {
         if (contentType) {
             setSidebarContent(contentType);
         }
@@ -95,18 +95,21 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
                 </Button>
             </StyledProductMainContent>
             <StyledProductFooter>
-                <div className='row' onClick={() => handleToggleSidebar('description')}>
+                <div className='row' onClick={() => handletoggleSidebarNavigation('description')}>
                     <span>Description</span>
                     <SlArrowRight />
                 </div>
-                <div className='row' onClick={() => handleToggleSidebar('maintenanceInfo')}>
+                <div className='row' onClick={() => handletoggleSidebarNavigation('maintenanceInfo')}>
                     <span>Maintenance Information</span>
                     <SlArrowRight />
                 </div>
             </StyledProductFooter>
-            <Sidebar toggleSidebar={handleToggleSidebar} isOpen={sideInfo} slideFrom={'right'}>
+            <Sidebar toggleSidebarNavigation={handletoggleSidebarNavigation} isOpen={sideInfo} slideFrom={'right'}>
                 <StyledModalWrapper>
-                    <ModalHeader toggleModal={handleToggleSidebar} headerText={SidebarContentLabel[sidebarContent]} />
+                    <ModalHeader
+                        toggleModal={handletoggleSidebarNavigation}
+                        headerText={SidebarContentLabel[sidebarContent]}
+                    />
                     <p>{product[sidebarContent]}</p>
                 </StyledModalWrapper>
             </Sidebar>

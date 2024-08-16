@@ -98,11 +98,11 @@ const StyledHamburger = styled.span<StyledHamburgerProps>`
 `;
 
 function SidebarMenuButton() {
-    const { isOpen, toggleSidebar } = useSidebarNavigationContext();
+    const { isOpen, toggleSidebarNavigation } = useSidebarNavigationContext();
     const { isOpen: isSearchbarOpen, handleSearchInputOpen } = useSearchInputContext();
 
     function openMenuHandler() {
-        toggleSidebar();
+        toggleSidebarNavigation();
         if (isSearchbarOpen) handleSearchInputOpen();
     }
 

@@ -14,7 +14,7 @@ import NavigationMenuList from './NavigationMenuList';
 function NavigationMenu() {
     const {
         isOpen,
-        toggleSidebar,
+        toggleSidebarNavigation,
         activeMainCategory,
         activeSubCategory,
         setActiveSubCategory,
@@ -32,7 +32,7 @@ function NavigationMenu() {
     });
 
     return (
-        <Sidebar toggleSidebar={toggleSidebar} isOpen={isOpen} slideFrom='left'>
+        <Sidebar toggleSidebarNavigation={toggleSidebarNavigation} isOpen={isOpen} slideFrom='left'>
             <NavigationMenuList
                 data={mainMenu.categories}
                 type='menu'
@@ -46,7 +46,7 @@ function NavigationMenu() {
                 depth={1}
                 navLink={activeMainCategory.toLocaleLowerCase()}
                 navLinkClickHandler={() => {
-                    toggleSidebar();
+                    toggleSidebarNavigation();
                     setActiveMainCategory('');
                 }}
                 title={activeMainCategory}
@@ -65,7 +65,7 @@ function NavigationMenu() {
                             <Heading as='h5'>{fetcher.data.description}</Heading>
                             <ul>
                                 {fetcher.data.bestsellers.map((item: t.Product) => (
-                                    <div key={item.id} onClick={toggleSidebar}>
+                                    <div key={item.id} onClick={toggleSidebarNavigation}>
                                         <ProductPreview product={item} />
                                     </div>
                                 ))}
@@ -81,7 +81,7 @@ function NavigationMenu() {
                 depth={2}
                 navLink={`${activeMainCategory.toLocaleLowerCase()}/${activeSubCategory.toLowerCase()}`}
                 navLinkClickHandler={() => {
-                    toggleSidebar();
+                    toggleSidebarNavigation();
                     setActiveMainCategory('');
                     setActiveSubCategory('');
                 }}

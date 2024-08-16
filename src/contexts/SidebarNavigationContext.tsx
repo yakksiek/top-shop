@@ -3,7 +3,7 @@ import useNoScroll from '../hooks/useNoScroll';
 
 interface SidebarNavigationContextType {
     isOpen: boolean;
-    toggleSidebar: () => void;
+    toggleSidebarNavigation: () => void;
     activeMainCategory: string;
     setActiveMainCategory: (categoryName: string) => void;
     activeSubCategory: string;
@@ -18,7 +18,7 @@ function SidebarNavigationContextProvider({ children }: { children: ReactNode })
     const [activeSubCategory, setActiveSubCategory] = useState('');
     useNoScroll(isOpen);
 
-    function toggleSidebar() {
+    function toggleSidebarNavigation() {
         setIsOpen(prevState => !prevState);
         setActiveMainCategory('');
         setActiveSubCategory('');
@@ -28,7 +28,7 @@ function SidebarNavigationContextProvider({ children }: { children: ReactNode })
         <SidebarNavigationContext.Provider
             value={{
                 isOpen,
-                toggleSidebar,
+                toggleSidebarNavigation,
                 activeMainCategory,
                 setActiveMainCategory,
                 activeSubCategory,

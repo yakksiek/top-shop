@@ -106,7 +106,7 @@ interface SidebarNavListProps {
 }
 
 function NavigationMenuList({ data, type, clickHandler, activeCategory, useLink, currentPath }: SidebarNavListProps) {
-    const { toggleSidebar } = useSidebarNavigationContext();
+    const { toggleSidebarNavigation } = useSidebarNavigationContext();
 
     return (
         <StyledNavList $active={activeCategory} type={type}>
@@ -134,7 +134,11 @@ function NavigationMenuList({ data, type, clickHandler, activeCategory, useLink,
                 );
 
                 return useLink ? (
-                    <NavLink to={currentPath + '/' + item.path} key={item.categoryName} onClick={toggleSidebar}>
+                    <NavLink
+                        to={currentPath + '/' + item.path}
+                        key={item.categoryName}
+                        onClick={toggleSidebarNavigation}
+                    >
                         {content}
                     </NavLink>
                 ) : (
