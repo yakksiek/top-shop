@@ -1,7 +1,7 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { useSidebarContext } from '../../contexts/SidebarContext';
+import { useSidebarNavigationContext } from '../../contexts/SidebarNavigationContext';
 import { device } from '../../styles/breakpoints';
 
 type NavListTypes = 'menu' | 'submenu';
@@ -106,7 +106,7 @@ interface SidebarNavListProps {
 }
 
 function NavigationMenuList({ data, type, clickHandler, activeCategory, useLink, currentPath }: SidebarNavListProps) {
-    const { toggleSidebar } = useSidebarContext();
+    const { toggleSidebar } = useSidebarNavigationContext();
 
     return (
         <StyledNavList $active={activeCategory} type={type}>

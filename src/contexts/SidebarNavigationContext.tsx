@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 import useNoScroll from '../hooks/useNoScroll';
 
-interface SidebarContextType {
+interface SidebarNavigationContextType {
     isOpen: boolean;
     toggleSidebar: () => void;
     activeMainCategory: string;
@@ -10,9 +10,9 @@ interface SidebarContextType {
     setActiveSubCategory: (subcategoryName: string) => void;
 }
 
-const SidebarContext = createContext<SidebarContextType | null>(null);
+const SidebarNavigationContext = createContext<SidebarNavigationContextType | null>(null);
 
-function SidebarContextProvider({ children }: { children: ReactNode }) {
+function SidebarNavigationContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
     const [activeMainCategory, setActiveMainCategory] = useState('');
     const [activeSubCategory, setActiveSubCategory] = useState('');
@@ -25,7 +25,7 @@ function SidebarContextProvider({ children }: { children: ReactNode }) {
     }
 
     return (
-        <SidebarContext.Provider
+        <SidebarNavigationContext.Provider
             value={{
                 isOpen,
                 toggleSidebar,
@@ -36,12 +36,12 @@ function SidebarContextProvider({ children }: { children: ReactNode }) {
             }}
         >
             {children}
-        </SidebarContext.Provider>
+        </SidebarNavigationContext.Provider>
     );
 }
 
-function useSidebarContext() {
-    const context = useContext(SidebarContext);
+function useSidebarNavigationContext() {
+    const context = useContext(SidebarNavigationContext);
 
     if (!context) throw new Error('Sidebar context was used outside of Sidebar provider');
 
@@ -49,4 +49,4 @@ function useSidebarContext() {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export { SidebarContextProvider, useSidebarContext };
+export { SidebarNavigationContextProvider, useSidebarNavigationContext };

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { useSearchInputContext } from '../../contexts/SearchInputContext';
-import { useSidebarContext } from '../../contexts/SidebarContext';
+import { useSidebarNavigationContext } from '../../contexts/SidebarNavigationContext';
 import Heading from '../Heading';
 import Menu from '../Menu';
 import NavLinks from '../NavLinks';
@@ -14,7 +14,7 @@ import HeaderSearchbar from './HeaderSearchbar';
 import LoginModal from '../../features/authentication/Identification';
 
 function Header() {
-    const { isOpen: isSidebarOpen } = useSidebarContext();
+    const { isOpen: isSidebarOpen } = useSidebarNavigationContext();
     const { isOpen: isSearchbarOpen, handleSearchInputOpen } = useSearchInputContext();
     const [isAtTop, setIsAtTop] = useState(true);
 
@@ -32,7 +32,6 @@ function Header() {
         <Wrapper type='wide'>
             <StyledHeader $isOpen={isSidebarOpen} className={!isAtTop ? 'border' : ''}>
                 <NavigationMenu />
-
                 <Menu />
                 <Link to='/' className='logo-wrapper'>
                     <Heading as='h1'>T.SHOP</Heading>

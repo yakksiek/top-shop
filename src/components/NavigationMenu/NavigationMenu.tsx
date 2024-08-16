@@ -1,7 +1,7 @@
 import { useFetcher } from 'react-router-dom';
 
 import { useEffect } from 'react';
-import { useSidebarContext } from '../../contexts/SidebarContext';
+import { useSidebarNavigationContext } from '../../contexts/SidebarNavigationContext';
 import mainMenu from '../../db/mainMenu.json';
 import ProductPreview from '../../features/product/ProductPreview';
 import * as t from '../../types';
@@ -19,7 +19,7 @@ function NavigationMenu() {
         activeSubCategory,
         setActiveSubCategory,
         setActiveMainCategory,
-    } = useSidebarContext();
+    } = useSidebarNavigationContext();
     const fetcher = useFetcher();
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { device } from '../../styles/breakpoints';
 import { HEADER_Z_INDEX } from '../../contants/z-indexes';
+import { device } from '../../styles/breakpoints';
 
 interface StyledHeaderProps {
     $isOpen: boolean;
@@ -13,9 +13,9 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
     margin: 0 auto;
     position: relative;
     height: var(--header-height);
+    z-index: ${HEADER_Z_INDEX};
 
     @media ${device.mobile} {
-        z-index: ${HEADER_Z_INDEX};
         background-color: var(--color-grey-0);
         padding: 0 5px;
     }
@@ -26,7 +26,6 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
         left: 0;
         top: 0;
         background-color: var(--color-grey-0);
-        z-index: ${HEADER_Z_INDEX};
         transition: border-bottom var(--animation-and-timing);
         border-bottom: 1px solid transparent;
 

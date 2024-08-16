@@ -2,7 +2,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 import styled, { css } from 'styled-components';
 import { useSearchInputContext } from '../../contexts/SearchInputContext';
 import { device } from '../../styles/breakpoints';
-import { useSidebarContext } from '../../contexts/SidebarContext';
+import { useSidebarNavigationContext } from '../../contexts/SidebarNavigationContext';
 
 interface StyledInputSearchButtonProps {
     $isOpen: boolean;
@@ -26,7 +26,7 @@ const StyledInputSearchButton = styled.button<StyledInputSearchButtonProps>`
 
 function InputSearchButton() {
     const { handleSearchInputOpen } = useSearchInputContext();
-    const { isOpen, toggleSidebar } = useSidebarContext();
+    const { isOpen, toggleSidebar } = useSidebarNavigationContext();
 
     function handleSearchbarOpen() {
         handleSearchInputOpen();

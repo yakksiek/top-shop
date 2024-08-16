@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { useSidebarContext } from '../../contexts/SidebarContext';
+import { useSidebarNavigationContext } from '../../contexts/SidebarNavigationContext';
 import { useSearchInputContext } from '../../contexts/SearchInputContext';
 
 const StyledButton = styled.button`
@@ -98,7 +98,7 @@ const StyledHamburger = styled.span<StyledHamburgerProps>`
 `;
 
 function SidebarMenuButton() {
-    const { isOpen, toggleSidebar } = useSidebarContext();
+    const { isOpen, toggleSidebar } = useSidebarNavigationContext();
     const { isOpen: isSearchbarOpen, handleSearchInputOpen } = useSearchInputContext();
 
     function openMenuHandler() {

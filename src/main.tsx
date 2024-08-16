@@ -12,7 +12,7 @@ import { CartContextProvider } from './contexts/CartContext.tsx';
 import { FavouritesContextProvider } from './contexts/FavouritesContext.tsx';
 import { LoginModalContextProvider } from './contexts/LoginModalContext.tsx';
 import { SearchInputContextProvider } from './contexts/SearchInputContext.tsx';
-import { SidebarContextProvider } from './contexts/SidebarContext.tsx';
+import { SidebarNavigationContextProvider } from './contexts/SidebarNavigationContext.tsx';
 import GlobalStyles from './styles/GlobalStyles.ts';
 import Cart from './views/Cart.tsx';
 import Dashboard from './views/Dashboard.tsx';
@@ -63,11 +63,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <LoginModalContextProvider>
                 <FavouritesContextProvider>
                     <CartContextProvider>
-                        <SidebarContextProvider>
+                        <SidebarNavigationContextProvider>
                             <SearchInputContextProvider>
                                 <RouterProvider router={router} />
                             </SearchInputContextProvider>
-                        </SidebarContextProvider>
+                        </SidebarNavigationContextProvider>
                     </CartContextProvider>
                 </FavouritesContextProvider>
             </LoginModalContextProvider>
