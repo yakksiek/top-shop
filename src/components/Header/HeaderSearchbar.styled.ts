@@ -46,53 +46,37 @@ interface StyledFlexContainerProps {
 export const StyledContainer = styled.div<StyledFlexContainerProps>`
     width: 100%;
     display: grid;
-    transition: var(--animation-and-timing) grid-template-rows;
-
     position: fixed;
     background-color: var(--color-grey-0);
-    top: 0;
     left: 0;
-    grid-template-rows: 0fr;
-    z-index: ${HEADER_SEARCHBAR_MOBILE_Z_INDEX};
+    transform: translateY(-200%);
+    transition: var(--animation-and-timing) transform;
 
     ${({ $isOpen }) =>
         $isOpen &&
         css`
-            top: var(--header-height);
             transition-delay: 0.3s;
-            grid-template-rows: 1fr;
             overflow-y: auto;
+            transform: translateY(0);
 
             @media ${device.mobile} {
+                z-index: calc(${HEADER_SEARCHBAR_MOBILE_Z_INDEX} - 1);
                 top: calc(var(--header-height) * 2);
-                height: fit-content;
+                height: calc(100dvh - 11rem);
             }
 
             @media ${device.tablet} {
-                z-index: ${HEADER_SEARCHBAR_TABLET_Z_INDEX};
+                z-index: calc(${HEADER_SEARCHBAR_TABLET_Z_INDEX} - 1);
                 transition-delay: 0.3s;
-                height: auto;
+                grid-template-columns: 1fr 2fr;
+                padding: 0 5vw;
             }
         `}
 `;
 
-export const StyledGridContainer = styled.div`
-    overflow-y: auto;
-    margin: 0 auto;
-    width: 100%;
-
-    @media ${device.tablet} {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-    }
-
-    @media ${device.desktop} {
-        max-width: var(--screen-width-small);
-    }
-`;
-
 export const StyledWrapper = styled.div`
     padding: 1rem;
+
     h2 {
         font-size: 0.75rem;
         text-transform: uppercase;

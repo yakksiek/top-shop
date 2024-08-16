@@ -12,7 +12,6 @@ import { SearchInput } from '../SearchInput';
 
 import {
     StyledContainer,
-    StyledGridContainer,
     StyledNavigationList,
     StyledOverlay,
     StyledProductList,
@@ -65,42 +64,40 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
                 />
             </StyledSearchbarWrapper>
             <StyledContainer $isOpen={isSearchbarOpen}>
-                <StyledGridContainer>
-                    <StyledWrapper>
-                        <Heading as='h2'>{gender}</Heading>
-                        <nav>
-                            <StyledNavigationList>
-                                {menuItems.subcategories.map(subcategoryItem => {
-                                    return (
-                                        <Link
-                                            to={`${gender}/${subcategoryItem.path}`}
-                                            key={subcategoryItem.path}
-                                            onClick={handleSearchInputOpen}
-                                        >
-                                            {subcategoryItem.categoryName}
-                                        </Link>
-                                    );
-                                })}
-                            </StyledNavigationList>
-                        </nav>
-                    </StyledWrapper>
-                    <StyledWrapper>
-                        <Heading as='h2'>Top Products</Heading>
-                        {productsToRender.length > 0 ? (
-                            <StyledProductList>
-                                {productsToRender.map((productItem: t.Product) => (
-                                    <span onClick={handleSearchInputOpen} key={productItem.id}>
-                                        <ProductPreview product={productItem} />
-                                    </span>
-                                ))}
-                            </StyledProductList>
-                        ) : (
-                            <p>
-                                No products with "<strong>{filterQuery}</strong>" parameters
-                            </p>
-                        )}
-                    </StyledWrapper>
-                </StyledGridContainer>
+                <StyledWrapper>
+                    <Heading as='h2'>{gender}</Heading>
+                    <nav>
+                        <StyledNavigationList>
+                            {menuItems.subcategories.map(subcategoryItem => {
+                                return (
+                                    <Link
+                                        to={`${gender}/${subcategoryItem.path}`}
+                                        key={subcategoryItem.path}
+                                        onClick={handleSearchInputOpen}
+                                    >
+                                        {subcategoryItem.categoryName}
+                                    </Link>
+                                );
+                            })}
+                        </StyledNavigationList>
+                    </nav>
+                </StyledWrapper>
+                <StyledWrapper>
+                    <Heading as='h2'>Top Products</Heading>
+                    {productsToRender.length > 0 ? (
+                        <StyledProductList>
+                            {productsToRender.map((productItem: t.Product) => (
+                                <span onClick={handleSearchInputOpen} key={productItem.id}>
+                                    <ProductPreview product={productItem} />
+                                </span>
+                            ))}
+                        </StyledProductList>
+                    ) : (
+                        <p>
+                            No products with "<strong>{filterQuery}</strong>" parameters
+                        </p>
+                    )}
+                </StyledWrapper>
             </StyledContainer>
             <StyledOverlay
                 $isOpen={isSearchbarOpen}
