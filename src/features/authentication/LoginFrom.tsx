@@ -76,14 +76,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                     />
                     <PasswordIndicator showPassword={showPassword} revealHandler={setShowPassword} />
                 </FormRow>
-                <StyledForgotPassButton
-                    onClick={e => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        toggleRecoverPassView;
-                    }}
-                    type='button'
-                >
+                <StyledForgotPassButton onClick={toggleRecoverPassView} type='button'>
                     Forgot your password?
                 </StyledForgotPassButton>
 
