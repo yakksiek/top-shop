@@ -23,17 +23,18 @@ export const StyledSearchbarWrapper = styled.div<StyledSearchbarWrapperProps>`
         $isOpen &&
         css`
             top: var(--header-height);
-            transform: translateY(0);
+            transform: translateY(0%);
         `}
 
     @media ${device.tablet} {
         z-index: ${HEADER_SEARCHBAR_TABLET_Z_INDEX};
-        transform: translateY(-200%);
+        transform: translateY(-300%);
 
         ${({ $isOpen }) =>
             $isOpen &&
             css`
-                transform: translateY(-100%);
+                top: 0;
+                transform: translateY(0%);
             `};
     }
 `;
