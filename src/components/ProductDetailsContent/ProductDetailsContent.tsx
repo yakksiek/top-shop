@@ -1,17 +1,16 @@
+import { useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
-import { SlArrowRight } from 'react-icons/sl';
 import { VscHeartFilled } from 'react-icons/vsc';
 
-import { useState } from 'react';
-import useNoScroll from '../../hooks/useNoScroll';
+import { useCartContext } from '../../contexts/CartContext';
+import { useFavouritesContext } from '../../contexts/FavouritesContext';
+import { useModalSidebarContext } from '../../contexts/ModalSidebarContext';
 import * as t from '../../types';
 import * as h from '../../utils/helpers';
 import Button from '../Button';
 import { ModalHeader, StyledModalWrapper } from '../Modal';
-import { Sidebar } from '../Sidebar';
+import ProductDetailsFooterRow from './ProductDetailsFooterRow';
 
-import { useCartContext } from '../../contexts/CartContext';
-import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import {
     StyledProductDetails,
     StyledProductFooter,
@@ -25,7 +24,7 @@ interface ProductDetailsContentProps {
 
 type SidebarContentType = 'description' | 'maintenanceInfo';
 
-const SidebarContentLabel = {
+const sidebarContentLabel = {
     description: 'Description',
     maintenanceInfo: 'Maintenance Information',
 };
@@ -37,17 +36,17 @@ const ITEM_IN_CART_TEXT = 'Item already in cart';
 function ProductDetailsContent({ product }: ProductDetailsContentProps) {
     const { addItemToCart, cartItems } = useCartContext();
     const { favouriteItems, removeItemFromFavourites, addItemToFavourites } = useFavouritesContext();
-    const [sideInfo, setSideInfo] = useState(false);
-    const [sidebarContent, setSidebarContent] = useState<SidebarContentType>('description');
-    useNoScroll(sideInfo);
+    const { openSidebarModal, closeSidebarModal } = useModalSidebarContext();
     const [buttonText, setButtonText] = useState(CART_BUTTON_TEXT);
     const productInFavourites = favouriteItems.find(favItem => favItem.productId === product.id);
 
-    const handletoggleSidebarNavigation = (contentType?: SidebarContentType) => {
-        if (contentType) {
-            setSidebarContent(contentType);
-        }
-        setSideInfo(prevState => !prevState);
+    const handletoggleSidebarNavigation = (contentType: SidebarContentType) => {
+        openSidebarModal(
+            <StyledModalWrapper>
+                <ModalHeader toggleModal={closeSidebarModal} headerText={sidebarContentLabel[contentType]} />
+                <p>{product[contentType]}</p>
+            </StyledModalWrapper>,
+        );
     };
 
     const handleAddToCart = (product: t.Product) => {
@@ -95,24 +94,18 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
                 </Button>
             </StyledProductMainContent>
             <StyledProductFooter>
-                <div className='row' onClick={() => handletoggleSidebarNavigation('description')}>
-                    <span>Description</span>
-                    <SlArrowRight />
-                </div>
-                <div className='row' onClick={() => handletoggleSidebarNavigation('maintenanceInfo')}>
-                    <span>Maintenance Information</span>
-                    <SlArrowRight />
-                </div>
+                {Object.keys(sidebarContentLabel).map(key => {
+                    const contentType = key as SidebarContentType;
+                    const label = sidebarContentLabel[contentType];
+                    return (
+                        <ProductDetailsFooterRow
+                            key={contentType}
+                            label={label}
+                            onClick={() => handletoggleSidebarNavigation(contentType)}
+                        />
+                    );
+                })}
             </StyledProductFooter>
-            <Sidebar toggleSidebarNavigation={handletoggleSidebarNavigation} isOpen={sideInfo} slideFrom={'right'}>
-                <StyledModalWrapper>
-                    <ModalHeader
-                        toggleModal={handletoggleSidebarNavigation}
-                        headerText={SidebarContentLabel[sidebarContent]}
-                    />
-                    <p>{product[sidebarContent]}</p>
-                </StyledModalWrapper>
-            </Sidebar>
         </StyledProductDetails>
     );
 }

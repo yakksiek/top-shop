@@ -22,6 +22,7 @@ import MainPage from './views/MainPage.tsx';
 import PasswordReset from './views/PasswordReset.tsx';
 import ProductDetails from './views/ProductDetails.tsx';
 import ProductsList from './views/ProductsList.tsx';
+import { ModalSidebarContextProvider } from './contexts/ModalSidebarContext.tsx';
 
 const queryClient = new QueryClient();
 
@@ -60,17 +61,19 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <GlobalStyles />
         <QueryClientProvider client={queryClient}>
-            <LoginModalContextProvider>
-                <FavouritesContextProvider>
-                    <CartContextProvider>
-                        <SidebarNavigationContextProvider>
-                            <SearchInputContextProvider>
-                                <RouterProvider router={router} />
-                            </SearchInputContextProvider>
-                        </SidebarNavigationContextProvider>
-                    </CartContextProvider>
-                </FavouritesContextProvider>
-            </LoginModalContextProvider>
+            <ModalSidebarContextProvider>
+                <LoginModalContextProvider>
+                    <FavouritesContextProvider>
+                        <CartContextProvider>
+                            <SidebarNavigationContextProvider>
+                                <SearchInputContextProvider>
+                                    <RouterProvider router={router} />
+                                </SearchInputContextProvider>
+                            </SidebarNavigationContextProvider>
+                        </CartContextProvider>
+                    </FavouritesContextProvider>
+                </LoginModalContextProvider>
+            </ModalSidebarContextProvider>
         </QueryClientProvider>
     </React.StrictMode>,
 );
