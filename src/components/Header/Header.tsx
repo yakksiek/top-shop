@@ -37,9 +37,9 @@ function Header() {
                     <Heading as='h1'>T.SHOP</Heading>
                 </Link>
                 <NavLinks />
+                <LoginModal />
             </StyledHeader>
             <HeaderSearchbar isSearchbarOpen={isSearchbarOpen} handleSearchInputOpen={handleSearchInputOpen} />
-            <LoginModal />
         </Wrapper>
     );
 }
