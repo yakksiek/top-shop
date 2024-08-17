@@ -10,7 +10,6 @@ const LoginModalContext = createContext<LoginModalContextType | null>(null);
 
 function LoginModalContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
-
     useNoScroll(isOpen);
 
     function toggleLoginModal() {
