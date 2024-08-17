@@ -31,16 +31,17 @@ function LoginModal({ toggleModal, toggleCreateAccountView }: LoginModalProps) {
             <StyledModalWrapper>
                 <h4>I don't have an account yet</h4>
                 <p>Enjoy add benefits and a reacher experience by creating a personal account</p>
-                <button
-                    type='button'
+                <div
+                    onClick={toggleCreateAccountView}
+                    // type='button'
                     // fill={false}
-                    onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-                        e.preventDefault();
-                        toggleCreateAccountView();
-                    }}
+                    // onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                    //     e.preventDefault();
+                    //     toggleCreateAccountView();
+                    // }}
                 >
                     Create My TS account
-                </button>
+                </div>
             </StyledModalWrapper>
         </>
     );
