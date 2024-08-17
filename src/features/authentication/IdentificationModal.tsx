@@ -18,14 +18,14 @@ function IdentificationModal() {
                 {!isCreateAccountView ? (
                     <LoginModal toggleModal={toggleLoginModal} toggleCreateAccountView={toggleCreateAccountView} />
                 ) : (
-                    <CreateAccountForm
-                        toggleCreateAccountView={toggleCreateAccountView}
-                        toggleModal={toggleLoginModal}
-                    />
-                    // <div>
-                    //     <h4>Create account view</h4>
-                    //     <button onClick={toggleCreateAccountView}>go back to login</button>
-                    // </div>
+                    // <CreateAccountForm
+                    //     toggleCreateAccountView={toggleCreateAccountView}
+                    //     toggleModal={toggleLoginModal}
+                    // />
+                    <div>
+                        <h4>Create account view</h4>
+                        <button onClick={toggleCreateAccountView}>go back to login</button>
+                    </div>
                 )}
             </StyledWrapper>
 
