@@ -1,7 +1,7 @@
 import { Sidebar } from '../../components/Sidebar';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
 
-import CreateAccountForm from './CreateAccountForm';
+// import CreateAccountForm from './CreateAccountForm';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
 
