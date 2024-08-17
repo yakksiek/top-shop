@@ -11,7 +11,7 @@ import { useLogin } from './useLogin';
 
 interface LoginFormProps {
     toggleModal: () => void;
-    toggleRecoverPassView: () => void;
+    toggleRecoverPassView?: () => void;
 }
 
 interface FormData {
@@ -51,7 +51,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     }
 
     return (
-        <div>
+        <>
             <h4>I already have an account</h4>
             <StyledForm onSubmit={handleSubmit(onSubmit)} noValidate>
                 <FormRow label='Email' error={errors.email && errors.email.message}>
@@ -76,6 +76,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                     />
                     <PasswordIndicator showPassword={showPassword} revealHandler={setShowPassword} />
                 </FormRow>
+
                 <StyledForgotPassButton onClick={toggleRecoverPassView} type='button'>
                     Forgot your password?
                 </StyledForgotPassButton>
@@ -89,7 +90,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                 <p>password: 123456</p>
                 {loginError && <SubmitMessage message={loginError} type='error' />}
             </StyledForm>
-        </div>
+        </>
     );
 }
 

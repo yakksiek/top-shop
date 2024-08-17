@@ -1,31 +1,31 @@
 import { Sidebar } from '../../components/Sidebar';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
 
-// import CreateAccountForm from './CreateAccountForm';
-import LoginForm from './LoginModal';
+import CreateAccountForm from './CreateAccountForm';
+import LoginModal from './LoginModal';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
     /* z-index: 20; */
 `;
 
-function LoginModal() {
+function IdentificationModal() {
     const { toggleLoginModal, toggleCreateAccountView, isCreateAccountView, isOpen } = useLoginModalContext();
 
     return (
         <Sidebar toggleSidebarNavigation={toggleLoginModal} isOpen={isOpen} slideFrom='right'>
             <StyledWrapper>
                 {!isCreateAccountView ? (
-                    <LoginForm toggleModal={toggleLoginModal} toggleCreateAccountView={toggleCreateAccountView} />
+                    <LoginModal toggleModal={toggleLoginModal} toggleCreateAccountView={toggleCreateAccountView} />
                 ) : (
-                    // <CreateAccountForm
-                    //     toggleCreateAccountView={toggleCreateAccountView}
-                    //     toggleModal={toggleLoginModal}
-                    // />
-                    <div>
-                        <h4>Create account view</h4>
-                        <button onClick={toggleCreateAccountView}>go back to login</button>
-                    </div>
+                    <CreateAccountForm
+                        toggleCreateAccountView={toggleCreateAccountView}
+                        toggleModal={toggleLoginModal}
+                    />
+                    // <div>
+                    //     <h4>Create account view</h4>
+                    //     <button onClick={toggleCreateAccountView}>go back to login</button>
+                    // </div>
                 )}
             </StyledWrapper>
 
@@ -48,4 +48,4 @@ function LoginModal() {
     );
 }
 
-export default LoginModal;
+export default IdentificationModal;

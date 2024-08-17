@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { NavigationMenu } from '../NavigationMenu';
 import { StyledHeader } from './Header.styled';
 import HeaderSearchbar from './HeaderSearchbar';
-import LoginModal from '../../features/authentication/Identification';
+import IdentificationModal from '../../features/authentication/IdentificationModal';
 
 function Header() {
     const { isOpen: isSidebarNavigationOpen } = useSidebarNavigationContext();
@@ -37,7 +37,7 @@ function Header() {
                     <Heading as='h1'>T.SHOP</Heading>
                 </Link>
                 <NavLinks />
-                <LoginModal />
+                <IdentificationModal />
             </StyledHeader>
             <HeaderSearchbar isSearchbarOpen={isSearchbarOpen} handleSearchInputOpen={handleSearchInputOpen} />
         </Wrapper>
