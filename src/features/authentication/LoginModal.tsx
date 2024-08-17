@@ -37,7 +37,7 @@ function LoginModal({ toggleModal, toggleCreateAccountView }: LoginModalProps) {
                     // fill={false}
                     onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                         e.preventDefault();
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         toggleCreateAccountView();
                     }}
                 >

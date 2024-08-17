@@ -1,7 +1,6 @@
 import { Sidebar } from '../../components/Sidebar';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
 
-import { useState } from 'react';
 import CreateAccountForm from './CreateAccountForm';
 import LoginForm from './LoginModal';
 import styled from 'styled-components';
@@ -11,15 +10,10 @@ const StyledWrapper = styled.div`
 `;
 
 function LoginModal() {
-    const { toggleLoginModal, isOpen } = useLoginModalContext();
-    const [isCreateAccountView, setIsCreateAccountView] = useState(false);
-
-    const toggleCreateAccountView = () => {
-        setIsCreateAccountView(prevState => !prevState);
-    };
+    const { toggleLoginModal, toggleCreateAccountView, isCreateAccountView } = useLoginModalContext();
 
     return (
-        <Sidebar toggleSidebarNavigation={toggleLoginModal} isOpen={isOpen} slideFrom='right'>
+        <Sidebar toggleSidebarNavigation={toggleLoginModal} isOpen={true} slideFrom='right'>
             <StyledWrapper>
                 {!isCreateAccountView ? (
                     <LoginForm toggleModal={toggleLoginModal} toggleCreateAccountView={toggleCreateAccountView} />
