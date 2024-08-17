@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { StyledSeparator } from '../../components/Form';
 import { ModalHeader, StyledModalWrapper } from '../../components/Modal';
 import LoginFrom from './LoginFrom';
-import PasswordRecoveryForm from './PasswordRecoveryForm';
+// import PasswordRecoveryForm from './PasswordRecoveryForm';
 
 interface LoginModalProps {
     toggleModal: () => void;
@@ -11,21 +11,25 @@ interface LoginModalProps {
 }
 
 function LoginModal({ toggleModal, toggleCreateAccountView }: LoginModalProps) {
+    // const [recoverPassView, setRecoverPassView] = useState(false);
     const [recoverPassView, setRecoverPassView] = useState(false);
 
     const changeRecoverPassViewHandler = () => {
         setRecoverPassView(prevState => !prevState);
     };
 
+    console.log(recoverPassView);
+
     return (
         <>
             <StyledModalWrapper>
                 <ModalHeader toggleModal={toggleModal} headerText='Identification' />
-                {recoverPassView ? (
+                {/* {recoverPassView ? (
                     <PasswordRecoveryForm toggleRecoverPassView={changeRecoverPassViewHandler} />
                 ) : (
                     <LoginFrom toggleModal={toggleModal} toggleRecoverPassView={changeRecoverPassViewHandler} />
-                )}
+                )} */}
+                <LoginFrom toggleModal={toggleModal} toggleRecoverPassView={changeRecoverPassViewHandler} />
             </StyledModalWrapper>
             <StyledSeparator />
             <StyledModalWrapper>
