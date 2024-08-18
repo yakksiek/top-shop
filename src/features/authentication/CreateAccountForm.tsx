@@ -1,16 +1,12 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import { FormRow, Input, PasswordIndicator, StyledForm, StyledSeparator } from '../../components/Form';
 import { StyledModalWrapper, ModalHeader } from '../../components/Modal';
 import { useSignup } from './useSignup';
 import SpinnerMini from '../../components/SpinnerMini';
-import { useEffect, useState } from 'react';
 import SubmitMessage from '../../components/Form/SubmitMessage';
-
-interface CreateAccountFormProps {
-    toggleCreateAccountView: () => void;
-    toggleModal: () => void;
-}
+import { useLoginModalContext } from '../../contexts/LoginModalContext';
 
 interface FormData {
     name: string;
@@ -20,16 +16,13 @@ interface FormData {
     passwordConfirm: string;
 }
 
-function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccountFormProps) {
+function CreateAccountForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { isPending, signup, signupError } = useSignup();
+    const { toggleLoginModal, toggleCreateAccountView } = useLoginModalContext();
     const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>();
     const { errors } = formState;
-
-    useEffect(() => {
-        toggleCreateAccountView();
-    }, [toggleCreateAccountView]);
 
     function onSubmit({ name, surname, email, password }: FormData) {
         if (!name || !password || !surname || !email) return;
@@ -38,7 +31,7 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
             { name, surname, password, email },
             {
                 onSuccess: () => {
-                    toggleModal();
+                    toggleLoginModal();
                     reset();
                 },
             },
@@ -48,7 +41,7 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
     return (
         <>
             <StyledModalWrapper>
-                <ModalHeader toggleModal={toggleModal} headerText='Create an account' />
+                <ModalHeader toggleModal={toggleLoginModal} headerText='Create an account' />
                 <StyledForm
                     onSubmit={e => {
                         e.preventDefault();

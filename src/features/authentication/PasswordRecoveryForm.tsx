@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import { FormRow, Input, StyledForm } from '../../components/Form';
-import { useEffect } from 'react';
 import usePasswordRecovery from './usePasswordRecovery';
 import SpinnerMini from '../../components/SpinnerMini';
 import SubmitMessage from '../../components/Form/SubmitMessage';
@@ -10,6 +9,10 @@ import SubmitMessage from '../../components/Form/SubmitMessage';
 const StyledActionButtonsContainer = styled.div`
     display: flex;
     gap: 1rem;
+`;
+
+const StyledHeader = styled.header`
+    margin-bottom: 1rem;
 `;
 
 interface PasswordRecoveryFormProps {
@@ -25,10 +28,6 @@ function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormPro
     const { isPending, recoverPassword, recoveryPassError, recoveryPassSuccessMsg } = usePasswordRecovery();
     const { errors } = formState;
 
-    useEffect(() => {
-        toggleRecoverPassView();
-    }, [toggleRecoverPassView]);
-
     function onSubmit(data: FormData) {
         if (!data.email) return;
 
@@ -41,8 +40,10 @@ function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormPro
 
     return (
         <div>
-            <h4>Forgot Your Password</h4>
-            <p>Please enter your email address to reset your password. You will receive an email shortly.</p>
+            <StyledHeader>
+                <h4>Forgot Your Password?</h4>
+                <p>Please enter your email address to reset your password. You will receive an email shortly.</p>
+            </StyledHeader>
             <StyledForm onSubmit={handleSubmit(onSubmit)} noValidate>
                 <FormRow label='Email' error={errors.email && errors.email.message}>
                     <Input

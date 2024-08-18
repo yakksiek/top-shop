@@ -1,55 +1,31 @@
-import { useState } from 'react';
-// import Button from '../../components/Button';
+import Button from '../../components/Button';
 import { StyledSeparator } from '../../components/Form';
 import { ModalHeader, StyledModalWrapper } from '../../components/Modal';
+import { useLoginModalContext } from '../../contexts/LoginModalContext';
 import LoginFrom from './LoginFrom';
-// import PasswordRecoveryForm from './PasswordRecoveryForm';
+import PasswordRecoveryForm from './PasswordRecoveryForm';
 
-interface LoginModalProps {
-    toggleModal: () => void;
-    toggleCreateAccountView: () => void;
-}
-
-function LoginModal({ toggleModal, toggleCreateAccountView }: LoginModalProps) {
-    // const [recoverPassView, setRecoverPassView] = useState(false);
-    const [recoverPassView, setRecoverPassView] = useState(false);
-
-    const changeRecoverPassViewHandler = () => {
-        setRecoverPassView(prevState => !prevState);
-    };
-
-    console.log(recoverPassView);
+function LoginModal() {
+    const { toggleCreateAccountView, toggleLoginModal, recoverPassView, toggleRecoverPassView } =
+        useLoginModalContext();
 
     return (
         <>
             <StyledModalWrapper>
-                <ModalHeader toggleModal={toggleModal} headerText='Identification' />
-                {/* {recoverPassView ? (
-                    <PasswordRecoveryForm toggleRecoverPassView={changeRecoverPassViewHandler} />
+                <ModalHeader toggleModal={toggleLoginModal} headerText='Identification' />
+                {recoverPassView ? (
+                    <PasswordRecoveryForm toggleRecoverPassView={toggleRecoverPassView} />
                 ) : (
-                    <LoginFrom toggleModal={toggleModal} toggleRecoverPassView={changeRecoverPassViewHandler} />
-                )} */}
-                <LoginFrom toggleModal={toggleModal} toggleRecoverPassView={changeRecoverPassViewHandler} />
+                    <LoginFrom toggleModal={toggleLoginModal} toggleRecoverPassView={toggleRecoverPassView} />
+                )}
             </StyledModalWrapper>
             <StyledSeparator />
             <StyledModalWrapper>
                 <h4>I don't have an account yet</h4>
                 <p>Enjoy add benefits and a reacher experience by creating a personal account</p>
-                <div
-                    onClick={() => {
-                        // e.preventDefault();
-                        // e.stopPropagation();
-                        toggleCreateAccountView();
-                        // type = 'button';
-                        // fill={false}
-                        // onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-                        //     e.preventDefault();
-                        //     e.stopPropagation();
-                        //     toggleCreateAccountView();
-                    }}
-                >
+                <Button type='button' fill={false} onClick={toggleCreateAccountView}>
                     Create My TS account
-                </div>
+                </Button>
             </StyledModalWrapper>
         </>
     );

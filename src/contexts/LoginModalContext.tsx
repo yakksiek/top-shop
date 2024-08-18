@@ -6,6 +6,8 @@ interface LoginModalContextType {
     toggleLoginModal: () => void;
     isCreateAccountView: boolean;
     toggleCreateAccountView: () => void;
+    recoverPassView: boolean;
+    toggleRecoverPassView: () => void;
 }
 
 const LoginModalContext = createContext<LoginModalContextType | null>(null);
@@ -13,18 +15,34 @@ const LoginModalContext = createContext<LoginModalContextType | null>(null);
 function LoginModalContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isCreateAccountView, setIsCreateAccountView] = useState(false);
+    const [recoverPassView, setRecoverPassView] = useState(false);
     useNoScroll(isOpen);
 
     function toggleLoginModal() {
         setIsOpen(prevState => !prevState);
+        setIsCreateAccountView(false);
+        setRecoverPassView(false);
     }
 
     const toggleCreateAccountView = () => {
         setIsCreateAccountView(prevState => !prevState);
     };
 
+    const toggleRecoverPassView = () => {
+        setRecoverPassView(prevState => !prevState);
+    };
+
     return (
-        <LoginModalContext.Provider value={{ toggleLoginModal, isOpen, isCreateAccountView, toggleCreateAccountView }}>
+        <LoginModalContext.Provider
+            value={{
+                toggleLoginModal,
+                isOpen,
+                isCreateAccountView,
+                toggleCreateAccountView,
+                recoverPassView,
+                toggleRecoverPassView,
+            }}
+        >
             {children}
         </LoginModalContext.Provider>
     );
