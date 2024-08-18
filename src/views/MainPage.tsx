@@ -8,13 +8,11 @@ import Editorial from '../components/Editorial';
 function MainPage() {
     const data = useLoaderData() as t.LoaderProductData;
 
-    console.log(data);
-
     return (
         <>
             <Hero heroImage={data.heroImageUrl} />
-            <Products products={data.bestsellers} heading='Check Out Our Products' />
-            <Editorial videoLink={data.editorialVideo} description={data.description} />
+            <Products products={data.bestsellers.slice(0, 4)} heading='Check Out Our Products' />
+            <Editorial videoLink={data.editorialVideo} description={data.description} products={data?.bestsellers} />
         </>
     );
 }

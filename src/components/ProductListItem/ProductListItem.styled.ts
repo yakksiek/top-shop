@@ -65,6 +65,7 @@ export const StyledInfoContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
 `;
 
 export const StyledLabel = styled.div`

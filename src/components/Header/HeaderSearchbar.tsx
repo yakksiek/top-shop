@@ -44,7 +44,11 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
         ? h.filterProductsByQuery(products, ['description', 'productName', 'subcategory'], filterQuery).slice(0, 4)
         : [];
 
-    const productsToRender = fetcher.data ? (filterQuery ? filteredProducts : fetcher.data?.bestsellers) : [];
+    const productsToRender = fetcher.data
+        ? filterQuery
+            ? filteredProducts
+            : fetcher.data?.bestsellers.slice(0, 4)
+        : [];
 
     function setQueryHandler(event: React.ChangeEvent<HTMLInputElement>) {
         setFilterQuery(event.target.value);
