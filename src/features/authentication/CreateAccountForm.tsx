@@ -49,7 +49,13 @@ function CreateAccountForm({ toggleCreateAccountView, toggleModal }: CreateAccou
         <>
             <StyledModalWrapper>
                 <ModalHeader toggleModal={toggleModal} headerText='Create an account' />
-                <StyledForm onSubmit={handleSubmit(onSubmit)} noValidate>
+                <StyledForm
+                    onSubmit={e => {
+                        e.preventDefault();
+                        handleSubmit(onSubmit);
+                    }}
+                    noValidate
+                >
                     <FormRow label='Name' error={errors.name && errors.name.message}>
                         <Input
                             id='name'
