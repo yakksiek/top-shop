@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { BASE_URL } from '../../contants/api';
 
-interface ProductDetailsMedia {
-    photos: string[];
-}
-
 const StyledPhotosList = styled.ul`
     height: 100%;
     display: flex;
@@ -24,11 +20,13 @@ const StyledImgItemList = styled.li`
     align-items: center;
 
     img {
-        max-height: 100%;
-        max-width: 100%;
         object-fit: contain;
     }
 `;
+
+interface ProductDetailsMedia {
+    photos: string[];
+}
 
 function ProductDetailsMedia({ photos }: ProductDetailsMedia) {
     return (
