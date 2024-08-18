@@ -17,4 +17,5 @@ export interface LoaderProductData {
     description: string;
     maintenanceInfo: string;
     heroImageUrl: string;
+    editorialVideo: string;
 }

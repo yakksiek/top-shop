@@ -58,8 +58,6 @@ function ProductListItem({ product, variant }: ProductProps) {
         }, 1000);
     };
 
-    console.log(CART_BUTTON_TEXT);
-
     return (
         <Link to={`/${gender}/${category}/${subcategory}/${id}`}>
             <StyledItem>
