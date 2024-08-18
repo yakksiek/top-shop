@@ -1,7 +1,7 @@
 import { Sidebar } from '../../components/Sidebar';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
 
-// import CreateAccountForm from './CreateAccountForm';
+import CreateAccountForm from './CreateAccountForm';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
 
@@ -18,14 +18,14 @@ function IdentificationModal() {
                 {!isCreateAccountView ? (
                     <LoginModal toggleModal={toggleLoginModal} toggleCreateAccountView={toggleCreateAccountView} />
                 ) : (
-                    // <CreateAccountForm
-                    //     toggleCreateAccountView={toggleCreateAccountView}
-                    //     toggleModal={toggleLoginModal}
-                    // />
-                    <div>
-                        <h4>Create account view</h4>
-                        <button onClick={toggleCreateAccountView}>go back to login</button>
-                    </div>
+                    <CreateAccountForm
+                        toggleCreateAccountView={toggleCreateAccountView}
+                        toggleModal={toggleLoginModal}
+                    />
+                    // <div>
+                    //     <h4>Create account view</h4>
+                    //     <button onClick={toggleCreateAccountView}>go back to login</button>
+                    // </div>
                 )}
             </StyledWrapper>
 
