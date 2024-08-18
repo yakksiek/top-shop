@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../styles/breakpoints';
 
 export const StyledItem = styled.li`
     cursor: pointer;
@@ -13,12 +14,25 @@ export const StyledItem = styled.li`
         transition: opacity 0.6s ease, right 0.3s ease;
     }
 
-    .cart-wrapper:hover {
-        width: 4.25rem;
-        transition: width 0.4s ease;
-        .cart-label {
-            opacity: 1;
-            right: 5px;
+    @media ${device.mobile} {
+        .cart-wrapper.animate {
+            width: 4.25rem;
+            transition: width 0.4s ease;
+            .cart-label {
+                opacity: 1;
+                right: 5px;
+            }
+        }
+    }
+
+    @media ${device.tablet} {
+        .cart-wrapper:hover {
+            width: 4.25rem;
+            transition: width 0.4s ease;
+            .cart-label {
+                opacity: 1;
+                right: 5px;
+            }
         }
     }
 `;

@@ -58,6 +58,8 @@ function ProductListItem({ product, variant }: ProductProps) {
         }, 1000);
     };
 
+    console.log(CART_BUTTON_TEXT);
+
     return (
         <Link to={`/${gender}/${category}/${subcategory}/${id}`}>
             <StyledItem>
@@ -91,7 +93,10 @@ function ProductListItem({ product, variant }: ProductProps) {
                         <p>PLN {pricePLN}</p>
                     </StyledLabel>
                     {wishlistView && (
-                        <StyledButtonCart className='cart-wrapper' onClick={handleAddToCart}>
+                        <StyledButtonCart
+                            className={`cart-wrapper ${buttonText !== CART_BUTTON_TEXT ? 'animate' : ''}`}
+                            onClick={handleAddToCart}
+                        >
                             <IoBagHandleOutline />
                             <span className='cart-label'>{buttonText}</span>
                         </StyledButtonCart>
