@@ -3,7 +3,7 @@ import * as t from '../../types';
 import Heading from '../Heading';
 
 interface EditioralHeaderProps {
-    gender?: t.GenderTypes;
+    gender?: t.GenderTypes | string;
     description?: string;
 }
 
@@ -11,6 +11,7 @@ const StyledHeader = styled.header`
     width: var(--screen-width-small);
     margin: 0 auto;
     margin-bottom: 2rem;
+    text-align: center;
 
     span.gender {
         font-size: 0.625rem;

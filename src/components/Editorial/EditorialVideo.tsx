@@ -8,8 +8,8 @@ import useVideoControls from '../../hooks/useVideoControls';
 import {
     StyledControlButton,
     StyledCustomControls,
-    StyledVideoContainer,
     StyledVideoElement,
+    StyledVideoWrapper,
 } from './EditorialVideo.styles';
 
 interface EditorialVideo {
@@ -21,15 +21,17 @@ function EditorialVideo({ videoLink }: EditorialVideo) {
     const { isPlaying, togglePlayPause, toggleMute, isMuted } = useVideoControls({ videoRef });
 
     return (
-        <StyledVideoContainer>
-            <StyledVideoElement
-                ref={videoRef}
-                src={`${BASE_URL}/${videoLink}`}
-                muted={isMuted}
-                loop
-                autoPlay
-                playsInline
-            />
+        <>
+            <StyledVideoWrapper>
+                <StyledVideoElement
+                    ref={videoRef}
+                    src={`${BASE_URL}/${videoLink}`}
+                    muted={isMuted}
+                    loop
+                    autoPlay
+                    playsInline
+                />
+            </StyledVideoWrapper>
             <StyledCustomControls className='custom-controls'>
                 <StyledControlButton onClick={togglePlayPause}>
                     {isPlaying ? <IoIosPause /> : <IoIosPlay />}
@@ -38,7 +40,7 @@ function EditorialVideo({ videoLink }: EditorialVideo) {
                     {isMuted ? <PiSpeakerHighFill /> : <FaVolumeMute />}
                 </StyledControlButton>
             </StyledCustomControls>
-        </StyledVideoContainer>
+        </>
     );
 }
 
