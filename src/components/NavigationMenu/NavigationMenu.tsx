@@ -64,7 +64,7 @@ function NavigationMenu() {
                         <StyledBestsellersSection>
                             <Heading as='h5'>{fetcher.data.description}</Heading>
                             <ul>
-                                {fetcher.data.bestsellers.map((item: t.Product) => (
+                                {fetcher.data.bestsellers.slice(0, 4).map((item: t.Product) => (
                                     <div key={item.id} onClick={toggleSidebarNavigation}>
                                         <ProductPreview product={item} />
                                     </div>
