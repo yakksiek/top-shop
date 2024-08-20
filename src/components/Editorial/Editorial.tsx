@@ -5,7 +5,7 @@ import Products from '../Products';
 import EditioralHeader from './EditioralHeader';
 import EditorialVideo from './EditorialVideo';
 import Section from '../Section';
-import StyledEditorialContentWrapper from './EditorialContentWrapper';
+import StyledProductsWrapper from '../Products/StyledProductsWrapper';
 
 const StyledContent = styled.div`
     position: relative;
@@ -27,9 +27,9 @@ function Editorial({ videoLink, description, products }: Editorial) {
             <EditioralHeader sectionName={gender} description={description} title='Apparel and accessories' />
             <StyledContent>
                 <EditorialVideo videoLink={videoLink} />
-                <StyledEditorialContentWrapper>
-                    <Products products={bestsellersToRender} />
-                </StyledEditorialContentWrapper>
+                <StyledProductsWrapper>
+                    <Products products={bestsellersToRender} gapY={true} />
+                </StyledProductsWrapper>
             </StyledContent>
         </Section>
     );

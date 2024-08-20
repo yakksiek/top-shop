@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '../../styles/breakpoints';
 
-const StyledEditorialContentWrapper = styled.div`
+const StyledProductsWrapper = styled.div`
     background-color: var(--color-grey-0);
     padding: 2rem 1rem;
     margin-bottom: 4rem;
@@ -11,4 +11,4 @@ const StyledEditorialContentWrapper = styled.div`
     }
 `;
 
-export default StyledEditorialContentWrapper;
+export default StyledProductsWrapper;

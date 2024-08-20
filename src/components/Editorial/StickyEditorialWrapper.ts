@@ -7,7 +7,7 @@ const StickyEditorialWrapper = styled.div`
     top: 0;
     width: auto;
     margin: 0 auto;
-
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
     overflow: hidden;

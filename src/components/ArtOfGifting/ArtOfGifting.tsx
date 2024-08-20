@@ -7,7 +7,7 @@ import { device } from '../../styles/breakpoints';
 import servicesData from '../../db/services.json';
 import useZoomOnScroll from '../../hooks/useZoomOnScroll';
 import imgArtOfGifting from '../../images/art-of-gifting.webp';
-import StyledEditorialContentWrapper from '../Editorial/EditorialContentWrapper';
+import StyledEditorialContentWrapper from '../Products/StyledProductsWrapper';
 import StickyEditorialWrapper from '../Editorial/StickyEditorialWrapper';
 import ServicesItem from './ServicesItem';
 
