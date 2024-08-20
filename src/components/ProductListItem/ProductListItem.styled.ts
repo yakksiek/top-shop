@@ -99,7 +99,7 @@ export const StyledButtonCart = styled.button`
     overflow: hidden;
 
     span {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         position: absolute;
         right: -100%;
     }
