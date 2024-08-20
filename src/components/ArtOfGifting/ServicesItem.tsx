@@ -6,6 +6,7 @@ import Heading from '../Heading';
 import artOfGiftingImg from '../../images/art-of-gifting-small.jpg';
 import personalisationImg from '../../images/personalisation.jpg';
 import servicesImg from '../../images/services.jpg';
+import { device } from '../../styles/breakpoints';
 
 const images = {
     services: servicesImg,
@@ -15,6 +16,7 @@ const images = {
 
 const StyledTextWrapper = styled.div`
     text-align: center;
+    margin: 1rem 0;
 `;
 
 const StyledNavList = styled.nav`
@@ -33,14 +35,18 @@ const StyledImageWrapper = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    width: 100%;
-    height: 100%;
-`;
 
-const StyledImage = styled.img`
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+    img {
+        object-fit: cover;
+    }
+
+    @media ${device.tablet} {
+        height: 100%;
+
+        img {
+            height: 100%;
+        }
+    }
 `;
 
 interface ServicesItemProps {
@@ -54,7 +60,7 @@ function ServicesItem({ servicesItem }: ServicesItemProps) {
     return (
         <div>
             <StyledImageWrapper>
-                <StyledImage src={image} alt={name} />
+                <img src={image} alt={name} />
             </StyledImageWrapper>
             <StyledTextWrapper>
                 <Heading as='h4'>{name}</Heading>
