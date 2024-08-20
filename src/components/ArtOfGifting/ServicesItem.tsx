@@ -28,6 +28,21 @@ const StyledNavList = styled.nav`
     }
 `;
 
+const StyledImageWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+`;
+
+const StyledImage = styled.img`
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+`;
+
 interface ServicesItemProps {
     servicesItem: t.ServicesItem;
 }
@@ -38,9 +53,9 @@ function ServicesItem({ servicesItem }: ServicesItemProps) {
 
     return (
         <div>
-            <div>
-                <img src={image} alt={name} />
-            </div>
+            <StyledImageWrapper>
+                <StyledImage src={image} alt={name} />
+            </StyledImageWrapper>
             <StyledTextWrapper>
                 <Heading as='h4'>{name}</Heading>
                 <StyledNavList>
