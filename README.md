@@ -1,4 +1,4 @@
-![a main page screenshot](src/images/main-page-screenshot.png)
+![a main page screenshot](src/images/main-page-screenshot.jpg)
 
 # TopShop - online shop with login function
 
@@ -58,7 +58,7 @@ The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/
 
 -   **Login view**:
 
-![Login view](src/images/login-view.png)
+![Login view](src/images/login-view.jpg)
 
 &nbsp;
 

@@ -5,7 +5,7 @@ import * as t from '../../types';
 import Heading from '../Heading';
 import artOfGiftingImg from '../../images/art-of-gifting-small.jpg';
 import personalisationImg from '../../images/personalisation.jpg';
-import servicesImg from '../../images/services.webp';
+import servicesImg from '../../images/services.jpg';
 
 const images = {
     services: servicesImg,
