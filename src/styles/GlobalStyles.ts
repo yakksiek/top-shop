@@ -37,6 +37,7 @@ const GlobalStyles = createGlobalStyle`
 }
 
   --font-size-small: 0.875rem;
+  --text-underline: 0 2px 0 -1px currentColor;
 
   --padding-sidebar-mobile: 1rem 5.5vw; 
   --padding-sidebar-desk: 5rem 1.25vw 1rem 1.25vw; 

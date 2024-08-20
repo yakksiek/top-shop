@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Services",
+        "links": [{ "label": "Contact Us", "path": "contact" }],
+        "imgKey": "services"
+    },
+    {
+        "name": "Art of Gifting",
+        "links": [
+            { "label": "Gifts for Women", "path": "gifts-for-her" },
+            { "label": "Gifts for Men", "path": "gifts-for-him" }
+        ],
+        "imgKey": "art-of-gifting"
+    },
+    {
+        "name": "Personalisation",
+        "links": [{ "label": "Explore", "path": "personalisation" }],
+        "imgKey": "personalisation"
+    }
+]

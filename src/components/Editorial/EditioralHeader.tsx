@@ -3,8 +3,9 @@ import * as t from '../../types';
 import Heading from '../Heading';
 
 interface EditioralHeaderProps {
-    gender?: t.GenderTypes | string;
-    description?: string;
+    sectionName?: t.GenderTypes | string;
+    title: string;
+    description: string;
 }
 
 const StyledHeader = styled.header`
@@ -13,17 +14,17 @@ const StyledHeader = styled.header`
     margin-bottom: 2rem;
     text-align: center;
 
-    span.gender {
+    span.section {
         font-size: 0.625rem;
     }
 `;
 
-function EditioralHeader({ gender, description }: EditioralHeaderProps) {
+function EditioralHeader({ sectionName, description, title }: EditioralHeaderProps) {
     return (
         <StyledHeader>
-            {gender && <span className='gender'>{gender?.toUpperCase()}</span>}
+            {sectionName && <span className='section'>{sectionName?.toUpperCase()}</span>}
             <Heading as='h2' $marginBottom={true}>
-                Discover the Selection
+                {title}
             </Heading>
             {description && <p>{description}</p>}
         </StyledHeader>

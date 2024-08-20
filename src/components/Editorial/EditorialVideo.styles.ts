@@ -1,28 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../styles/breakpoints';
 
-export const StyledVideoWrapper = styled.div`
-    z-index: -1;
-    position: sticky;
-    top: 0;
-    width: auto;
-    margin: 0 auto;
-
-    display: flex;
-    justify-content: center;
-
-    @media ${device.mobile} {
-        max-height: 85vh;
-        overflow-x: hidden;
-    }
-
-    @media ${device.tablet} {
-        top: var(--header-height);
-        width: 100%;
-        height: auto;
-    }
-`;
-
 export const StyledVideoElement = styled.video`
     @media ${device.tablet} {
         width: 100%;

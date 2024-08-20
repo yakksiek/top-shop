@@ -5,12 +5,8 @@ import { PiSpeakerHighFill } from 'react-icons/pi';
 
 import { BASE_URL } from '../../contants/api';
 import useVideoControls from '../../hooks/useVideoControls';
-import {
-    StyledControlButton,
-    StyledCustomControls,
-    StyledVideoElement,
-    StyledVideoWrapper,
-} from './EditorialVideo.styles';
+import { StyledControlButton, StyledCustomControls, StyledVideoElement } from './EditorialVideo.styles';
+import StickyEditorialWrapper from './StickyEditorialWrapper';
 
 interface EditorialVideo {
     videoLink: string;
@@ -22,7 +18,7 @@ function EditorialVideo({ videoLink }: EditorialVideo) {
 
     return (
         <>
-            <StyledVideoWrapper>
+            <StickyEditorialWrapper>
                 <StyledVideoElement
                     ref={videoRef}
                     src={`${BASE_URL}/${videoLink}`}
@@ -31,7 +27,7 @@ function EditorialVideo({ videoLink }: EditorialVideo) {
                     autoPlay
                     playsInline
                 />
-            </StyledVideoWrapper>
+            </StickyEditorialWrapper>
             <StyledCustomControls className='custom-controls'>
                 <StyledControlButton onClick={togglePlayPause}>
                     {isPlaying ? <IoIosPause /> : <IoIosPlay />}
