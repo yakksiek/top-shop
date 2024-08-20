@@ -2,12 +2,15 @@ import styled from 'styled-components';
 import { device } from '../../styles/breakpoints';
 
 export const StyledProductDetails = styled.div`
-    padding: 1rem 6.4vw;
+    padding: 4rem 0;
     font-weight: 400;
     overflow: hidden;
+    max-width: 22.5rem;
+    margin: 0 auto;
 
     @media ${device.tablet} {
-        padding: 0 8vw;
+        /* padding: 0 8vw; */
+        padding: 0;
         position: sticky;
         top: var(--header-height);
         height: 100vh;

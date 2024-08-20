@@ -32,6 +32,10 @@ const StyledMediaWrapper = styled.div`
     }
 `;
 
+const StyledBody = styled.div`
+    width: 100%;
+`;
+
 function ProductDetails() {
     const product = useLoaderData() as t.Product;
 
@@ -45,7 +49,9 @@ function ProductDetails() {
                 <StyledMediaWrapper>
                     <ProductDetailsMedia photos={product.photos} />
                 </StyledMediaWrapper>
-                <ProductDetailsContent product={product} />
+                <StyledBody>
+                    <ProductDetailsContent product={product} />
+                </StyledBody>
             </StyledGridContainer>
         </Section>
     );
