@@ -10,6 +10,7 @@ const StickyEditorialWrapper = styled.div`
 
     display: flex;
     justify-content: center;
+    overflow: hidden;
 
     img {
         width: 100%;

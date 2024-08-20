@@ -1,3 +1,3 @@
-import ArtOfGiting from './ArtOfGiting';
+import ArtOfGiting from './ArtOfGifting';
 
 export default ArtOfGiting;

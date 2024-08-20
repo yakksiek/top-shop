@@ -1,15 +1,15 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 import EditioralHeader from '../Editorial/EditioralHeader';
 import Section from '../Section';
 
-import imgArtOfGifting from '../../images/art-of-gifting.avif';
-import StickyEditorialWrapper from '../Editorial/StickyEditorialWrapper';
-import servicesData from '../../db/services.json';
 import { device } from '../../styles/breakpoints';
-import ServicesItem from './ServicesItem';
+import servicesData from '../../db/services.json';
+import useZoomOnScroll from '../../hooks/useZoomOnScroll';
+import imgArtOfGifting from '../../images/art-of-gifting.webp';
 import StyledEditorialContentWrapper from '../Editorial/EditorialContentWrapper';
-
-const StyledContent = styled.div``;
+import StickyEditorialWrapper from '../Editorial/StickyEditorialWrapper';
+import ServicesItem from './ServicesItem';
 
 const StyledServicesList = styled.ul`
     display: grid;
@@ -21,7 +21,19 @@ const StyledServicesList = styled.ul`
     }
 `;
 
+const StyledImg = styled.img`
+    width: 100%;
+    transition: transform 0.1s linear;
+    transform-origin: center;
+    height: 100%;
+    overflow: clip;
+    z-index: -1;
+`;
+
 function ArtOfGiting() {
+    const imgRef = useRef<HTMLImageElement>(null);
+    const { scale } = useZoomOnScroll({ imgRef });
+
     return (
         <Section>
             <EditioralHeader
@@ -29,9 +41,14 @@ function ArtOfGiting() {
                 description='Our personal selection of presents'
                 title='Art of Giving'
             />
-            <StyledContent>
+            <div>
                 <StickyEditorialWrapper>
-                    <img src={imgArtOfGifting} alt='presents' />
+                    <StyledImg
+                        src={imgArtOfGifting}
+                        alt='presents'
+                        ref={imgRef}
+                        style={{ transform: `scale(${scale})` }}
+                    />
                 </StickyEditorialWrapper>
                 <StyledEditorialContentWrapper>
                     <StyledServicesList>
@@ -40,7 +57,7 @@ function ArtOfGiting() {
                         ))}
                     </StyledServicesList>
                 </StyledEditorialContentWrapper>
-            </StyledContent>
+            </div>
         </Section>
     );
 }

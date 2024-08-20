@@ -4,7 +4,7 @@ interface Size {
     desktop: string;
 }
 
-const size: Size = {
+export const size: Size = {
     mobile: '768px',
     tablet: '769px',
     desktop: '1024px',

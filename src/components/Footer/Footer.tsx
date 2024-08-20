@@ -13,6 +13,7 @@ export const StyledFooter = styled.footer`
     font-size: 0.75rem;
     display: flex;
     flex-direction: column;
+    background-color: var(--color-grey-0);
 `;
 
 export const StyledLogoContainer = styled.div`
