@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import Hero from '../components/Hero';
@@ -9,6 +10,23 @@ import StyledProductsWrapper from '../components/Products/StyledProductsWrapper'
 
 function MainPage() {
     const data = useLoaderData() as t.LoaderProductData;
+
+    useEffect(() => {
+        const preventSwipeBack = (event: TouchEvent) => {
+            const touch = event.touches[0];
+            const startX = touch.clientX;
+
+            if (startX < 40) {
+                event.preventDefault();
+            }
+        };
+
+        document.addEventListener('touchstart', preventSwipeBack, { passive: false });
+
+        return () => {
+            document.removeEventListener('touchstart', preventSwipeBack);
+        };
+    }, []);
 
     return (
         <>

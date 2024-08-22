@@ -3,20 +3,21 @@ import styled from 'styled-components';
 import EditioralHeader from '../Editorial/EditioralHeader';
 import Section from '../Section';
 
-import { device } from '../../styles/breakpoints';
 import servicesData from '../../db/services.json';
 import useZoomOnScroll from '../../hooks/useZoomOnScroll';
 import imgArtOfGifting from '../../images/art-of-gifting.webp';
-import StyledEditorialContentWrapper from '../Products/StyledProductsWrapper';
+import { device } from '../../styles/breakpoints';
 import StickyEditorialWrapper from '../Editorial/StickyEditorialWrapper';
+import Slider from '../MobileSlider';
+import StyledEditorialContentWrapper from '../Products/StyledProductsWrapper';
 import ServicesItem from './ServicesItem';
 
 const StyledServicesList = styled.ul`
-    display: grid;
     background-color: var(--color-grey-0);
-    grid-gap: 1rem;
 
     @media ${device.tablet} {
+        display: grid;
+        grid-gap: 1rem;
         grid-template-columns: repeat(3, 1fr);
     }
 `;
@@ -28,6 +29,26 @@ const StyledImg = styled.img`
     height: 100%;
     overflow: clip;
     z-index: -1;
+`;
+
+const StyledMainContentWrapper = styled.div`
+    > :first-child {
+        display: none;
+
+        @media ${device.tablet} {
+            display: block;
+        }
+    }
+
+    > :nth-child(2) {
+        @media ${device.tablet} {
+            display: none;
+        }
+    }
+`;
+
+const SliderWrapper = styled(StyledEditorialContentWrapper)`
+    padding: 2rem 0;
 `;
 
 function ArtOfGiting() {
@@ -50,13 +71,22 @@ function ArtOfGiting() {
                         style={{ transform: `scale(${scale})` }}
                     />
                 </StickyEditorialWrapper>
-                <StyledEditorialContentWrapper>
-                    <StyledServicesList>
-                        {servicesData.map(servicesItem => (
-                            <ServicesItem key={servicesItem.name} servicesItem={servicesItem} />
-                        ))}
-                    </StyledServicesList>
-                </StyledEditorialContentWrapper>
+                <StyledMainContentWrapper>
+                    <StyledEditorialContentWrapper>
+                        <StyledServicesList>
+                            {servicesData.map(servicesItem => (
+                                <ServicesItem key={servicesItem.name} servicesItem={servicesItem} />
+                            ))}
+                        </StyledServicesList>
+                    </StyledEditorialContentWrapper>
+                    <SliderWrapper>
+                        <Slider>
+                            {servicesData.map(serviceItem => (
+                                <ServicesItem key={serviceItem.name} servicesItem={serviceItem} />
+                            ))}
+                        </Slider>
+                    </SliderWrapper>
+                </StyledMainContentWrapper>
             </div>
         </Section>
     );

@@ -36,6 +36,9 @@ const StyledImageWrapper = styled.div`
     align-items: center;
     overflow: hidden;
 
+    /* min-height: 400px;
+    width: 300px; */
+
     img {
         object-fit: cover;
     }
@@ -58,7 +61,7 @@ function ServicesItem({ servicesItem }: ServicesItemProps) {
     const image = images[imgKey as keyof typeof images];
 
     return (
-        <div>
+        <li>
             <StyledImageWrapper>
                 <img src={image} alt={name} />
             </StyledImageWrapper>
@@ -72,7 +75,7 @@ function ServicesItem({ servicesItem }: ServicesItemProps) {
                     ))}
                 </StyledNavList>
             </StyledTextWrapper>
-        </div>
+        </li>
     );
 }
 
