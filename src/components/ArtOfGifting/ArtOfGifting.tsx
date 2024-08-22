@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import EditioralHeader from '../Editorial/EditioralHeader';
 import Section from '../Section';
 
-import servicesData from '../../db/services';
+import servicesData from '../../db/services.json';
 import useZoomOnScroll from '../../hooks/useZoomOnScroll';
 import imgArtOfGifting from '../../images/art-of-gifting.webp';
 import { device } from '../../styles/breakpoints';
