@@ -40,7 +40,7 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
     const [buttonText, setButtonText] = useState(CART_BUTTON_TEXT);
     const productInFavourites = favouriteItems.find(favItem => favItem.productId === product.id);
 
-    const handletoggleSidebarNavigation = (contentType: SidebarContentType) => {
+    const handleToggleSidebarNavigation = (contentType: SidebarContentType) => {
         openSidebarModal(
             <StyledModalWrapper>
                 <ModalHeader toggleModal={closeSidebarModal} headerText={sidebarContentLabel[contentType]} />
@@ -101,7 +101,7 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
                         <ProductDetailsFooterRow
                             key={contentType}
                             label={label}
-                            onClick={() => handletoggleSidebarNavigation(contentType)}
+                            onClick={() => handleToggleSidebarNavigation(contentType)}
                         />
                     );
                 })}

@@ -1,23 +1,28 @@
+import { useNavigate } from 'react-router-dom';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
+
 import { useCartContext } from '../../contexts/CartContext';
 import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import StyledNavigation from '../StyledNavigation';
+import { useLoginModalContext } from '../../contexts/LoginModalContext';
+import { useUser } from '../../features/authentication/useUser';
+import { useModalSidebarContext } from '../../contexts/ModalSidebarContext';
+
 import {
     StyledCartIndicator,
     StyledContentWrapper,
     StyledFavouritesIndicator,
     StyledLinkItem,
 } from './NavLinks.styled';
-import { useNavigate } from 'react-router-dom';
-import { useLoginModalContext } from '../../contexts/LoginModalContext';
-import { useUser } from '../../features/authentication/useUser';
+import ContactUsSidebar from '../ContactUsSidebar';
 
 function NavLinks() {
     const { cartItems } = useCartContext();
     const { favouriteItems } = useFavouritesContext();
     const { isAuthenticated } = useUser();
     const { toggleLoginModal } = useLoginModalContext();
+    const { openSidebarModal } = useModalSidebarContext();
     const navigate = useNavigate();
 
     const handleProtectedLinkClick = (path: string) => {
@@ -28,9 +33,13 @@ function NavLinks() {
         }
     };
 
+    const handleOpenContactSidebar = () => {
+        openSidebarModal(<ContactUsSidebar />);
+    };
+
     return (
         <StyledNavigation>
-            <li className='contact'>
+            <li className='contact' onClick={handleOpenContactSidebar}>
                 <span className='label'>Contact Us</span>
             </li>
             <li>

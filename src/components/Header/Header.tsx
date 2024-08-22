@@ -8,10 +8,10 @@ import NavLinks from '../NavLinks';
 import Wrapper from '../Wrapper';
 
 import { useEffect, useState } from 'react';
+import IdentificationModal from '../../features/authentication/IdentificationModal';
 import { NavigationMenu } from '../NavigationMenu';
 import { StyledHeader } from './Header.styled';
 import HeaderSearchbar from './HeaderSearchbar';
-import IdentificationModal from '../../features/authentication/IdentificationModal';
 
 function Header() {
     const { isOpen: isSidebarNavigationOpen } = useSidebarNavigationContext();
