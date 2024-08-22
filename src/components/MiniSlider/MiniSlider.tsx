@@ -33,6 +33,7 @@ const StyledMediaScroller = styled.ul`
 const StyledMediaItem = styled.li`
     scroll-snap-align: start;
     height: 60vh;
+    overflow: hidden;
 
     img {
         width: 100%;
