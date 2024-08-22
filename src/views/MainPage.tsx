@@ -8,6 +8,8 @@ import Editorial from '../components/Editorial';
 import ArtOfGiting from '../components/ArtOfGifting';
 import StyledProductsWrapper from '../components/Products/StyledProductsWrapper';
 
+const MARGIN_LEFT_TOUCH_PREVENT = 20;
+
 function MainPage() {
     const data = useLoaderData() as t.LoaderProductData;
 
@@ -16,7 +18,7 @@ function MainPage() {
             const touch = event.touches[0];
             const startX = touch.clientX;
 
-            if (startX < 40) {
+            if (startX < MARGIN_LEFT_TOUCH_PREVENT) {
                 event.preventDefault();
             }
         };
