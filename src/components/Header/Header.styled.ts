@@ -21,6 +21,7 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
     }
 
     @media ${device.tablet} {
+        padding: 0 2rem;
         position: fixed;
         width: 100%;
         left: 0;
@@ -32,6 +33,10 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
         &.border {
             border-bottom: var(--border-standard);
         }
+    }
+
+    @media ${device.desktop} {
+        padding: 0 3.5rem;
     }
 
     .logo-wrapper {
