@@ -14,6 +14,12 @@ const images = {
     personalisation: personalisationImg,
 };
 
+const StyledListElement = styled.li`
+    @media ${device.mobile} {
+        height: 100%;
+    }
+`;
+
 const StyledTextWrapper = styled.div`
     text-align: center;
     margin: 1rem 0;
@@ -35,12 +41,11 @@ const StyledImageWrapper = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-
-    /* min-height: 400px;
-    width: 300px; */
+    height: 100%;
 
     img {
-        object-fit: cover;
+        object-fit: contain;
+        height: 100%;
     }
 
     @media ${device.tablet} {
@@ -61,7 +66,7 @@ function ServicesItem({ servicesItem }: ServicesItemProps) {
     const image = images[imgKey as keyof typeof images];
 
     return (
-        <li>
+        <StyledListElement>
             <StyledImageWrapper>
                 <img src={image} alt={name} />
             </StyledImageWrapper>
@@ -75,7 +80,7 @@ function ServicesItem({ servicesItem }: ServicesItemProps) {
                     ))}
                 </StyledNavList>
             </StyledTextWrapper>
-        </li>
+        </StyledListElement>
     );
 }
 

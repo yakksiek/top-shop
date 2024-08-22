@@ -7,18 +7,16 @@ import 'slick-carousel/slick/slick-theme.css';
 const StyledSliderWrapper = styled.div`
     position: relative;
     overflow-x: hidden;
+    padding-bottom: 2rem;
 
-    .slick-slider {
+    div.slick-slider {
         overscroll-behavior-x: none;
     }
 
-    .slick-slider {
-        min-height: 450px;
-    }
-
     .slick-dots {
-        font-size: 20px;
-        bottom: 5px;
+        margin-top: 1rem;
+        font-size: 16px;
+        bottom: -16px;
     }
 `;
 
