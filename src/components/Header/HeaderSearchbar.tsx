@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useFetcher, useParams } from 'react-router-dom';
+import { Link, useFetcher, useNavigate, useParams } from 'react-router-dom';
 
 import menuItems from '../../db/mainMenu.json';
 import ProductPreview from '../../features/product/ProductPreview';
@@ -18,6 +18,7 @@ import {
     StyledSearchbarWrapper,
     StyledWrapper,
 } from './HeaderSearchbar.styled';
+import { useFilteredProducts } from '../../features/product/useFilteredProducts';
 
 interface HeaderSearchbarProps {
     isSearchbarOpen: boolean;
@@ -28,8 +29,13 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
     const [filterQuery, setFilterQuery] = useState('');
     const fetcher = useFetcher();
     const params = useParams();
+    const navigate = useNavigate();
     const gender = params.gender || 'women';
-    const { data: products } = useProducts({ gender });
+    // const { data: products } = useProducts({ gender });
+    const { data: filteredProducts } = useFilteredProducts({
+        gender: gender,
+        query: filterQuery,
+    });
     useNoScroll(isSearchbarOpen);
 
     useEffect(() => {
@@ -40,9 +46,9 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
 
     useEffect(() => {}, [filterQuery]);
 
-    const filteredProducts = products
-        ? h.filterProductsByQuery(products, ['description', 'productName', 'subcategory'], filterQuery).slice(0, 4)
-        : [];
+    // const filteredProducts = products
+    //     ? h.filterProductsByQuery(products, ['description', 'productName', 'subcategory'], filterQuery).slice(0, 4)
+    //     : [];
 
     const productsToRender = fetcher.data
         ? filterQuery
@@ -52,6 +58,12 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
 
     function setQueryHandler(event: React.ChangeEvent<HTMLInputElement>) {
         setFilterQuery(event.target.value);
+    }
+
+    function submitHandler() {
+        console.log('submitted');
+
+        navigate('/search', { replace: true });
     }
 
     return (
@@ -65,6 +77,7 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
                         handleSearchInputOpen();
                         setFilterQuery('');
                     }}
+                    onSubmit={submitHandler}
                 />
             </StyledSearchbarWrapper>
             <StyledContainer $isOpen={isSearchbarOpen}>

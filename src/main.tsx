@@ -23,6 +23,7 @@ import PasswordReset from './views/PasswordReset.tsx';
 import ProductDetails from './views/ProductDetails.tsx';
 import ProductsList from './views/ProductsList.tsx';
 import { ModalSidebarContextProvider } from './contexts/ModalSidebarContext.tsx';
+import Search from './views/Search.tsx';
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
             { path: '/:gender?', element: <MainPage />, loader: mainPageLoader },
             { path: '/favourites', element: <Favourites /> },
             { path: '/cart', element: <Cart /> },
+            { path: '/:gender/search', element: <Search /> },
             { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },
             { path: '/:gender/:category/:subcategory/:productId', element: <ProductDetails />, loader: productLoader },
             {

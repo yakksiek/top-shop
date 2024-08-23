@@ -14,11 +14,14 @@ interface SeachInputProps {
     value: string;
     onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
     closeInputHandler: () => void;
+    onSubmit: () => void;
 }
 
-function SearchInput({ type, onChangeHandler, value, closeInputHandler }: SeachInputProps) {
+function SearchInput({ type, onChangeHandler, value, closeInputHandler, onSubmit }: SeachInputProps) {
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        onSubmit();
+        closeInputHandler();
     };
 
     const handleBlur = () => {
