@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { device } from '../../styles/breakpoints';
-import { HEADER_SEARCHBAR_MOBILE_Z_INDEX, HEADER_SEARCHBAR_TABLET_Z_INDEX } from '../../contants/z-indexes';
+import { HEADER_SEARCHBAR_MOBILE_Z_INDEX, HEADER_SEARCHBAR_TABLET_Z_INDEX } from '../../constants/z-indexes';
 
 interface StyledSearchbarWrapperProps {
     $isOpen: boolean;

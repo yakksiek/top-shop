@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
-import { BASE_URL } from '../contants/api';
+import { BASE_URL } from '../constants/api';
 import * as t from '../types';
-import { PRODUCTS_PER_PAGE } from '../contants/pagination';
+import { PRODUCTS_PER_PAGE } from '../constants/pagination';
 
 function productListLoader({ params, request }: LoaderFunctionArgs) {
     const { gender, category, subcategory } = params;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BASE_URL } from '../../contants/api';
+import { BASE_URL } from '../../constants/api';
 
 const StyledPhotosList = styled.ul`
     height: 100%;

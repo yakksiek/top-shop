@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
-import { BASE_URL } from '../contants/api';
+import { BASE_URL } from '../constants/api';
 
 async function productLoader({ params }: LoaderFunctionArgs) {
     const { productId } = params;

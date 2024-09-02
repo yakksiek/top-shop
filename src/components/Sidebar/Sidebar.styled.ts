@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { device } from '../../styles/breakpoints';
-import { SIDEBAR_OVERLAY_Z_INDEX } from '../../contants/z-indexes';
+import { SIDEBAR_OVERLAY_Z_INDEX } from '../../constants/z-indexes';
 
 interface SidebarProps {
     $isOpen: boolean;

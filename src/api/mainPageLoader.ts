@@ -1,6 +1,6 @@
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 import * as t from '../types';
-import { BASE_URL } from '../contants/api';
+import { BASE_URL } from '../constants/api';
 
 const mainPageLoader = async ({ params }: LoaderFunctionArgs<{ gender: string }>) => {
     const { gender } = params;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HEADER_Z_INDEX } from '../../contants/z-indexes';
+import { HEADER_Z_INDEX } from '../../constants/z-indexes';
 import { device } from '../../styles/breakpoints';
 
 interface StyledHeaderProps {

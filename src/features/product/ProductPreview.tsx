@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BASE_URL } from '../../contants/api';
+import { BASE_URL } from '../../constants/api';
 import styled from 'styled-components';
 
 import * as t from '../../types';

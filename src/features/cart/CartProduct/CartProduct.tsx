@@ -1,6 +1,6 @@
 import { LiaTimesSolid } from 'react-icons/lia';
 
-import { BASE_URL } from '../../../contants/api';
+import { BASE_URL } from '../../../constants/api';
 import * as t from '../../../types';
 import { StyledCartItem, StyledCartItemDetail, StyledCartItemDetailsList, StyledHeader } from './CartProduct.styled';
 import { useCartContext } from '../../../contexts/CartContext';

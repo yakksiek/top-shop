@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import CenteredContent from '../CenteredContent';
 import Section from '../Section';
-import { BASE_URL } from '../../contants/api';
+import { BASE_URL } from '../../constants/api';
 import { device } from '../../styles/breakpoints';
 
 interface StyledHeroProps {

@@ -3,7 +3,7 @@ import { FaVolumeMute } from 'react-icons/fa';
 import { IoIosPause, IoIosPlay } from 'react-icons/io';
 import { PiSpeakerHighFill } from 'react-icons/pi';
 
-import { BASE_URL } from '../../contants/api';
+import { BASE_URL } from '../../constants/api';
 import useVideoControls from '../../hooks/useVideoControls';
 import { StyledControlButton, StyledCustomControls, StyledVideoElement } from './EditorialVideo.styles';
 import StickyEditorialWrapper from './StickyEditorialWrapper';

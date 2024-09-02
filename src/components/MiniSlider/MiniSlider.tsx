@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
-import { BASE_URL } from '../../contants/api';
+import { BASE_URL } from '../../constants/api';
 import { useEffect, useRef, useState } from 'react';
 
 interface MiniSlidersProps {

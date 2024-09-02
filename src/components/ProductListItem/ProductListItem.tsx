@@ -5,7 +5,7 @@ import { VscHeartFilled } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 
 import { useState } from 'react';
-import { BASE_URL } from '../../contants/api';
+import { BASE_URL } from '../../constants/api';
 import { useCartContext } from '../../contexts/CartContext';
 import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import * as t from '../../types';

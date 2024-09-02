@@ -1,4 +1,4 @@
-import { BASE_URL } from '../contants/api';
+import { BASE_URL } from '../constants/api';
 
 interface FetchProductsProps {
     gender: string;
