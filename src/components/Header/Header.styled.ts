@@ -21,7 +21,7 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
     }
 
     @media ${device.tablet} {
-        padding: 0 2rem;
+        padding: 0 1rem;
         position: fixed;
         width: 100%;
         left: 0;

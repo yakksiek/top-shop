@@ -6,7 +6,6 @@ interface MainContentProps {
 
 const StyledMainContent = styled.div`
     width: 100%;
-    flex: 1;
 `;
 
 function MainContent({ children }: MainContentProps) {

@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components';
-import { device } from '../../styles/breakpoints';
+import styled from 'styled-components';
 
 interface StyledInputWrapperProps {
     type?: 'header';
@@ -11,14 +10,6 @@ export const StyledInputWrapper = styled.div<StyledInputWrapperProps>`
     display: block;
     padding: ${props => (props.type !== 'header' ? '0 0 1rem 0' : '1rem 0')};
     max-width: 40rem;
-
-    @media ${device.tablet} {
-        ${props =>
-            props.type !== 'header' &&
-            css`
-                display: none;
-            `}
-    }
 `;
 
 export const StyledInputContainer = styled.div`

@@ -3,13 +3,14 @@ import { Link, useFetcher, useNavigate, useParams } from 'react-router-dom';
 
 import menuItems from '../../db/mainMenu.json';
 import ProductPreview from '../../features/product/ProductPreview';
-import { useProducts } from '../../features/product/useProducts';
 import useNoScroll from '../../hooks/useNoScroll';
 import * as t from '../../types';
-import * as h from '../../utils/helpers';
 import Heading from '../Heading';
 import { SearchInput } from '../SearchInput';
 
+import { useSearchInputContext } from '../../contexts/SearchInputContext';
+import { useFilteredProducts } from '../../features/product/useFilteredProducts';
+import Button from '../Button';
 import {
     StyledContainer,
     StyledNavigationList,
@@ -18,25 +19,20 @@ import {
     StyledSearchbarWrapper,
     StyledWrapper,
 } from './HeaderSearchbar.styled';
-import { useFilteredProducts } from '../../features/product/useFilteredProducts';
 
-interface HeaderSearchbarProps {
-    isSearchbarOpen: boolean;
-    handleSearchInputOpen: () => void;
-}
-
-function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearchbarProps) {
+function HeaderSearchbar() {
     const [filterQuery, setFilterQuery] = useState('');
+    const { isOpen, handleSearchInputOpen, query, setQueryHandler } = useSearchInputContext();
     const fetcher = useFetcher();
     const params = useParams();
     const navigate = useNavigate();
     const gender = params.gender || 'women';
-    // const { data: products } = useProducts({ gender });
+
     const { data: filteredProducts } = useFilteredProducts({
-        gender: gender,
         query: filterQuery,
     });
-    useNoScroll(isSearchbarOpen);
+    useNoScroll(isOpen);
+    const showMoreProductsButton = filterQuery && filteredProducts && filteredProducts.length > 0;
 
     useEffect(() => {
         if (!gender) return;
@@ -44,35 +40,30 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gender]);
 
-    useEffect(() => {}, [filterQuery]);
-
-    // const filteredProducts = products
-    //     ? h.filterProductsByQuery(products, ['description', 'productName', 'subcategory'], filterQuery).slice(0, 4)
-    //     : [];
-
     const productsToRender = fetcher.data
-        ? filterQuery
-            ? filteredProducts
+        ? filteredProducts && filterQuery
+            ? filteredProducts.slice(0, 4)
             : fetcher.data?.bestsellers.slice(0, 4)
         : [];
 
-    function setQueryHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    function handleQueryChange(event: React.ChangeEvent<HTMLInputElement>) {
         setFilterQuery(event.target.value);
     }
 
     function submitHandler() {
-        console.log('submitted');
+        navigate(`/${gender}/search`, { replace: true });
 
-        navigate('/search', { replace: true });
+        setQueryHandler(filterQuery);
+        setFilterQuery('');
     }
 
     return (
         <>
-            <StyledSearchbarWrapper $isOpen={isSearchbarOpen}>
+            <StyledSearchbarWrapper $isOpen={isOpen}>
                 <SearchInput
                     type='header'
                     value={filterQuery}
-                    onChangeHandler={setQueryHandler}
+                    onChangeHandler={handleQueryChange}
                     closeInputHandler={() => {
                         handleSearchInputOpen();
                         setFilterQuery('');
@@ -80,7 +71,7 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
                     onSubmit={submitHandler}
                 />
             </StyledSearchbarWrapper>
-            <StyledContainer $isOpen={isSearchbarOpen}>
+            <StyledContainer $isOpen={isOpen}>
                 <StyledWrapper>
                     <Heading as='h2'>{gender}</Heading>
                     <nav>
@@ -102,22 +93,34 @@ function HeaderSearchbar({ isSearchbarOpen, handleSearchInputOpen }: HeaderSearc
                 <StyledWrapper>
                     <Heading as='h2'>Top Products</Heading>
                     {productsToRender.length > 0 ? (
-                        <StyledProductList>
-                            {productsToRender.map((productItem: t.Product) => (
-                                <span onClick={handleSearchInputOpen} key={productItem.id}>
-                                    <ProductPreview product={productItem} />
-                                </span>
-                            ))}
-                        </StyledProductList>
+                        <>
+                            <StyledProductList>
+                                {productsToRender.map((productItem: t.Product) => (
+                                    <span onClick={handleSearchInputOpen} key={productItem.id}>
+                                        <ProductPreview product={productItem} />
+                                    </span>
+                                ))}
+                            </StyledProductList>
+                            {showMoreProductsButton && (
+                                <Button
+                                    onClick={() => {
+                                        submitHandler();
+                                        handleSearchInputOpen();
+                                    }}
+                                >
+                                    More products
+                                </Button>
+                            )}
+                        </>
                     ) : (
                         <p>
-                            No products with "<strong>{filterQuery}</strong>" parameters
+                            No products with "<strong>{query}</strong>" parameters
                         </p>
                     )}
                 </StyledWrapper>
             </StyledContainer>
             <StyledOverlay
-                $isOpen={isSearchbarOpen}
+                $isOpen={isOpen}
                 onClick={() => {
                     handleSearchInputOpen();
                     setFilterQuery('');

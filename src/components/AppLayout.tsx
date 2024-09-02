@@ -12,8 +12,8 @@ const StyledAppLayout = styled.div`
 function AppLayout() {
     return (
         <StyledAppLayout>
+            <Header />
             <MainContent>
-                <Header />
                 <Outlet />
             </MainContent>
             <Footer />

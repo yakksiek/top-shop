@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import { useSearchInputContext } from '../../contexts/SearchInputContext';
 import { useSidebarNavigationContext } from '../../contexts/SidebarNavigationContext';
 import Heading from '../Heading';
 import Menu from '../Menu';
@@ -15,7 +14,6 @@ import HeaderSearchbar from './HeaderSearchbar';
 
 function Header() {
     const { isOpen: isSidebarNavigationOpen } = useSidebarNavigationContext();
-    const { isOpen: isSearchbarOpen, handleSearchInputOpen } = useSearchInputContext();
     const [isAtTop, setIsAtTop] = useState(true);
 
     useEffect(() => {
@@ -39,7 +37,7 @@ function Header() {
                 <NavLinks />
                 <IdentificationModal />
             </StyledHeader>
-            <HeaderSearchbar isSearchbarOpen={isSearchbarOpen} handleSearchInputOpen={handleSearchInputOpen} />
+            <HeaderSearchbar />
         </Wrapper>
     );
 }
