@@ -46,9 +46,6 @@ function Search() {
         setQueryHandler(filterQuery);
     }
 
-    console.log('query: ' + query);
-    console.log('filter query: ' + filterQuery);
-
     return (
         <Section>
             <StyledSearchWrapper>
@@ -62,7 +59,7 @@ function Search() {
             <StyledMainContentWrapper>
                 <StyledHeaderParagraph>
                     {isPending && <SpinnerMini />}
-                    {query && `${filteredProducts?.length} search results`}
+                    {query && `${filteredProducts?.length || ''} search results`}
                 </StyledHeaderParagraph>
 
                 {filteredProducts && query && <Products products={filteredProducts} />}
