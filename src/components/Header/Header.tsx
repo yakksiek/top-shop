@@ -4,7 +4,6 @@ import { useSidebarNavigationContext } from '../../contexts/SidebarNavigationCon
 import Heading from '../Heading';
 import Menu from '../Menu';
 import NavLinks from '../NavLinks';
-import Wrapper from '../Wrapper';
 
 import { useEffect, useState } from 'react';
 import IdentificationModal from '../../features/authentication/IdentificationModal';
@@ -27,7 +26,7 @@ function Header() {
     }, []);
 
     return (
-        <Wrapper type='wide'>
+        <>
             <StyledHeader $isOpen={isSidebarNavigationOpen} className={!isAtTop ? 'border' : ''}>
                 <Menu />
                 <NavigationMenu />
@@ -38,7 +37,7 @@ function Header() {
                 <IdentificationModal />
             </StyledHeader>
             <HeaderSearchbar />
-        </Wrapper>
+        </>
     );
 }
 

@@ -11,7 +11,7 @@ interface SidebarProps {
 function Sidebar({ toggleSidebarNavigation, isOpen, children, slideFrom }: SidebarProps) {
     return (
         <>
-            <StyledOverlay onClick={toggleSidebarNavigation} $isOpen={isOpen}></StyledOverlay>
+            <StyledOverlay onClick={toggleSidebarNavigation} $isOpen={isOpen} />
             <StyledSidebar $isOpen={isOpen} $slideFrom={slideFrom}>
                 {children}
             </StyledSidebar>

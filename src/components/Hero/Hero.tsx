@@ -11,7 +11,6 @@ interface StyledHeroProps {
 
 const StyledHero = styled.div<StyledHeroProps>`
     width: 100%;
-    height: 500px;
     height: 60vh;
     background-size: cover;
     background-position: right;

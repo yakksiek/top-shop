@@ -21,7 +21,7 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
     }
 
     @media ${device.tablet} {
-        padding: 0 1rem;
+        padding: 0 var(--padding-horizontal-nav-tablet);
         position: fixed;
         width: 100%;
         left: 0;
@@ -36,7 +36,7 @@ export const StyledHeader = styled.header<StyledHeaderProps>`
     }
 
     @media ${device.desktop} {
-        padding: 0 3.5rem;
+        padding: 0 var(--padding-horizontal-nav-desktop);
     }
 
     .logo-wrapper {

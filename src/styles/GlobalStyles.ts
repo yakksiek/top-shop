@@ -9,10 +9,6 @@ const GlobalStyles = createGlobalStyle`
     --screen-width-medium: 90vw;
     --screen-width-large: 95vw;
 
-
-  &, &.light-mode {
-
-  
   /* Grey */
   --color-grey-0: #fff;
   --color-grey-200: #e5e7eb;
@@ -25,22 +21,14 @@ const GlobalStyles = createGlobalStyle`
   --color-orange-400: #fb923c;
   --color-red-700: #D32F2F;
 
-  --backdrop-color: rgba(255, 255, 255, 0.1);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
-
-
-    
- 
-}
-
   --font-size-small: 0.875rem;
   --text-underline: 0 2px 0 -1px currentColor;
 
   --padding-sidebar-mobile: 1rem 5.5vw; 
   --padding-sidebar-desk: 5rem 1.25vw 1rem 1.25vw; 
+
+  --padding-horizontal-nav-tablet: 1rem;
+  --padding-horizontal-nav-desktop: 3.5rem;
 
 
   --border-radius-tiny: 3px;

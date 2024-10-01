@@ -1,0 +1,18 @@
+[
+    {
+        "category": "Overview",
+        "path": "overview"
+    },
+    {
+        "category": "My Profile",
+        "path": "profile"
+    },
+    {
+        "category": "My Orders",
+        "path": "orders"
+    },
+    {
+        "category": "My wishlist",
+        "path": "wishlist"
+    }
+]
