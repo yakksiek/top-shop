@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '../../styles/breakpoints';
 
-export const StyledProductDetails = styled.div`
+export const StyledProductDetails = styled.section`
     padding: 4rem 0;
     font-weight: 400;
     overflow: hidden;
@@ -9,8 +9,7 @@ export const StyledProductDetails = styled.div`
     margin: 0 auto;
 
     @media ${device.tablet} {
-        /* padding: 0 8vw; */
-        padding: 0;
+        padding: 0.25rem;
         position: sticky;
         top: var(--header-height);
         height: 100vh;
