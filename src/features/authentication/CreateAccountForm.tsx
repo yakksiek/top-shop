@@ -23,9 +23,9 @@ function CreateAccountForm() {
     const { toggleLoginModal, toggleCreateAccountView } = useLoginModalContext();
     const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>({
         defaultValues: {
-            name: 'Zen',
-            surname: 'On',
-            email: 'marcin.kulbicki@gmail.com',
+            name: 'John',
+            surname: 'Doe',
+            email: '',
             password: '123456',
             passwordConfirm: '123456',
         },
