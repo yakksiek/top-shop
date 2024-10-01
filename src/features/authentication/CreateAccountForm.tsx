@@ -21,7 +21,15 @@ function CreateAccountForm() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { isPending, signup, signupError } = useSignup();
     const { toggleLoginModal, toggleCreateAccountView } = useLoginModalContext();
-    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>();
+    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>({
+        defaultValues: {
+            name: 'Zen',
+            surname: 'On',
+            email: 'marcin.kulbicki@gmail.com',
+            password: '123456',
+            passwordConfirm: '123456',
+        },
+    });
     const { errors } = formState;
 
     function onSubmit({ name, surname, email, password }: FormData) {
@@ -42,13 +50,7 @@ function CreateAccountForm() {
         <>
             <StyledModalWrapper>
                 <ModalHeader toggleModal={toggleLoginModal} headerText='Create an account' />
-                <StyledForm
-                    onSubmit={e => {
-                        e.preventDefault();
-                        handleSubmit(onSubmit);
-                    }}
-                    noValidate
-                >
+                <StyledForm onSubmit={handleSubmit(onSubmit)} noValidate>
                     <FormRow label='Name' error={errors.name && errors.name.message}>
                         <Input
                             id='name'
