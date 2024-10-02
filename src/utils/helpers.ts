@@ -61,3 +61,7 @@ export function arraysAreEqual<T>(arr1: T[], arr2: T[]): boolean {
 
     return true;
 }
+
+export function getLastItem<T>(array: T[]): T | undefined {
+    return array.length > 0 ? array[array.length - 1] : undefined;
+}

@@ -112,10 +112,22 @@ export const StyledMenuItemList = styled.ul<StyledMenuListProps>`
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 2rem;
+            padding: 0;
 
-            .active-link {
+            &:hover {
                 border-bottom: 1px solid black;
+            }
+
+            &.active {
+                border-bottom: 1.5px solid black;
+            }
+
+            a,
+            button {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0 2rem;
             }
         }
     }
