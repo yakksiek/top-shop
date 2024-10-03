@@ -29,25 +29,24 @@ const StyledContactServicesList = styled.ul`
         border-right: var(--border-standard);
         text-align: center;
         cursor: pointer;
+        position: relative;
 
         &:last-child {
             border: none;
+        }
+
+        .check-mark {
+            position: absolute;
+            left: 65%;
+            top: 15%;
+            color: var(--color-red-700);
         }
     }
 `;
 
 const StyledIconWrapper = styled.div`
-    position: relative;
-
     svg {
         font-size: 1.25rem;
-    }
-
-    .check-mark {
-        position: absolute;
-        top: -1rem;
-        right: 1.5rem;
-        color: var(--color-red-700);
     }
 `;
 
@@ -65,12 +64,8 @@ function OverviewMyProfile() {
     const renderedContactServices = contactData.map(contact => {
         return (
             <li key={contact.name}>
-                <StyledIconWrapper>
-                    {contact.icon}
-                    <div className='check-mark'>
-                        <CrossIcon />
-                    </div>
-                </StyledIconWrapper>
+                <CrossIcon className='check-mark' />
+                <StyledIconWrapper>{contact.icon}</StyledIconWrapper>
                 <span>{contact.name}</span>
             </li>
         );
