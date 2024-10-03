@@ -12,7 +12,7 @@
         "path": "orders"
     },
     {
-        "category": "My wishlist",
+        "category": "My Wishlist",
         "path": "wishlist"
     }
 ]

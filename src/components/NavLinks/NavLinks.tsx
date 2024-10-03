@@ -1,21 +1,20 @@
 import { useNavigate } from 'react-router-dom';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { IoBagHandleOutline, IoPersonOutline } from 'react-icons/io5';
 
 import { useCartContext } from '../../contexts/CartContext';
 import { useFavouritesContext } from '../../contexts/FavouritesContext';
-import StyledNavigation from '../StyledNavigation';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
-import { useUser } from '../../features/authentication/useUser';
 import { useModalSidebarContext } from '../../contexts/ModalSidebarContext';
+import { useUser } from '../../features/authentication/useUser';
+import { BagIcon, HeartEmptyIcon, PersonIcon } from '../../shared/icons';
+import StyledNavigation from '../StyledNavigation';
 
+import ContactUsSidebar from '../ContactUsSidebar';
 import {
     StyledCartIndicator,
     StyledContentWrapper,
     StyledFavouritesIndicator,
     StyledLinkItem,
 } from './NavLinks.styled';
-import ContactUsSidebar from '../ContactUsSidebar';
 
 function NavLinks() {
     const { cartItems } = useCartContext();
@@ -44,21 +43,21 @@ function NavLinks() {
             </li>
             <li>
                 <StyledLinkItem to='/favourites'>
-                    <IoMdHeartEmpty />
+                    <HeartEmptyIcon />
                     {favouriteItems && favouriteItems.length > 0 && <StyledFavouritesIndicator />}
                 </StyledLinkItem>
             </li>
 
             <li onClick={() => handleProtectedLinkClick('/dashboard')}>
                 <StyledContentWrapper>
-                    <IoPersonOutline />
+                    <PersonIcon />
                     {isAuthenticated && <StyledFavouritesIndicator color='black' />}
                 </StyledContentWrapper>
             </li>
 
             <li>
                 <StyledLinkItem to='/cart'>
-                    <IoBagHandleOutline />
+                    <BagIcon />
                     <StyledCartIndicator>{cartItems.length}</StyledCartIndicator>
                 </StyledLinkItem>
             </li>

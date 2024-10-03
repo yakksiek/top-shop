@@ -22,7 +22,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     text-align: center;
     min-height: 3rem;
     width: 100%;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 400;
     letter-spacing: 0.025rem;
     line-height: 1.25rem;

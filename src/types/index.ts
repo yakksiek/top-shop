@@ -6,6 +6,7 @@ import { FavouritesList } from './FavouritesListTypes';
 import User from './User';
 import FilterKey from './ProductFilterKeyTypes';
 import ServicesItem from './ServicesItemTypes';
+import OverviewCategory from './OverviewCategoryTypes';
 
 export type {
     Product,
@@ -17,6 +18,7 @@ export type {
     User,
     FilterKey,
     ServicesItem,
+    OverviewCategory,
 };
 
 export { validGenders, validCategories, validSubcategories };
