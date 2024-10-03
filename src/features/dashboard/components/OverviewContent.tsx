@@ -6,12 +6,20 @@ import OverviewCard from './OverviewCard';
 import OverviewMyProfile from './OverviewMyProfile';
 import OverviewMyOrders from './OverviewMyOrders';
 import OverviewMyWishlist from './OverviewMyWishlist';
+import { device } from '../../../styles/breakpoints';
 
 const StyledOverviewContent = styled.div`
     padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1rem;
+
+    @media ${device.desktop} {
+        grid-template-columns: 1fr 1fr;
+        width: var(--screen-width-large);
+        max-width: var(--max-width);
+        margin: 0 auto;
+    }
 `;
 
 const overviewCardsContent: Record<t.OverviewCategory, JSX.Element> = {
