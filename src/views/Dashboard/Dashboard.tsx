@@ -1,13 +1,23 @@
+import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
+
 import DashboardNavigation from '../../features/dashboard/components/DashboardNavigation';
+import Section from '../../components/Section';
+
+const StyledMain = styled.main`
+    background-color: var(--color-grey-50);
+    padding-bottom: 2rem;
+`;
 
 function Dashboard() {
     return (
         <div>
             <DashboardNavigation />
-            <main>
-                <Outlet />
-            </main>
+            <StyledMain>
+                <Section>
+                    <Outlet />
+                </Section>
+            </StyledMain>
         </div>
     );
 }

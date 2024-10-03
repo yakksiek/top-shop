@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { device } from '../../../styles/breakpoints';
+import { DASHBOARD_NAVIGATION_Z_INDEX } from '../../../constants/z-indexes';
 
 interface StyledMenuButtonProps {
     $isOpen: boolean;
@@ -24,6 +25,7 @@ export const StyledNavigation = styled.nav`
     height: var(--header-height);
     position: relative;
     padding: 0 var(--horizontal-padding-mobile);
+    z-index: ${DASHBOARD_NAVIGATION_Z_INDEX};
 
     @media ${device.tablet} {
         display: flex;
