@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import Button from '../../../components/Button';
 import Heading from '../../../components/Heading';
 import {
@@ -12,43 +10,9 @@ import {
     TextChatIcon,
 } from '../../../shared/icons';
 import { useUser } from '../../authentication/useUser';
+import { StyledIconWrapper, StyledContactServicesList } from './OverviewMyProfile.styled';
 
-/* margin-top and the generic tags styled in OvervieCard */
-
-const StyledContactServicesList = styled.ul`
-    display: flex;
-    border: var(--border-standard);
-    margin: 1rem 0;
-
-    & > * {
-        flex: 1;
-    }
-
-    li {
-        padding: 2rem 0.5rem 1rem;
-        border-right: var(--border-standard);
-        text-align: center;
-        cursor: pointer;
-        position: relative;
-
-        &:last-child {
-            border: none;
-        }
-
-        .check-mark {
-            position: absolute;
-            left: 65%;
-            top: 15%;
-            color: var(--color-red-700);
-        }
-    }
-`;
-
-const StyledIconWrapper = styled.div`
-    svg {
-        font-size: 1.25rem;
-    }
-`;
+/* margin-top and the generic tags styled in OverviewCard */
 
 const contactData = [
     { name: 'Email newsletter', icon: <MailIcon /> },
@@ -59,6 +23,8 @@ const contactData = [
 
 function OverviewMyProfile() {
     const { user } = useUser();
+
+    // user always present when logged in
     const { email } = user!;
 
     const renderedContactServices = contactData.map(contact => {
