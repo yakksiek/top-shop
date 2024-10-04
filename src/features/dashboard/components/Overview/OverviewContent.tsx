@@ -16,9 +16,11 @@ const StyledOverviewContent = styled.div`
 
     @media ${device.desktop} {
         grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto;
         width: var(--screen-width-large);
         max-width: var(--max-width);
         margin: 0 auto;
+        align-items: start;
     }
 `;
 
