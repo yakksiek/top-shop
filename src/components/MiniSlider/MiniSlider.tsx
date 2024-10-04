@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
+import styled from 'styled-components';
 import { BASE_URL } from '../../constants/api';
-import { useEffect, useRef, useState } from 'react';
+import useSliderScroller from '../../hooks/useSliderScroller';
 
 interface MiniSlidersProps {
     photos: string[];
@@ -74,25 +74,7 @@ const NavigationButton = styled.button`
 `;
 
 function MiniSlider({ photos, productName }: MiniSlidersProps) {
-    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-    const scrollerRef = useRef<HTMLUListElement | null>(null);
-
-    const handlePrevious = () => {
-        setCurrentPhotoIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : photos.length - 1));
-    };
-
-    const handleNext = () => {
-        setCurrentPhotoIndex(prevIndex => (prevIndex < photos.length - 1 ? prevIndex + 1 : 0));
-    };
-
-    useEffect(() => {
-        if (scrollerRef.current) {
-            scrollerRef.current.scrollTo({
-                left: scrollerRef.current.offsetWidth * currentPhotoIndex,
-                behavior: 'smooth',
-            });
-        }
-    }, [currentPhotoIndex]);
+    const { scrollerRef, handlePrevious, handleNext } = useSliderScroller(photos);
 
     return (
         <>
