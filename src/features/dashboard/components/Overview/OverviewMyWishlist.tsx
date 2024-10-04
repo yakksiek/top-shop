@@ -1,10 +1,11 @@
+import { useMemo } from 'react';
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
+import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import Button from '../../../../components/Button';
 import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
+import useSliderScroller from '../../../../hooks/useSliderScroller';
 import MyWishlistPreviewItem from './MyWishlistPreviewItem';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
-import { useNavigate } from 'react-router-dom';
 
 interface NavigationButtonProps {
     $endlessScroll: boolean;
@@ -92,34 +93,12 @@ const NavigationButton = styled.button<NavigationButtonProps>`
 function OverviewMyWishlist() {
     const { favouriteItems } = useFavouritesContext();
     const navigate = useNavigate();
-    const [currentItemIndex, setCurrentItemIndex] = useState(0);
-    const scrollerRef = useRef<HTMLUListElement | null>(null);
+    const { scrollerRef, currentItemIndex, handlePrevious, handleNext, isFirst, isLast } =
+        useSliderScroller(favouriteItems);
     const isFavouritesArrEmpty = favouriteItems.length === 0;
-    const isFirst = currentItemIndex === 0;
-
-    // 2 because we are showing two items in a scroll gallery
-    const isLast = currentItemIndex === favouriteItems.length - 2;
-
-    useEffect(() => {
-        if (scrollerRef.current) {
-            const itemWidth = scrollerRef.current.scrollWidth / favouriteItems.length;
-            scrollerRef.current.scrollTo({
-                left: itemWidth * currentItemIndex,
-                behavior: 'smooth',
-            });
-        }
-    }, [currentItemIndex, favouriteItems.length]);
 
     const handleNavigate = () => {
         navigate('/favourites');
-    };
-
-    const handlePrevious = () => {
-        setCurrentItemIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : favouriteItems.length - 1));
-    };
-
-    const handleNext = () => {
-        setCurrentItemIndex(prevIndex => (prevIndex < favouriteItems.length - 1 ? prevIndex + 1 : 0));
     };
 
     const renderedFavouriteItems = useMemo(() => {
