@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import * as t from '../../../../types';
-import Heading from '../../../../components/Heading';
+import DashboardSubcategoryHeader from '../DashboardSubcategoryHeader';
 
 const StyledCardContainer = styled.div`
     --card-padding: 1.5rem;
@@ -35,9 +35,7 @@ function OverviewCard({ title, children }: OverviewCardProps) {
     return (
         <StyledCardContainer>
             <StyledHeader>
-                <Heading as='h3' $textAlign='left'>
-                    {title}
-                </Heading>
+                <DashboardSubcategoryHeader title={title} />
             </StyledHeader>
             <StyledCardContent>{children}</StyledCardContent>
         </StyledCardContainer>

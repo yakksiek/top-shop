@@ -1,28 +1,10 @@
-import styled from 'styled-components';
-
-import * as t from '../../../../types';
 import dashboardMenu from '../../../../db/dashboardMenu.json';
+import * as t from '../../../../types';
+import { StyledDashboardSubcategoryContainer } from '../StyledDashboardSubcategoryContainer';
 import OverviewCard from './OverviewCard';
-import OverviewMyProfile from './OverviewMyProfile';
 import OverviewMyOrders from './OverviewMyOrders';
+import OverviewMyProfile from './OverviewMyProfile';
 import OverviewMyWishlist from './OverviewMyWishlist';
-import { device } from '../../../../styles/breakpoints';
-
-const StyledOverviewContent = styled.div`
-    padding: 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-
-    @media ${device.desktop} {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: auto;
-        width: var(--screen-width-large);
-        max-width: var(--max-width);
-        margin: 0 auto;
-        align-items: start;
-    }
-`;
 
 const overviewCardsContent: Record<t.OverviewCategory, JSX.Element> = {
     'My Profile': <OverviewMyProfile />,
@@ -41,7 +23,7 @@ function OverviewContent() {
         );
     });
 
-    return <StyledOverviewContent>{renderedCards}</StyledOverviewContent>;
+    return <StyledDashboardSubcategoryContainer>{renderedCards}</StyledDashboardSubcategoryContainer>;
 }
 
 export default OverviewContent;
