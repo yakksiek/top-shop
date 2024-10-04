@@ -6,7 +6,7 @@ import ButtonRoundSlider from '../../../../components/ButtonRoundSlider';
 import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
 import useSliderScroller from '../../../../hooks/useSliderScroller';
 import MyWishlistPreviewItem from './MyWishlistPreviewItem';
-import { StyledItemsIndicator, StyledScrollerContainer, StyledMediaScroller } from './OverviewMyWishlist_copy.styled';
+import { StyledItemsIndicator, StyledScrollerContainer, StyledMediaScroller } from './OverviewMyWishlist.styled';
 
 function OverviewMyWishlist() {
     const { favouriteItems } = useFavouritesContext();
@@ -39,7 +39,7 @@ function OverviewMyWishlist() {
 
                 <ButtonRoundSlider
                     onClick={handlePrevious}
-                    className='scroller__btn'
+                    className={true}
                     endlessScroll={false}
                     isFirst={isFirst}
                     isLast={isLast}
@@ -48,7 +48,7 @@ function OverviewMyWishlist() {
 
                 <ButtonRoundSlider
                     onClick={handleNext}
-                    className='scroller__btn'
+                    className={true}
                     isFirst={isFirst}
                     isLast={isLast}
                     endlessScroll={false}

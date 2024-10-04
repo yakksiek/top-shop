@@ -71,7 +71,7 @@ const NavigationButton = styled.button<NavigationButtonProps>`
 
 interface ButtonRoundSlider {
     onClick: () => void;
-    className?: string;
+    className?: boolean;
     endlessScroll?: boolean;
     isFirst?: boolean;
     isLast?: boolean;
@@ -80,7 +80,7 @@ interface ButtonRoundSlider {
 
 function ButtonRoundSlider({
     onClick,
-    className = '',
+    className = false,
     endlessScroll = true,
     isFirst = false,
     isLast = false,
@@ -90,7 +90,7 @@ function ButtonRoundSlider({
     return (
         <NavigationButton
             onClick={onClick}
-            className={className}
+            className={className ? 'scroller__btn' : ''}
             $endlessScroll={endlessScroll}
             $isFirst={isFirst}
             $isLast={isLast}
