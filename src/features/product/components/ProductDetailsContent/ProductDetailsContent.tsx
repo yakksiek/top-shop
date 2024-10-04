@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { VscHeartFilled } from 'react-icons/vsc';
 
-import * as t from '../../../../types';
 import * as h from '../../../../utils/helpers';
+import * as t from '../../../../types';
+import { HeartEmptyIcon, HeartFilledIcon } from '../../../../shared/icons';
+import Button from '../../../../components/Button';
+import { ModalHeader, StyledModalWrapper } from '../../../../components/Modal';
 import { useCartContext } from '../../../../contexts/CartContext';
 import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
 import { useModalSidebarContext } from '../../../../contexts/ModalSidebarContext';
-import Button from '../../../../components/Button';
-import { ModalHeader, StyledModalWrapper } from '../../../../components/Modal';
 import ProductDetailsFooterRow from './ProductDetailsFooterRow';
 
 import {
@@ -69,9 +68,9 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
                 <div className='product-id'>
                     <span>ID: {product.id}</span>
                     {productInFavourites ? (
-                        <VscHeartFilled onClick={() => removeItemFromFavourites(productInFavourites.id)} />
+                        <HeartFilledIcon onClick={() => removeItemFromFavourites(productInFavourites.id)} />
                     ) : (
-                        <IoMdHeartEmpty onClick={() => addItemToFavourites(product)} />
+                        <HeartEmptyIcon onClick={() => addItemToFavourites(product)} />
                     )}
                 </div>
                 <h2>{product.productName}</h2>
