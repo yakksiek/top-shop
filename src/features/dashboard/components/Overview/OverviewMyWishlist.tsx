@@ -12,10 +12,7 @@ import { StyledItemsIndicator, StyledMediaScroller, StyledScrollerContainer } fr
 function OverviewMyWishlist() {
     const { favouriteItems } = useFavouritesContext();
     const navigate = useNavigate();
-    const { scrollerRef, currentItemIndex, handlePrevious, handleNext, isFirst, isLast } = useSliderScroller(
-        favouriteItems,
-        2,
-    );
+    const { scrollerRef, handlePrevious, handleNext, isFirst, isLast } = useSliderScroller(favouriteItems, 2);
     const isFavouritesArrEmpty = favouriteItems.length === 0;
 
     const handleNavigate = () => {
@@ -45,7 +42,6 @@ function OverviewMyWishlist() {
                     onClick={handlePrevious}
                     className='scroller__btn'
                     endlessScroll={false}
-                    currentItemIndex={currentItemIndex}
                     isFirst={isFirst}
                     isLast={isLast}
                     type='left'
@@ -57,7 +53,6 @@ function OverviewMyWishlist() {
                     isFirst={isFirst}
                     isLast={isLast}
                     endlessScroll={false}
-                    currentItemIndex={currentItemIndex}
                     type='right'
                 />
             </StyledScrollerContainer>

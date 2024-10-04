@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowRight } from '../../shared/icons';
 
 interface NavigationButtonProps {
     $endlessScroll: boolean;
-    $currentItemIndex: number;
     $isFirst: boolean;
     $isLast: boolean;
 }
@@ -55,9 +54,8 @@ interface ButtonRoundSlider {
     onClick: () => void;
     className?: string;
     endlessScroll?: boolean;
-    currentItemIndex: number;
-    isFirst: boolean;
-    isLast: boolean;
+    isFirst?: boolean;
+    isLast?: boolean;
     type: 'left' | 'right';
 }
 
@@ -65,9 +63,8 @@ function ButtonRoundSlider({
     onClick,
     className = '',
     endlessScroll = true,
-    currentItemIndex,
-    isFirst,
-    isLast,
+    isFirst = false,
+    isLast = false,
     type = 'left',
 }: ButtonRoundSlider) {
     const isLeftButton = type === 'left';
@@ -76,7 +73,6 @@ function ButtonRoundSlider({
             onClick={onClick}
             className={className}
             $endlessScroll={endlessScroll}
-            $currentItemIndex={currentItemIndex}
             $isFirst={isFirst}
             $isLast={isLast}
         >

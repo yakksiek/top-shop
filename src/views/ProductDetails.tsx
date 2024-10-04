@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import MiniSlider from '../components/MiniSlider';
+import MiniSlider from '../features/product/MiniSlider';
 import ProductDetailsContent from '../components/ProductDetailsContent';
 import Section from '../components/Section';
 import { device } from '../styles/breakpoints';
