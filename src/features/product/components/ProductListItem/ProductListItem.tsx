@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { IoBagHandleOutline } from 'react-icons/io5';
-import { LiaTimesSolid } from 'react-icons/lia';
-import { VscHeartFilled } from 'react-icons/vsc';
 
-import * as t from '../../../../types';
-import * as h from '../../../../utils/helpers';
 import { BASE_URL } from '../../../../constants/api';
 import { useCartContext } from '../../../../contexts/CartContext';
 import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
+import * as t from '../../../../types';
+import * as h from '../../../../utils/helpers';
 
+import { BagIcon, CrossIcon, HeartEmptyIcon, HeartFilledIcon } from '../../../../shared/icons';
 import {
     StyledButtonCart,
     StyledIconWrapper,
@@ -66,7 +63,7 @@ function ProductListItem({ product, variant }: ProductProps) {
 
                     <StyledIconWrapper>
                         {wishlistView ? (
-                            <LiaTimesSolid
+                            <CrossIcon
                                 onClick={e =>
                                     handleFavouriteClick(
                                         e,
@@ -75,11 +72,11 @@ function ProductListItem({ product, variant }: ProductProps) {
                                 }
                             />
                         ) : !favouriteItem ? (
-                            <IoMdHeartEmpty
+                            <HeartEmptyIcon
                                 onClick={e => handleFavouriteClick(e, () => addItemToFavourites(product))}
                             />
                         ) : (
-                            <VscHeartFilled
+                            <HeartFilledIcon
                                 onClick={e => handleFavouriteClick(e, () => removeItemFromFavourites(favouriteItem.id))}
                             />
                         )}
@@ -95,7 +92,7 @@ function ProductListItem({ product, variant }: ProductProps) {
                             className={`cart-wrapper ${buttonText !== CART_BUTTON_TEXT ? 'animate' : ''}`}
                             onClick={handleAddToCart}
                         >
-                            <IoBagHandleOutline />
+                            <BagIcon />
                             <span className='cart-label'>{buttonText}</span>
                         </StyledButtonCart>
                     )}

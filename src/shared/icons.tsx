@@ -5,10 +5,12 @@ import { BsChatLeftText, BsPostcard } from 'react-icons/bs';
 import { RxCross2 } from 'react-icons/rx';
 import { MdOutlineLocationOn } from 'react-icons/md';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
+import { VscHeartFilled } from 'react-icons/vsc';
 
 export const BagIcon = IoBagHandleOutline;
 export const PersonIcon = IoPersonOutline;
 export const HeartEmptyIcon = IoMdHeartEmpty;
+export const HeartFilledIcon = VscHeartFilled;
 export const MailIcon = AiOutlineMail;
 export const PhoneIcon = IoPhonePortraitOutline;
 export const TextChatIcon = BsChatLeftText;
