@@ -64,6 +64,7 @@ function ProductListItem({ product, variant }: ProductProps) {
                     <StyledIconWrapper>
                         {wishlistView ? (
                             <CrossIcon
+                                className='cross-icon'
                                 onClick={e =>
                                     handleFavouriteClick(
                                         e,

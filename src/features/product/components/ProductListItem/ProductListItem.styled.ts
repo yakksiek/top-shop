@@ -33,6 +33,21 @@ export const StyledItem = styled.li`
             }
         }
     }
+
+    @media ${device.desktop} {
+        .cross-icon {
+            transition: opacity 0.5s ease, visibility 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        &:hover {
+            .cross-icon {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
 `;
 
 export const StyledImgContainer = styled.div`
