@@ -8,12 +8,6 @@ export const StyledItemsIndicator = styled.div`
 export const StyledScrollerContainer = styled.div`
     position: relative;
 
-    .scroller__btn {
-        transition: opacity 0.5s ease, visibility 0.3s ease;
-        opacity: 0;
-        visibility: hidden;
-    }
-
     &:hover {
         .scroller__btn {
             opacity: 1;

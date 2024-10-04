@@ -24,6 +24,10 @@ const NavigationButton = styled.button<NavigationButtonProps>`
     border-radius: 50%;
     aspect-ratio: 1;
 
+    transition: opacity 0.5s ease, visibility 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+
     &:hover {
         background-color: var(--color-black);
         color: var(--color-grey-0);
@@ -35,7 +39,12 @@ const NavigationButton = styled.button<NavigationButtonProps>`
             $isFirst &&
             !$endlessScroll &&
             css`
-                display: none;
+                // increase specificity due to OverviewMyWishlist.styled.ts
+                // where .scroller_btn is targeted on hover
+                && {
+                    opacity: 0;
+                    visibility: hidden;
+                }
             `}
     }
 
@@ -45,8 +54,18 @@ const NavigationButton = styled.button<NavigationButtonProps>`
             $isLast &&
             !$endlessScroll &&
             css`
-                display: none;
+                // increase specificity due to OverviewMyWishlist.styled.ts
+                // where .scroller_btn is targeted on hover
+                && {
+                    opacity: 0;
+                    visibility: hidden;
+                }
             `}
+    }
+
+    &.scroller__btn {
+        opacity: 0;
+        visibility: hidden;
     }
 `;
 
