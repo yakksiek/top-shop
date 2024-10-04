@@ -1,5 +1,5 @@
-import Button from '../../../components/Button';
-import Heading from '../../../components/Heading';
+import Button from '../../../../components/Button';
+import Heading from '../../../../components/Heading';
 import {
     CrossIcon,
     LocationIcon,
@@ -8,8 +8,8 @@ import {
     PhoneIcon,
     PostcardIcon,
     TextChatIcon,
-} from '../../../shared/icons';
-import { useUser } from '../../authentication/useUser';
+} from '../../../../shared/icons';
+import { useUser } from '../../../authentication/useUser';
 import { StyledIconWrapper, StyledContactServicesList } from './OverviewMyProfile.styled';
 
 /* margin-top and the generic tags styled in OverviewCard */

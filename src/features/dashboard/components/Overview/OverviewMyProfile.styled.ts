@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../../styles/breakpoints';
+import { device } from '../../../../styles/breakpoints';
 
 export const StyledContactServicesList = styled.ul`
     display: flex;

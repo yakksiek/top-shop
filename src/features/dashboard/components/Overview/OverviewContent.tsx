@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import * as t from '../../../types';
-import dashboardMenu from '../../../db/dashboardMenu.json';
+import * as t from '../../../../types';
+import dashboardMenu from '../../../../db/dashboardMenu.json';
 import OverviewCard from './OverviewCard';
 import OverviewMyProfile from './OverviewMyProfile';
 import OverviewMyOrders from './OverviewMyOrders';
 import OverviewMyWishlist from './OverviewMyWishlist';
-import { device } from '../../../styles/breakpoints';
+import { device } from '../../../../styles/breakpoints';
 
 const StyledOverviewContent = styled.div`
     padding: 2.5rem;

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { BASE_URL } from '../../constants/api';
 import styled from 'styled-components';
+import { BASE_URL } from '../../constants/api';
 
 import * as t from '../../types';
 
@@ -8,7 +8,6 @@ const StyledItem = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex-flow: row nowrap;
 
     p {
         flex: 1;

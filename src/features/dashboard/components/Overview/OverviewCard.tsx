@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import * as t from '../../../types';
-import Heading from '../../../components/Heading';
+import * as t from '../../../../types';
+import Heading from '../../../../components/Heading';
 
 const StyledCardContainer = styled.div`
     --card-padding: 1.5rem;
