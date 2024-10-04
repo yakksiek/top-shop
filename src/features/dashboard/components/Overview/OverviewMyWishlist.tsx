@@ -93,8 +93,10 @@ const NavigationButton = styled.button<NavigationButtonProps>`
 function OverviewMyWishlist() {
     const { favouriteItems } = useFavouritesContext();
     const navigate = useNavigate();
-    const { scrollerRef, currentItemIndex, handlePrevious, handleNext, isFirst, isLast } =
-        useSliderScroller(favouriteItems);
+    const { scrollerRef, currentItemIndex, handlePrevious, handleNext, isFirst, isLast } = useSliderScroller(
+        favouriteItems,
+        2,
+    );
     const isFavouritesArrEmpty = favouriteItems.length === 0;
 
     const handleNavigate = () => {
