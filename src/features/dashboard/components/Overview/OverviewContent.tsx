@@ -1,7 +1,8 @@
 import dashboardMenu from '../../../../db/dashboardMenu.json';
 import * as t from '../../../../types';
+import DashboardSubcategoryCard from '../DashboardSubcategoryCard';
+import DashboardSubcategoryHeader from '../DashboardSubcategoryHeader';
 import { StyledDashboardSubcategoryContainer } from '../StyledDashboardSubcategoryContainer';
-import OverviewCard from './OverviewCard';
 import OverviewMyOrders from './OverviewMyOrders';
 import OverviewMyProfile from './OverviewMyProfile';
 import OverviewMyWishlist from './OverviewMyWishlist';
@@ -17,9 +18,9 @@ function OverviewContent() {
 
     const renderedCards = headers.map(headerTitle => {
         return (
-            <OverviewCard key={headerTitle} title={headerTitle}>
+            <DashboardSubcategoryCard header={<DashboardSubcategoryHeader title={headerTitle} />}>
                 {overviewCardsContent[headerTitle]}
-            </OverviewCard>
+            </DashboardSubcategoryCard>
         );
     });
 

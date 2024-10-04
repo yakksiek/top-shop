@@ -28,9 +28,9 @@ const GlobalStyles = createGlobalStyle`
 
   --padding-sidebar-mobile: 1rem 5.5vw; 
   --padding-sidebar-desk: 5rem 1.25vw 1rem 1.25vw; 
-
   --padding-horizontal-nav-tablet: 1rem;
   --padding-horizontal-nav-desktop: 3.5rem;
+  --padding-dashboard-card-item: 1.5rem;
 
 
   --border-radius-tiny: 3px;
