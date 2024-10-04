@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { VscHeartFilled } from 'react-icons/vsc';
 
-import { useCartContext } from '../../contexts/CartContext';
-import { useFavouritesContext } from '../../contexts/FavouritesContext';
-import { useModalSidebarContext } from '../../contexts/ModalSidebarContext';
-import * as t from '../../types';
-import * as h from '../../utils/helpers';
-import Button from '../Button';
-import { ModalHeader, StyledModalWrapper } from '../Modal';
+import * as t from '../../../../types';
+import * as h from '../../../../utils/helpers';
+import { useCartContext } from '../../../../contexts/CartContext';
+import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
+import { useModalSidebarContext } from '../../../../contexts/ModalSidebarContext';
+import Button from '../../../../components/Button';
+import { ModalHeader, StyledModalWrapper } from '../../../../components/Modal';
 import ProductDetailsFooterRow from './ProductDetailsFooterRow';
 
 import {

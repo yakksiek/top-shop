@@ -1,6 +1,6 @@
-import { BASE_URL } from '../../../constants/api';
-import useSliderScroller from '../../../hooks/useSliderScroller';
-import ButtonRoundSlider from '../../../components/ButtonRoundSlider';
+import { BASE_URL } from '../../../../constants/api';
+import useSliderScroller from '../../../../hooks/useSliderScroller';
+import ButtonRoundSlider from '../../../../components/ButtonRoundSlider';
 import { StyledMediaItem, StyledMediaScroller } from './MiniSlider.styled';
 
 interface MiniSlidersProps {

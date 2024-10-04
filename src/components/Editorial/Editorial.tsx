@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import * as t from '../../types';
-import Products from '../Products';
+
 import EditioralHeader from './EditioralHeader';
 import EditorialVideo from './EditorialVideo';
 import Section from '../Section';
-import StyledProductsWrapper from '../Products/StyledProductsWrapper';
+import StyledProductsWrapper from '../../features/product/components/Products/StyledProductsWrapper';
+import Products from '../../features/product/components/Products';
 
 const StyledContent = styled.div`
     position: relative;

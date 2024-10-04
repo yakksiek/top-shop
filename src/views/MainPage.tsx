@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-import Hero from '../components/Hero';
-import Products from '../components/Products';
 import * as t from '../types';
+import Hero from '../components/Hero';
 import Editorial from '../components/Editorial';
 import ArtOfGiting from '../components/ArtOfGifting';
-import StyledProductsWrapper from '../components/Products/StyledProductsWrapper';
+import Products from '../features/product/components/Products';
+import StyledProductsWrapper from '../features/product/components/Products/StyledProductsWrapper';
 
 const MARGIN_LEFT_TOUCH_PREVENT = 20;
 

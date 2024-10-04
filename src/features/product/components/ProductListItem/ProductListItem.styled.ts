@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import { device } from '../../styles/breakpoints';
+import { device } from '../../../../styles/breakpoints';
 
 export const StyledItem = styled.li`
     cursor: pointer;
-
-    /* display: flex; */
     flex-direction: column;
     justify-content: space-between;
     height: 100%;

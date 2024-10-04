@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-
-import MiniSlider from '../features/product/MiniSlider';
-import ProductDetailsContent from '../components/ProductDetailsContent';
-import Section from '../components/Section';
-import { device } from '../styles/breakpoints';
-import ProductDetailsMedia from '../components/ProductsDetailsMedia';
 import { useLoaderData } from 'react-router-dom';
+
 import * as t from '../types/index';
+import MiniSlider from '../features/product/components/MiniSlider';
+import { device } from '../styles/breakpoints';
+import Section from '../components/Section';
 import Breadcrumbs from '../components/Breadcrumbs';
+import ProductDetailsContent from '../features/product/components/ProductDetailsContent';
+import ProductDetailsMedia from '../features/product/components/ProductsDetailsMedia';
 
 const StyledGridContainer = styled.div`
     @media ${device.tablet} {

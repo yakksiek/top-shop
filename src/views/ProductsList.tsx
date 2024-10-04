@@ -1,10 +1,10 @@
 import { useLoaderData, useParams } from 'react-router-dom';
-import Breadcrumbs from '../components/Breadcrumbs';
-import Pagination from '../components/Pagination';
-import Products from '../components/Products';
 
 import * as t from '../types';
 import * as h from '../utils/helpers';
+import Products from '../features/product/components/Products';
+import Pagination from '../components/Pagination';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 function ProductsList() {
     const params = useParams();

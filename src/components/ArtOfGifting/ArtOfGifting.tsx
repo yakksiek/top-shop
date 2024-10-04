@@ -9,7 +9,8 @@ import imgArtOfGifting from '../../images/art-of-gifting.webp';
 import { device } from '../../styles/breakpoints';
 import StickyEditorialWrapper from '../Editorial/StickyEditorialWrapper';
 import Slider from '../MobileSlider';
-import StyledEditorialContentWrapper from '../Products/StyledProductsWrapper';
+import StyledEditorialContentWrapper from '../../features/product/components/Products/StyledProductsWrapper';
+
 import ServicesItem from './ServicesItem';
 
 const StyledServicesList = styled.ul`

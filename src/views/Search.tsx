@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Products from '../components/Products';
+
 import { SearchInput } from '../components/SearchInput';
 import Section from '../components/Section';
 import SpinnerMini from '../components/SpinnerMini';
 import { useSearchInputContext } from '../contexts/SearchInputContext';
 import { useFilteredProducts } from '../features/product/useFilteredProducts';
+import Products from '../features/product/components/Products';
 
 const StyledSearchWrapper = styled.div`
     margin-top: 1rem;

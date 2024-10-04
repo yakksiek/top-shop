@@ -1,15 +1,15 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoBagHandleOutline } from 'react-icons/io5';
 import { LiaTimesSolid } from 'react-icons/lia';
 import { VscHeartFilled } from 'react-icons/vsc';
-import { Link } from 'react-router-dom';
 
-import { useState } from 'react';
-import { BASE_URL } from '../../constants/api';
-import { useCartContext } from '../../contexts/CartContext';
-import { useFavouritesContext } from '../../contexts/FavouritesContext';
-import * as t from '../../types';
-import * as h from '../../utils/helpers';
+import * as t from '../../../../types';
+import * as h from '../../../../utils/helpers';
+import { BASE_URL } from '../../../../constants/api';
+import { useCartContext } from '../../../../contexts/CartContext';
+import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
 
 import {
     StyledButtonCart,

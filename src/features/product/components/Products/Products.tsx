@@ -1,8 +1,8 @@
-import * as t from '../../types';
-import ProductListItem from '../../features/product/components/ProductListItem';
-import { StyledProductsList } from '../../features/product/components/Products/Products.styled';
-import Heading from '../Heading';
-import Section from '../Section';
+import * as t from '../../../../types';
+import Heading from '../../../../components/Heading';
+import Section from '../../../../components/Section';
+import ProductListItem from '../ProductListItem';
+import { StyledProductsList } from './Products.styled';
 
 interface ProductsProps {
     products: t.Product[];

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { device } from '../../styles/breakpoints';
+import { device } from '../../../../styles/breakpoints';
 
 export const StyledProductDetails = styled.section`
     padding: 4rem 0;

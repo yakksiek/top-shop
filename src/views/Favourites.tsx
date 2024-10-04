@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
+import { device } from '../styles/breakpoints';
 import Button from '../components/Button';
 import Heading from '../components/Heading';
-import Product from '../components/ProductListItem';
 import Section from '../components/Section';
 import { useFavouritesContext } from '../contexts/FavouritesContext';
 import { useLoginModalContext } from '../contexts/LoginModalContext';
 import { useUser } from '../features/authentication/useUser';
-import { device } from '../styles/breakpoints';
+import ProductListItem from '../features/product/components/ProductListItem';
 
 const StyledHeader = styled.header`
     text-align: center;
@@ -65,7 +65,7 @@ function Favourites() {
             </StyledHeader>
             <StyledWishList>
                 {favouriteItems.map(item => {
-                    return <Product key={item.id} product={item.product} variant='wishlist' />;
+                    return <ProductListItem key={item.id} product={item.product} variant='wishlist' />;
                 })}
             </StyledWishList>
         </Section>
