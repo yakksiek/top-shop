@@ -7,6 +7,7 @@ import User from './User';
 import FilterKey from './ProductFilterKeyTypes';
 import ServicesItem from './ServicesItemTypes';
 import OverviewCategory from './OverviewCategoryTypes';
+import MyProfileCardTypes from './MyProfileCardTypes';
 
 export type {
     Product,
@@ -19,6 +20,7 @@ export type {
     FilterKey,
     ServicesItem,
     OverviewCategory,
+    MyProfileCardTypes,
 };
 
 export { validGenders, validCategories, validSubcategories };

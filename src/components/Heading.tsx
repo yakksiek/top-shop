@@ -45,13 +45,13 @@ const Heading = styled.h1<HeadingProps>`
         ${props =>
         props.as === 'h4' &&
         css`
-            font-size: 1rem;
+            font-size: 1.25rem;
             font-weight: 400;
         `}
         ${props =>
         props.as === 'h5' &&
         css`
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 400;
             text-align: left;
             margin-bottom: 0;
