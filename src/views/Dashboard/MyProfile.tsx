@@ -1,22 +1,19 @@
 import styled from 'styled-components';
-import DashboardSubcategoryHeader from '../../features/dashboard/components/DashboardSubcategoryHeader';
+import Heading from '../../components/Heading';
 import MyProfileContent from '../../features/dashboard/components/MyProfile/MyProfileContent';
 
-const StyledHeaderWrapper = styled.div`
-    padding: 2.5rem;
-    width: var(--screen-width-large);
-    max-width: var(--max-width);
-    margin: 0 auto;
+const StyledWrapper = styled.div`
+    padding: 2rem;
 `;
 
 function MyProfile() {
     return (
-        <>
-            <StyledHeaderWrapper>
-                <DashboardSubcategoryHeader title='My Profile' marginBottom={true} />
-            </StyledHeaderWrapper>
+        <StyledWrapper>
+            <Heading as='h3' $textAlign='left' $marginBottom={true}>
+                My Profile
+            </Heading>
             <MyProfileContent />
-        </>
+        </StyledWrapper>
     );
 }
 

@@ -1,11 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import * as t from '../../../../types';
-import DashboardSubcategoryHeader from '../DashboardSubcategoryHeader';
-
 const StyledCardContainer = styled.div`
-    --card-padding: 1.5rem;
     background-color: var(--color-grey-0);
 
     .margin-top {
@@ -19,28 +14,26 @@ const StyledCardContainer = styled.div`
 `;
 
 const StyledHeader = styled.header`
-    padding: var(--card-padding);
+    padding: var(--padding-dashboard-card-item);
     border-bottom: var(--border-standard);
 `;
 
 const StyledCardContent = styled.div`
-    padding: var(--card-padding);
+    padding: var(--padding-dashboard-card-item);
 `;
 
-interface OverviewCardProps {
-    title: t.OverviewCategory;
+interface DashboardSubcategoryCardProps {
     children: React.ReactNode;
+    header: React.ReactNode;
 }
 
-function OverviewCard({ title, children }: OverviewCardProps) {
+function DashboardSubcategoryCard({ children, header }: DashboardSubcategoryCardProps) {
     return (
         <StyledCardContainer>
-            <StyledHeader>
-                <DashboardSubcategoryHeader title={title} />
-            </StyledHeader>
+            <StyledHeader>{header}</StyledHeader>
             <StyledCardContent>{children}</StyledCardContent>
         </StyledCardContainer>
     );
 }
 
-export default OverviewCard;
+export default DashboardSubcategoryCard;

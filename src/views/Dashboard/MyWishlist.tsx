@@ -1,11 +1,11 @@
 import DashboardSubcategoryHeader from '../../features/dashboard/components/DashboardSubcategoryHeader';
-import { StyledDashboardSubcategoryContainer } from '../../features/dashboard/components/StyledDashboardSubcategoryContainer';
+import { StyledDashboardBodyContainer } from '../../features/dashboard/components/StyledDashboardCardBodyContainer';
 
 function MyWishlist() {
     return (
-        <StyledDashboardSubcategoryContainer>
+        <StyledDashboardBodyContainer>
             <DashboardSubcategoryHeader title='My Wishlist' />
-        </StyledDashboardSubcategoryContainer>
+        </StyledDashboardBodyContainer>
     );
 }
 

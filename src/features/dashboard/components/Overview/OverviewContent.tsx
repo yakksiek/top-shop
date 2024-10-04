@@ -1,8 +1,8 @@
+import Heading from '../../../../components/Heading';
 import dashboardMenu from '../../../../db/dashboardMenu.json';
 import * as t from '../../../../types';
-import DashboardSubcategoryCard from '../DashboardSubcategoryCard';
-import DashboardSubcategoryHeader from '../DashboardSubcategoryHeader';
-import { StyledDashboardSubcategoryContainer } from '../StyledDashboardSubcategoryContainer';
+import { StyledDashboardBodyContainer } from '../StyledDashboardCardBodyContainer';
+import OverviewCard from './OverviewCard';
 import OverviewMyOrders from './OverviewMyOrders';
 import OverviewMyProfile from './OverviewMyProfile';
 import OverviewMyWishlist from './OverviewMyWishlist';
@@ -18,13 +18,20 @@ function OverviewContent() {
 
     const renderedCards = headers.map(headerTitle => {
         return (
-            <DashboardSubcategoryCard header={<DashboardSubcategoryHeader title={headerTitle} />}>
+            <OverviewCard
+                header={
+                    <Heading as='h3' $textAlign='left'>
+                        {headerTitle}
+                    </Heading>
+                }
+                key={headerTitle}
+            >
                 {overviewCardsContent[headerTitle]}
-            </DashboardSubcategoryCard>
+            </OverviewCard>
         );
     });
 
-    return <StyledDashboardSubcategoryContainer>{renderedCards}</StyledDashboardSubcategoryContainer>;
+    return <StyledDashboardBodyContainer $padding={true}>{renderedCards}</StyledDashboardBodyContainer>;
 }
 
 export default OverviewContent;

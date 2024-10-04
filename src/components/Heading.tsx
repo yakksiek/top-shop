@@ -12,7 +12,7 @@ interface HeadingProps {
 const Heading = styled.h1<HeadingProps>`
     font-size: 20px;
     text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : 'center')};
-    margin-bottom: ${({ $marginBottom }) => (!$marginBottom ? '0' : '1rem')};
+    margin-bottom: ${({ $marginBottom }) => (!$marginBottom ? '0' : '1.5rem')};
     letter-spacing: 0.0625rem;
     word-break: keep-all;
 
