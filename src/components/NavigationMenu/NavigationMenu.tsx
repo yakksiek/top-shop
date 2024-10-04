@@ -1,10 +1,10 @@
+import { useEffect } from 'react';
 import { useFetcher } from 'react-router-dom';
 
-import { useEffect } from 'react';
+import * as t from '../../types';
 import { useSidebarNavigationContext } from '../../contexts/SidebarNavigationContext';
 import mainMenu from '../../db/mainMenu.json';
 import ProductPreview from '../../features/product/ProductPreview';
-import * as t from '../../types';
 import { StyledSeparator } from '../Form';
 import Heading from '../Heading';
 import { Sidebar, Submenu } from '../Sidebar';
@@ -18,7 +18,7 @@ function NavigationMenu() {
         activeMainCategory,
         activeSubCategory,
         setActiveSubCategory,
-        setActiveMainCategory,
+        setActiveMainCategoryHandler,
     } = useSidebarNavigationContext();
     const fetcher = useFetcher();
 
@@ -36,7 +36,7 @@ function NavigationMenu() {
             <NavigationMenuList
                 data={mainMenu.categories}
                 type='menu'
-                clickHandler={setActiveMainCategory}
+                clickHandler={setActiveMainCategoryHandler}
                 activeCategory={activeMainCategory}
             />
 
@@ -47,10 +47,10 @@ function NavigationMenu() {
                 navLink={activeMainCategory.toLocaleLowerCase()}
                 navLinkClickHandler={() => {
                     toggleSidebarNavigation();
-                    setActiveMainCategory('');
+                    setActiveMainCategoryHandler('');
                 }}
                 title={activeMainCategory}
-                goUpOneLevelHandler={() => setActiveMainCategory('')}
+                goUpOneLevelHandler={() => setActiveMainCategoryHandler('')}
             >
                 <NavigationMenuList
                     data={mainMenu.subcategories}
@@ -76,13 +76,13 @@ function NavigationMenu() {
             </Submenu>
 
             <Submenu
-                isOpen={activeSubCategory ? true : false}
+                isOpen={!!activeSubCategory}
                 slideFrom='left'
                 depth={2}
                 navLink={`${activeMainCategory.toLocaleLowerCase()}/${activeSubCategory.toLowerCase()}`}
                 navLinkClickHandler={() => {
                     toggleSidebarNavigation();
-                    setActiveMainCategory('');
+                    setActiveMainCategoryHandler('');
                     setActiveSubCategory('');
                 }}
                 title={activeSubCategory}

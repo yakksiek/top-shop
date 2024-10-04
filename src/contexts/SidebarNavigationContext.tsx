@@ -5,7 +5,7 @@ interface SidebarNavigationContextType {
     isOpen: boolean;
     toggleSidebarNavigation: () => void;
     activeMainCategory: string;
-    setActiveMainCategory: (categoryName: string) => void;
+    setActiveMainCategoryHandler: (categoryName: string) => void;
     activeSubCategory: string;
     setActiveSubCategory: (subcategoryName: string) => void;
 }
@@ -24,13 +24,22 @@ function SidebarNavigationContextProvider({ children }: { children: ReactNode })
         setActiveSubCategory('');
     }
 
+    function setActiveMainCategoryHandler(category: string) {
+        if (category === '') {
+            setActiveMainCategory('');
+            setActiveSubCategory('');
+        }
+
+        setActiveMainCategory(category);
+    }
+
     return (
         <SidebarNavigationContext.Provider
             value={{
                 isOpen,
                 toggleSidebarNavigation,
                 activeMainCategory,
-                setActiveMainCategory,
+                setActiveMainCategoryHandler,
                 activeSubCategory,
                 setActiveSubCategory,
             }}
