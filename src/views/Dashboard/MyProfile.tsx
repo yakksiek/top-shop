@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Heading from '../../components/Heading';
 import MyProfileContent from '../../features/dashboard/components/MyProfile/MyProfileContent';
+import DashboardCategoryHeader from '../../features/dashboard/DashboardCategoryHeader';
 
 const StyledWrapper = styled.div`
     padding: 2rem;
@@ -9,9 +9,7 @@ const StyledWrapper = styled.div`
 function MyProfile() {
     return (
         <StyledWrapper>
-            <Heading as='h3' $textAlign='left' $marginBottom={true}>
-                My Profile
-            </Heading>
+            <DashboardCategoryHeader title='My Profile' />
             <MyProfileContent />
         </StyledWrapper>
     );

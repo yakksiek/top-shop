@@ -1,12 +1,7 @@
-import DashboardSubcategoryHeader from '../../features/dashboard/components/DashboardSubcategoryHeader';
-import { StyledDashboardBodyContainer } from '../../features/dashboard/components/StyledDashboardCardBodyContainer';
+import DashboardCategoryHeader from '../../features/dashboard/DashboardCategoryHeader';
 
 function MyWishlist() {
-    return (
-        <StyledDashboardBodyContainer>
-            <DashboardSubcategoryHeader title='My Wishlist' />
-        </StyledDashboardBodyContainer>
-    );
+    return <DashboardCategoryHeader title='My Wishlist' />;
 }
 
 export default MyWishlist;

@@ -1,12 +1,7 @@
-import DashboardSubcategoryHeader from '../../features/dashboard/components/DashboardSubcategoryHeader';
-import { StyledDashboardBodyContainer } from '../../features/dashboard/components/StyledDashboardCardBodyContainer';
+import DashboardCategoryHeader from '../../features/dashboard/DashboardCategoryHeader';
 
 function MyOrders() {
-    return (
-        <StyledDashboardBodyContainer>
-            <DashboardSubcategoryHeader title='My Orders' />
-        </StyledDashboardBodyContainer>
-    );
+    return <DashboardCategoryHeader title='My Orders' />;
 }
 
 export default MyOrders;
