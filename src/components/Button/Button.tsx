@@ -37,7 +37,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 
     &:focus {
         outline: 2px solid var(--color-black);
-        box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--color-black);
+        box-shadow: 0 0 0 3px white, 0 0 0 4.25px rgba(0, 0, 0, 0.7);
     }
 
     ${({ $fill }) =>
@@ -45,17 +45,13 @@ const StyledButton = styled.button<StyledButtonProps>`
         css`
             background-color: var(--color-black);
             color: var(--color-grey-0);
-            transition: background-color 0.1s;
+            transition: background-color 0.3s;
+            outline: none;
 
             &:hover,
             &:focus {
                 background-color: var(--color-grey-0);
                 color: var(--color-black);
-            }
-
-            &:focus {
-                outline: 2px solid var(--color-black);
-                box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--color-black);
             }
         `}
 `;
