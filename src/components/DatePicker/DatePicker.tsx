@@ -3,7 +3,7 @@ import { useController, UseControllerProps } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { dayData, monthData, yearData } from '../../db/datePickerData';
-import { FormData } from '../../features/dashboard/components/MyProfile/PersonalInformation';
+import { FormValues } from '../../features/dashboard/components/MyProfile/PersonalInformation';
 import Select from '../Select';
 
 const StyledSelectRow = styled.div`
@@ -11,11 +11,7 @@ const StyledSelectRow = styled.div`
     display: flex;
 `;
 
-// interface DatePickerProps extends UseControllerProps<FormData> {
-//     label: string;
-// }
-
-function DatePicker(props: UseControllerProps<FormData>) {
+function DatePicker(props: UseControllerProps<FormValues>) {
     const { field } = useController(props);
     const { onChange } = field;
 
