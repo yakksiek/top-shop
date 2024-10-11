@@ -1,13 +1,9 @@
-import styled, { css } from 'styled-components';
-import BaseInputStyles from '../BaseInputStyles';
+import { forwardRef } from 'react';
+import styled from 'styled-components';
 import { ArrowDown } from '../../shared/icons';
-import { forwardRef, useState } from 'react';
+import BaseInputStyles from '../BaseInputStyles';
 
-interface StyledWrapper {
-    $isOpen: boolean;
-}
-
-const StyledWrapper = styled.div<StyledWrapper>`
+const StyledWrapper = styled.div`
     position: relative;
 
     .arrow-icon {
@@ -15,12 +11,6 @@ const StyledWrapper = styled.div<StyledWrapper>`
         right: 0.75rem;
         top: 50%;
         transform: translate(0, -50%);
-
-        ${({ $isOpen }) =>
-            $isOpen &&
-            css`
-                transform: rotate(180deg);
-            `}
     }
 `;
 
@@ -28,10 +18,12 @@ const StyledSelect = styled.select`
     ${BaseInputStyles}
 
     width: 100%;
-    appearance: none; /* Hide default arrow */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding-right: 2.5rem; /* Add space for the custom arrow */
+    padding-right: 2.5rem;
+
+    font-size: 0.875rem;
 `;
 
 export interface SelectFieldConfig {
@@ -49,14 +41,9 @@ interface SelectProps {
 }
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(({ fieldConfig, onChange }, ref) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleFocus = () => setIsOpen(true);
-    const handleBlur = () => setIsOpen(false);
-
     return (
-        <StyledWrapper $isOpen={isOpen}>
-            <StyledSelect ref={ref} onFocus={handleFocus} onBlur={handleBlur} defaultValue='' onChange={onChange}>
+        <StyledWrapper>
+            <StyledSelect ref={ref} defaultValue='' onChange={onChange}>
                 <option value='' disabled>
                     Select
                 </option>

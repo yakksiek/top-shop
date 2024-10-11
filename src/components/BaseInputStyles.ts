@@ -5,9 +5,14 @@ const BaseInputStyles = css`
     border-radius: 0.25rem;
     padding: 0 1rem;
     height: 3rem;
+    transition: border 0.3s ease-out;
 
     &:focus {
         border-color: var(--color-black);
+    }
+
+    &:hover {
+        border: 1px solid var(--color-black);
     }
 `;
 
