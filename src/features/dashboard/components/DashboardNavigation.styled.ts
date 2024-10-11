@@ -73,10 +73,18 @@ export const StyledMenuButton = styled.button<StyledMenuButtonProps>`
 export const StyledListWrapper = styled.div<StyledListWrapperProps>`
     display: grid;
     justify-content: center;
-    grid-template-rows: ${({ $isOpen }) => ($isOpen ? '1fr' : '0fr')};
+    grid-template-rows: 0fr;
     transition: grid-template-rows 0.3s ease-in-out;
     border-top: var(--border-standard);
     width: 100%;
+    height: ${({ $isOpen }) => ($isOpen ? 'auto' : '0')};
+
+    ${({ $isOpen }) =>
+        $isOpen &&
+        css`
+            grid-template-rows: 1fr;
+            height: auto;
+        `}
 
     @media ${device.tablet} {
         grid-template-rows: 1fr;
@@ -90,8 +98,6 @@ export const StyledMenuItemList = styled.ul<StyledMenuListProps>`
     width: 100%;
     padding: 0 var(--horizontal-padding-mobile);
     overflow: hidden;
-
-    ${({ $isOpen }) => $isOpen && css``}
 
     li {
         cursor: pointer;
