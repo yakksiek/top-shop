@@ -131,7 +131,10 @@ function PersonalInformation() {
                             validate: value => {
                                 // if field not used return since not required
                                 if (typeof value === 'undefined') return;
-                                if (value === null) return 'This birthday is invalid';
+
+                                if (!(value instanceof Date)) {
+                                    return 'This birthday is invalid';
+                                }
 
                                 return h.isValidDate(value) || 'This birthday is invalid';
                             },
