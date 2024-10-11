@@ -65,3 +65,7 @@ export function arraysAreEqual<T>(arr1: T[], arr2: T[]): boolean {
 export function getLastItem<T>(array: T[]): T | undefined {
     return array.length > 0 ? array[array.length - 1] : undefined;
 }
+
+export function isValidDate(date: Date | string) {
+    return Object.prototype.toString.call(date) === '[object Date]';
+}

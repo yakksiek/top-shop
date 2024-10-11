@@ -15,7 +15,6 @@ function Dashboard() {
             <DashboardNavigation />
             <StyledMain>
                 <Section>
-                    {/* Put here Wrapper with padding 2rem */}
                     <Outlet />
                 </Section>
             </StyledMain>

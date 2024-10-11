@@ -1,14 +1,8 @@
 import styled from 'styled-components';
+import BaseInputStyles from '../BaseInputStyles';
 
 const StyledInput = styled.input`
-    border: var(--border-standard);
-    border-radius: 0.25rem;
-    padding: 0 1rem;
-    height: 3rem;
-
-    &:focus {
-        border-color: var(--color-black);
-    }
+    ${BaseInputStyles}
 `;
 
 export default StyledInput;
