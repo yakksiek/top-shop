@@ -90,6 +90,7 @@ export const StyledListWrapper = styled.div<StyledListWrapperProps>`
         grid-template-rows: 1fr;
         width: auto;
         border: none;
+        height: auto;
     }
 `;
 

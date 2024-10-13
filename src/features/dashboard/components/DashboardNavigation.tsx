@@ -38,7 +38,7 @@ function DashboardNavigation() {
     return (
         <StyledNavigation>
             <StyledHeader>
-                <h5>My dashboard</h5>
+                <h5>My dashboard (under construction :))</h5>
                 <StyledMenuButton onClick={toggleMenu} $isOpen={menuOpen}>
                     Menu {<MdKeyboardArrowDown />}
                 </StyledMenuButton>

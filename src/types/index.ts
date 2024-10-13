@@ -8,6 +8,7 @@ import FilterKey from './ProductFilterKeyTypes';
 import ServicesItem from './ServicesItemTypes';
 import OverviewCategory from './OverviewCategoryTypes';
 import MyProfileCardTypes from './MyProfileCardTypes';
+import CountryCodeData from './CountryCodeData';
 
 export type {
     Product,
@@ -21,6 +22,7 @@ export type {
     ServicesItem,
     OverviewCategory,
     MyProfileCardTypes,
+    CountryCodeData,
 };
 
 export { validGenders, validCategories, validSubcategories };

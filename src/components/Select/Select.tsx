@@ -23,16 +23,11 @@ const StyledSelect = styled.select`
     -moz-appearance: none;
     padding-right: 2.5rem;
 
-    font-size: 0.875rem;
+    font-size: var(--font-inputs);
 `;
 
 export interface SelectFieldConfig {
-    type: 'select';
-    label: string;
     options: string[];
-    validation: {
-        required: string;
-    };
 }
 
 interface SelectProps {

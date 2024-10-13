@@ -25,6 +25,7 @@ const GlobalStyles = createGlobalStyle`
   --color-red-700: #D32F2F;
 
   --font-size-small: 0.875rem;
+  --font-inputs: var(--font-size-small);
   --text-underline: 0 2px 0 -1px currentColor;
 
   --padding-sidebar-mobile: 1rem 5.5vw; 
@@ -38,6 +39,9 @@ const GlobalStyles = createGlobalStyle`
   --border-radius-sm: 5px;
   --border-radius-md: 7px;
   --border-radius-lg: 9px;
+
+  // gaps
+  --group-input-gap: 0.5rem;
 
 
   // hamburger

@@ -69,3 +69,11 @@ export function getLastItem<T>(array: T[]): T | undefined {
 export function isValidDate(date: Date | string) {
     return Object.prototype.toString.call(date) === '[object Date]';
 }
+
+export function getSortedCountryCodes(countryData: t.CountryCodeData[]) {
+    return Array.from(new Set(countryData.map(country => country.code.split('-')[0]))).sort((a, b) => {
+        const numA = parseInt(a);
+        const numB = parseInt(b);
+        return numA - numB;
+    });
+}

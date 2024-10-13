@@ -4,6 +4,17 @@ import Checkbox from '../../../../components/Checkbox';
 import DatePicker from '../../../../components/DatePicker';
 import { FormRow, Input, StyledForm } from '../../../../components/Form';
 import * as h from '../../../../utils/helpers';
+import PhoneNumberInput from '../../../../components/PhoneNumberInput';
+import Select from '../../../../components/Select';
+
+interface SelectFieldConfig {
+    type: 'select';
+    label: string;
+    options: string[];
+    validation: {
+        required: string;
+    };
+}
 
 interface TextFieldConfig {
     type: 'text';
@@ -29,29 +40,41 @@ interface CheckboxGroupConfig {
     component: React.ElementType;
 }
 
+interface PhoneNumberInputConfig {
+    type: 'phoneNumber-group';
+    label: string;
+    // validation: { required: string; minLength: { value: number; message: string } };
+    component: React.ElementType;
+}
+
 // Union type for all possible field configurations
-// type FieldConfig = SelectFieldConfig | TextFieldConfig | DateFieldConfig;
-type FieldConfig = DateFieldConfig | TextFieldConfig | CheckboxGroupConfig;
+type FieldConfig = DateFieldConfig | TextFieldConfig | CheckboxGroupConfig | PhoneNumberInputConfig | SelectFieldConfig;
+
+export interface PhoneNumber {
+    type: 'Mobile' | 'Home' | 'Work';
+    number: string;
+    countryCode: string;
+}
 
 export interface FormValues {
-    // title: string;
-    firstName: string;
-    // phoneNumber: string;
+    title: string;
+    name: string;
+    phoneNumber: PhoneNumber;
     dateOfBirth: Date;
     contactPreferences: string[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const formFields: Record<keyof FormValues, FieldConfig> = {
-    // title: {
-    //     type: 'select',
-    //     label: 'Title',
-    //     options: ['Mr', 'Mrs', 'Ms', 'Mx', 'Prefer not to say'],
-    //     validation: {
-    //         required: 'This field is required',
-    //     },
-    // },
-    firstName: {
+    title: {
+        type: 'select',
+        label: 'Title',
+        options: ['Mr', 'Mrs', 'Ms', 'Mx', 'Prefer not to say'],
+        validation: {
+            required: 'This field is required',
+        },
+    },
+    name: {
         type: 'text',
         label: 'First Name',
         validation: {
@@ -60,21 +83,24 @@ const formFields: Record<keyof FormValues, FieldConfig> = {
         },
         component: Input,
     },
-    // phoneNumber: {
-    //     type: 'text',
-    //     label: 'Phone Number',
-    //     validation: {
-    //         required: 'Phone number is required',
-    //         minLength: { value: 7, message: 'Phone number must be at least 7 digits long' },
-    //     },
-    // },
+    phoneNumber: {
+        type: 'phoneNumber-group',
+        label: 'Phone Number',
+        // validation: {
+        //     required: 'Phone number is required',
+        //     minLength: { value: 7, message: 'Phone number must be at least 7 digits long' },
+        // },
+        component: PhoneNumberInput,
+    },
     dateOfBirth: {
         type: 'date',
         label: 'Date of Birth',
         validation: {
             validate: value => {
                 if (typeof value === 'undefined') return true;
-                if (value === null) return 'This birthday is invalid';
+                if (!(value instanceof Date)) {
+                    return 'This birthday is invalid';
+                }
 
                 return h.isValidDate(value) || 'This birthday is invalid';
             },
@@ -89,28 +115,32 @@ const formFields: Record<keyof FormValues, FieldConfig> = {
             { value: 'phone', label: 'Contactable by phone' },
             { value: 'text', label: 'Contactable by Text Message' },
         ],
-        component: 'input', // Will use <input type="checkbox" /> with some tweaks
+        component: Checkbox,
     },
 };
 
 function PersonalInformation() {
-    const { formState, handleSubmit, control, register } = useForm<FormValues>();
+    const { formState, handleSubmit, control, register, watch, setError, clearErrors } = useForm<FormValues>({
+        defaultValues: {
+            name: 'qwe',
+            phoneNumber: { type: 'Work' },
+        },
+    });
     const { errors } = formState;
 
     const renderedFormElements = Object.entries(formFields).map(([fieldName, fieldConfig]) => {
         const typedFieldName = fieldName as keyof FormValues;
-        // const isSelectInput = fieldConfig.type === 'select' && 'options' in fieldConfig;
+        const isSelectInput = fieldConfig.type === 'select' && 'options' in fieldConfig;
         const isTextInput = fieldConfig.type === 'text';
         const isDateType = fieldConfig.type === 'date';
 
-        // if (isSelectInput) {
-        //     return (
-        //         <FormRow key={fieldName} label={fieldConfig.label} error={errors[typedFieldName]?.message}>
-        //             {/* <Select {...register(typedFieldName, fieldConfig.validation)} fieldConfig={fieldConfig} /> */}
-        //             <Select {...register(typedFieldName, fieldConfig.validation)} fieldConfig={fieldConfig} />
-        //         </FormRow>
-        //     );
-        // }
+        if (isSelectInput) {
+            return (
+                <FormRow key={fieldName} label={fieldConfig.label} error={errors[typedFieldName]?.message}>
+                    <Select {...register(typedFieldName, fieldConfig.validation)} fieldConfig={fieldConfig} />
+                </FormRow>
+            );
+        }
 
         if (isTextInput) {
             return (
@@ -160,6 +190,20 @@ function PersonalInformation() {
             );
         }
 
+        if (fieldConfig.type === 'phoneNumber-group') {
+            return (
+                <FormRow key={fieldName} label={fieldConfig.label} error={errors.phoneNumber?.message}>
+                    <PhoneNumberInput
+                        register={register}
+                        baseName='phoneNumber'
+                        watch={watch}
+                        setError={setError}
+                        clearErrors={clearErrors}
+                    />
+                </FormRow>
+            );
+        }
+
         // Fallback for unhandled field types
         const _exhaustiveCheck: never = fieldConfig;
         throw new Error(`Unhandled field type: ${_exhaustiveCheck}`);
@@ -175,21 +219,6 @@ function PersonalInformation() {
             <StyledForm onSubmit={handleSubmit(onSubmit)}>
                 {renderedFormElements}
 
-                {/* <DatePicker
-                    label='Date of birth'
-                    control={control}
-                    name='dateOfBirth'
-                    rules={{
-                        validate: value => {
-                            // if field not used return since not required
-                            if (typeof value === 'undefined') return;
-                            if (value === null) return 'This birthday is invalid';
-
-                            return h.isValidDate(value) || 'This birthday is invalid';
-                        },
-                    }}
-                /> */}
-
                 <Button fill={true} type='submit'>
                     Save your information
                 </Button>
@@ -199,13 +228,3 @@ function PersonalInformation() {
 }
 
 export default PersonalInformation;
-
-// contactPreferences: {
-//     type: 'checkbox-group',
-//     label: 'Contact Preferences',
-//     options: [
-//         { value: 'mail', label: 'Contactable by mail' },
-//         { value: 'phone', label: 'Contactable by phone' },
-//         { value: 'text', label: 'Contactable by Text Message' },
-//     ],
-// },

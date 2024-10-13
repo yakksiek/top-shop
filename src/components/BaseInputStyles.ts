@@ -6,6 +6,7 @@ const BaseInputStyles = css`
     padding: 0 1rem;
     height: 3rem;
     transition: border 0.3s ease-out;
+    font-size: var(--font-inputs);
 
     &:focus {
         border-color: var(--color-black);
