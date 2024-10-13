@@ -45,9 +45,7 @@ function PhoneNumberInput({ register, baseName, watch, setError, clearErrors }: 
     return (
         <StyledWrapper>
             <Select {...register(`${baseName}.type`)} fieldConfig={{ options: phoneTypes }} />
-
             <Select {...register(`${baseName}.countryCode`)} fieldConfig={{ options: sortedCountryCodes }} />
-
             <Input type='text' {...register(`${baseName}.number`)} placeholder='Phone number' />
         </StyledWrapper>
     );

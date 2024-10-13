@@ -86,10 +86,6 @@ const formFields: Record<keyof FormValues, FieldConfig> = {
     phoneNumber: {
         type: 'phoneNumber-group',
         label: 'Phone Number',
-        // validation: {
-        //     required: 'Phone number is required',
-        //     minLength: { value: 7, message: 'Phone number must be at least 7 digits long' },
-        // },
         component: PhoneNumberInput,
     },
     dateOfBirth: {
@@ -123,7 +119,7 @@ function PersonalInformation() {
     const { formState, handleSubmit, control, register, watch, setError, clearErrors } = useForm<FormValues>({
         defaultValues: {
             name: 'qwe',
-            phoneNumber: { type: 'Work' },
+            phoneNumber: { type: 'Work', countryCode: '+1' },
         },
     });
     const { errors } = formState;
