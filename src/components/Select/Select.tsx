@@ -1,5 +1,6 @@
-import { forwardRef } from 'react';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
+import { SelectFieldConfig } from '../../features/dashboard/components/MyProfile/PersonalInformation';
 import { ArrowDown } from '../../shared/icons';
 import BaseInputStyles from '../BaseInputStyles';
 
@@ -26,19 +27,26 @@ const StyledSelect = styled.select`
     font-size: var(--font-inputs);
 `;
 
-export interface SelectFieldConfig {
+interface BasicFieldConfig {
     options: string[];
+    validation: object;
 }
 
 interface SelectProps {
-    fieldConfig: SelectFieldConfig;
-    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    fieldConfig: SelectFieldConfig | BasicFieldConfig;
+    name: string;
+    id?: string;
+    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const Select = forwardRef<HTMLSelectElement, SelectProps>(({ fieldConfig, onChange }, ref) => {
+const Select: React.FC<SelectProps> = ({ fieldConfig, name, onChange }) => {
+    const { register } = useFormContext();
+
+    const props = onChange ? { onChange } : { ...register(name, fieldConfig.validation) };
+
     return (
         <StyledWrapper>
-            <StyledSelect ref={ref} defaultValue='' onChange={onChange}>
+            <StyledSelect defaultValue='' {...props}>
                 <option value='' disabled>
                     Select
                 </option>
@@ -51,6 +59,6 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(({ fieldConfig, onChan
             <ArrowDown className='arrow-icon' />
         </StyledWrapper>
     );
-});
+};
 
 export default Select;

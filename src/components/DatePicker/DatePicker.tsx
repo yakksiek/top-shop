@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useController, UseControllerProps } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { dayData, monthData, yearData } from '../../db/datePickerData';
-import { FormValues } from '../../features/dashboard/components/MyProfile/PersonalInformation';
+import { DateFieldConfig, FormValues } from '../../features/dashboard/components/MyProfile/PersonalInformation';
 import Select from '../Select';
 
 const StyledSelectRow = styled.div`
@@ -11,38 +11,45 @@ const StyledSelectRow = styled.div`
     display: flex;
 `;
 
-function DatePicker(props: UseControllerProps<FormValues>) {
-    const { field } = useController(props);
-    const { onChange } = field;
+interface DatePickerProps {
+    name: keyof FormValues;
+    fieldConfig?: DateFieldConfig;
+}
+
+function DatePicker({ name }: DatePickerProps) {
+    const { setValue, setError, clearErrors } = useFormContext<FormValues>();
 
     const [day, setDay] = useState('');
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
 
     useEffect(() => {
-        // if the select wasn't filled pass
         if (!day && !month && !year) return;
 
         if (day && month && year) {
             const monthIndex = monthData.options.indexOf(month);
             const newDate = new Date(Number(year), monthIndex, Number(day));
-            onChange(newDate);
+            setValue(name, newDate);
+            clearErrors(name);
         } else {
-            onChange(null);
+            setError(name, { type: 'manual', message: 'Invalid date format' });
         }
-    }, [day, month, onChange, year]);
+    }, [clearErrors, day, month, name, setError, setValue, year]);
 
     return (
         <StyledSelectRow>
             <Select
                 fieldConfig={dayData}
+                name='day'
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setDay(e.target.value)}
             />
             <Select
+                name='month'
                 fieldConfig={monthData}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setMonth(e.target.value)}
             />
             <Select
+                name='year'
                 fieldConfig={yearData}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setYear(e.target.value)}
             />

@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from 'react';
-import { UseFormClearErrors, UseFormRegister, UseFormSetError, UseFormWatch } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { PHONE_NUMBER_MIN_LENGTH } from '../../constants/validation';
 import countryCallingCodes from '../../db/countryCallingCodes.json';
-import { FormValues, PhoneNumber } from '../../features/dashboard/components/MyProfile/PersonalInformation';
+import { PhoneNumber } from '../../features/dashboard/components/MyProfile/PersonalInformation';
 import * as h from '../../utils/helpers';
 import { Input } from '../Form';
 import Select from '../Select';
@@ -17,36 +17,33 @@ const StyledWrapper = styled.div`
 `;
 
 interface PhoneNumberInputProps {
-    register: UseFormRegister<FormValues>;
-    baseName: 'phoneNumber';
-    watch: UseFormWatch<FormValues>;
-    setError: UseFormSetError<FormValues>;
-    clearErrors: UseFormClearErrors<FormValues>;
+    name: 'phoneNumber';
 }
 
-function PhoneNumberInput({ register, baseName, watch, setError, clearErrors }: PhoneNumberInputProps) {
+function PhoneNumberInput({ name }: PhoneNumberInputProps) {
+    const { register, watch, setError, clearErrors } = useFormContext();
     const sortedCountryCodes = useMemo(() => h.getSortedCountryCodes(countryCallingCodes), []);
 
-    const number = watch(`${baseName}.number`);
+    const number = watch(`${name}.number`);
 
     useEffect(() => {
         if (!number) {
-            return setError(baseName, { type: 'manual', message: 'Number is required' });
+            return setError(name, { type: 'manual', message: 'Number is required' });
         }
 
-        const isValidNumber = number.toString().length > PHONE_NUMBER_MIN_LENGTH;
+        const isValidNumber = number.toString().length >= PHONE_NUMBER_MIN_LENGTH;
         if (!isValidNumber) {
-            return setError(baseName, { type: 'manual', message: 'Not a valid number (min 7 digits)' });
+            return setError(name, { type: 'manual', message: 'Not a valid number (min 7 digits)' });
         } else {
-            return clearErrors(baseName);
+            return clearErrors(name);
         }
-    }, [number, setError, baseName, clearErrors]);
+    }, [number, setError, name, clearErrors]);
 
     return (
         <StyledWrapper>
-            <Select {...register(`${baseName}.type`)} fieldConfig={{ options: phoneTypes }} />
-            <Select {...register(`${baseName}.countryCode`)} fieldConfig={{ options: sortedCountryCodes }} />
-            <Input type='text' {...register(`${baseName}.number`)} placeholder='Phone number' />
+            <Select name={`${name}.type`} fieldConfig={{ options: phoneTypes, validation: {} }} />
+            <Select name={`${name}.countryCode`} fieldConfig={{ options: sortedCountryCodes, validation: {} }} />
+            <Input type='text' {...register(`${name}.number`)} placeholder='Phone number' />
         </StyledWrapper>
     );
 }

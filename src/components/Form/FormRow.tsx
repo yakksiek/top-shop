@@ -1,12 +1,10 @@
-import React from 'react';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { FieldError } from 'react-hook-form';
 
 const StyledFormRow = styled.div`
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     position: relative;
 `;
 
@@ -23,20 +21,27 @@ const StyledError = styled.span`
 
 interface FormRowProps {
     label?: string;
-    error?: string | undefined | FieldError;
+    error?: string;
     children: ReactNode;
+    isRequired?: boolean;
 }
 
-function FormRow({ label, error, children }: FormRowProps) {
+function FormRow({ label, error, children, isRequired }: FormRowProps) {
     const childElement = React.isValidElement(children) ? children : null;
     const htmlFor = childElement ? childElement.props.id : undefined;
-    const errorMessage = typeof error === 'string' ? error : error?.message;
+
+    const renderRequiredInformation = isRequired ? '*' : '';
 
     return (
         <StyledFormRow>
-            {label && <StyledLabel htmlFor={htmlFor}>{label}</StyledLabel>}
+            {label && (
+                <StyledLabel htmlFor={htmlFor}>
+                    {label}
+                    {renderRequiredInformation}
+                </StyledLabel>
+            )}
             {children}
-            {error && <StyledError>{errorMessage}</StyledError>}
+            {error && <StyledError>{error}</StyledError>}
         </StyledFormRow>
     );
 }
