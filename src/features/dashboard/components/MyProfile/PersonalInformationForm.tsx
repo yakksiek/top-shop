@@ -4,23 +4,38 @@ import Button from '../../../../components/Button';
 import { StyledForm } from '../../../../components/Form';
 import FieldRenderer from '../../../../components/Form/FieldRenderer';
 import formFields, { FormValues } from '../../../../db/PersonalInformationFormData';
+import { useUser } from '../../../authentication/useUser';
+import useUpdateUserData from '../useUpdateUserData';
 
 function PersonalInformation() {
+    const { updateUser, isPending } = useUpdateUserData();
+    const { user } = useUser();
+    // user is logged in to render PersonalInformation
+    const { user_metadata } = user!;
+    const { name: userName, surname: userSurname } = user_metadata;
+    const userAddress = user_metadata.address || '';
+    const userPhoneNumber = user_metadata.phoneNumber || { type: 'Mobile', countryCode: '+1', number: '' };
+    const userPostCode = user_metadata.postCode || '';
+    const userDateOfBirth = user_metadata.dateOfBirth || undefined;
+    const userContactPreferences = user_metadata.contectPreferences || [];
+
     const methods = useForm<FormValues>({
         defaultValues: {
             title: 'Mr',
-            name: 'qwe',
-            surname: 'asdf',
-            phoneNumber: { type: 'Work', countryCode: '+1', number: '1234567' },
-            dateOfBirth: undefined,
-            contactPreferences: [],
+            name: userName,
+            surname: userSurname,
+            phoneNumber: userPhoneNumber,
+            address: userAddress,
+            postCode: userPostCode,
+            dateOfBirth: userDateOfBirth,
+            contactPreferences: userContactPreferences,
         },
     });
     const { handleSubmit } = methods;
 
     const onSubmit = (data: FormValues) => {
-        console.log('sent');
-        console.log(data);
+        console.log('form filled correctly');
+        updateUser(data);
     };
 
     const renderedFormElements = formFields.map(({ name, config }) => (
@@ -33,8 +48,8 @@ function PersonalInformation() {
                 <p style={{ textAlign: 'right' }}>Mandatory fields*</p>
                 {renderedFormElements}
 
-                <Button fill={true} type='submit'>
-                    Save your information
+                <Button fill={true} type='submit' isDisabled={isPending}>
+                    {isPending ? 'Saving...' : 'Save your information'}
                 </Button>
             </StyledForm>
         </FormProvider>
