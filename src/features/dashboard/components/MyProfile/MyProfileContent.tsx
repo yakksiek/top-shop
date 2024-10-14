@@ -5,7 +5,7 @@ import LoginInformation from './LoginInformation';
 import MyAddressBook from './MyAddressBook';
 import MyNewsletter from './MyNewsletter';
 import MyProfileCard from './MyProfileCard';
-import PersonalInformation from './PersonalInformation';
+import PersonalInformation from './PersonalInformationForm';
 
 const myProfileContent: Record<t.MyProfileCardTypes, JSX.Element> = {
     'Personal Information': <PersonalInformation />,

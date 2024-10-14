@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import Checkbox from '../../../../components/Checkbox';
-import { CheckboxGroupConfig, FormValues } from './PersonalInformation';
+import { CheckboxGroupConfig, FormValues } from '../../../../db/PersonalInformationFormData';
 
 interface ContactPreferencesFromCheckboxGroupProps {
     name: keyof FormValues;

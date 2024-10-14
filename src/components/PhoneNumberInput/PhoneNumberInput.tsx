@@ -4,16 +4,29 @@ import styled from 'styled-components';
 
 import { PHONE_NUMBER_MIN_LENGTH } from '../../constants/validation';
 import countryCallingCodes from '../../db/countryCallingCodes.json';
-import { PhoneNumber } from '../../features/dashboard/components/MyProfile/PersonalInformation';
 import * as h from '../../utils/helpers';
 import { Input } from '../Form';
 import Select from '../Select';
+import { PhoneNumber } from '../../db/PersonalInformationFormData';
 
 const phoneTypes: Array<PhoneNumber['type']> = ['Mobile', 'Home', 'Work'];
 
 const StyledWrapper = styled.div`
     display: flex;
     gap: var(--group-input-gap);
+    flex-direction: column;
+`;
+
+const StyledFirstRow = styled.div``;
+
+const StyledSecondRow = styled.div`
+    display: flex;
+    gap: var(--group-input-gap);
+    width: 100%;
+
+    & > :nth-child(2) {
+        flex-grow: 1;
+    }
 `;
 
 interface PhoneNumberInputProps {
@@ -41,9 +54,13 @@ function PhoneNumberInput({ name }: PhoneNumberInputProps) {
 
     return (
         <StyledWrapper>
-            <Select name={`${name}.type`} fieldConfig={{ options: phoneTypes, validation: {} }} />
-            <Select name={`${name}.countryCode`} fieldConfig={{ options: sortedCountryCodes, validation: {} }} />
-            <Input type='text' {...register(`${name}.number`)} placeholder='Phone number' />
+            <StyledFirstRow>
+                <Select name={`${name}.type`} fieldConfig={{ options: phoneTypes, validation: {} }} />
+            </StyledFirstRow>
+            <StyledSecondRow>
+                <Select name={`${name}.countryCode`} fieldConfig={{ options: sortedCountryCodes, validation: {} }} />
+                <Input type='text' {...register(`${name}.number`)} placeholder='Phone number' />
+            </StyledSecondRow>
         </StyledWrapper>
     );
 }

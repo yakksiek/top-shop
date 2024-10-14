@@ -3,8 +3,8 @@ import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { dayData, monthData, yearData } from '../../db/datePickerData';
-import { DateFieldConfig, FormValues } from '../../features/dashboard/components/MyProfile/PersonalInformation';
 import Select from '../Select';
+import { DateFieldConfig, FormValues } from '../../db/PersonalInformationFormData';
 
 const StyledSelectRow = styled.div`
     gap: 0.5rem;

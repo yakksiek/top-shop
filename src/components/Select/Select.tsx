@@ -1,8 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import { SelectFieldConfig } from '../../features/dashboard/components/MyProfile/PersonalInformation';
 import { ArrowDown } from '../../shared/icons';
 import BaseInputStyles from '../BaseInputStyles';
+import { SelectFieldConfig } from '../../db/PersonalInformationFormData';
+import { BasicFieldConfig } from '../../db/datePickerData';
 
 const StyledWrapper = styled.div`
     position: relative;
@@ -26,11 +27,6 @@ const StyledSelect = styled.select`
 
     font-size: var(--font-inputs);
 `;
-
-interface BasicFieldConfig {
-    options: string[];
-    validation: object;
-}
 
 interface SelectProps {
     fieldConfig: SelectFieldConfig | BasicFieldConfig;

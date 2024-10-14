@@ -1,13 +1,8 @@
-import { FormProvider, useForm } from 'react-hook-form';
-
-import Button from '../../../../components/Button';
-import DatePicker from '../../../../components/DatePicker';
-import { StyledForm } from '../../../../components/Form';
-import FieldRenderer from '../../../../components/Form/FieldRenderer';
-import PhoneNumberInput from '../../../../components/PhoneNumberInput';
-import Select from '../../../../components/Select';
-import ContactPreferencesFromCheckboxGroup from './ContactPreferencesFromCheckboxGroup';
-import MyProfileFormInput from './MyProfileFormInput';
+import DatePicker from '../components/DatePicker';
+import PhoneNumberInput from '../components/PhoneNumberInput';
+import Select from '../components/Select';
+import ContactPreferencesFromCheckboxGroup from '../features/dashboard/components/MyProfile/ContactPreferencesFromCheckboxGroup';
+import MyProfileFormInput from '../features/dashboard/components/MyProfile/MyProfileFormInput';
 
 export interface SelectFieldConfig {
     type: 'select';
@@ -23,7 +18,7 @@ export interface InputFieldConfig {
     type: 'text' | 'number';
     label: string;
     validation: {
-        required: string;
+        required?: string;
         minLength?: { value: number; message: string };
     };
     component: React.ElementType;
@@ -67,6 +62,9 @@ export interface FormValues {
     title: string;
     name: string;
     surname: string;
+    company: string;
+    address: string;
+    postCode: string;
     phoneNumber: PhoneNumber;
     dateOfBirth: Date;
     contactPreferences: string[];
@@ -104,7 +102,42 @@ const formFields: Array<{ name: keyof FormValues; config: FieldConfig }> = [
             label: 'Last Name',
             validation: {
                 required: 'This field is required',
-                minLength: { value: 2, message: 'Name needs a minimum of 2 characters' },
+                minLength: { value: 2, message: 'Surname needs a minimum of 2 characters' },
+            },
+            component: MyProfileFormInput,
+        },
+    },
+    {
+        name: 'company',
+        config: {
+            type: 'text',
+            label: 'Company',
+            validation: {
+                minLength: { value: 2, message: 'Company name needs a minimum of 2 characters' },
+            },
+            component: MyProfileFormInput,
+        },
+    },
+    {
+        name: 'address',
+        config: {
+            type: 'text',
+            label: 'Address',
+            validation: {
+                required: 'This field is required',
+                minLength: { value: 2, message: 'Address needs a minimum of 2 characters' },
+            },
+            component: MyProfileFormInput,
+        },
+    },
+    {
+        name: 'postCode',
+        config: {
+            type: 'text',
+            label: 'Postal Code',
+            validation: {
+                required: 'This field is required',
+                minLength: { value: 2, message: 'Company name needs a minimum of 2 characters' },
             },
             component: MyProfileFormInput,
         },
@@ -115,14 +148,6 @@ const formFields: Array<{ name: keyof FormValues; config: FieldConfig }> = [
             type: 'phoneNumber-group',
             label: 'Phone Number',
             component: PhoneNumberInput,
-        },
-    },
-    {
-        name: 'dateOfBirth',
-        config: {
-            type: 'date',
-            label: 'Date of Birth',
-            component: DatePicker,
         },
     },
     {
@@ -138,41 +163,14 @@ const formFields: Array<{ name: keyof FormValues; config: FieldConfig }> = [
             component: ContactPreferencesFromCheckboxGroup,
         },
     },
+    {
+        name: 'dateOfBirth',
+        config: {
+            type: 'date',
+            label: 'Date of Birth',
+            component: DatePicker,
+        },
+    },
 ];
 
-function PersonalInformation() {
-    const methods = useForm<FormValues>({
-        defaultValues: {
-            title: 'Mr',
-            name: 'qwe',
-            phoneNumber: { type: 'Work', countryCode: '+1', number: '1234567' },
-            dateOfBirth: undefined,
-            contactPreferences: [],
-        },
-    });
-    const { handleSubmit } = methods;
-
-    const onSubmit = (data: FormValues) => {
-        console.log('sent');
-        console.log(data);
-    };
-
-    const renderedFormElements = formFields.map(({ name, config }) => (
-        <FieldRenderer key={name as string} fieldName={name as string} fieldConfig={config} />
-    ));
-
-    return (
-        <FormProvider {...methods}>
-            <StyledForm onSubmit={handleSubmit(onSubmit)}>
-                <p style={{ textAlign: 'right' }}>Mandatory fields*</p>
-                {renderedFormElements}
-
-                <Button fill={true} type='submit'>
-                    Save your information
-                </Button>
-            </StyledForm>
-        </FormProvider>
-    );
-}
-
-export default PersonalInformation;
+export default formFields;

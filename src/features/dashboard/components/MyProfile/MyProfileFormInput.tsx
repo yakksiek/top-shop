@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { Input } from '../../../../components/Form';
-import { InputFieldConfig } from './PersonalInformation';
+import { InputFieldConfig } from '../../../../db/PersonalInformationFormData';
 
 interface MyProfileFormInputProps {
     name: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { FieldConfig } from '../../features/dashboard/components/MyProfile/PersonalInformation';
 import FormRow from './FormRow';
+import { FieldConfig } from '../../db/PersonalInformationFormData';
 
 interface FieldRendererProps {
     fieldName: string;

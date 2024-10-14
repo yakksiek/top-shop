@@ -1,8 +1,9 @@
 import React from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
-import { FormValues } from '../../features/dashboard/components/MyProfile/PersonalInformation';
+
 import { Checkmark } from '../../shared/icons';
 import { StyledCheckboxWrapper, CheckboxLabel, StyledCheckbox } from './Checkbox.styled';
+import { FormValues } from '../../db/PersonalInformationFormData';
 
 interface CheckboxProps {
     label: string;

@@ -1,10 +1,14 @@
-import { SelectFieldConfig } from '../components/Select';
+export interface BasicFieldConfig {
+    options: string[];
+    validation: object;
+}
 
-export const dayData: SelectFieldConfig = {
+export const dayData: BasicFieldConfig = {
     options: Array.from({ length: 31 }, (_, i) => String(i + 1)),
+    validation: {},
 };
 
-export const monthData: SelectFieldConfig = {
+export const monthData: BasicFieldConfig = {
     options: [
         'January',
         'February',
@@ -19,8 +23,10 @@ export const monthData: SelectFieldConfig = {
         'November',
         'December',
     ],
+    validation: {},
 };
 
-export const yearData: SelectFieldConfig = {
+export const yearData: BasicFieldConfig = {
     options: Array.from({ length: 100 }, (_, i) => String(new Date().getFullYear() - i)),
+    validation: {},
 };
