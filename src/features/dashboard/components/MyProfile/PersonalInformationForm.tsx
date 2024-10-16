@@ -6,8 +6,11 @@ import FieldRenderer from '../../../../components/Form/FieldRenderer';
 import formFields, { FormValues } from '../../../../db/PersonalInformationFormData';
 import { useUser } from '../../../authentication/useUser';
 import useUpdateUserData from '../useUpdateUserData';
+import SuccessModal from './SuccessModal';
+import { useState } from 'react';
 
 function PersonalInformation() {
+    const [isModalOpen, setModalOpen] = useState(false);
     const { updateUser, isPending } = useUpdateUserData();
     const { user } = useUser();
     // user is logged in to render PersonalInformation
@@ -34,8 +37,10 @@ function PersonalInformation() {
     const { handleSubmit } = methods;
 
     const onSubmit = (data: FormValues) => {
-        console.log('form filled correctly');
-        updateUser(data);
+        console.log('form filed correctly');
+        updateUser(data, {
+            onSuccess: () => setModalOpen(true),
+        });
     };
 
     const renderedFormElements = formFields.map(({ name, config }) => (
@@ -52,6 +57,8 @@ function PersonalInformation() {
                     {isPending ? 'Saving...' : 'Save your information'}
                 </Button>
             </StyledForm>
+
+            <SuccessModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
         </FormProvider>
     );
 }

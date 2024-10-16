@@ -24,6 +24,8 @@ const GlobalStyles = createGlobalStyle`
   --color-orange-400: #fb923c;
   --color-red-700: #D32F2F;
 
+  --color-overlay-background: rgba(0, 0, 0, 0.8);
+
   --font-size-small: 0.875rem;
   --font-inputs: var(--font-size-small);
   --text-underline: 0 2px 0 -1px currentColor;

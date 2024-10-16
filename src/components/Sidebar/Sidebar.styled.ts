@@ -92,7 +92,7 @@ export const StyledOverlay = styled.div<StyledOverlayProps>`
     right: 0;
     bottom: 0;
     position: fixed;
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--color-overlay-background);
     opacity: 0;
     transition: opacity var(--animation-and-timing);
     visibility: hidden;
