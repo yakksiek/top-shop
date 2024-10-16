@@ -8,6 +8,7 @@ import SpinnerMini from '../../components/SpinnerMini';
 import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import { StyledForgotPassButton } from './LoginForm.styled';
 import { useLogin } from './useLogin';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginFormProps {
     toggleModal: () => void;
@@ -30,6 +31,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const { errors } = formState;
     const { isPending, login, loginError, setLoginError } = useLogin();
     const { handleSetFavourites } = useFavouritesContext();
+    const navigate = useNavigate();
 
     function onSubmit(data: FormData) {
         if (!data.email || !data.password) return;
@@ -42,9 +44,11 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                 onSuccess: data => {
                     toggleModal();
                     reset();
-
                     const userDataFavourites = data.user.user_metadata.favourites;
                     handleSetFavourites(userDataFavourites);
+                    setTimeout(() => {
+                        navigate('/dashboard');
+                    }, 500);
                 },
             },
         );
