@@ -32,7 +32,14 @@ export const StyledContactServicesList = styled.ul`
             position: absolute;
             left: 65%;
             top: 15%;
-            color: var(--color-red-700);
+
+            &.unchecked {
+                color: var(--color-red-700);
+            }
+
+            &.checked {
+                color: var(--color-green-800);
+            }
         }
     }
 

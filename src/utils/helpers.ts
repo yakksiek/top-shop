@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { monthData } from '../db/datePickerData';
 import * as t from '../types';
+import { UserMetadata } from '@supabase/supabase-js';
 
 export const formatCurrency = (value: number, currency: string = 'PLN') => {
     const formattedValue = new Intl.NumberFormat('en', {
@@ -96,7 +97,7 @@ export function parseISODateToParts(isoString: string): DateParts {
     return { day, month, year };
 }
 
-export function getUserMetadata(user_metadata: t.User) {
+export function getUserMetadata(user_metadata: UserMetadata) {
     return {
         userName: user_metadata.name,
         userSurname: user_metadata.surname,

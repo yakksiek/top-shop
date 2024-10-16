@@ -1,15 +1,14 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
-import * as h from '../../../../utils/helpers';
-import * as t from '../../../../types';
+import { useState } from 'react';
 import Button from '../../../../components/Button';
 import { StyledForm } from '../../../../components/Form';
 import FieldRenderer from '../../../../components/Form/FieldRenderer';
 import formFields, { FormValues } from '../../../../db/PersonalInformationFormData';
+import * as h from '../../../../utils/helpers';
 import { useUser } from '../../../authentication/useUser';
 import useUpdateUserData from '../useUpdateUserData';
 import SuccessModal from './SuccessModal';
-import { useState } from 'react';
 
 function PersonalInformation() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -26,7 +25,7 @@ function PersonalInformation() {
         userPostCode,
         userDateOfBirth,
         userContactPreferences,
-    } = h.getUserMetadata(user_metadata as t.User);
+    } = h.getUserMetadata(user_metadata);
 
     const methods = useForm<FormValues>({
         defaultValues: {

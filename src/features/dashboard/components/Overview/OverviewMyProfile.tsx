@@ -1,6 +1,9 @@
 import Button from '../../../../components/Button';
 import Heading from '../../../../components/Heading';
+
+import * as h from '../../../../utils/helpers';
 import {
+    Checkmark,
     CrossIcon,
     LocationIcon,
     MailIcon,
@@ -11,31 +14,45 @@ import {
 } from '../../../../shared/icons';
 import { useUser } from '../../../authentication/useUser';
 import { StyledIconWrapper, StyledContactServicesList } from './OverviewMyProfile.styled';
+import { useNavigate } from 'react-router-dom';
 
 /* margin-top and the generic tags styled in OverviewCard */
 
 const contactData = [
-    { name: 'Email newsletter', icon: <MailIcon /> },
-    { name: 'Phone', icon: <PhoneIcon /> },
-    { name: 'Text Chat app', icon: <TextChatIcon /> },
-    { name: 'Mail', icon: <PostcardIcon /> },
+    { name: 'mail', label: 'Email newsletter', icon: <MailIcon /> },
+    { name: 'phone', label: 'Phone', icon: <PhoneIcon /> },
+    { name: 'text', label: 'Text Chat app', icon: <TextChatIcon /> },
+    { name: 'post', label: 'Mail', icon: <PostcardIcon /> },
 ];
 
 function OverviewMyProfile() {
+    const navigate = useNavigate();
     const { user } = useUser();
 
     // user always present when logged in
-    const { email } = user!;
+    const { email, user_metadata } = user!;
+    const { userContactPreferences } = h.getUserMetadata(user_metadata);
 
     const renderedContactServices = contactData.map(contact => {
+        const isContactChecked = userContactPreferences.includes(contact.name);
+        const iconRendered = isContactChecked ? (
+            <Checkmark className='check-mark checked' />
+        ) : (
+            <CrossIcon className='check-mark unchecked' />
+        );
+
         return (
             <li key={contact.name}>
-                <CrossIcon className='check-mark' />
+                {iconRendered}
                 <StyledIconWrapper>{contact.icon}</StyledIconWrapper>
-                <span>{contact.name}</span>
+                <span>{contact.label}</span>
             </li>
         );
     });
+
+    const handleClick = () => {
+        navigate('/dashboard/profile');
+    };
 
     return (
         <div>
@@ -49,11 +66,11 @@ function OverviewMyProfile() {
 
             <StyledContactServicesList>{renderedContactServices}</StyledContactServicesList>
 
-            <Button fill={true}>
+            <Button fill={true} onClick={handleClick}>
                 <PersonIcon />
                 Edit My Profile
             </Button>
-            <Button>
+            <Button onClick={handleClick}>
                 <LocationIcon />
                 Edit my addresses
             </Button>

@@ -23,6 +23,8 @@ const GlobalStyles = createGlobalStyle`
   --color-disabled: var(--color-grey-400);
   --color-orange-400: #fb923c;
   --color-red-700: #D32F2F;
+  --color-green-800: #166534;
+
 
   --color-overlay-background: rgba(0, 0, 0, 0.8);
 
