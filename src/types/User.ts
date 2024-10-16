@@ -11,6 +11,7 @@ interface User {
     phoneNumber: PhoneNumber;
     postCode?: string;
     title?: string;
+    contactPreferences?: [];
 }
 
 export default User;

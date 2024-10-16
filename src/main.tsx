@@ -20,8 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <GlobalStyles />
         <QueryClientProvider client={queryClient}>
             <ModalSidebarContextProvider>
-                <LoginModalContextProvider>
-                    <FavouritesContextProvider>
+                <FavouritesContextProvider>
+                    <LoginModalContextProvider>
                         <CartContextProvider>
                             <SidebarNavigationContextProvider>
                                 <SearchInputContextProvider>
@@ -29,8 +29,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                                 </SearchInputContextProvider>
                             </SidebarNavigationContextProvider>
                         </CartContextProvider>
-                    </FavouritesContextProvider>
-                </LoginModalContextProvider>
+                    </LoginModalContextProvider>
+                </FavouritesContextProvider>
             </ModalSidebarContextProvider>
             <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>

@@ -95,3 +95,15 @@ export function parseISODateToParts(isoString: string): DateParts {
 
     return { day, month, year };
 }
+
+export function getUserMetadata(user_metadata: t.User) {
+    return {
+        userName: user_metadata.name,
+        userSurname: user_metadata.surname,
+        userAddress: user_metadata.address,
+        userPhoneNumber: user_metadata.phoneNumber,
+        userPostCode: user_metadata.postCode,
+        userDateOfBirth: user_metadata.dateOfBirth,
+        userContactPreferences: user_metadata.contactPreferences,
+    };
+}

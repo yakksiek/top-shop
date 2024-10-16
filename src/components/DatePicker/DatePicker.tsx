@@ -32,7 +32,7 @@ function DatePicker({ name }: DatePickerProps) {
 
         if (day && month && year) {
             const monthIndex = monthData.options.indexOf(month);
-            const newDate = new Date(Number(year), monthIndex, Number(day));
+            const newDate = new Date(Number(year), monthIndex, Number(day)).toISOString();
             setValue(name, newDate);
             clearErrors(name);
         } else {

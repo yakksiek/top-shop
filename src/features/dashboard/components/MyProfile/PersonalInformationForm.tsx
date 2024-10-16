@@ -1,5 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
+import * as h from '../../../../utils/helpers';
+import * as t from '../../../../types';
 import Button from '../../../../components/Button';
 import { StyledForm } from '../../../../components/Form';
 import FieldRenderer from '../../../../components/Form/FieldRenderer';
@@ -13,31 +15,34 @@ function PersonalInformation() {
     const [isModalOpen, setModalOpen] = useState(false);
     const { updateUser, isPending } = useUpdateUserData();
     const { user } = useUser();
+
     // user IS logged in to render PersonalInformation
     const { user_metadata } = user!;
-    const { name: userName, surname: userSurname } = user_metadata;
-    const userAddress = user_metadata.address || '';
-    const userPhoneNumber = user_metadata.phoneNumber || { type: 'Mobile', countryCode: '+1', number: '' };
-    const userPostCode = user_metadata.postCode || '';
-    const userDateOfBirth = user_metadata.dateOfBirth || undefined;
-    const userContactPreferences = user_metadata.contactPreferences || [];
+    const {
+        userName,
+        userSurname,
+        userPhoneNumber,
+        userAddress,
+        userPostCode,
+        userDateOfBirth,
+        userContactPreferences,
+    } = h.getUserMetadata(user_metadata as t.User);
 
     const methods = useForm<FormValues>({
         defaultValues: {
             title: 'Mr',
             name: userName,
             surname: userSurname,
-            phoneNumber: userPhoneNumber,
-            address: userAddress,
-            postCode: userPostCode,
-            dateOfBirth: userDateOfBirth,
-            contactPreferences: userContactPreferences,
+            phoneNumber: userPhoneNumber || { type: 'Mobile', countryCode: '+1', number: '' },
+            address: userAddress || '',
+            postCode: userPostCode || '',
+            dateOfBirth: userDateOfBirth || '',
+            contactPreferences: userContactPreferences || [],
         },
     });
     const { handleSubmit } = methods;
 
     const onSubmit = (data: FormValues) => {
-        console.log('form filed correctly');
         updateUser(data, {
             onSuccess: () => setModalOpen(true),
         });

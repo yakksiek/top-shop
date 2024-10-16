@@ -66,7 +66,7 @@ export interface FormValues {
     address: string;
     postCode: string;
     phoneNumber: PhoneNumber;
-    dateOfBirth: Date;
+    dateOfBirth: string;
     contactPreferences: string[];
 }
 
