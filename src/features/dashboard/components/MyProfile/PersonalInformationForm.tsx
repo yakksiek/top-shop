@@ -44,7 +44,9 @@ function PersonalInformation() {
 
     const onSubmit = (data: FormValues) => {
         updateUser(data, {
-            onSuccess: () => setModalOpen(true),
+            onSuccess: () => {
+                setModalOpen(true);
+            },
         });
     };
 

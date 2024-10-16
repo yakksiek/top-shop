@@ -11,7 +11,7 @@ const StyledOverlay = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
+    position: fixed;
 `;
 
 const StyledCentered = styled.div`
@@ -51,6 +51,7 @@ interface SuccessModalProps {
 
 function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
     useNoScroll(isOpen);
+
     if (!isOpen) return null;
 
     return (

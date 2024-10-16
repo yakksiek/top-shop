@@ -86,9 +86,9 @@ body {
 
 html.no-scroll,
 body.no-scroll {
-  overflow: hidden;
-  height: 100%;
   -webkit-overflow-scrolling: none; 
+
+  overflow: hidden;
 }
 
 
@@ -97,7 +97,6 @@ body.no-scroll {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* min-height: 100vh; */
 }
 
 input,
