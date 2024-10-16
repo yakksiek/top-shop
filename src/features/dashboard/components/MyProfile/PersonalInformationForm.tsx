@@ -13,14 +13,14 @@ function PersonalInformation() {
     const [isModalOpen, setModalOpen] = useState(false);
     const { updateUser, isPending } = useUpdateUserData();
     const { user } = useUser();
-    // user is logged in to render PersonalInformation
+    // user IS logged in to render PersonalInformation
     const { user_metadata } = user!;
     const { name: userName, surname: userSurname } = user_metadata;
     const userAddress = user_metadata.address || '';
     const userPhoneNumber = user_metadata.phoneNumber || { type: 'Mobile', countryCode: '+1', number: '' };
     const userPostCode = user_metadata.postCode || '';
     const userDateOfBirth = user_metadata.dateOfBirth || undefined;
-    const userContactPreferences = user_metadata.contectPreferences || [];
+    const userContactPreferences = user_metadata.contactPreferences || [];
 
     const methods = useForm<FormValues>({
         defaultValues: {

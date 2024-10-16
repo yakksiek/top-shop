@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { monthData } from '../db/datePickerData';
 import * as t from '../types';
 
 export const formatCurrency = (value: number, currency: string = 'PLN') => {
@@ -76,4 +77,21 @@ export function getSortedCountryCodes(countryData: t.CountryCodeData[]) {
         const numB = parseInt(b);
         return numA - numB;
     });
+}
+
+export interface DateParts {
+    day: string;
+    month: string;
+    year: string;
+}
+
+export function parseISODateToParts(isoString: string): DateParts {
+    const date = new Date(isoString);
+
+    const day = String(date.getDate());
+    const monthIndex = date.getMonth();
+    const year = String(date.getFullYear());
+    const month = monthData.options[monthIndex];
+
+    return { day, month, year };
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
+import * as h from '../../utils/helpers';
 import { dayData, monthData, yearData } from '../../db/datePickerData';
 import Select from '../Select';
 import { DateFieldConfig, FormValues } from '../../db/PersonalInformationFormData';
@@ -17,7 +18,10 @@ interface DatePickerProps {
 }
 
 function DatePicker({ name }: DatePickerProps) {
-    const { setValue, setError, clearErrors } = useFormContext<FormValues>();
+    const { setValue, setError, clearErrors, watch } = useFormContext<FormValues>();
+
+    const defaultDateString = watch(name) as string;
+    const { day: defaultDay, month: defaultMonth, year: defaultYear } = h.parseISODateToParts(defaultDateString);
 
     const [day, setDay] = useState('');
     const [month, setMonth] = useState('');
@@ -41,16 +45,19 @@ function DatePicker({ name }: DatePickerProps) {
             <Select
                 fieldConfig={dayData}
                 name='day'
+                defaultValue={defaultDay || ''}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setDay(e.target.value)}
             />
             <Select
                 name='month'
                 fieldConfig={monthData}
+                defaultValue={defaultMonth || ''}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setMonth(e.target.value)}
             />
             <Select
                 name='year'
                 fieldConfig={yearData}
+                defaultValue={defaultYear || ''}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setYear(e.target.value)}
             />
         </StyledSelectRow>

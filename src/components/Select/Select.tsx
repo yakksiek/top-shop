@@ -32,17 +32,18 @@ interface SelectProps {
     fieldConfig: SelectFieldConfig | BasicFieldConfig;
     name: string;
     id?: string;
+    defaultValue?: string;
     onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ fieldConfig, name, onChange }) => {
+const Select: React.FC<SelectProps> = ({ fieldConfig, name, onChange, defaultValue = '' }) => {
     const { register } = useFormContext();
 
     const props = onChange ? { onChange } : { ...register(name, fieldConfig.validation) };
 
     return (
         <StyledWrapper>
-            <StyledSelect defaultValue='' {...props}>
+            <StyledSelect defaultValue={defaultValue} {...props}>
                 <option value='' disabled>
                     Select
                 </option>

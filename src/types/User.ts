@@ -7,7 +7,7 @@ interface User {
     password: string;
     address?: string;
     comapny?: '';
-    dateOfBirth?: Date;
+    dateOfBirth?: string;
     phoneNumber: PhoneNumber;
     postCode?: string;
     title?: string;
