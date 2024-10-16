@@ -14,7 +14,7 @@ export const StyledDashboardBodyContainer = styled.div<StyledDashboardBodyContai
     gap: ${({ $gap }) => ($gap === 'big' ? '1.75rem' : '1rem')};
 
     @media ${device.desktop} {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 50% 50%;
         grid-auto-rows: auto;
         width: var(--screen-width-large);
         max-width: var(--max-width);

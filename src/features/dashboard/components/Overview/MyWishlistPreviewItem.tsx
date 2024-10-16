@@ -10,7 +10,11 @@ const StyledWishListItem = styled.div`
     }
 `;
 
-const StyledImgContainer = styled.div``;
+const StyledImgContainer = styled.div`
+    img {
+        height: 100%;
+    }
+`;
 
 interface MyWishlistPreviewItemProps {
     product: t.Product;
