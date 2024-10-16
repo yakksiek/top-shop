@@ -17,7 +17,7 @@ function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            const currentScrollPos = window.pageYOffset;
+            const currentScrollPos = window.scrollY;
             setIsAtTop(currentScrollPos === 0);
         };
 
