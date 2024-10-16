@@ -8,7 +8,7 @@ interface User {
     address?: string;
     comapny?: '';
     dateOfBirth?: string;
-    phoneNumber: PhoneNumber;
+    phoneNumber?: PhoneNumber;
     postCode?: string;
     title?: string;
     contactPreferences?: [];
