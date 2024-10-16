@@ -6,7 +6,7 @@ import ButtonRoundSlider from '../../../../components/ButtonRoundSlider';
 import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
 import useSliderScroller from '../../../../hooks/useSliderScroller';
 import MyWishlistPreviewItem from './MyWishlistPreviewItem';
-import { StyledItemsIndicator, StyledScrollerContainer, StyledMediaScroller } from './OverviewMyWishlist.styled';
+import { StyledItemsIndicator, StyledMediaScroller, StyledScrollerContainer } from './OverviewMyWishlist.styled';
 
 function OverviewMyWishlist() {
     const { favouriteItems } = useFavouritesContext();

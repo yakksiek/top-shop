@@ -4,15 +4,13 @@ import styled from 'styled-components';
 import { BASE_URL } from '../../../../constants/api';
 import * as t from '../../../../types';
 
+const StyledListItem = styled.li`
+    scroll-snap-align: start;
+`;
+
 const StyledWishListItem = styled.div`
     p {
         font-weight: 400;
-    }
-`;
-
-const StyledImgContainer = styled.div`
-    img {
-        height: 100%;
     }
 `;
 
@@ -24,16 +22,14 @@ function MyWishlistPreviewItem({ product }: MyWishlistPreviewItemProps) {
     const { productName, gender, category, subcategory, id } = product;
 
     return (
-        <li>
+        <StyledListItem>
             <Link to={`/${gender}/${category}/${subcategory}/${id}`}>
                 <StyledWishListItem>
-                    <StyledImgContainer>
-                        <img src={`${BASE_URL}${product.photos[0]}`} alt={productName} />
-                    </StyledImgContainer>
+                    <img src={`${BASE_URL}${product.photos[0]}`} alt={productName} />
                     <p>{productName}</p>
                 </StyledWishListItem>
             </Link>
-        </li>
+        </StyledListItem>
     );
 }
 

@@ -7,6 +7,8 @@ export const StyledItemsIndicator = styled.div`
 
 export const StyledScrollerContainer = styled.div`
     position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
 
     &:hover {
         .scroller__btn {
@@ -17,12 +19,16 @@ export const StyledScrollerContainer = styled.div`
 `;
 
 export const StyledMediaScroller = styled.ul`
-    --grid-gap: 1rem;
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: calc(50% - 4.5rem);
-    overflow-x: hidden;
+    grid-auto-columns: calc(55% - 4.5rem);
     overscroll-behavior-inline: contain;
     scroll-snap-type: inline mandatory;
-    gap: var(--grid-gap);
+    gap: 1rem;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+        scrollbar-width: none;
+    }
 `;
