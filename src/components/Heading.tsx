@@ -54,7 +54,6 @@ const Heading = styled.h1<HeadingProps>`
             font-size: 1rem;
             font-weight: 400;
             text-align: left;
-            margin-bottom: 0;
         `};
 `;
 

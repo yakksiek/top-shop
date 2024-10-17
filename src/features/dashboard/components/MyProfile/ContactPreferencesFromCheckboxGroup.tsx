@@ -8,12 +8,12 @@ interface ContactPreferencesFromCheckboxGroupProps {
 }
 
 function ContactPreferencesFromCheckboxGroup({ name, fieldConfig }: ContactPreferencesFromCheckboxGroupProps) {
-    const { register } = useFormContext();
+    const { register } = useFormContext<FormValues>();
 
     return (
         <div>
             {fieldConfig.options.map(option => (
-                <Checkbox
+                <Checkbox<FormValues>
                     key={option.value}
                     name={name}
                     value={option.value}

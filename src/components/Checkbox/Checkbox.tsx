@@ -1,23 +1,20 @@
-import React from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
-
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 import { Checkmark } from '../../shared/icons';
-import { StyledCheckboxWrapper, CheckboxLabel, StyledCheckbox } from './Checkbox.styled';
-import { FormValues } from '../../db/PersonalInformationFormData';
+import { CheckboxLabel, StyledCheckbox, StyledCheckboxWrapper } from './Checkbox.styled';
 
-interface CheckboxProps {
+interface CheckboxProps<T extends FieldValues> {
     label: string;
     value: string;
-    name: keyof FormValues;
+    name: Path<T>;
     disabled?: boolean;
-    register: UseFormRegister<FieldValues>;
+    register: UseFormRegister<T>;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ name, label, value, disabled = false, register }) => {
+const Checkbox = <T extends FieldValues>({ name, label, value, disabled = false, register }: CheckboxProps<T>) => {
     return (
         <StyledCheckboxWrapper>
             <CheckboxLabel $disabled={disabled}>
-                <StyledCheckbox value={value} {...register(name)} disabled={disabled} />
+                <StyledCheckbox type='checkbox' value={value} {...register(name)} disabled={disabled} />
                 <Checkmark />
                 {label}
             </CheckboxLabel>

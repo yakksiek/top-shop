@@ -15,7 +15,7 @@ function PersonalInformation() {
     const { updateUser, isPending } = useUpdateUserData();
     const { user } = useUser();
 
-    // user IS logged in to render PersonalInformation
+    // user is logged in to render PersonalInformation
     const { user_metadata } = user!;
     const {
         userName,

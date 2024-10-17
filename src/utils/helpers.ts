@@ -106,5 +106,6 @@ export function getUserMetadata(user_metadata: UserMetadata) {
         userPostCode: user_metadata.postCode,
         userDateOfBirth: user_metadata.dateOfBirth,
         userContactPreferences: user_metadata.contactPreferences,
+        userNewsletter: user_metadata.newsletter,
     };
 }

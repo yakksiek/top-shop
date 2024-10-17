@@ -5,6 +5,7 @@ export const StyledCheckboxWrapper = styled.div`
     align-items: center;
     margin-bottom: 1rem;
     cursor: pointer;
+    position: relative;
 
     input[type='checkbox']:disabled {
         border-color: var(--color-disabled);
