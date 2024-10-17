@@ -14,7 +14,7 @@ import {
 } from '../../../../shared/icons';
 import { useUser } from '../../../authentication/useUser';
 import { StyledIconWrapper, StyledContactServicesList } from './OverviewMyProfile.styled';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 /* margin-top and the generic tags styled in OverviewCard */
 
@@ -43,9 +43,11 @@ function OverviewMyProfile() {
 
         return (
             <li key={contact.name}>
-                {iconRendered}
-                <StyledIconWrapper>{contact.icon}</StyledIconWrapper>
-                <span>{contact.label}</span>
+                <Link to='/dashboard/profile'>
+                    {iconRendered}
+                    <StyledIconWrapper>{contact.icon}</StyledIconWrapper>
+                    <span>{contact.label}</span>
+                </Link>
             </li>
         );
     });
