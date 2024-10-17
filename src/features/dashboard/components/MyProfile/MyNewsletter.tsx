@@ -1,7 +1,12 @@
 import styled from 'styled-components';
-import Button from '../../../../components/Button';
 import Heading from '../../../../components/Heading';
 import MyNewsletterForm from './MyNewsletterForm';
+
+const StyledSection = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`;
 
 const StyledParagraph = styled.p`
     margin: 1rem 0;
@@ -9,7 +14,7 @@ const StyledParagraph = styled.p`
 
 function MyNewsletter() {
     return (
-        <section>
+        <StyledSection>
             <Heading as='h5' $marginBottom={true}>
                 Discover the latest newsletter
             </Heading>
@@ -17,8 +22,7 @@ function MyNewsletter() {
                 Receive Top Shop digital communications, for first access to latest collections, campaigns and videos.
             </StyledParagraph>
             <MyNewsletterForm />
-            <Button fill={true}>Subscribe</Button>
-        </section>
+        </StyledSection>
     );
 }
 

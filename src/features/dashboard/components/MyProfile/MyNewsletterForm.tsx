@@ -4,6 +4,7 @@ import * as h from '../../../../utils/helpers';
 import { StyledForm } from '../../../../components/Form';
 import Checkbox from '../../../../components/Checkbox';
 import { useUser } from '../../../authentication/useUser';
+import Button from '../../../../components/Button';
 
 export interface NewsletterFormValues {
     newsletter: boolean;
@@ -14,11 +15,13 @@ function MyNewsletterForm() {
     // user must be logged in to render this component
     const { user_metadata } = user!;
     const { userNewsletter } = h.getUserMetadata(user_metadata);
-    const { register, handleSubmit } = useForm({
+    const { register, handleSubmit, watch } = useForm({
         defaultValues: {
             newsletter: userNewsletter || false,
         },
     });
+
+    const isNewsletterChecked = watch('newsletter');
 
     const onSubmit = (data: NewsletterFormValues) => {
         console.log('poszło');
@@ -34,6 +37,9 @@ function MyNewsletterForm() {
                 label='Check the box if you would like to receive emails from us'
                 value='newsletter'
             />
+            <Button fill={false} type='submit' width='medium' isDisabled={!isNewsletterChecked}>
+                Subscribe
+            </Button>
         </StyledForm>
     );
 }
