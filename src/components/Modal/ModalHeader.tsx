@@ -6,9 +6,11 @@ const StyledModalHeader = styled.header`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    width: 100%;
 
     h4 {
         margin-bottom: 0;
+        font-weight: 400;
     }
 `;
 

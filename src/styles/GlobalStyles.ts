@@ -79,6 +79,8 @@ body {
   font-weight: 200;
   transition: color 0.3s, background-color 0.3s;
   line-height: 1.5;
+  font-size: .875rem;
+  /* letter-spacing: 0.0625rem; */
 
   @media ${device.tablet} {
     padding-top: var(--header-height);
@@ -152,10 +154,12 @@ h3,
 h4,
 h5,
 h6,
+ul,
+ol,
 span {
   overflow-wrap: break-word;
   hyphens: auto;
-  letter-spacing: 0.0625rem;
+  letter-spacing: 0.0425rem;
 }
 
 h1 {
@@ -167,10 +171,6 @@ h2 {
   font-weight: 400; 
 }
 
-p {
-  font-size: .875rem;
-
-}
 
 img {
   max-width: 100%;

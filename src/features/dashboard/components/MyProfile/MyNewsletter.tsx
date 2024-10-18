@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Heading from '../../../../components/Heading';
 import MyNewsletterForm from './MyNewsletterForm';
+import PrivacyPolicyModal from './PrivacyPolicyModal';
+import { useState } from 'react';
 
 const StyledSection = styled.section`
     display: flex;
@@ -13,6 +15,8 @@ const StyledParagraph = styled.p`
 `;
 
 function MyNewsletter() {
+    const [isModalOpen, setModalOpen] = useState(false);
+
     return (
         <StyledSection>
             <Heading as='h5' $marginBottom={true}>
@@ -21,7 +25,8 @@ function MyNewsletter() {
             <StyledParagraph>
                 Receive Top Shop digital communications, for first access to latest collections, campaigns and videos.
             </StyledParagraph>
-            <MyNewsletterForm />
+            <MyNewsletterForm setModalOpen={setModalOpen} />
+            <PrivacyPolicyModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
         </StyledSection>
     );
 }

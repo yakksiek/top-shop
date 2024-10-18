@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
-
 import styled from 'styled-components';
+
+import * as h from '../../../../utils/helpers';
 import Button from '../../../../components/Button';
 import Checkbox from '../../../../components/Checkbox';
 import { FormRow, StyledForm } from '../../../../components/Form';
-import * as h from '../../../../utils/helpers';
+import SpinnerMini from '../../../../components/SpinnerMini';
 import { useUser } from '../../../authentication/useUser';
 import useUpdateUserData from '../useUpdateUserData';
 
@@ -21,7 +22,11 @@ export interface NewsletterFormValues {
     newsletter: boolean;
 }
 
-function MyNewsletterForm() {
+interface MyNewsletterFormProps {
+    setModalOpen: (value: boolean) => void;
+}
+
+function MyNewsletterForm({ setModalOpen }: MyNewsletterFormProps) {
     const { user } = useUser();
     const { updateUser, isPending } = useUpdateUserData();
     // user must be logged in to render this component
@@ -57,6 +62,8 @@ function MyNewsletterForm() {
     const checkboxError: string | undefined =
         typeof errors.newsletter?.message === 'string' ? errors.newsletter?.message : undefined;
 
+    const renderedButtonLabel = userNewsletter ? 'Unsubscribe' : 'Subscribe';
+
     return (
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
             {!userNewsletter && (
@@ -69,9 +76,13 @@ function MyNewsletterForm() {
                     />
                 </FormRow>
             )}
-            {!userNewsletter && <StyledParagraph>By subscribing you agree to our Privacy Policy.</StyledParagraph>}
+            {!userNewsletter && (
+                <StyledParagraph onClick={() => setModalOpen(true)}>
+                    By subscribing you agree to our Privacy Policy.
+                </StyledParagraph>
+            )}
             <Button fill={true} type='submit' width='medium' isDisabled={!isNewsletterChecked || isPending}>
-                {userNewsletter ? 'Unsubscribe' : 'Subscribe'}
+                {isPending ? <SpinnerMini /> : `${renderedButtonLabel}`}
             </Button>
         </StyledForm>
     );

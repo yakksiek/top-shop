@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { SUCCESS_MODAL_CONTAINER, SUCCESS_MODAL_Z_INDEX } from '../../../../constants/z-indexes';
-import useNoScroll from '../../../../hooks/useNoScroll';
-import { CrossIcon } from '../../../../shared/icons';
+import { CENTERED_MODAL_Z_INDEX, CENTERED_MODAL_CONTAINER_Z_INDEX } from '../../constants/z-indexes';
+import useNoScroll from '../../hooks/useNoScroll';
+import { CrossIcon } from '../../shared/icons';
+import { ModalHeader } from '../Modal';
 
 const StyledOverlay = styled.div`
     background-color: var(--color-overlay-background);
     width: 100vw;
     height: 100vh;
-    z-index: ${SUCCESS_MODAL_Z_INDEX};
+    z-index: ${CENTERED_MODAL_Z_INDEX};
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -19,7 +20,7 @@ const StyledCentered = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: ${SUCCESS_MODAL_CONTAINER};
+    z-index: ${CENTERED_MODAL_CONTAINER_Z_INDEX};
 `;
 
 const StyledModal = styled.div`
@@ -34,6 +35,8 @@ const StyledModal = styled.div`
 
     display: flex;
     align-items: center;
+    flex-direction: column;
+    justify-content: center;
 `;
 
 const StyledCloseIcon = styled(CrossIcon)`
@@ -44,27 +47,36 @@ const StyledCloseIcon = styled(CrossIcon)`
     cursor: pointer;
 `;
 
-interface SuccessModalProps {
+const StyledBody = styled.div`
+    text-align: left;
+`;
+
+interface CenteredModalProps {
     isOpen: boolean;
     onClose: () => void;
+    children: React.ReactNode;
+    headerText?: string;
 }
 
-function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
+function CenteredModal({ isOpen, onClose, children, headerText }: CenteredModalProps) {
     useNoScroll(isOpen);
 
     if (!isOpen) return null;
+
+    const renderedHeader = headerText && <ModalHeader toggleModal={onClose} headerText={headerText} />;
 
     return (
         <>
             <StyledOverlay onClick={onClose} />
             <StyledCentered>
                 <StyledModal>
-                    <StyledCloseIcon className='icon-close' onClick={onClose} />
-                    <p>Your personal information was updated successfully.</p>
+                    {renderedHeader}
+                    {!headerText && <StyledCloseIcon className='icon-close' onClick={onClose} />}
+                    <StyledBody>{children}</StyledBody>
                 </StyledModal>
             </StyledCentered>
         </>
     );
 }
 
-export default SuccessModal;
+export default CenteredModal;

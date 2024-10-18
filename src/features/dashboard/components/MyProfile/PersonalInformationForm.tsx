@@ -2,13 +2,13 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { useState } from 'react';
 import Button from '../../../../components/Button';
+import CenteredModal from '../../../../components/CenteredModal';
 import { StyledForm } from '../../../../components/Form';
 import FieldRenderer from '../../../../components/Form/FieldRenderer';
 import formFields, { FormValues } from '../../../../db/PersonalInformationFormData';
 import * as h from '../../../../utils/helpers';
 import { useUser } from '../../../authentication/useUser';
 import useUpdateUserData from '../useUpdateUserData';
-import SuccessModal from './SuccessModal';
 
 function PersonalInformation() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -64,7 +64,9 @@ function PersonalInformation() {
                 </Button>
             </StyledForm>
 
-            <SuccessModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+            <CenteredModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+                <p>Your personal information was updated successfully.</p>
+            </CenteredModal>
         </FormProvider>
     );
 }
