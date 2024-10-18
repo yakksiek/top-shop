@@ -12,6 +12,7 @@ interface User {
     postCode?: string;
     title?: string;
     contactPreferences?: [];
+    newsletter?: boolean;
 }
 
 export default User;

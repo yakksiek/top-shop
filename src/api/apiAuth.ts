@@ -1,6 +1,6 @@
-import supabase from './supabase';
+import { UserMetadata } from '@supabase/supabase-js';
 import * as t from '../types';
-import { FormValues } from '../db/PersonalInformationFormData';
+import supabase from './supabase';
 
 export async function signup({ name, surname, email, password }: t.User) {
     const { data, error } = await supabase.auth.signUp({
@@ -75,7 +75,7 @@ export async function updateUserFavourites(favouritesData: t.FavouritesList[]) {
     return updatedUser;
 }
 
-export async function updateUserData(userData: FormValues) {
+export async function updateUserData(userData: UserMetadata) {
     const { data: updatedUser, error } = await supabase.auth.updateUser({
         data: userData,
     });

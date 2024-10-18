@@ -1,10 +1,14 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-const StyledFormRow = styled.div`
+interface StylefFormRowProps {
+    $marginBottom: boolean;
+}
+
+const StyledFormRow = styled.div<StylefFormRowProps>`
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.5rem;
+    margin-bottom: ${({ $marginBottom }) => ($marginBottom ? '1.5rem' : '0')};
     position: relative;
 `;
 
@@ -24,16 +28,17 @@ interface FormRowProps {
     error?: string;
     children: ReactNode;
     isRequired?: boolean;
+    marginBottom?: boolean;
 }
 
-function FormRow({ label, error, children, isRequired }: FormRowProps) {
+function FormRow({ label, error, children, isRequired, marginBottom = true }: FormRowProps) {
     const childElement = React.isValidElement(children) ? children : null;
     const htmlFor = childElement ? childElement.props.id : undefined;
 
     const renderRequiredInformation = isRequired ? '*' : '';
 
     return (
-        <StyledFormRow>
+        <StyledFormRow $marginBottom={marginBottom}>
             {label && (
                 <StyledLabel htmlFor={htmlFor}>
                     {label}
