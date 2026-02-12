@@ -16,7 +16,6 @@ function PersonalInformation() {
     const { user } = useUser();
 
     // user is logged in to render PersonalInformation
-    const { user_metadata } = user!;
     const {
         userName,
         userSurname,
@@ -25,7 +24,7 @@ function PersonalInformation() {
         userPostCode,
         userDateOfBirth,
         userContactPreferences,
-    } = h.getUserMetadata(user_metadata);
+    } = h.getUserMetadata((user!.unsafeMetadata as Record<string, any>) ?? {});
 
     const methods = useForm<FormValues>({
         defaultValues: {
@@ -42,11 +41,14 @@ function PersonalInformation() {
     const { handleSubmit } = methods;
 
     const onSubmit = (data: FormValues) => {
-        updateUser(data, {
-            onSuccess: () => {
-                setModalOpen(true);
+        updateUser(
+            { ...data },
+            {
+                onSuccess: () => {
+                    setModalOpen(true);
+                },
             },
-        });
+        );
     };
 
     const renderedFormElements = formFields.map(({ name, config }) => (
