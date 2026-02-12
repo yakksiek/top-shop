@@ -30,10 +30,10 @@ function OverviewMyProfile() {
     const { user } = useUser();
 
     // user always present when logged in
-    const { email, user_metadata } = user!;
-    const { userContactPreferences } = h.getUserMetadata(user_metadata);
+    const email = user!.primaryEmailAddress?.emailAddress ?? '';
+    const { userContactPreferences } = h.getUserMetadata((user!.unsafeMetadata as Record<string, any>) ?? {});
 
-    const renderedContactServices = contactData.map(contact => {
+    const renderedContactServices = contactData.map((contact) => {
         const isContactChecked = userContactPreferences.includes(contact.name);
         const iconRendered = isContactChecked ? (
             <Checkmark className='check-mark checked' />

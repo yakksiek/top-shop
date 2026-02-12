@@ -35,7 +35,8 @@ function Identity() {
 
     if (!user) return '';
 
-    const { name, surname } = user.user_metadata;
+    const name = user.firstName ?? (user.unsafeMetadata?.name as string) ?? '';
+    const surname = user.lastName ?? (user.unsafeMetadata?.surname as string) ?? '';
     const initials = `${name.charAt(0).toUpperCase()}. ${surname.charAt(0).toUpperCase()}.`;
 
     return (

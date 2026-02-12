@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ClerkProvider } from '@clerk/clerk-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -17,22 +18,24 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <GlobalStyles />
-        <QueryClientProvider client={queryClient}>
-            <ModalSidebarContextProvider>
-                <FavouritesContextProvider>
-                    <LoginModalContextProvider>
-                        <CartContextProvider>
-                            <SidebarNavigationContextProvider>
-                                <SearchInputContextProvider>
-                                    <RouterProvider router={router} />
-                                </SearchInputContextProvider>
-                            </SidebarNavigationContextProvider>
-                        </CartContextProvider>
-                    </LoginModalContextProvider>
-                </FavouritesContextProvider>
-            </ModalSidebarContextProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+            <GlobalStyles />
+            <QueryClientProvider client={queryClient}>
+                <ModalSidebarContextProvider>
+                    <FavouritesContextProvider>
+                        <LoginModalContextProvider>
+                            <CartContextProvider>
+                                <SidebarNavigationContextProvider>
+                                    <SearchInputContextProvider>
+                                        <RouterProvider router={router} />
+                                    </SearchInputContextProvider>
+                                </SidebarNavigationContextProvider>
+                            </CartContextProvider>
+                        </LoginModalContextProvider>
+                    </FavouritesContextProvider>
+                </ModalSidebarContextProvider>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
+        </ClerkProvider>
     </React.StrictMode>,
 );

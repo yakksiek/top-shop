@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { monthData } from '../db/datePickerData';
 import * as t from '../types';
-import { UserMetadata } from '@supabase/supabase-js';
 
 export const formatCurrency = (value: number, currency: string = 'PLN') => {
     const formattedValue = new Intl.NumberFormat('en', {
@@ -26,7 +25,7 @@ interface ItemWithId {
 }
 
 export const findItemInArrById = <T extends ItemWithId>(itemId: number | string, arr: T[]): T | undefined => {
-    return arr.find(item => item.id === itemId);
+    return arr.find((item) => item.id === itemId);
 };
 
 export const removeItemFromArrById = <T extends ItemWithId>(itemId: number | string, arr: T[]): T[] => {
@@ -35,17 +34,17 @@ export const removeItemFromArrById = <T extends ItemWithId>(itemId: number | str
         return arr;
     }
 
-    return arr.filter(item => item.id !== itemId);
+    return arr.filter((item) => item.id !== itemId);
 };
 
 export function filterProductsByQuery(products: t.Product[], keys: t.FilterKey[], query: string): t.Product[] {
-    return products.filter(product => keys.some(key => product[key].toLowerCase().includes(query.toLowerCase())));
+    return products.filter((product) => keys.some((key) => product[key].toLowerCase().includes(query.toLowerCase())));
 }
 
 export function uniqueObjectsByProductId<T extends { productId: number | string }>(arr1: T[], arr2: T[]): T[] {
     const combinedArray = [...arr1, ...arr2];
     const uniqueArray = combinedArray.filter(
-        (item, index, self) => index === self.findIndex(t => t.productId === item.productId),
+        (item, index, self) => index === self.findIndex((t) => t.productId === item.productId),
     );
     return uniqueArray;
 }
@@ -73,7 +72,7 @@ export function isValidDate(date: Date | string) {
 }
 
 export function getSortedCountryCodes(countryData: t.CountryCodeData[]) {
-    return Array.from(new Set(countryData.map(country => country.code.split('-')[0]))).sort((a, b) => {
+    return Array.from(new Set(countryData.map((country) => country.code.split('-')[0]))).sort((a, b) => {
         const numA = parseInt(a);
         const numB = parseInt(b);
         return numA - numB;
@@ -97,15 +96,15 @@ export function parseISODateToParts(isoString: string): DateParts {
     return { day, month, year };
 }
 
-export function getUserMetadata(user_metadata: UserMetadata) {
+export function getUserMetadata(metadata: Record<string, any>) {
     return {
-        userName: user_metadata.name,
-        userSurname: user_metadata.surname,
-        userAddress: user_metadata.address,
-        userPhoneNumber: user_metadata.phoneNumber,
-        userPostCode: user_metadata.postCode,
-        userDateOfBirth: user_metadata.dateOfBirth,
-        userContactPreferences: user_metadata.contactPreferences,
-        userNewsletter: user_metadata.newsletter,
+        userName: metadata.name ?? '',
+        userSurname: metadata.surname ?? '',
+        userAddress: metadata.address ?? '',
+        userPhoneNumber: metadata.phoneNumber ?? '',
+        userPostCode: metadata.postCode ?? '',
+        userDateOfBirth: metadata.dateOfBirth ?? '',
+        userContactPreferences: metadata.contactPreferences ?? [],
+        userNewsletter: metadata.newsletter ?? false,
     };
 }

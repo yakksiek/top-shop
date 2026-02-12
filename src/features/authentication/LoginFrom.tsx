@@ -9,6 +9,7 @@ import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import { StyledForgotPassButton } from './LoginForm.styled';
 import { useLogin } from './useLogin';
 import { useNavigate } from 'react-router-dom';
+import * as t from '../../types';
 
 interface LoginFormProps {
     toggleModal: () => void;
@@ -25,7 +26,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const { register, formState, handleSubmit, reset } = useForm<FormData>({
         defaultValues: {
             email: 'test@test.com',
-            password: '123456',
+            password: '45GD1n/Ff8iR',
         },
     });
     const { errors } = formState;
@@ -41,10 +42,11 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
         login(
             { email: data.email, password: data.password },
             {
-                onSuccess: data => {
+                onSuccess: () => {
                     toggleModal();
                     reset();
-                    const userDataFavourites = data.user.user_metadata.favourites;
+                    const user = window.Clerk?.user;
+                    const userDataFavourites = (user?.unsafeMetadata?.favourites as t.FavouritesList[]) ?? [];
                     handleSetFavourites(userDataFavourites);
                     setTimeout(() => {
                         navigate('/dashboard');
@@ -75,7 +77,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                         type={showPassword ? 'text' : 'password'}
                         {...register('password', {
                             required: 'This field is required',
-                            minLength: { value: 6, message: 'Password needs a minimum of 6 characters' },
+                            minLength: { value: 8, message: 'Password needs a minimum of 6 characters' },
                         })}
                     />
                     <PasswordIndicator showPassword={showPassword} revealHandler={setShowPassword} />
@@ -91,7 +93,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                 </Button>
                 <p>Test data:</p>
                 <p>email: test@test.com</p>
-                <p>password: 123456</p>
+                <p>password: 45GD1n/Ff8iR</p>
                 {loginError && <SubmitMessage message={loginError} type='error' />}
             </StyledForm>
         </>

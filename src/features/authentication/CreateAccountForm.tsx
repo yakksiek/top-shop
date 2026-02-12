@@ -26,8 +26,8 @@ function CreateAccountForm() {
             name: 'John',
             surname: 'Doe',
             email: '',
-            password: '123456',
-            passwordConfirm: '123456',
+            password: '45GD1n/Ff8iR',
+            passwordConfirm: '45GD1n/Ff8iR',
         },
     });
     const { errors } = formState;
@@ -49,12 +49,12 @@ function CreateAccountForm() {
     return (
         <>
             <StyledModalWrapper>
-                <ModalHeader toggleModal={toggleLoginModal} headerText='Create an account' />
+                <ModalHeader toggleModal={toggleLoginModal} headerText="Create an account" />
                 <StyledForm onSubmit={handleSubmit(onSubmit)} noValidate>
-                    <FormRow label='Name' error={errors.name && errors.name.message}>
+                    <FormRow label="Name" error={errors.name && errors.name.message}>
                         <Input
-                            id='name'
-                            type='text'
+                            id="name"
+                            type="text"
                             {...register('name', {
                                 required: 'This field is required',
                                 minLength: { value: 2, message: 'Name needs a minimum of 2 characters' },
@@ -62,10 +62,10 @@ function CreateAccountForm() {
                         />
                     </FormRow>
 
-                    <FormRow label='Surname' error={errors.surname && errors.surname.message}>
+                    <FormRow label="Surname" error={errors.surname && errors.surname.message}>
                         <Input
-                            id='surname'
-                            type='text'
+                            id="surname"
+                            type="text"
                             {...register('surname', {
                                 required: 'This field is required',
                                 minLength: { value: 2, message: 'Surname needs a minimum of 2 characters' },
@@ -73,10 +73,10 @@ function CreateAccountForm() {
                         />
                     </FormRow>
 
-                    <FormRow label='Email' error={errors.email && errors.email.message}>
+                    <FormRow label="Email" error={errors.email && errors.email.message}>
                         <Input
-                            id='email'
-                            type='email'
+                            id="email"
+                            type="email"
                             {...register('email', {
                                 required: 'This field is required',
                                 pattern: { value: /\S+@\S+\.\S+/, message: 'Please provide a valid email' },
@@ -84,9 +84,9 @@ function CreateAccountForm() {
                         />
                     </FormRow>
 
-                    <FormRow label='Password (min 6 characters)' error={errors.password && errors.password.message}>
+                    <FormRow label="Password (min 6 characters)" error={errors.password && errors.password.message}>
                         <Input
-                            id='password'
+                            id="password"
                             type={showPassword ? 'text' : 'password'}
                             {...register('password', {
                                 required: 'This field is required',
@@ -96,28 +96,28 @@ function CreateAccountForm() {
                         <PasswordIndicator showPassword={showPassword} revealHandler={setShowPassword} />
                     </FormRow>
 
-                    <FormRow label='Confirm password' error={errors.passwordConfirm && errors.passwordConfirm.message}>
+                    <FormRow label="Confirm password" error={errors.passwordConfirm && errors.passwordConfirm.message}>
                         <Input
-                            id='passwordConfirm'
+                            id="passwordConfirm"
                             type={showConfirmPassword ? 'text' : 'password'}
                             {...register('passwordConfirm', {
                                 required: 'This field is required',
-                                validate: value => value === getValues().password || 'Passwords needs to match',
+                                validate: (value) => value === getValues().password || 'Passwords needs to match',
                             })}
                         />
                         <PasswordIndicator showPassword={showConfirmPassword} revealHandler={setShowConfirmPassword} />
                     </FormRow>
-                    <Button type='submit' fill={true} isDisabled={isPending}>
+                    <Button type="submit" fill={true} isDisabled={isPending}>
                         {isPending && <SpinnerMini />}
                         {isPending ? 'Creating an account...' : 'Create an account'}
                     </Button>
-                    {signupError && <SubmitMessage message={signupError} type='error' />}
+                    {signupError && <SubmitMessage message={signupError} type="error" />}
                 </StyledForm>
             </StyledModalWrapper>
             <StyledSeparator />
             <StyledModalWrapper>
                 <h4>Have you got an account?</h4>
-                <Button type='button' fill={false} onClick={toggleCreateAccountView}>
+                <Button type="button" fill={false} onClick={toggleCreateAccountView}>
                     Go back to login page
                 </Button>
             </StyledModalWrapper>

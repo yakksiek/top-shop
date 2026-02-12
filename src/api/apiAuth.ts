@@ -1,91 +1,89 @@
-import { UserMetadata } from '@supabase/supabase-js';
 import * as t from '../types';
-import supabase from './supabase';
+
+function getClerk() {
+    if (!window.Clerk) throw new Error('Clerk not initialized');
+    return window.Clerk;
+}
 
 export async function signup({ name, surname, email, password }: t.User) {
-    const { data, error } = await supabase.auth.signUp({
-        email,
+    const clerk = getClerk();
+    const signUp = await clerk.client.signUp.create({
+        emailAddress: email,
         password,
-        options: {
-            data: {
-                name,
-                surname,
-                favourites: [],
-            },
-        },
+        firstName: name,
+        lastName: surname,
     });
 
-    if (error) throw new Error(error.message);
+    if (signUp.status === 'complete') {
+        await clerk.setActive({ session: signUp.createdSessionId });
 
-    return data;
+        if (clerk.user) {
+            await clerk.user.update({
+                unsafeMetadata: { favourites: [] },
+            });
+        }
+    }
+
+    return signUp;
 }
 
 export async function login({ email, password }: { email: string; password: string }) {
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+    const clerk = getClerk();
+    const signIn = await clerk.client.signIn.create({
+        identifier: email,
         password,
     });
 
-    if (error) throw new Error(error.message);
-
-    return data;
+    await clerk.setActive({ session: signIn.createdSessionId });
+    return signIn;
 }
 
 export async function getCurrentUser() {
-    const { data: session } = await supabase.auth.getSession();
-
-    if (!session.session) {
-        return null;
-    }
-
-    const { data, error } = await supabase.auth.getUser();
-
-    if (error) throw new Error(error.message);
-    return data?.user;
+    const clerk = getClerk();
+    return clerk.user ?? null;
 }
 
 export async function recoverPasswordWithEmail(email: string) {
-    const baseUrl = `${window.location.origin}/password-reset`;
-    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: baseUrl,
+    const clerk = getClerk();
+    const signIn = await clerk.client.signIn.create({
+        strategy: 'reset_password_email_code',
+        identifier: email,
     });
-    if (error) throw new Error(error.message);
-
-    return data;
+    return signIn;
 }
 
 export async function updateUserPassword(newPassword: string) {
-    const { data: updatedUser, error } = await supabase.auth.updateUser({
-        password: newPassword,
-    });
-    if (error) throw new Error(error.message);
-
-    return updatedUser;
+    const clerk = getClerk();
+    if (!clerk.user) throw new Error('Not authenticated');
+    await clerk.user.updatePassword({ newPassword });
+    return clerk.user;
 }
 
 export async function updateUserFavourites(favouritesData: t.FavouritesList[]) {
-    const { data: updatedUser, error } = await supabase.auth.updateUser({
-        data: {
+    const clerk = getClerk();
+    if (!clerk.user) throw new Error('Not authenticated');
+    await clerk.user.update({
+        unsafeMetadata: {
+            ...clerk.user.unsafeMetadata,
             favourites: favouritesData,
         },
     });
-
-    if (error) throw new Error(error.message);
-
-    return updatedUser;
+    return clerk.user;
 }
 
-export async function updateUserData(userData: UserMetadata) {
-    const { data: updatedUser, error } = await supabase.auth.updateUser({
-        data: userData,
+export async function updateUserData(userData: Record<string, unknown>) {
+    const clerk = getClerk();
+    if (!clerk.user) throw new Error('Not authenticated');
+    await clerk.user.update({
+        unsafeMetadata: {
+            ...clerk.user.unsafeMetadata,
+            ...userData,
+        },
     });
-
-    if (error) throw new Error(error.message);
-
-    return updatedUser;
+    return clerk.user;
 }
 
 export async function logout() {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw new Error(error.message);
+    const clerk = getClerk();
+    await clerk.signOut();
 }
