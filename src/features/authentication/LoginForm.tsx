@@ -21,7 +21,7 @@ interface LoginFormValues {
     password: string;
 }
 
-function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
+function LoginForm({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const [showPassword, setShowPassword] = useState(false);
     const { register, formState, handleSubmit, reset } = useForm<LoginFormValues>({
         defaultValues: {
@@ -100,4 +100,4 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     );
 }
 
-export default LoginFrom;
+export default LoginForm;

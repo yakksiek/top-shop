@@ -2,7 +2,7 @@ import Button from '../../components/Button';
 import { StyledSeparator } from '../../components/Form';
 import { ModalHeader, StyledModalWrapper } from '../../components/Modal';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
-import LoginFrom from './LoginFrom';
+import LoginForm from './LoginForm';
 import PasswordRecoveryForm from './PasswordRecoveryForm';
 
 function LoginModal() {
@@ -16,7 +16,7 @@ function LoginModal() {
                 {recoverPassView ? (
                     <PasswordRecoveryForm toggleRecoverPassView={toggleRecoverPassView} />
                 ) : (
-                    <LoginFrom toggleModal={toggleLoginModal} toggleRecoverPassView={toggleRecoverPassView} />
+                    <LoginForm toggleModal={toggleLoginModal} toggleRecoverPassView={toggleRecoverPassView} />
                 )}
             </StyledModalWrapper>
             <StyledSeparator />

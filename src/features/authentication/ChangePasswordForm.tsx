@@ -7,7 +7,7 @@ import { useUser } from './useUser';
 import Button from '../../components/Button';
 import SpinnerMini from '../../components/SpinnerMini';
 import { device } from '../../styles/breakpoints';
-import useUpdateUserPassword from './useUpadateUserPassword';
+import useUpdateUserPassword from './useUpdateUserPassword';
 import SubmitMessage from '../../components/Form/SubmitMessage';
 
 const StyledWrapper = styled.div`
