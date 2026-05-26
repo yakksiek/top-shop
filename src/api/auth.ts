@@ -5,7 +5,7 @@ function getClerk() {
     return window.Clerk;
 }
 
-export async function signup({ name, surname, email, password }: t.User) {
+export async function signup({ name, surname, email, password }: { name: string; surname: string; email: string; password: string }) {
     const clerk = getClerk();
     const signUp = await clerk.client.signUp.create({
         emailAddress: email,

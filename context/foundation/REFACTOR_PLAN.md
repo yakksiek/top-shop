@@ -122,7 +122,7 @@ src/routing/
    - Dedupe `FormData` (4 copies; original count of 3 missed `ChangePasswordForm`) → `LoginFormValues` / `CreateAccountFormValues` / `PasswordRecoveryFormValues` / `ChangePasswordFormValues`. Names follow component filenames (signup form file is `CreateAccountForm.tsx`, not `Signup.tsx`).
    - Rename `SidebarProps` collisions per convention (3 distinct shapes, not duplicates as originally framed): `Sidebar.tsx` keeps `SidebarProps`; `Sidebar.styled.ts` becomes `StyledSidebarProps`; `Submenu.styled.ts` becomes `StyledSubmenuProps`.
    - Rename `CartProductListProps` collision per convention: `CartProductList.tsx` keeps `CartProductListProps`; `CartSummary.tsx` becomes `CartSummaryProps` (was mis-named after a sibling component despite belonging to a different one).
-   - Rename `interface User` (collision with Clerk's) → `AppUser` or remove if Clerk's covers it.
+   - Remove `interface User`: only 1 call site used 4 of 13 fields (the rest including the `comapny?: ''` typo were dead). Inline the signup shape at the use site rather than rename.
 6. Write `CONVENTIONS.md` with the table from this plan.
 
 ### Branch: `phase/2-api-and-conventions`

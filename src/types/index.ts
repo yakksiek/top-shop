@@ -3,7 +3,6 @@ import { Gender, validGenders } from './Gender';
 import { validCategories, Category } from './Category';
 import { validSubcategories, Subcategory } from './Subcategory';
 import { FavouritesList } from './FavouritesList';
-import User from './User';
 import ProductFilterKey from './ProductFilterKey';
 import ServicesItem from './ServicesItem';
 import OverviewCategory from './OverviewCategory';
@@ -17,7 +16,6 @@ export type {
     Category,
     Subcategory,
     FavouritesList,
-    User,
     ProductFilterKey,
     ServicesItem,
     OverviewCategory,
