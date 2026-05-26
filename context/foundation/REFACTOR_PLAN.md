@@ -20,6 +20,7 @@ Sartiq's site (Next.js, image-heavy, scroll-driven transitions, no 3D) is the vi
 2. **Explanation before implementation.** Each phase opens with a walkthrough of what will change and why. Implementation starts only after the user confirms understanding. Comprehension-check questions are welcome.
 3. **Decisions deferred.** Phase 4 (Clerk specifics) and Phase 5d (scroll showcase) are deliberately not pre-decided. Those decisions happen at the start of each phase.
 4. **Amend, don't rewrite.** Changes to this plan are appended or edited inline; we don't start over.
+5. **User runs commits.** When a step is ready, Claude stages files and drafts the commit message (subject, body, Co-Authored-By trailer); the user runs `git commit` themselves. Other git ops (`checkout -b`, `add`, `push`) follow standard rules.
 
 ## Naming conventions
 
