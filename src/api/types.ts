@@ -1,17 +1,17 @@
 import type { Product, LoaderProductData } from '../types/Product';
-import type { GenderTypes } from '../types/GenderTypes';
-import type { CategoryTypes } from '../types/CategoryTypes';
-import type { SubcategoryTypes } from '../types/SubcategoryTypes';
+import type { Gender } from '../types/Gender';
+import type { Category } from '../types/Category';
+import type { Subcategory } from '../types/Subcategory';
 
 // GET /products?gender=X
 export interface GetProductsParams {
-    gender: GenderTypes;
+    gender: Gender;
 }
 export type GetProductsResponse = Product[];
 
 // GET /products?gender=X&[filter params]
 export interface GetFilteredProductsParams {
-    gender: GenderTypes;
+    gender: Gender;
     query: string;
     filters?: Record<string, string>;
     or?: string[];
@@ -26,9 +26,9 @@ export type GetProductResponse = Product;
 
 // GET /products?gender=X&category=Y&[subcategory]&_limit&_page
 export interface GetProductListParams {
-    gender: GenderTypes;
-    category: CategoryTypes;
-    subcategory?: SubcategoryTypes;
+    gender: Gender;
+    category: Category;
+    subcategory?: Subcategory;
     page: number;
     limit: number;
 }
@@ -45,6 +45,6 @@ export interface ProductListPage {
 
 // GET /:gender
 export interface GetMainPageParams {
-    gender: GenderTypes;
+    gender: Gender;
 }
 export type GetMainPageResponse = LoaderProductData;

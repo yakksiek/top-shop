@@ -93,7 +93,7 @@ Rotate the Supabase anon key in the Supabase dashboard (or delete the project), 
 - `src/api/` mixes data fetchers and route loaders.
 - Loaders inline their own `fetch` URLs instead of calling api functions.
 - `favouritesLoader.ts` is dead code (not referenced in `routes.tsx`).
-- Naming inconsistencies: `Types` suffix on 7 domain types; collisions for `FormData`, `SidebarProps`, `CartProductListProps`.
+- Naming inconsistencies: `Types` suffix on 8 domain type files; collisions for `FormData`, `SidebarProps`, `CartProductListProps`.
 
 ### Target layout
 ```
@@ -118,6 +118,7 @@ src/routing/
 5. Naming sweep:
    - Drop `Types` suffix: `GenderTypes` → `Gender`, `CategoryTypes` → `Category`, `SubcategoryTypes` → `Subcategory`, `MyProfileCardTypes` → `MyProfileCardKind`, `ProductFilterKeyTypes` → `ProductFilterKey`, `OverviewCategoryTypes` → `OverviewCategory`, `ServicesItemTypes` → `ServicesItem`.
    - Rename file containers to match.
+   - File-only rename: `FavouritesListTypes.ts` → `FavouritesList.ts` (type identifier `FavouritesList` already clean; missed in original findings, added by amendment during step 8 execution).
    - Dedupe `FormData` → `LoginFormValues` / `SignupFormValues` / `PasswordRecoveryFormValues`.
    - Dedupe `SidebarProps` (consolidate into one source of truth).
    - Dedupe `CartProductListProps`.

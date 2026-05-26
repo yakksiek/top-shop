@@ -4,7 +4,7 @@ import { fetchProducts } from '../../api/products';
 import * as t from '../../types';
 
 interface UseProductsProps {
-    gender: t.GenderTypes;
+    gender: t.Gender;
 }
 
 export function useProducts({ gender }: UseProductsProps) {

@@ -8,15 +8,15 @@ function productListLoader({ params, request }: LoaderFunctionArgs) {
     const pageURL = new URL(request.url);
     const currentPage = Number(pageURL.searchParams.get('page')) || 1;
 
-    const isGenderValid = t.validGenders.includes(gender as t.GenderTypes);
-    const isCategoryValid = t.validCategories.includes(category as t.CategoryTypes);
+    const isGenderValid = t.validGenders.includes(gender as t.Gender);
+    const isCategoryValid = t.validCategories.includes(category as t.Category);
 
     if (!isGenderValid || !isCategoryValid) {
         return redirect('/women');
     }
 
     if (subcategory) {
-        const isSubcategoryValid = t.validSubcategories.includes(subcategory as t.SubcategoryTypes);
+        const isSubcategoryValid = t.validSubcategories.includes(subcategory as t.Subcategory);
 
         if (!isSubcategoryValid) {
             return redirect(`/${gender}`);
@@ -24,9 +24,9 @@ function productListLoader({ params, request }: LoaderFunctionArgs) {
     }
 
     return fetchProductList({
-        gender: gender as t.GenderTypes,
-        category: category as t.CategoryTypes,
-        subcategory: subcategory as t.SubcategoryTypes | undefined,
+        gender: gender as t.Gender,
+        category: category as t.Category,
+        subcategory: subcategory as t.Subcategory | undefined,
         page: currentPage,
         limit: PRODUCTS_PER_PAGE,
     });

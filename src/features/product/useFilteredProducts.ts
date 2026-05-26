@@ -14,7 +14,7 @@ export function useFilteredProducts({ query, filters, or }: UseFilteredProductsP
     const params = useParams();
     // Loader (mainPageLoader / productListLoader) redirects invalid genders
     // before this hook runs, so the cast is safe at runtime.
-    const gender = (params.gender ?? 'women') as t.GenderTypes;
+    const gender = (params.gender ?? 'women') as t.Gender;
 
     const { data, error, isPending } = useQuery<t.Product[], Error>({
         queryKey: ['filteredProducts', gender, query],

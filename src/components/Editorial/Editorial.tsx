@@ -19,7 +19,7 @@ interface Editorial {
 }
 
 function Editorial({ videoLink, description, products }: Editorial) {
-    const { gender } = useParams<{ gender: t.GenderTypes }>();
+    const { gender } = useParams<{ gender: t.Gender }>();
 
     const bestsellersToRender = products.slice(4, 8);
 
