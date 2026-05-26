@@ -90,7 +90,7 @@ Six contexts handle cross-cutting UI state. They're nested in `main.tsx` in a sp
 
 ## Conventions
 
-Naming and type conventions are defined in [context/foundation/REFACTOR_PLAN.md](context/foundation/REFACTOR_PLAN.md). Highlights:
+Naming and type conventions are documented in [CONVENTIONS.md](CONVENTIONS.md) (canonical), with rationale and refactor history in [context/foundation/REFACTOR_PLAN.md](context/foundation/REFACTOR_PLAN.md). Highlights:
 
 - No `I`-prefix on interfaces.
 - Component props use `<Component>Props`.
