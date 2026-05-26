@@ -42,7 +42,7 @@ No test runner is wired up — `package.json` has no `test` script and there are
 
 The codebase intentionally splits data fetching between two systems:
 
-1. **React Router data loaders** ([src/api/*Loader.ts](src/api/), wired in [src/routing/routes.tsx](src/routing/routes.tsx)) — for route-level data that should block navigation. Currently inline `fetch` calls.
+1. **React Router data loaders** ([src/routing/loaders/](src/routing/loaders/), wired in [src/routing/routes.tsx](src/routing/routes.tsx)) — for route-level data that should block navigation. Loaders call fetcher functions in [src/api/products.ts](src/api/products.ts); they don't `fetch` directly.
 2. **TanStack Query** — for user data (`useUser`), mutations (`useLogin`, `useSignup`, etc.), and anything fetched after navigation. `QueryClientProvider` is set up in [src/main.tsx](src/main.tsx).
 
 When adding new data: loader if the route can't render without it, Query otherwise.
@@ -55,13 +55,13 @@ When adding new data: loader if the route can't render without it, Query otherwi
 
 ```
 src/
-├── api/             # data fetchers + route loaders (mixed — being separated in Phase 2)
+├── api/             # data fetchers + DTO types (types.ts)
 ├── components/      # shared cross-feature UI (Button, Header, Form/, Sidebar/, etc.)
 ├── constants/       # API base URL, pagination, currencies
 ├── contexts/        # 6 React contexts for app-wide UI state (Cart, Favourites, modal toggles, search)
 ├── db/              # static JSON/TS data (menu config, country codes, form definitions)
 ├── features/        # feature folders: authentication, cart, dashboard, product
-├── routing/         # routes.tsx (only file)
+├── routing/         # routes.tsx + loaders/
 ├── styles/          # GlobalStyles.ts (CSS variables), breakpoints.ts
 ├── types/           # shared TS types (Product, User, gender/category unions, etc.)
 ├── utils/           # helpers, formatters
@@ -90,7 +90,7 @@ Six contexts handle cross-cutting UI state. They're nested in `main.tsx` in a sp
 
 ## Conventions
 
-Naming and type conventions are defined in [context/foundation/REFACTOR_PLAN.md](context/foundation/REFACTOR_PLAN.md). Highlights:
+Naming and type conventions are documented in [CONVENTIONS.md](CONVENTIONS.md) (canonical), with rationale and refactor history in [context/foundation/REFACTOR_PLAN.md](context/foundation/REFACTOR_PLAN.md). Highlights:
 
 - No `I`-prefix on interfaces.
 - Component props use `<Component>Props`.

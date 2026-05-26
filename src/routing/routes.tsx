@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import mainPageLoader from '../api/mainPageLoader';
-import productListLoader from '../api/productListLoader';
-import productLoader from '../api/productLoader';
+import mainPageLoader from './loaders/mainPageLoader';
+import productListLoader from './loaders/productListLoader';
+import productLoader from './loaders/productLoader';
 import AppLayout from '../components/AppLayout';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Cart from '../views/Cart';

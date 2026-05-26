@@ -7,7 +7,7 @@ import MyNewsletter from './MyNewsletter';
 import MyProfileCard from './MyProfileCard';
 import PersonalInformation from './PersonalInformationForm';
 
-const myProfileContent: Record<t.MyProfileCardTypes, JSX.Element> = {
+const myProfileContent: Record<t.MyProfileCardKind, JSX.Element> = {
     'Personal Information': <PersonalInformation />,
     'My newsletter': <MyNewsletter />,
     'Login Information': <LoginInformation />,
@@ -15,7 +15,7 @@ const myProfileContent: Record<t.MyProfileCardTypes, JSX.Element> = {
 };
 
 function MyProfileContent() {
-    const renderedCards = (Object.entries(myProfileContent) as [t.MyProfileCardTypes, JSX.Element][]).map(
+    const renderedCards = (Object.entries(myProfileContent) as [t.MyProfileCardKind, JSX.Element][]).map(
         ([item, component]) => {
             const Header = (
                 <Heading as='h4' $textAlign='left' $marginBottom={true}>

@@ -93,7 +93,7 @@ Rotate the Supabase anon key in the Supabase dashboard (or delete the project), 
 - `src/api/` mixes data fetchers and route loaders.
 - Loaders inline their own `fetch` URLs instead of calling api functions.
 - `favouritesLoader.ts` is dead code (not referenced in `routes.tsx`).
-- Naming inconsistencies: `Types` suffix on 7 domain types; collisions for `FormData`, `SidebarProps`, `CartProductListProps`.
+- Naming inconsistencies: `Types` suffix on 8 domain type files; collisions for `FormData`, `SidebarProps`, `CartProductListProps`.
 
 ### Target layout
 ```
@@ -118,10 +118,11 @@ src/routing/
 5. Naming sweep:
    - Drop `Types` suffix: `GenderTypes` → `Gender`, `CategoryTypes` → `Category`, `SubcategoryTypes` → `Subcategory`, `MyProfileCardTypes` → `MyProfileCardKind`, `ProductFilterKeyTypes` → `ProductFilterKey`, `OverviewCategoryTypes` → `OverviewCategory`, `ServicesItemTypes` → `ServicesItem`.
    - Rename file containers to match.
-   - Dedupe `FormData` → `LoginFormValues` / `SignupFormValues` / `PasswordRecoveryFormValues`.
-   - Dedupe `SidebarProps` (consolidate into one source of truth).
-   - Dedupe `CartProductListProps`.
-   - Rename `interface User` (collision with Clerk's) → `AppUser` or remove if Clerk's covers it.
+   - File-only rename: `FavouritesListTypes.ts` → `FavouritesList.ts` (type identifier `FavouritesList` already clean; missed in original findings, added by amendment during step 8 execution).
+   - Dedupe `FormData` (4 copies; original count of 3 missed `ChangePasswordForm`) → `LoginFormValues` / `CreateAccountFormValues` / `PasswordRecoveryFormValues` / `ChangePasswordFormValues`. Names follow component filenames (signup form file is `CreateAccountForm.tsx`, not `Signup.tsx`).
+   - Rename `SidebarProps` collisions per convention (3 distinct shapes, not duplicates as originally framed): `Sidebar.tsx` keeps `SidebarProps`; `Sidebar.styled.ts` becomes `StyledSidebarProps`; `Submenu.styled.ts` becomes `StyledSubmenuProps`.
+   - Rename `CartProductListProps` collision per convention: `CartProductList.tsx` keeps `CartProductListProps`; `CartSummary.tsx` becomes `CartSummaryProps` (was mis-named after a sibling component despite belonging to a different one).
+   - Remove `interface User`: only 1 call site used 4 of 13 fields (the rest including the `comapny?: ''` typo were dead). Inline the signup shape at the use site rather than rename.
 6. Write `CONVENTIONS.md` with the table from this plan.
 
 ### Branch: `phase/2-api-and-conventions`

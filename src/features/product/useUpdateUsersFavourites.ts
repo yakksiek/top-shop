@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateUserFavourites as updateUserFavouritesApi } from '../../api/apiAuth';
+import { updateUserFavourites as updateUserFavouritesApi } from '../../api/auth';
 
 function useUpdateUsersFavourites() {
     const queryClient = useQueryClient();

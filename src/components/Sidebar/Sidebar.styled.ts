@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { device } from '../../styles/breakpoints';
 import { SIDEBAR_OVERLAY_Z_INDEX } from '../../constants/z-indexes';
 
-interface SidebarProps {
+interface StyledSidebarProps {
     $isOpen: boolean;
     $slideFrom: 'left' | 'right';
 }
@@ -11,7 +11,7 @@ interface StyledOverlayProps {
     $isOpen: boolean;
 }
 
-export const StyledSidebar = styled.aside<SidebarProps>`
+export const StyledSidebar = styled.aside<StyledSidebarProps>`
     background-color: var(--color-grey-0);
 
     position: fixed;

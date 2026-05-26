@@ -19,16 +19,16 @@ interface PasswordRecoveryFormProps {
     toggleRecoverPassView: () => void;
 }
 
-interface FormData {
+interface PasswordRecoveryFormValues {
     email: string;
 }
 
 function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormProps) {
-    const { register, handleSubmit, reset, formState } = useForm<FormData>();
+    const { register, handleSubmit, reset, formState } = useForm<PasswordRecoveryFormValues>();
     const { isPending, recoverPassword, recoveryPassError, recoveryPassSuccessMsg } = usePasswordRecovery();
     const { errors } = formState;
 
-    function onSubmit(data: FormData) {
+    function onSubmit(data: PasswordRecoveryFormValues) {
         if (!data.email) return;
 
         recoverPassword(data.email, {

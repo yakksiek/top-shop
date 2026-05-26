@@ -37,7 +37,7 @@ export const removeItemFromArrById = <T extends ItemWithId>(itemId: number | str
     return arr.filter((item) => item.id !== itemId);
 };
 
-export function filterProductsByQuery(products: t.Product[], keys: t.FilterKey[], query: string): t.Product[] {
+export function filterProductsByQuery(products: t.Product[], keys: t.ProductFilterKey[], query: string): t.Product[] {
     return products.filter((product) => keys.some((key) => product[key].toLowerCase().includes(query.toLowerCase())));
 }
 

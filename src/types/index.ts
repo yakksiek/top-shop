@@ -1,27 +1,25 @@
 import { Product, LoaderProductData } from './Product';
-import { GenderTypes, validGenders } from './GenderTypes';
-import { validCategories, CategoryTypes } from './CategoryTypes';
-import { validSubcategories, SubcategoryTypes } from './SubcategoryTypes';
-import { FavouritesList } from './FavouritesListTypes';
-import User from './User';
-import FilterKey from './ProductFilterKeyTypes';
-import ServicesItem from './ServicesItemTypes';
-import OverviewCategory from './OverviewCategoryTypes';
-import MyProfileCardTypes from './MyProfileCardTypes';
+import { Gender, validGenders } from './Gender';
+import { validCategories, Category } from './Category';
+import { validSubcategories, Subcategory } from './Subcategory';
+import { FavouritesList } from './FavouritesList';
+import ProductFilterKey from './ProductFilterKey';
+import ServicesItem from './ServicesItem';
+import OverviewCategory from './OverviewCategory';
+import MyProfileCardKind from './MyProfileCardKind';
 import CountryCodeData from './CountryCodeData';
 
 export type {
     Product,
-    GenderTypes,
+    Gender,
     LoaderProductData,
-    CategoryTypes,
-    SubcategoryTypes,
+    Category,
+    Subcategory,
     FavouritesList,
-    User,
-    FilterKey,
+    ProductFilterKey,
     ServicesItem,
     OverviewCategory,
-    MyProfileCardTypes,
+    MyProfileCardKind,
     CountryCodeData,
 };
 

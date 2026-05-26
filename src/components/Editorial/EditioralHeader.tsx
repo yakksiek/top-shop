@@ -3,7 +3,7 @@ import * as t from '../../types';
 import Heading from '../Heading';
 
 interface EditioralHeaderProps {
-    sectionName?: t.GenderTypes | string;
+    sectionName?: t.Gender | string;
     title: string;
     description: string;
 }

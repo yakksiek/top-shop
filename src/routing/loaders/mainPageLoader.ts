@@ -1,16 +1,16 @@
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
-import * as t from '../types';
-import { BASE_URL } from '../constants/api';
+import * as t from '../../types';
+import { fetchMainPageData } from '../../api/products';
 
 const mainPageLoader = async ({ params }: LoaderFunctionArgs<{ gender: string }>) => {
     const { gender } = params;
 
-    const isGenderValid = t.validGenders.includes(gender as t.GenderTypes);
+    const isGenderValid = t.validGenders.includes(gender as t.Gender);
     if (!gender || !isGenderValid) {
         return redirect('/women');
     }
 
-    return fetch(`${BASE_URL}/${gender}`);
+    return fetchMainPageData({ gender: gender as t.Gender });
 };
 
 export default mainPageLoader;

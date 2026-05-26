@@ -2,12 +2,12 @@ import styled, { css } from 'styled-components';
 import { device } from '../../styles/breakpoints';
 import { StyledSidebar } from './Sidebar.styled';
 
-interface SidebarProps {
+interface StyledSubmenuProps {
     $isOpen: boolean;
     $depth: number;
 }
 
-export const StyledSubmenu = styled(StyledSidebar)<SidebarProps>`
+export const StyledSubmenu = styled(StyledSidebar)<StyledSubmenuProps>`
     transform: translateX(-200%);
     top: 0;
 
