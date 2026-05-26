@@ -1,16 +1,14 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
-import { BASE_URL } from '../constants/api';
+import { fetchProduct } from '../../api/products';
 
 async function productLoader({ params }: LoaderFunctionArgs) {
     const { productId } = params;
 
-    const response = await fetch(`${BASE_URL}/products/${productId}`);
-
-    if (!response.ok) {
+    try {
+        return await fetchProduct({ productId: productId! });
+    } catch {
         throw new Response('Product not found', { status: 404 });
     }
-
-    return response.json();
 }
 
 export default productLoader;

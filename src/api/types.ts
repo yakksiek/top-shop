@@ -36,6 +36,13 @@ export type GetProductListResponse = Product[];
 // Total count is served via the X-Total-Count response header, not the body.
 // Phase 3's fetchJson<T> will need to surface headers separately.
 
+// Enriched fetcher return — combines body with pagination metadata
+// derived from the X-Total-Count header.
+export interface ProductListPage {
+    products: Product[];
+    numberOfPages: number;
+}
+
 // GET /:gender
 export interface GetMainPageParams {
     gender: GenderTypes;
