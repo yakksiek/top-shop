@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
-import { recoverPasswordWithEmail as recoverPasswordWithEmailApi } from '../../api/apiAuth';
+import { recoverPasswordWithEmail as recoverPasswordWithEmailApi } from '../../api/auth';
 
 function usePasswordRecovery() {
     const [recoveryPassError, setRecoveryPassError] = useState<string | null>(null);

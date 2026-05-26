@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { signup as signupApi } from '../../api/apiAuth';
+import { signup as signupApi } from '../../api/auth';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

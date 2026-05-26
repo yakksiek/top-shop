@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import { login as loginApi } from '../../api/apiAuth';
+import { login as loginApi } from '../../api/auth';
 
 export function useLogin() {
     const [loginError, setLoginError] = useState<string | null>(null);

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import { updateUserPassword } from '../../api/apiAuth';
+import { updateUserPassword } from '../../api/auth';
 
 function useUpdateUserPassword() {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
