@@ -1,26 +1,24 @@
 import { BASE_URL } from '../constants/api';
+import type {
+    GetProductsParams,
+    GetProductsResponse,
+    GetFilteredProductsParams,
+} from './types';
 
-interface FetchProductsProps {
-    gender: string;
-}
-
-export async function fetchProducts({ gender }: FetchProductsProps) {
+export async function fetchProducts({ gender }: GetProductsParams): Promise<GetProductsResponse> {
     const response = await fetch(`${BASE_URL}/products/?gender=${gender}`);
     if (!response.ok) {
         throw new Error('Failed to load products');
     }
-    const data = await response.json();
-    return data;
+    return response.json();
 }
 
-interface FetchFilteredProductsProps {
-    gender: string;
-    query: string;
-    filters?: Record<string, string>;
-    or?: string[];
-}
-
-export async function fetchFilteredProducts({ gender, query, filters, or }: FetchFilteredProductsProps) {
+export async function fetchFilteredProducts({
+    gender,
+    query,
+    filters,
+    or,
+}: GetFilteredProductsParams): Promise<GetProductsResponse> {
     const defaultFilters = {
         description_like: query,
         ...filters,
@@ -39,6 +37,5 @@ export async function fetchFilteredProducts({ gender, query, filters, or }: Fetc
     if (!response.ok) {
         throw new Error('Failed to load products');
     }
-    const data = await response.json();
-    return data;
+    return response.json();
 }

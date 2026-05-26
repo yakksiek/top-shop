@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchProducts } from '../../api/apiProducts';
+import { fetchProducts } from '../../api/products';
 
 import * as t from '../../types';
 
 interface UseProductsProps {
-    gender: string;
+    gender: t.GenderTypes;
 }
 
 export function useProducts({ gender }: UseProductsProps) {
