@@ -11,11 +11,11 @@ import { StyledHeader, StyledPaymentInfoWrapper, StyledRow, StyledSummary, Style
 
 const DELIVERY = 16;
 
-interface CartProductListProps {
+interface CartSummaryProps {
     products: t.Product[];
 }
 
-function CartSummary({ products }: CartProductListProps) {
+function CartSummary({ products }: CartSummaryProps) {
     const { toggleLoginModal } = useLoginModalContext();
     const { isAuthenticated } = useUser();
 

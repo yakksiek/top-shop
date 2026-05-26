@@ -121,7 +121,7 @@ src/routing/
    - File-only rename: `FavouritesListTypes.ts` → `FavouritesList.ts` (type identifier `FavouritesList` already clean; missed in original findings, added by amendment during step 8 execution).
    - Dedupe `FormData` (4 copies; original count of 3 missed `ChangePasswordForm`) → `LoginFormValues` / `CreateAccountFormValues` / `PasswordRecoveryFormValues` / `ChangePasswordFormValues`. Names follow component filenames (signup form file is `CreateAccountForm.tsx`, not `Signup.tsx`).
    - Rename `SidebarProps` collisions per convention (3 distinct shapes, not duplicates as originally framed): `Sidebar.tsx` keeps `SidebarProps`; `Sidebar.styled.ts` becomes `StyledSidebarProps`; `Submenu.styled.ts` becomes `StyledSubmenuProps`.
-   - Dedupe `CartProductListProps`.
+   - Rename `CartProductListProps` collision per convention: `CartProductList.tsx` keeps `CartProductListProps`; `CartSummary.tsx` becomes `CartSummaryProps` (was mis-named after a sibling component despite belonging to a different one).
    - Rename `interface User` (collision with Clerk's) → `AppUser` or remove if Clerk's covers it.
 6. Write `CONVENTIONS.md` with the table from this plan.
 
