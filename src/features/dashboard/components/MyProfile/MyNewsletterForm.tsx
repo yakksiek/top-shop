@@ -30,8 +30,7 @@ function MyNewsletterForm({ setModalOpen }: MyNewsletterFormProps) {
     const { user } = useUser();
     const { updateUser, isPending } = useUpdateUserData();
     // user must be logged in to render this component
-    const { user_metadata } = user!;
-    const { userNewsletter } = h.getUserMetadata(user_metadata);
+    const { userNewsletter } = h.getUserMetadata((user!.unsafeMetadata as Record<string, any>) ?? {});
     const {
         register,
         handleSubmit,
