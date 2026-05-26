@@ -4,7 +4,7 @@ import { useCartContext } from '../../contexts/CartContext';
 import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
 import { useModalSidebarContext } from '../../contexts/ModalSidebarContext';
-import { useUser } from '../../features/authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 import { BagIcon, HeartEmptyIcon, PersonIcon } from '../../shared/icons';
 import StyledNavigation from '../StyledNavigation';
 
@@ -19,13 +19,13 @@ import {
 function NavLinks() {
     const { cartItems } = useCartContext();
     const { favouriteItems } = useFavouritesContext();
-    const { isAuthenticated } = useUser();
+    const { isSignedIn } = useUser();
     const { toggleLoginModal } = useLoginModalContext();
     const { openSidebarModal } = useModalSidebarContext();
     const navigate = useNavigate();
 
     const handleProtectedLinkClick = (path: string) => {
-        if (isAuthenticated) {
+        if (isSignedIn) {
             navigate(path);
         } else {
             toggleLoginModal();
@@ -51,7 +51,7 @@ function NavLinks() {
             <li onClick={() => handleProtectedLinkClick('/dashboard')}>
                 <StyledContentWrapper>
                     <PersonIcon />
-                    {isAuthenticated && <StyledFavouritesIndicator color='black' />}
+                    {isSignedIn && <StyledFavouritesIndicator color='black' />}
                 </StyledContentWrapper>
             </li>
 

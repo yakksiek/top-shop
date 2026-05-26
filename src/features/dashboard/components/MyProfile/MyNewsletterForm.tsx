@@ -6,7 +6,7 @@ import Button from '../../../../components/Button';
 import Checkbox from '../../../../components/Checkbox';
 import { FormRow, StyledForm } from '../../../../components/Form';
 import SpinnerMini from '../../../../components/SpinnerMini';
-import { useUser } from '../../../authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 import useUpdateUserData from '../useUpdateUserData';
 
 const checkboxValidation = {

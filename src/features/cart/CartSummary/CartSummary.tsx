@@ -5,7 +5,7 @@ import Heading from '../../../components/Heading';
 import { useLoginModalContext } from '../../../contexts/LoginModalContext';
 import * as t from '../../../types';
 import * as h from '../../../utils/helpers';
-import { useUser } from '../../authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 
 import { StyledHeader, StyledPaymentInfoWrapper, StyledRow, StyledSummary, StyledWrapper } from './CartSummary.styled';
 
@@ -17,10 +17,10 @@ interface CartSummaryProps {
 
 function CartSummary({ products }: CartSummaryProps) {
     const { toggleLoginModal } = useLoginModalContext();
-    const { isAuthenticated } = useUser();
+    const { isSignedIn } = useUser();
 
     const productsTotal = products.reduce((acc, curr) => acc + curr.pricePLN, 0);
-    const clubCartReduction = isAuthenticated ? productsTotal * 0.1 : productsTotal;
+    const clubCartReduction = isSignedIn ? productsTotal * 0.1 : productsTotal;
 
     const totalPriceAfterReductions = productsTotal - clubCartReduction + DELIVERY;
 
@@ -31,7 +31,7 @@ function CartSummary({ products }: CartSummaryProps) {
                     <p className='discount-label'>Discounts</p>
                     <button className='discount-button'>Apply discount</button>
                 </StyledRow> */}
-                {!isAuthenticated && (
+                {!isSignedIn && (
                     <>
                         <Heading as='h5' $marginBottom={false}>
                             Login to use your personal offers!
@@ -49,7 +49,7 @@ function CartSummary({ products }: CartSummaryProps) {
                     <span>Delivery</span>
                     <span>{h.formatCurrency(DELIVERY)}</span>
                 </StyledRow>
-                {isAuthenticated && (
+                {isSignedIn && (
                     <StyledRow>
                         <span>Club member</span>
                         <span style={{ color: 'red' }}>{h.formatCurrency(-Math.abs(productsTotal * 0.1))}</span>

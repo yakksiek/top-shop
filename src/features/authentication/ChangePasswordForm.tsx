@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { FormRow, Input, PasswordIndicator, StyledForm } from '../../components/Form';
-import { useUser } from './useUser';
+import { useUser } from '@clerk/clerk-react';
 import Button from '../../components/Button';
 import SpinnerMini from '../../components/SpinnerMini';
 import { device } from '../../styles/breakpoints';
@@ -30,7 +30,7 @@ function ChangePasswordForm() {
     const { register, formState, getValues, handleSubmit, reset } = useForm<ChangePasswordFormValues>();
     const { errors } = formState;
     const { user } = useUser();
-    const userEmail = user?.email || '';
+    const userEmail = user?.primaryEmailAddress?.emailAddress ?? '';
     const { changePassword, isPending, errorMessage, successMessage } = useUpdateUserPassword();
 
     function onSubmit(data: ChangePasswordFormValues) {

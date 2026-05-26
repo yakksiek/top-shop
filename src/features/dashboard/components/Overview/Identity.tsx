@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useUser } from '../../../authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 
 const StyledIdentityContainer = styled.div`
     --header-vertical-margin: 4rem;

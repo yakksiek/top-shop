@@ -7,7 +7,7 @@ import { StyledForm } from '../../../../components/Form';
 import FieldRenderer from '../../../../components/Form/FieldRenderer';
 import formFields, { FormValues } from '../../../../db/PersonalInformationFormData';
 import * as h from '../../../../utils/helpers';
-import { useUser } from '../../../authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 import useUpdateUserData from '../useUpdateUserData';
 
 function PersonalInformation() {

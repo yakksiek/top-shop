@@ -12,7 +12,7 @@ import {
     PostcardIcon,
     TextChatIcon,
 } from '../../../../shared/icons';
-import { useUser } from '../../../authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 import { StyledIconWrapper, StyledContactServicesList } from './OverviewMyProfile.styled';
 import { Link, useNavigate } from 'react-router-dom';
 

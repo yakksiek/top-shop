@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { useUser } from '../features/authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 import Spinner from './Spinner';
 
 const FullPage = styled.div`
@@ -15,16 +15,16 @@ const FullPage = styled.div`
 type ProtectedRouteProps = PropsWithChildren;
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
-    const { isPending, isAuthenticated } = useUser();
+    const { isLoaded, isSignedIn } = useUser();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isAuthenticated && !isPending) {
+        if (!isSignedIn && isLoaded) {
             navigate('/');
         }
-    }, [navigate, isAuthenticated, isPending]);
+    }, [navigate, isSignedIn, isLoaded]);
 
-    if (isPending) {
+    if (!isLoaded) {
         return (
             <FullPage>
                 <Spinner />
@@ -32,7 +32,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
         );
     }
 
-    if (!isAuthenticated) {
+    if (!isSignedIn) {
         return null;
     }
 

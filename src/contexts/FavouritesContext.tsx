@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useEffect } from 'react';
 
-import { useUser } from '../features/authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 import useUpdateUsersFavourites from '../features/product/useUpdateUsersFavourites';
 import useLocalStorage from '../hooks/useLocalStorage';
 import * as t from '../types';
@@ -17,14 +17,14 @@ const FavouritesContext = createContext<FavouritesContextType | null>(null);
 
 function FavouritesContextProvider({ children }: { children: ReactNode }) {
     const [favouriteItems, setFavouriteItems] = useLocalStorage<t.FavouritesList[] | []>('favourites_list', []);
-    const { isAuthenticated } = useUser();
+    const { isSignedIn } = useUser();
     const { updateUserFavourites } = useUpdateUsersFavourites();
 
     useEffect(() => {
-        if (isAuthenticated) {
+        if (isSignedIn) {
             updateUserFavourites(favouriteItems);
         }
-    }, [favouriteItems, isAuthenticated, updateUserFavourites]);
+    }, [favouriteItems, isSignedIn, updateUserFavourites]);
 
     function addItemToFavourites(product: t.Product) {
         const { id: productId } = product;

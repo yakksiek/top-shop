@@ -6,7 +6,7 @@ import Heading from '../components/Heading';
 import Section from '../components/Section';
 import { useFavouritesContext } from '../contexts/FavouritesContext';
 import { useLoginModalContext } from '../contexts/LoginModalContext';
-import { useUser } from '../features/authentication/useUser';
+import { useUser } from '@clerk/clerk-react';
 import ProductListItem from '../features/product/components/ProductListItem';
 
 const StyledHeader = styled.header`
@@ -42,12 +42,12 @@ export const StyledWishList = styled.ul`
 function Favourites() {
     const { favouriteItems } = useFavouritesContext();
     const { toggleLoginModal } = useLoginModalContext();
-    const { isAuthenticated, isPending } = useUser();
+    const { isSignedIn, isLoaded } = useUser();
 
     return (
         <Section>
             <StyledHeader>
-                {!isAuthenticated && !isPending ? (
+                {!isSignedIn && isLoaded ? (
                     <>
                         <Heading as='h4'>Don't lose your favourites anymore</Heading>
                         <p>Sing In or Create an account to save your selection</p>
