@@ -1,8 +1,8 @@
-import { PropsWithChildren, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { PropsWithChildren } from 'react';
+import { Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { useUser } from '@clerk/clerk-react';
+import { useAuth } from '@clerk/clerk-react';
 import Spinner from './Spinner';
 
 const FullPage = styled.div`
@@ -15,14 +15,7 @@ const FullPage = styled.div`
 type ProtectedRouteProps = PropsWithChildren;
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
-    const { isLoaded, isSignedIn } = useUser();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!isSignedIn && isLoaded) {
-            navigate('/');
-        }
-    }, [navigate, isSignedIn, isLoaded]);
+    const { isLoaded, isSignedIn } = useAuth();
 
     if (!isLoaded) {
         return (
@@ -33,7 +26,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
     }
 
     if (!isSignedIn) {
-        return null;
+        return <Navigate to='/' replace />;
     }
 
     return children;
