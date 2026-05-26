@@ -16,14 +16,14 @@ interface LoginFormProps {
     toggleRecoverPassView?: () => void;
 }
 
-interface FormData {
+interface LoginFormValues {
     email: string;
     password: string;
 }
 
 function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const [showPassword, setShowPassword] = useState(false);
-    const { register, formState, handleSubmit, reset } = useForm<FormData>({
+    const { register, formState, handleSubmit, reset } = useForm<LoginFormValues>({
         defaultValues: {
             email: 'test@test.com',
             password: '45GD1n/Ff8iR',
@@ -34,7 +34,7 @@ function LoginFrom({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const { handleSetFavourites } = useFavouritesContext();
     const navigate = useNavigate();
 
-    function onSubmit(data: FormData) {
+    function onSubmit(data: LoginFormValues) {
         if (!data.email || !data.password) return;
 
         setLoginError(null);

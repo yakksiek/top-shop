@@ -119,7 +119,7 @@ src/routing/
    - Drop `Types` suffix: `GenderTypes` → `Gender`, `CategoryTypes` → `Category`, `SubcategoryTypes` → `Subcategory`, `MyProfileCardTypes` → `MyProfileCardKind`, `ProductFilterKeyTypes` → `ProductFilterKey`, `OverviewCategoryTypes` → `OverviewCategory`, `ServicesItemTypes` → `ServicesItem`.
    - Rename file containers to match.
    - File-only rename: `FavouritesListTypes.ts` → `FavouritesList.ts` (type identifier `FavouritesList` already clean; missed in original findings, added by amendment during step 8 execution).
-   - Dedupe `FormData` → `LoginFormValues` / `SignupFormValues` / `PasswordRecoveryFormValues`.
+   - Dedupe `FormData` (4 copies; original count of 3 missed `ChangePasswordForm`) → `LoginFormValues` / `CreateAccountFormValues` / `PasswordRecoveryFormValues` / `ChangePasswordFormValues`. Names follow component filenames (signup form file is `CreateAccountForm.tsx`, not `Signup.tsx`).
    - Dedupe `SidebarProps` (consolidate into one source of truth).
    - Dedupe `CartProductListProps`.
    - Rename `interface User` (collision with Clerk's) → `AppUser` or remove if Clerk's covers it.

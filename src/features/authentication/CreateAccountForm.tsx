@@ -8,7 +8,7 @@ import SpinnerMini from '../../components/SpinnerMini';
 import SubmitMessage from '../../components/Form/SubmitMessage';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
 
-interface FormData {
+interface CreateAccountFormValues {
     name: string;
     surname: string;
     email: string;
@@ -21,7 +21,7 @@ function CreateAccountForm() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { isPending, signup, signupError } = useSignup();
     const { toggleLoginModal, toggleCreateAccountView } = useLoginModalContext();
-    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>({
+    const { register, formState, getValues, handleSubmit, reset } = useForm<CreateAccountFormValues>({
         defaultValues: {
             name: 'John',
             surname: 'Doe',
@@ -32,7 +32,7 @@ function CreateAccountForm() {
     });
     const { errors } = formState;
 
-    function onSubmit({ name, surname, email, password }: FormData) {
+    function onSubmit({ name, surname, email, password }: CreateAccountFormValues) {
         if (!name || !password || !surname || !email) return;
 
         signup(

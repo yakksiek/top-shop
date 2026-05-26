@@ -19,7 +19,7 @@ const StyledWrapper = styled.div`
     }
 `;
 
-interface FormData {
+interface ChangePasswordFormValues {
     password: string;
     passwordConfirm: string;
 }
@@ -27,13 +27,13 @@ interface FormData {
 function ChangePasswordForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const { register, formState, getValues, handleSubmit, reset } = useForm<FormData>();
+    const { register, formState, getValues, handleSubmit, reset } = useForm<ChangePasswordFormValues>();
     const { errors } = formState;
     const { user } = useUser();
     const userEmail = user?.email || '';
     const { changePassword, isPending, errorMessage, successMessage } = useUpdateUserPassword();
 
-    function onSubmit(data: FormData) {
+    function onSubmit(data: ChangePasswordFormValues) {
         if (!data.password) return;
 
         changePassword(data.password, {
