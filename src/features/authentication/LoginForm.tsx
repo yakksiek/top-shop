@@ -9,6 +9,7 @@ import { useFavouritesContext } from '../../contexts/FavouritesContext';
 import { StyledForgotPassButton } from './LoginForm.styled';
 import { useLogin } from './useLogin';
 import { useNavigate } from 'react-router-dom';
+import { useClerk } from '@clerk/clerk-react';
 import * as t from '../../types';
 
 interface LoginFormProps {
@@ -33,6 +34,7 @@ function LoginForm({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     const { isPending, login, loginError, setLoginError } = useLogin();
     const { handleSetFavourites } = useFavouritesContext();
     const navigate = useNavigate();
+    const clerk = useClerk();
 
     function onSubmit(data: LoginFormValues) {
         if (!data.email || !data.password) return;
@@ -45,12 +47,10 @@ function LoginForm({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                 onSuccess: () => {
                     toggleModal();
                     reset();
-                    const user = window.Clerk?.user;
-                    const userDataFavourites = (user?.unsafeMetadata?.favourites as t.FavouritesList[]) ?? [];
+                    const userDataFavourites =
+                        (clerk.user?.unsafeMetadata?.favourites as t.FavouritesList[]) ?? [];
                     handleSetFavourites(userDataFavourites);
-                    setTimeout(() => {
-                        navigate('/dashboard');
-                    }, 500);
+                    navigate('/dashboard', { replace: true });
                 },
             },
         );
