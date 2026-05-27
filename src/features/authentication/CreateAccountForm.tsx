@@ -7,6 +7,7 @@ import { useSignup } from './useSignup';
 import SpinnerMini from '../../components/SpinnerMini';
 import SubmitMessage from '../../components/Form/SubmitMessage';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
+import { useNavigate } from 'react-router-dom';
 
 interface CreateAccountFormValues {
     name: string;
@@ -21,6 +22,7 @@ function CreateAccountForm() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { isPending, signup, signupError } = useSignup();
     const { toggleLoginModal, toggleCreateAccountView } = useLoginModalContext();
+    const navigate = useNavigate();
     const { register, formState, getValues, handleSubmit, reset } = useForm<CreateAccountFormValues>({
         defaultValues: {
             name: 'John',
@@ -41,6 +43,7 @@ function CreateAccountForm() {
                 onSuccess: () => {
                     toggleLoginModal();
                     reset();
+                    navigate('/dashboard', { replace: true });
                 },
             },
         );
