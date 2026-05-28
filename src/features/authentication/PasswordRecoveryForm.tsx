@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import { FormRow, Input, StyledForm } from '../../components/Form';
-import usePasswordRecovery from './usePasswordRecovery';
+import useRequestPasswordReset from './useRequestPasswordReset';
 import SpinnerMini from '../../components/SpinnerMini';
 import SubmitMessage from '../../components/Form/SubmitMessage';
 
@@ -25,13 +25,13 @@ interface PasswordRecoveryFormValues {
 
 function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormProps) {
     const { register, handleSubmit, reset, formState } = useForm<PasswordRecoveryFormValues>();
-    const { isPending, recoverPassword, recoveryPassError, recoveryPassSuccessMsg } = usePasswordRecovery();
+    const requestReset = useRequestPasswordReset();
     const { errors } = formState;
 
     function onSubmit(data: PasswordRecoveryFormValues) {
         if (!data.email) return;
 
-        recoverPassword(data.email, {
+        requestReset.mutate(data.email, {
             onSuccess: () => {
                 reset();
             },
@@ -56,16 +56,22 @@ function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormPro
                     />
                 </FormRow>
                 <StyledActionButtonsContainer>
-                    <Button type='button' fill={false} onClick={toggleRecoverPassView} isDisabled={isPending}>
+                    <Button
+                        type='button'
+                        fill={false}
+                        onClick={toggleRecoverPassView}
+                        isDisabled={requestReset.isPending}
+                    >
                         Cancel
                     </Button>
-                    <Button type='submit' fill={true} isDisabled={isPending}>
-                        {isPending && <SpinnerMini />}
-                        {isPending ? 'Sending...' : 'Send'}
+                    <Button type='submit' fill={true} isDisabled={requestReset.isPending}>
+                        {requestReset.isPending && <SpinnerMini />}
+                        {requestReset.isPending ? 'Sending...' : 'Send'}
                     </Button>
                 </StyledActionButtonsContainer>
-                {recoveryPassError && <SubmitMessage message={recoveryPassError} type='error' />}
-                {recoveryPassSuccessMsg && <SubmitMessage message={recoveryPassSuccessMsg} type='success' />}
+                {requestReset.error && (
+                    <SubmitMessage message={(requestReset.error as Error).message} type='error' />
+                )}
             </StyledForm>
         </div>
     );
