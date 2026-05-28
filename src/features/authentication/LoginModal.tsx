@@ -19,14 +19,18 @@ function LoginModal() {
                     <LoginForm toggleModal={toggleLoginModal} toggleRecoverPassView={toggleRecoverPassView} />
                 )}
             </StyledModalWrapper>
-            <StyledSeparator />
-            <StyledModalWrapper>
-                <h4>I don't have an account yet</h4>
-                <p>Enjoy add benefits and a reacher experience by creating a personal account</p>
-                <Button type='button' fill={false} onClick={toggleCreateAccountView}>
-                    Create My TS account
-                </Button>
-            </StyledModalWrapper>
+            {!recoverPassView && (
+                <>
+                    <StyledSeparator />
+                    <StyledModalWrapper>
+                        <h4>I don't have an account yet</h4>
+                        <p>Enjoy add benefits and a reacher experience by creating a personal account</p>
+                        <Button type='button' fill={false} onClick={toggleCreateAccountView}>
+                            Create My TS account
+                        </Button>
+                    </StyledModalWrapper>
+                </>
+            )}
         </>
     );
 }
