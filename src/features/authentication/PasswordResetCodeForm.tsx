@@ -15,6 +15,12 @@ const StyledHeader = styled.header`
     margin-bottom: 1rem;
 `;
 
+const StyledStepIndicator = styled.p`
+    font-size: 0.75rem;
+    color: var(--color-grey-500);
+    margin-bottom: 0.25rem;
+`;
+
 const StyledReadOnlyInput = styled(Input)`
     background: var(--color-grey-100);
     color: var(--color-grey-500);
@@ -56,6 +62,7 @@ const StyledResendButton = styled.button`
 interface PasswordResetCodeFormProps {
     email: string;
     onComplete: () => void;
+    stepLabel?: string;
 }
 
 interface PasswordResetCodeFormValues {
@@ -64,7 +71,7 @@ interface PasswordResetCodeFormValues {
     passwordConfirm: string;
 }
 
-function PasswordResetCodeForm({ email, onComplete }: PasswordResetCodeFormProps) {
+function PasswordResetCodeForm({ email, onComplete, stepLabel }: PasswordResetCodeFormProps) {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [cooldown, setCooldown] = useState(RESEND_COOLDOWN_SECONDS);
@@ -110,6 +117,7 @@ function PasswordResetCodeForm({ email, onComplete }: PasswordResetCodeFormProps
     return (
         <div>
             <StyledHeader>
+                {stepLabel && <StyledStepIndicator>{stepLabel}</StyledStepIndicator>}
                 <h4>Enter the code we sent</h4>
                 <p>Enter the 6-digit code we emailed you, along with a new password.</p>
             </StyledHeader>

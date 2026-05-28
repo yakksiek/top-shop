@@ -15,16 +15,23 @@ const StyledHeader = styled.header`
     margin-bottom: 1rem;
 `;
 
+const StyledStepIndicator = styled.p`
+    font-size: 0.75rem;
+    color: var(--color-grey-500);
+    margin-bottom: 0.25rem;
+`;
+
 interface PasswordRecoveryFormProps {
     onCancel: () => void;
     onSuccess: (email: string) => void;
+    stepLabel?: string;
 }
 
 interface PasswordRecoveryFormValues {
     email: string;
 }
 
-function PasswordRecoveryForm({ onCancel, onSuccess }: PasswordRecoveryFormProps) {
+function PasswordRecoveryForm({ onCancel, onSuccess, stepLabel }: PasswordRecoveryFormProps) {
     const { register, handleSubmit, formState } = useForm<PasswordRecoveryFormValues>();
     const requestReset = useRequestPasswordReset();
     const { errors } = formState;
@@ -40,6 +47,7 @@ function PasswordRecoveryForm({ onCancel, onSuccess }: PasswordRecoveryFormProps
     return (
         <div>
             <StyledHeader>
+                {stepLabel && <StyledStepIndicator>{stepLabel}</StyledStepIndicator>}
                 <h4>Forgot Your Password?</h4>
                 <p>Please enter your email address to reset your password. You will receive an email shortly.</p>
             </StyledHeader>

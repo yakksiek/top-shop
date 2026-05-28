@@ -14,6 +14,7 @@ function PasswordRecoveryFlow({ onCancel, onComplete }: PasswordRecoveryFlowProp
     if (step === 'email') {
         return (
             <PasswordRecoveryForm
+                stepLabel='Step 1 of 2'
                 onCancel={onCancel}
                 onSuccess={submittedEmail => {
                     setEmail(submittedEmail);
@@ -23,7 +24,7 @@ function PasswordRecoveryFlow({ onCancel, onComplete }: PasswordRecoveryFlowProp
         );
     }
 
-    return <PasswordResetCodeForm email={email} onComplete={onComplete} />;
+    return <PasswordResetCodeForm stepLabel='Step 2 of 2' email={email} onComplete={onComplete} />;
 }
 
 export default PasswordRecoveryFlow;
