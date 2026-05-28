@@ -248,8 +248,44 @@ Goal: a reader-friendly portfolio piece. Short, crisp, with rationale.
 
 ---
 
+## Phase 7 — Complete password reset flow
+
+### Findings
+- `usePasswordRecovery` calls `signIn.create({ strategy: 'reset_password_email_code', identifier })` — that fires the OTP email correctly.
+- Email arrives with a 6-digit code, but **there is no UI to enter it.** The recovery view dead-ends at the success message, so the user can't actually complete a password reset.
+- Result: password reset is half-built — Clerk's request step is wired, the verify-and-set step is not.
+- Clerk does **not** natively support a link-based reset (`reset_password_email_link` does not exist); OTP is the canonical pattern across Clerk / Auth0 / Stytch / Google / GitHub in 2026. Original muscle-memory for "click link → reset page" comes from the Supabase era.
+
+### Sequence
+Independent of Phases 5 and 6 — can run any time after Phase 4 merges. Recommended **before Phase 5** since it's small and closes a real UX gap that affects portfolio reviewers if they try the recovery flow.
+
+### Changes
+1. **New hook `useResetPassword`** wraps `useSignIn`. `mutationFn`:
+   - Guard on `isLoaded`
+   - `signIn.attemptFirstFactor({ strategy: 'reset_password_email_code', code, password })` — verifies the code and sets the new password atomically
+   - Throw if `status !== 'complete'`
+   - `await setActive({ session: signInAttempt.createdSessionId })`
+2. **`PasswordRecoveryForm` becomes two-step.** After the email is submitted successfully, swap from "enter email" → "enter code + new password + confirm" inside the same modal (no second route). Single-modal multi-step keeps the UX contained.
+3. **New form `PasswordResetCodeForm`** owns step 2: code field, new-password field, confirm-password field, error display, submit. `PasswordRecoveryForm` orchestrates which step is active via local state.
+4. **Post-success flow.** Close modal, `navigate('/dashboard', { replace: true })`. Mirrors Phase 4 step 5's pattern — `await setActive` resolves, then synchronous navigate is safe (no `setTimeout`).
+5. **Optional: resend-code button** in step 2 — calls the existing `usePasswordRecovery.recoverPassword(email)` again.
+6. **Errors handled inline** via `SubmitMessage` — invalid code, expired code, password-policy failures.
+
+### Decisions deferred to phase start
+- **Hook naming.** Three options to weigh:
+  - Rename `usePasswordRecovery` → `useRequestPasswordReset`, add `useResetPassword` for the verify step
+  - Keep `usePasswordRecovery` as-is; add `useResetPassword` alongside it
+  - Combine into one `usePasswordReset` hook exposing two mutations
+- **Component split.** Extend `PasswordRecoveryForm` with internal step state, or split into `PasswordRecoveryForm` (step 1) + `PasswordResetCodeForm` (step 2) orchestrated by a parent.
+- **Visual progress.** "Step 1 of 2" indicator or skip it.
+
+### Branch: `phase/7-password-reset-completion`
+
+---
+
 ## Open / deferred decisions
 
 - **Phase 1**: rotate Supabase anon key (manual user step, flagged).
 - **Phase 4**: full Clerk implementation details, fetched from docs at phase start.
 - **Phase 5d**: scroll-driven hero yes/no, decided at phase start.
+- **Phase 7**: hook naming, component split, progress indicator — decided at phase start.
