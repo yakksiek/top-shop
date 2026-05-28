@@ -78,7 +78,6 @@ Six contexts handle cross-cutting UI state. They're nested in `main.tsx` in a sp
 
 ### Auth flow — known issues
 
-- **Password reset is half-built.** `usePasswordRecovery` sends Clerk's OTP email (`signIn.create({ strategy: 'reset_password_email_code' })`) but there's no UI for the user to enter the code afterward — the flow dead-ends at the success message. Phase 7 completes it.
 - **Test credentials are intentionally exposed.** `LoginForm` and `CreateAccountForm` ship hardcoded test credentials in `defaultValues` plus a visible "Test data:" hint in `LoginForm`. Not a security oversight — top-shop is a portfolio piece, and recruiters should be able to sign in / sign up without typing fake credentials. The `unsafeMetadata.favourites` key and the `'favourites_list'` localStorage key are also intentionally kept British (no data migration); the rest of the codebase uses AmE spelling.
 
 ## Conventions
