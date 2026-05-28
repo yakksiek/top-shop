@@ -32,10 +32,17 @@ const StyledReadOnlyInput = styled(Input)`
     }
 `;
 
+const StyledResendCallout = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+`;
+
 const StyledResendPrompt = styled.p`
     font-size: 0.75rem;
-    margin-top: 0.75rem;
-    margin-bottom: 0.25rem;
+    margin: 0 0 0.25rem 0;
 `;
 
 const StyledResendButton = styled.button`
@@ -133,7 +140,7 @@ function PasswordResetCodeForm({ email, onComplete, stepLabel }: PasswordResetCo
                     />
                 </FormRow>
 
-                <FormRow label='6-digit code' error={errors.code && errors.code.message}>
+                <FormRow label='6-digit code' error={errors.code && errors.code.message} marginBottom={false}>
                     <Input
                         id='code'
                         type='text'
@@ -146,6 +153,13 @@ function PasswordResetCodeForm({ email, onComplete, stepLabel }: PasswordResetCo
                         })}
                     />
                 </FormRow>
+
+                <StyledResendCallout>
+                    <StyledResendPrompt>Didn't get a code?</StyledResendPrompt>
+                    <StyledResendButton type='button' onClick={onResend} disabled={resendDisabled}>
+                        {resendLabel}
+                    </StyledResendButton>
+                </StyledResendCallout>
 
                 <FormRow label='New password (min 6 characters)' error={errors.password && errors.password.message}>
                     <Input
@@ -177,11 +191,6 @@ function PasswordResetCodeForm({ email, onComplete, stepLabel }: PasswordResetCo
                     {resetPassword.isPending && <SpinnerMini />}
                     {resetPassword.isPending ? 'Resetting...' : 'Reset password'}
                 </Button>
-
-                <StyledResendPrompt>Didn't get a code?</StyledResendPrompt>
-                <StyledResendButton type='button' onClick={onResend} disabled={resendDisabled}>
-                    {resendLabel}
-                </StyledResendButton>
 
                 {resetPassword.error && <SubmitMessage message={(resetPassword.error as Error).message} type='error' />}
                 {requestReset.error && <SubmitMessage message={(requestReset.error as Error).message} type='error' />}
