@@ -6,7 +6,7 @@ import { HeartEmptyIcon, HeartFilledIcon } from '../../../../shared/icons';
 import Button from '../../../../components/Button';
 import { ModalHeader, StyledModalWrapper } from '../../../../components/Modal';
 import { useCartContext } from '../../../../contexts/CartContext';
-import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
+import { useFavoritesContext } from '../../../../contexts/FavoritesContext';
 import { useModalSidebarContext } from '../../../../contexts/ModalSidebarContext';
 import ProductDetailsFooterRow from './ProductDetailsFooterRow';
 
@@ -34,10 +34,10 @@ const ITEM_IN_CART_TEXT = 'Item already in cart';
 
 function ProductDetailsContent({ product }: ProductDetailsContentProps) {
     const { addItemToCart, cartItems } = useCartContext();
-    const { favouriteItems, removeItemFromFavourites, addItemToFavourites } = useFavouritesContext();
+    const { favoriteItems, removeItemFromFavorites, addItemToFavorites } = useFavoritesContext();
     const { openSidebarModal, closeSidebarModal } = useModalSidebarContext();
     const [buttonText, setButtonText] = useState(CART_BUTTON_TEXT);
-    const productInFavourites = favouriteItems.find(favItem => favItem.productId === product.id);
+    const productInFavorites = favoriteItems.find(favItem => favItem.productId === product.id);
 
     const handleToggleSidebarNavigation = (contentType: SidebarContentType) => {
         openSidebarModal(
@@ -67,10 +67,10 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
             <StyledProductHeader>
                 <div className='product-id'>
                     <span>ID: {product.id}</span>
-                    {productInFavourites ? (
-                        <HeartFilledIcon onClick={() => removeItemFromFavourites(productInFavourites.id)} />
+                    {productInFavorites ? (
+                        <HeartFilledIcon onClick={() => removeItemFromFavorites(productInFavorites.id)} />
                     ) : (
-                        <HeartEmptyIcon onClick={() => addItemToFavourites(product)} />
+                        <HeartEmptyIcon onClick={() => addItemToFavorites(product)} />
                     )}
                 </div>
                 <h2>{product.productName}</h2>

@@ -3,39 +3,39 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../../components/Button';
 import ButtonRoundSlider from '../../../../components/ButtonRoundSlider';
-import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
+import { useFavoritesContext } from '../../../../contexts/FavoritesContext';
 import useSliderScroller from '../../../../hooks/useSliderScroller';
 import MyWishlistPreviewItem from './MyWishlistPreviewItem';
 import { StyledItemsIndicator, StyledMediaScroller, StyledScrollerContainer } from './OverviewMyWishlist.styled';
 
 function OverviewMyWishlist() {
-    const { favouriteItems } = useFavouritesContext();
+    const { favoriteItems } = useFavoritesContext();
     const navigate = useNavigate();
-    const { scrollerRef, handlePrevious, handleNext, isFirst, isLast } = useSliderScroller(favouriteItems, 2);
-    const isFavouritesArrEmpty = favouriteItems.length === 0;
+    const { scrollerRef, handlePrevious, handleNext, isFirst, isLast } = useSliderScroller(favoriteItems, 2);
+    const isFavoritesArrEmpty = favoriteItems.length === 0;
 
     const handleNavigate = () => {
-        navigate('/favourites');
+        navigate('/favorites');
     };
 
-    const renderedFavouriteItems = useMemo(() => {
-        return favouriteItems.map(item => {
+    const renderedFavoriteItems = useMemo(() => {
+        return favoriteItems.map(item => {
             const { product } = item;
             return <MyWishlistPreviewItem key={product.id} product={product} />;
         });
-    }, [favouriteItems]);
+    }, [favoriteItems]);
 
-    if (isFavouritesArrEmpty) {
+    if (isFavoritesArrEmpty) {
         return <p>Your wishlist is empty</p>;
     }
 
     return (
         <div>
             <StyledItemsIndicator>
-                Items: <span>{favouriteItems.length}</span>
+                Items: <span>{favoriteItems.length}</span>
             </StyledItemsIndicator>
             <StyledScrollerContainer>
-                <StyledMediaScroller ref={scrollerRef}>{renderedFavouriteItems}</StyledMediaScroller>
+                <StyledMediaScroller ref={scrollerRef}>{renderedFavoriteItems}</StyledMediaScroller>
 
                 <ButtonRoundSlider
                     onClick={handlePrevious}

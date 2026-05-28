@@ -5,7 +5,7 @@ import Button from '../../components/Button';
 import { FormRow, Input, PasswordIndicator, StyledForm } from '../../components/Form';
 import SubmitMessage from '../../components/Form/SubmitMessage';
 import SpinnerMini from '../../components/SpinnerMini';
-import { useFavouritesContext } from '../../contexts/FavouritesContext';
+import { useFavoritesContext } from '../../contexts/FavoritesContext';
 import { StyledForgotPassButton } from './LoginForm.styled';
 import { useLogin } from './useLogin';
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +32,7 @@ function LoginForm({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
     });
     const { errors } = formState;
     const { isPending, login, loginError, setLoginError } = useLogin();
-    const { handleSetFavourites } = useFavouritesContext();
+    const { handleSetFavorites } = useFavoritesContext();
     const navigate = useNavigate();
     const clerk = useClerk();
 
@@ -47,9 +47,9 @@ function LoginForm({ toggleModal, toggleRecoverPassView }: LoginFormProps) {
                 onSuccess: () => {
                     toggleModal();
                     reset();
-                    const userDataFavourites =
-                        (clerk.user?.unsafeMetadata?.favourites as t.FavouritesList[]) ?? [];
-                    handleSetFavourites(userDataFavourites);
+                    const userDataFavorites =
+                        (clerk.user?.unsafeMetadata?.favourites as t.FavoritesList[]) ?? [];
+                    handleSetFavorites(userDataFavorites);
                     navigate('/dashboard', { replace: true });
                 },
             },

@@ -2,7 +2,7 @@ import { Product, LoaderProductData } from './Product';
 import { Gender, validGenders } from './Gender';
 import { validCategories, Category } from './Category';
 import { validSubcategories, Subcategory } from './Subcategory';
-import { FavouritesList } from './FavouritesList';
+import { FavoritesList } from './FavoritesList';
 import ProductFilterKey from './ProductFilterKey';
 import ServicesItem from './ServicesItem';
 import OverviewCategory from './OverviewCategory';
@@ -15,7 +15,7 @@ export type {
     LoaderProductData,
     Category,
     Subcategory,
-    FavouritesList,
+    FavoritesList,
     ProductFilterKey,
     ServicesItem,
     OverviewCategory,

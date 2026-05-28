@@ -31,7 +31,7 @@ export const StyledCartIndicator = styled.div`
     text-align: center;
 `;
 
-interface StyledFavouritesIndicatorProps {
+interface StyledFavoritesIndicatorProps {
     color?: 'orange' | 'black';
 }
 
@@ -46,7 +46,7 @@ const getColor = (color: 'orange' | 'black') => {
     }
 };
 
-export const StyledFavouritesIndicator = styled.div<StyledFavouritesIndicatorProps>`
+export const StyledFavoritesIndicator = styled.div<StyledFavoritesIndicatorProps>`
     position: absolute;
     top: -1px;
     right: -1px;

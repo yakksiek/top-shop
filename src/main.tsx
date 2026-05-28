@@ -8,7 +8,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { router } from './routing/routes.tsx';
 import GlobalStyles from './styles/GlobalStyles.ts';
 import { CartContextProvider } from './contexts/CartContext.tsx';
-import { FavouritesContextProvider } from './contexts/FavouritesContext.tsx';
+import { FavoritesContextProvider } from './contexts/FavoritesContext.tsx';
 import { LoginModalContextProvider } from './contexts/LoginModalContext.tsx';
 import { ModalSidebarContextProvider } from './contexts/ModalSidebarContext.tsx';
 import { SearchInputContextProvider } from './contexts/SearchInputContext.tsx';
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <GlobalStyles />
             <QueryClientProvider client={queryClient}>
                 <ModalSidebarContextProvider>
-                    <FavouritesContextProvider>
+                    <FavoritesContextProvider>
                         <LoginModalContextProvider>
                             <CartContextProvider>
                                 <SidebarNavigationContextProvider>
@@ -32,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                                 </SidebarNavigationContextProvider>
                             </CartContextProvider>
                         </LoginModalContextProvider>
-                    </FavouritesContextProvider>
+                    </FavoritesContextProvider>
                 </ModalSidebarContextProvider>
                 <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>

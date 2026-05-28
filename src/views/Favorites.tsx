@@ -4,7 +4,7 @@ import { device } from '../styles/breakpoints';
 import Button from '../components/Button';
 import Heading from '../components/Heading';
 import Section from '../components/Section';
-import { useFavouritesContext } from '../contexts/FavouritesContext';
+import { useFavoritesContext } from '../contexts/FavoritesContext';
 import { useLoginModalContext } from '../contexts/LoginModalContext';
 import { useUser } from '@clerk/clerk-react';
 import ProductListItem from '../features/product/components/ProductListItem';
@@ -39,8 +39,8 @@ export const StyledWishList = styled.ul`
     }
 `;
 
-function Favourites() {
-    const { favouriteItems } = useFavouritesContext();
+function Favorites() {
+    const { favoriteItems } = useFavoritesContext();
     const { toggleLoginModal } = useLoginModalContext();
     const { isSignedIn, isLoaded } = useUser();
 
@@ -49,7 +49,7 @@ function Favourites() {
             <StyledHeader>
                 {!isSignedIn && isLoaded ? (
                     <>
-                        <Heading as='h4'>Don't lose your favourites anymore</Heading>
+                        <Heading as='h4'>Don't lose your favorites anymore</Heading>
                         <p>Sing In or Create an account to save your selection</p>
                         <StyledActionButtonWrapper>
                             <Button fill={true} onClick={toggleLoginModal}>
@@ -59,12 +59,12 @@ function Favourites() {
                     </>
                 ) : (
                     <Heading as='h3' $marginBottom={true}>
-                        Your favourites list
+                        Your favorites list
                     </Heading>
                 )}
             </StyledHeader>
             <StyledWishList>
-                {favouriteItems.map(item => {
+                {favoriteItems.map(item => {
                     return <ProductListItem key={item.id} product={item.product} variant='wishlist' />;
                 })}
             </StyledWishList>
@@ -72,4 +72,4 @@ function Favourites() {
     );
 }
 
-export default Favourites;
+export default Favorites;

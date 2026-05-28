@@ -9,7 +9,7 @@ import Dashboard from '../views/Dashboard/Dashboard';
 import MyProfile from '../views/Dashboard/MyProfile';
 import Overview from '../views/Dashboard/Overview';
 import ErrorPage from '../views/ErrorPage';
-import Favourites from '../views/Favourites';
+import Favorites from '../views/Favorites';
 import MainPage from '../views/MainPage';
 import PasswordReset from '../views/PasswordReset';
 import ProductDetails from '../views/ProductDetails';
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
             { path: '/:gender?', element: <MainPage />, loader: mainPageLoader },
-            { path: '/favourites', element: <Favourites /> },
+            { path: '/favorites', element: <Favorites /> },
             { path: '/cart', element: <Cart /> },
             { path: '/:gender/search', element: <Search /> },
             { path: '/:gender/:category/:subcategory?', element: <ProductsList />, loader: productListLoader },

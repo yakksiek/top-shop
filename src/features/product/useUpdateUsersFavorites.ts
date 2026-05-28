@@ -2,22 +2,22 @@ import { useMutation } from '@tanstack/react-query';
 import { useUser } from '@clerk/clerk-react';
 import * as t from '../../types';
 
-function useUpdateUsersFavourites() {
+function useUpdateUsersFavorites() {
     const { user } = useUser();
 
-    const { mutate: updateUserFavourites } = useMutation({
-        mutationFn: async (favouritesData: t.FavouritesList[]) => {
+    const { mutate: updateUserFavorites } = useMutation({
+        mutationFn: async (favoritesData: t.FavoritesList[]) => {
             if (!user) throw new Error('Not authenticated');
             return user.update({
                 unsafeMetadata: {
                     ...user.unsafeMetadata,
-                    favourites: favouritesData,
+                    favourites: favoritesData,
                 },
             });
         },
     });
 
-    return { updateUserFavourites };
+    return { updateUserFavorites };
 }
 
-export default useUpdateUsersFavourites;
+export default useUpdateUsersFavorites;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { BASE_URL } from '../../../../constants/api';
 import { useCartContext } from '../../../../contexts/CartContext';
-import { useFavouritesContext } from '../../../../contexts/FavouritesContext';
+import { useFavoritesContext } from '../../../../contexts/FavoritesContext';
 import * as t from '../../../../types';
 import * as h from '../../../../utils/helpers';
 
@@ -29,12 +29,12 @@ interface ProductProps {
 function ProductListItem({ product, variant }: ProductProps) {
     const [buttonText, setButtonText] = useState(CART_BUTTON_TEXT);
     const { addItemToCart, cartItems } = useCartContext();
-    const { addItemToFavourites, removeItemFromFavourites, favouriteItems } = useFavouritesContext();
+    const { addItemToFavorites, removeItemFromFavorites, favoriteItems } = useFavoritesContext();
     const { pricePLN, productName, gender, category, subcategory, id } = product;
     const wishlistView = variant === 'wishlist';
-    const favouriteItem = favouriteItems.find(item => item.productId === id);
+    const favoriteItem = favoriteItems.find(item => item.productId === id);
 
-    const handleFavouriteClick = (e: React.MouseEvent, action: () => void) => {
+    const handleFavoriteClick = (e: React.MouseEvent, action: () => void) => {
         e.preventDefault();
         e.stopPropagation();
         action();
@@ -66,19 +66,19 @@ function ProductListItem({ product, variant }: ProductProps) {
                             <CrossIcon
                                 className='cross-icon'
                                 onClick={e =>
-                                    handleFavouriteClick(
+                                    handleFavoriteClick(
                                         e,
-                                        () => favouriteItem && removeItemFromFavourites(favouriteItem.id),
+                                        () => favoriteItem && removeItemFromFavorites(favoriteItem.id),
                                     )
                                 }
                             />
-                        ) : !favouriteItem ? (
+                        ) : !favoriteItem ? (
                             <HeartEmptyIcon
-                                onClick={e => handleFavouriteClick(e, () => addItemToFavourites(product))}
+                                onClick={e => handleFavoriteClick(e, () => addItemToFavorites(product))}
                             />
                         ) : (
                             <HeartFilledIcon
-                                onClick={e => handleFavouriteClick(e, () => removeItemFromFavourites(favouriteItem.id))}
+                                onClick={e => handleFavoriteClick(e, () => removeItemFromFavorites(favoriteItem.id))}
                             />
                         )}
                     </StyledIconWrapper>

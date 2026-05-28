@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useCartContext } from '../../contexts/CartContext';
-import { useFavouritesContext } from '../../contexts/FavouritesContext';
+import { useFavoritesContext } from '../../contexts/FavoritesContext';
 import { useLoginModalContext } from '../../contexts/LoginModalContext';
 import { useModalSidebarContext } from '../../contexts/ModalSidebarContext';
 import { useUser } from '@clerk/clerk-react';
@@ -12,13 +12,13 @@ import ContactUsSidebar from '../ContactUsSidebar';
 import {
     StyledCartIndicator,
     StyledContentWrapper,
-    StyledFavouritesIndicator,
+    StyledFavoritesIndicator,
     StyledLinkItem,
 } from './NavLinks.styled';
 
 function NavLinks() {
     const { cartItems } = useCartContext();
-    const { favouriteItems } = useFavouritesContext();
+    const { favoriteItems } = useFavoritesContext();
     const { isSignedIn } = useUser();
     const { toggleLoginModal } = useLoginModalContext();
     const { openSidebarModal } = useModalSidebarContext();
@@ -42,16 +42,16 @@ function NavLinks() {
                 <span className='label'>Contact Us</span>
             </li>
             <li>
-                <StyledLinkItem to='/favourites'>
+                <StyledLinkItem to='/favorites'>
                     <HeartEmptyIcon />
-                    {favouriteItems && favouriteItems.length > 0 && <StyledFavouritesIndicator />}
+                    {favoriteItems && favoriteItems.length > 0 && <StyledFavoritesIndicator />}
                 </StyledLinkItem>
             </li>
 
             <li onClick={() => handleProtectedLinkClick('/dashboard')}>
                 <StyledContentWrapper>
                     <PersonIcon />
-                    {isSignedIn && <StyledFavouritesIndicator color='black' />}
+                    {isSignedIn && <StyledFavoritesIndicator color='black' />}
                 </StyledContentWrapper>
             </li>
 
