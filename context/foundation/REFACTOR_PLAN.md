@@ -182,7 +182,7 @@ src/routing/
 4. Rename `LoginFrom.tsx` → `LoginForm.tsx` (fix typo, fix exported name).
 5. Rename `useUpadateUserPassword.ts` → `useUpdateUserPassword.ts`.
 6. Drop the `setTimeout` hack — derive navigation from Clerk's reactive `isSignedIn`.
-7. Gate dev test credentials behind `import.meta.env.DEV`.
+7. ~~Gate dev test credentials behind `import.meta.env.DEV`.~~ **Reversed during step 9.** Test credentials in `LoginForm` and `CreateAccountForm` intentionally stay visible in production. This is a portfolio piece — recruiters viewing the live demo should be able to sign in (or create an account) without typing fake credentials. Both the `defaultValues` and the visible "Test data:" hint remain.
 8. Use new `AuthError` class (Phase 3) for typed failures.
 9. Refactor `ProtectedRoute` to use `<Navigate>` or react-router `redirect()`.
 10. Reconsider `unsafeMetadata.favourites` — verify Clerk's reactivity now that we're using the real `useUser`.
