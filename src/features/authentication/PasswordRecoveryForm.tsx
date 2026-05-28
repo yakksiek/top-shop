@@ -16,15 +16,16 @@ const StyledHeader = styled.header`
 `;
 
 interface PasswordRecoveryFormProps {
-    toggleRecoverPassView: () => void;
+    onCancel: () => void;
+    onSuccess: (email: string) => void;
 }
 
 interface PasswordRecoveryFormValues {
     email: string;
 }
 
-function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormProps) {
-    const { register, handleSubmit, reset, formState } = useForm<PasswordRecoveryFormValues>();
+function PasswordRecoveryForm({ onCancel, onSuccess }: PasswordRecoveryFormProps) {
+    const { register, handleSubmit, formState } = useForm<PasswordRecoveryFormValues>();
     const requestReset = useRequestPasswordReset();
     const { errors } = formState;
 
@@ -32,9 +33,7 @@ function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormPro
         if (!data.email) return;
 
         requestReset.mutate(data.email, {
-            onSuccess: () => {
-                reset();
-            },
+            onSuccess: () => onSuccess(data.email),
         });
     }
 
@@ -56,12 +55,7 @@ function PasswordRecoveryForm({ toggleRecoverPassView }: PasswordRecoveryFormPro
                     />
                 </FormRow>
                 <StyledActionButtonsContainer>
-                    <Button
-                        type='button'
-                        fill={false}
-                        onClick={toggleRecoverPassView}
-                        isDisabled={requestReset.isPending}
-                    >
+                    <Button type='button' fill={false} onClick={onCancel} isDisabled={requestReset.isPending}>
                         Cancel
                     </Button>
                     <Button type='submit' fill={true} isDisabled={requestReset.isPending}>
