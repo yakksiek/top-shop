@@ -1,26 +1,27 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
-import { updateUserPassword } from '../../api/auth';
+import { useUser } from '@clerk/clerk-react';
 
 function useUpdateUserPassword() {
+    const { user } = useUser();
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const queryClient = useQueryClient();
 
     const { mutate: changePassword, isPending } = useMutation({
-        mutationFn: updateUserPassword,
+        mutationFn: async (newPassword: string) => {
+            if (!user) throw new Error('Not authenticated');
+            return user.updatePassword({ newPassword });
+        },
         onMutate: () => {
             setSuccessMessage(null);
             setErrorMessage(null);
         },
         onSuccess: () => {
-            setErrorMessage(null);
             setSuccessMessage('Your password was successfully updated');
-            queryClient.invalidateQueries({ queryKey: ['user'] });
         },
         onError: err => {
             setSuccessMessage(null);
-            setErrorMessage(err.message);
+            setErrorMessage((err as Error).message);
         },
     });
 

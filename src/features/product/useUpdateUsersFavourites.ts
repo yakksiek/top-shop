@@ -1,13 +1,19 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateUserFavourites as updateUserFavouritesApi } from '../../api/auth';
+import { useMutation } from '@tanstack/react-query';
+import { useUser } from '@clerk/clerk-react';
+import * as t from '../../types';
 
 function useUpdateUsersFavourites() {
-    const queryClient = useQueryClient();
+    const { user } = useUser();
 
     const { mutate: updateUserFavourites } = useMutation({
-        mutationFn: updateUserFavouritesApi,
-        onSuccess: () => {
-            queryClient.refetchQueries({ queryKey: ['user'] });
+        mutationFn: async (favouritesData: t.FavouritesList[]) => {
+            if (!user) throw new Error('Not authenticated');
+            return user.update({
+                unsafeMetadata: {
+                    ...user.unsafeMetadata,
+                    favourites: favouritesData,
+                },
+            });
         },
     });
 

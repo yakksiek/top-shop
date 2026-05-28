@@ -1,12 +1,18 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateUserData } from '../../../api/auth';
+import { useMutation } from '@tanstack/react-query';
+import { useUser } from '@clerk/clerk-react';
 
 function useUpdateUserData() {
-    const queryClient = useQueryClient();
+    const { user } = useUser();
+
     const { mutate: updateUser, isPending } = useMutation({
-        mutationFn: updateUserData,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['user'] });
+        mutationFn: async (userData: Record<string, unknown>) => {
+            if (!user) throw new Error('Not authenticated');
+            return user.update({
+                unsafeMetadata: {
+                    ...user.unsafeMetadata,
+                    ...userData,
+                },
+            });
         },
     });
 
