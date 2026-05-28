@@ -14,7 +14,7 @@ function LoginModal() {
             <StyledModalWrapper>
                 <ModalHeader toggleModal={toggleLoginModal} headerText='Identification' />
                 {recoverPassView ? (
-                    <PasswordRecoveryFlow onCancel={toggleRecoverPassView} />
+                    <PasswordRecoveryFlow onCancel={toggleRecoverPassView} onComplete={toggleLoginModal} />
                 ) : (
                     <LoginForm toggleModal={toggleLoginModal} toggleRecoverPassView={toggleRecoverPassView} />
                 )}
