@@ -6,7 +6,10 @@ import Button from '../../components/Button';
 import { FormRow, Input, PasswordIndicator, StyledForm } from '../../components/Form';
 import SubmitMessage from '../../components/Form/SubmitMessage';
 import SpinnerMini from '../../components/SpinnerMini';
+import useRequestPasswordReset from './useRequestPasswordReset';
 import useResetPassword from './useResetPassword';
+
+const RESEND_COOLDOWN_SECONDS = 30;
 
 const StyledHeader = styled.header`
     margin-bottom: 1rem;
@@ -20,6 +23,33 @@ const StyledReadOnlyInput = styled(Input)`
     &:hover,
     &:focus {
         border: var(--border-standard);
+    }
+`;
+
+const StyledResendPrompt = styled.p`
+    font-size: 0.75rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+`;
+
+const StyledResendButton = styled.button`
+    background-color: transparent;
+    border: none;
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+    align-self: flex-start;
+    padding: 1px;
+
+    &:focus {
+        outline: 1px solid var(--color-black);
+    }
+
+    &:disabled {
+        cursor: default;
+        color: var(--color-grey-500);
+        text-decoration: none;
     }
 `;
 
@@ -37,14 +67,22 @@ interface PasswordResetCodeFormValues {
 function PasswordResetCodeForm({ email, onComplete }: PasswordResetCodeFormProps) {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [cooldown, setCooldown] = useState(RESEND_COOLDOWN_SECONDS);
     const { register, handleSubmit, getValues, formState, setFocus } = useForm<PasswordResetCodeFormValues>();
     const { errors } = formState;
     const resetPassword = useResetPassword();
+    const requestReset = useRequestPasswordReset();
     const navigate = useNavigate();
 
     useEffect(() => {
         setFocus('code');
     }, [setFocus]);
+
+    useEffect(() => {
+        if (cooldown <= 0) return;
+        const id = setInterval(() => setCooldown((s) => s - 1), 1000);
+        return () => clearInterval(id);
+    }, [cooldown]);
 
     function onSubmit(data: PasswordResetCodeFormValues) {
         resetPassword.mutate(
@@ -57,6 +95,17 @@ function PasswordResetCodeForm({ email, onComplete }: PasswordResetCodeFormProps
             },
         );
     }
+
+    function onResend() {
+        requestReset.mutate(email, {
+            onSuccess: () => setCooldown(RESEND_COOLDOWN_SECONDS),
+        });
+    }
+
+    const resendDisabled = cooldown > 0 || requestReset.isPending || resetPassword.isPending;
+    const resendLabel = requestReset.isPending ? 'Sending...' : cooldown > 0 ? `Resend in ${cooldown}s` : 'Resend code';
+
+    const submitDisabled = resetPassword.isPending || requestReset.isPending;
 
     return (
         <div>
@@ -116,11 +165,18 @@ function PasswordResetCodeForm({ email, onComplete }: PasswordResetCodeFormProps
                     <PasswordIndicator showPassword={showConfirmPassword} revealHandler={setShowConfirmPassword} />
                 </FormRow>
 
-                <Button type='submit' fill={true} isDisabled={resetPassword.isPending}>
+                <Button type='submit' fill={true} isDisabled={submitDisabled}>
                     {resetPassword.isPending && <SpinnerMini />}
                     {resetPassword.isPending ? 'Resetting...' : 'Reset password'}
                 </Button>
+
+                <StyledResendPrompt>Didn't get a code?</StyledResendPrompt>
+                <StyledResendButton type='button' onClick={onResend} disabled={resendDisabled}>
+                    {resendLabel}
+                </StyledResendButton>
+
                 {resetPassword.error && <SubmitMessage message={(resetPassword.error as Error).message} type='error' />}
+                {requestReset.error && <SubmitMessage message={(requestReset.error as Error).message} type='error' />}
             </StyledForm>
         </div>
     );
