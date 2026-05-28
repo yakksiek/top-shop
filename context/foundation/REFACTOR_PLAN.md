@@ -1,7 +1,7 @@
 # Top-Shop Refactor Plan
 
 > Living contract for the refactor work. Edit by amendment, not rewrite.
-> Last updated: 2026-05-26
+> Last updated: 2026-05-28
 
 ## Context & goal
 
@@ -259,25 +259,41 @@ Goal: a reader-friendly portfolio piece. Short, crisp, with rationale.
 ### Sequence
 Independent of Phases 5 and 6 — can run any time after Phase 4 merges. Recommended **before Phase 5** since it's small and closes a real UX gap that affects portfolio reviewers if they try the recovery flow.
 
-### Changes
-1. **New hook `useResetPassword`** wraps `useSignIn`. `mutationFn`:
-   - Guard on `isLoaded`
-   - `signIn.attemptFirstFactor({ strategy: 'reset_password_email_code', code, password })` — verifies the code and sets the new password atomically
-   - Throw if `status !== 'complete'`
-   - `await setActive({ session: signInAttempt.createdSessionId })`
-2. **`PasswordRecoveryForm` becomes two-step.** After the email is submitted successfully, swap from "enter email" → "enter code + new password + confirm" inside the same modal (no second route). Single-modal multi-step keeps the UX contained.
-3. **New form `PasswordResetCodeForm`** owns step 2: code field, new-password field, confirm-password field, error display, submit. `PasswordRecoveryForm` orchestrates which step is active via local state.
-4. **Post-success flow.** Close modal, `navigate('/dashboard', { replace: true })`. Mirrors Phase 4 step 5's pattern — `await setActive` resolves, then synchronous navigate is safe (no `setTimeout`).
-5. **Optional: resend-code button** in step 2 — calls the existing `usePasswordRecovery.recoverPassword(email)` again.
-6. **Errors handled inline** via `SubmitMessage` — invalid code, expired code, password-policy failures.
+### Design
+Two forms orchestrated by a small wrapper. LoginModal is unaware of the step state — it still sees one "recovery view" component, same as today.
 
-### Decisions deferred to phase start
-- **Hook naming.** Three options to weigh:
-  - Rename `usePasswordRecovery` → `useRequestPasswordReset`, add `useResetPassword` for the verify step
-  - Keep `usePasswordRecovery` as-is; add `useResetPassword` alongside it
-  - Combine into one `usePasswordReset` hook exposing two mutations
-- **Component split.** Extend `PasswordRecoveryForm` with internal step state, or split into `PasswordRecoveryForm` (step 1) + `PasswordResetCodeForm` (step 2) orchestrated by a parent.
-- **Visual progress.** "Step 1 of 2" indicator or skip it.
+```
+LoginModal
+└── if recoverPassView → PasswordRecoveryFlow
+    ├── step === 'email'  → PasswordRecoveryForm   (uses useRequestPasswordReset)
+    └── step === 'verify' → PasswordResetCodeForm  (uses useResetPassword + useRequestPasswordReset for resend)
+```
+
+`PasswordRecoveryFlow` owns `step: 'email' | 'verify'` and the `email` captured from step 1. The step+email state lives where it's used, not in `LoginModalContext` — it has no meaning outside this flow.
+
+### Changes
+1. **Rename `usePasswordRecovery` → `useRequestPasswordReset`.** Drop the local error/success `useState` wrappers; callers read `mutation.error` / `mutation.isSuccess` directly (matches Phase 4 hook shape — `useLogin` was rewritten the same way).
+2. **New hook `useResetPassword`.** Mirrors `useLogin`'s pattern:
+   - Guard on `isLoaded`
+   - `signIn.attemptFirstFactor({ strategy: 'reset_password_email_code', code, password })` — verifies and sets the new password atomically
+   - Throw if `status !== 'complete'`
+   - `await setActive({ session: attempt.createdSessionId })`
+3. **New `PasswordRecoveryFlow` component.** Rendered by `LoginModal` when `recoverPassView` is true. Owns `step` and `email` local state. Renders step-1 form; advances to step-2 form on success.
+4. **Refactor `PasswordRecoveryForm`** to accept `onSuccess(email)` callback. Drop the stale "you should receive email with a link…" success message — the step-2 transition is the feedback. Step-1 errors still render inline via `SubmitMessage`.
+5. **New `PasswordResetCodeForm`** for step 2:
+   - Fields: 6-digit code (`pattern: /^\d{6}$/`), new password (`minLength: 6`), confirm password (`validate: matches password`). Show/hide toggle on the password fields, copied from `ChangePasswordForm`.
+   - On mount, focus the code input (accessibility).
+   - Resend-code button with **30s countdown** ("Resend in 23s"). Disabled while counting down or while `requestReset.isPending`. Click restarts the countdown. Countdown state lives in the form via `useEffect` + `setInterval`.
+   - Post-success: call `onComplete()` (closes modal) then `navigate('/dashboard', { replace: true })` from within the mutation's `onSuccess` (matches Phase 4 `LoginForm`).
+6. **Step indicator.** Each form header shows "Step 1 of 2" / "Step 2 of 2" as plain text.
+7. **Errors inline** via `SubmitMessage` (Tier 1) — invalid code, expired code, password-policy failures.
+
+### Resolved at phase start (2026-05-28)
+- **Hook naming → two hooks.** `useRequestPasswordReset` (rename) + `useResetPassword` (new). Matches the one-hook-per-mutation precedent set by Phase 4 (`useLogin`, `useSignup`, `useUpdateUserPassword`). Combined-hook alternative was considered and rejected for symmetry with the rest of the codebase.
+- **Component split → three components.** `PasswordRecoveryFlow` (orchestrator) + `PasswordRecoveryForm` (step 1) + `PasswordResetCodeForm` (step 2). Step state lives in the flow, not in `LoginModalContext`.
+- **Progress indicator → yes.** "Step 1 of 2" / "Step 2 of 2" plain text in each form's header.
+- **Resend button → yes, with 30s cooldown.** Cooldown prevents spam and is the kind of real-world UX detail recruiters notice.
+- **Navigate location → inside `PasswordResetCodeForm`'s mutation `onSuccess`.** Matches Phase 4 `LoginForm`. Keeps `PasswordRecoveryFlow` purely a step/email orchestrator with no router knowledge.
 
 ### Branch: `phase/7-password-reset-completion`
 
@@ -288,4 +304,4 @@ Independent of Phases 5 and 6 — can run any time after Phase 4 merges. Recomme
 - **Phase 1**: rotate Supabase anon key (manual user step, flagged).
 - **Phase 4**: full Clerk implementation details, fetched from docs at phase start.
 - **Phase 5d**: scroll-driven hero yes/no, decided at phase start.
-- **Phase 7**: hook naming, component split, progress indicator — decided at phase start.
+- **Phase 7**: ~~hook naming, component split, progress indicator — decided at phase start.~~ Resolved 2026-05-28; see Phase 7 section. Deferred out of scope: rename `recoverPassView` in `LoginModalContext` (stale name but internal-only); step transition animation (belongs in Phase 5).
