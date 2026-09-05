@@ -62,12 +62,9 @@ The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/
 
 &nbsp;
 
-## 💭 Possible future features
+## Known limitations and roadmap
 
--   **Expand Landing Page**: Implement a time-specific collection with videos.
--   **Dashboard**: Implement a dashboard with order history.
--   **Contact Page**: Contact page with social media links.
--   **Adding Tests**: Implement integration tests.
+Current limitations and planned work are tracked in [Issues](https://github.com/yakksiek/top-shop/issues).
 
 &nbsp;
 
